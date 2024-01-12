@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Validate record from table 'sys_user' matches the following condition:
+User ID = jess.assad
+With a failure timeout of 5 Seconds
+
+Warning: Using a system table may cause unexpected behavior for other tests running in parallel&#13;
+Warning: Using an existing record may cause unexpected behavior for this test&#13;
+See the documentation for Test Design Considerations</description>
+        <display_name>Record Validation</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <step_config display_value="Record Validation">1f39a288df60220062fe6c7a4df2639d</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>sinchana.shridhar</sys_created_by>
+        <sys_created_on>2024-01-12 05:16:18</sys_created_on>
+        <sys_id>7ffd497f93e33910acdc3f484dba106a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Record Validation</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_atf_step_7ffd497f93e33910acdc3f484dba106a</sys_update_name>
+        <sys_updated_by>sinchana.shridhar</sys_updated_by>
+        <sys_updated_on>2024-01-12 05:16:18</sys_updated_on>
+        <table>sys_user</table>
+        <test display_value="Test - Som">1fbdc57f93e33910acdc3f484dba101f</test>
+        <timeout>1970-01-01 00:00:05</timeout>
+        <warning_message>Warning: Using a system table may cause unexpected behavior for other tests running in parallel&#13;
+Warning: Using an existing record may cause unexpected behavior for this test&#13;
+See the documentation for Test Design Considerations</warning_message>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=7ffd497f93e33910acdc3f484dba106a"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>7ffd497f93e33910acdc3f484dba106a</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sinchana.shridhar</sys_created_by>
+        <sys_created_on>2024-01-12 05:16:18</sys_created_on>
+        <sys_id>157e81bf93e33910acdc3f484dba1098</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sinchana.shridhar</sys_updated_by>
+        <sys_updated_on>2024-01-12 05:16:18</sys_updated_on>
+        <value>sys_user</value>
+        <variable display_value="Table">6aad5a575360220002c6435723dc34b0</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>7ffd497f93e33910acdc3f484dba106a</document_key>
+        <order>10</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sinchana.shridhar</sys_created_by>
+        <sys_created_on>2024-01-12 05:16:18</sys_created_on>
+        <sys_id>517e81bf93e33910acdc3f484dba1098</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sinchana.shridhar</sys_updated_by>
+        <sys_updated_on>2024-01-12 05:16:18</sys_updated_on>
+        <value>1</value>
+        <variable display_value="Enforce security">cbddfa135320220002c6435723dc3415</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>7ffd497f93e33910acdc3f484dba106a</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sinchana.shridhar</sys_created_by>
+        <sys_created_on>2024-01-12 05:16:18</sys_created_on>
+        <sys_id>957e81bf93e33910acdc3f484dba1097</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sinchana.shridhar</sys_updated_by>
+        <sys_updated_on>2024-01-12 05:16:18</sys_updated_on>
+        <value>record_validated</value>
+        <variable display_value="Assert type">67400008676003007ba405225685efa4</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>7ffd497f93e33910acdc3f484dba106a</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sinchana.shridhar</sys_created_by>
+        <sys_created_on>2024-01-12 05:16:18</sys_created_on>
+        <sys_id>9d7e81bf93e33910acdc3f484dba1097</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sinchana.shridhar</sys_updated_by>
+        <sys_updated_on>2024-01-12 05:16:18</sys_updated_on>
+        <value>06826bf03710200044e0bfc8bcbe5d41</value>
+        <variable display_value="Record">52ed1e5b5360220002c6435723dc3421</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>7ffd497f93e33910acdc3f484dba106a</document_key>
+        <order>300</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sinchana.shridhar</sys_created_by>
+        <sys_created_on>2024-01-12 05:16:18</sys_created_on>
+        <sys_id>d57e81bf93e33910acdc3f484dba1098</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sinchana.shridhar</sys_updated_by>
+        <sys_updated_on>2024-01-12 05:16:18</sys_updated_on>
+        <value>user_name=jess.assad^EQ</value>
+        <variable display_value="Field values">ff6e125353a0220002c6435723dc3442</variable>
+    </sys_variable_value>
+    <sys_element_mapping action="delete_multiple" query="table=var__m_atf_input_variable_1f39a288df60220062fe6c7a4df2639d^id=7ffd497f93e33910acdc3f484dba106a"/>
+</record_update>
