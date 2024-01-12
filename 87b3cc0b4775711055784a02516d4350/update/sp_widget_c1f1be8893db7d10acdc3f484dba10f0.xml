@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope, spModal) {
+	var c = this;
+
+	function toggleCheckbox() {
+		var checkbox = document.getElementById("myCheckbox");
+		var slider = document.querySelector(".slider");
+
+		if (checkbox.checked) {
+			// Your logic when the checkbox is checked
+			slider.style.backgroundColor = "#2196F3";
+		} else {
+			// Your logic when the checkbox is unchecked
+			slider.style.backgroundColor = "#ccc";
+		}
+	}
+
+	$scope.temp = $scope.searchQuery;	
+
+	$scope.$watch('searchQuery', function (newVal, oldVal) {
+		if (newVal !== oldVal) {
+			$scope.search();
+		}
+	});
+
+	$scope.search = function () {
+		$scope.temp = $scope.searchQuery;  // Set $scope.temp to the current value of $scope.searchQuery
+		$scope.data.arr = $scope.data.arr.filter(function (row) {
+			return (
+				row.category_code.toLowerCase().includes($scope.temp.toLowerCase()) ||
+				row.category_name().includes($scope.temp.toLowerCase())
+			);
+		});
+	};
+
+
+	$scope.checkAll = function() {
+		var num=1;
+		// Logic to handle the checkbox change, e.g., select/deselect all items
+		angular.forEach(c.data.arr, function(task) {
+		if(num<=$scope.maxInc)
+			task.checked = $scope.checkall;
+		else{
+			return;
+		}
+			num++;
+		});
+	};
+	
+	
+		$scope.deletSelected = function(){
+			var deleteIDs = [];
+		for(var i=0;i<c.data.arr.length;i++){
+
+			if(c.data.arr[i].checked){
+				deleteIDs.push(c.data.arr[i].sys_id.toString());
+			}
+		}
+			if(deleteIDs.length > 0){
+				var opt = {
+				title: "Confirmation",
+				message: "<b>Please confirm</b> that you want to delete " + "<b>" + prod_name + "</b>" + " category.",
+				buttons: [
+					{
+						label: "Cancel",
+						value: "cancel",
+						primary: true,
+					},
+					{
+						label: "Confirm",
+						value: "delete",
+						class: "close-popup",
+					},
+				],
+			};
+				
+				spModal.open(opt).then(function (ans) {
+				if (ans.value == "delete") {
+				//	c.data.currentTask = id;
+				c.data.deleteIDs = deleteIDs;
+				c.data.action = "Delete";
+				$scope.checkall=false;
+				c.server.get().then(function(response){
+					if(response){
+						c.server.update();
+					}
+				});
+				}
+			});
+			}
+			
+		}
+	
+	
+/*
+	$scope.deletSelected = function(){
+		var deleteIDs = [];
+		for(var i=0;i<c.data.arr.length;i++){
+
+			if(c.data.arr[i].checked){
+				deleteIDs.push(c.data.arr[i].sys_id.toString());
+			}
+		}
+		if(deleteIDs.length <= 0){
+			alert("Please select at least one record to delete");
+		}else{
+			var userResp = confirm("Delete the selected record(s)?");
+			if(userResp){
+				c.data.deleteIDs = deleteIDs;
+				c.data.action = "Delete";
+				$scope.checkall=false;
+				c.server.get().then(function(response){
+					if(response){
+						c.server.update();
+					}
+				});
+			}
+		}
+	}*/
+
+	//Sorting
+	$scope.reverse = false;
+	$scope.sortKey = $scope.data.fieldListArray[0];
+
+	$scope.sort = function (field) {
+		// alert(field);
+		$scope.sortKey = field;
+		$scope.reverse = !$scope.reverse;
+	};
+
+
+	// Pagination
+	$scope.maxInc = 10;
+
+
+
+
+
+
+	// Delete a record
+	$scope.fun = function (id,prod_name, action) {
+		if (action == "Delete") {
+			var opt = {
+				title: "Confirmation",
+				message: "<b>Please confirm</b> that you want to delete " + "<b>" + prod_name + "</b>" + " category.",
+				buttons: [
+					{
+						label: "Cancel",
+						value: "cancel",
+						primary: true,
+					},
+					{
+						label: "Confirm",
+						value: "delete",
+						class: "close-popup",
+					},
+				],
+			};
+			spModal.open(opt).then(function (ans) {
+				if (ans.value == "delete") {
+					c.data.currentTask = id;
+					c.server.update().then(function () {
+						c.data.currentTask = "";
+					});
+				}
+			});
+		}
+	};
+
+	// Toggle
+	$scope.toggle = function(id){
+		c.data.currentRec = id;
+		c.server.update().then(function () {
+			c.data.currentRec = "";
+		});
+	}
+
+
+
+};
+
+/*
+	  $scope.checkAll = function () {
+        var startIndex = $scope.currentIndex;
+        var endIndex = Math.min($scope.currentIndex + parseInt($scope.maxInc), c.data.arr.length);
+
+        for (var i = startIndex; i < endIndex; i++) {
+            c.data.arr[i].checked = $scope.checkall;
+        }
+    };
+
+
+    // Function to delete selected records
+    $scope.deletSelected = function () {
+    console.log("c.data.arr:", c.data.arr);
+
+    var deleteIDs = c.data.arr.filter(function (item) {
+        return item.checked;
+    }).map(function (item) {
+        return item['sys_id'];
+    });
+
+    console.log("deleteIDs:", deleteIDs);
+
+    if (deleteIDs.length <= 0) {
+        alert("Please select at least one record to delete");
+    } else {
+        var userResp = confirm("Delete the selected record(s)?");
+        if (userResp) {
+            // Use GlideAjax for server communication
+            c.server.get({ action: "delete", deleteIDs: deleteIDs }).then(function () {
+                // Optionally, refresh the data after deletion
+                c.server.update();
+            });
+        }
+    }
+};
+
+
+	*/]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.inImg{
+  height: 20px;
+  width: 25px;
+}
+.goBack {
+  position: relative;
+  width: 100px;
+  height: 40px; 
+}
+
+.btn-rounded{
+  margin-right:0%;
+}
+
+.goBack i {
+  display: inline-block;
+  transition: opacity 0.3s ease-out;
+}
+
+.goBack::before {
+  content: 'Go back';
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.goBack:hover i {
+  opacity: 0;
+}
+
+.goBack:hover::before {
+  display: inline-block;
+}
+
+.headDiv{
+  display:flex;
+  justify-content: space-between;
+}
+
+.sIn{
+  padding: 0 15px 0 15px;
+}
+
+h1{
+  text-align: center;
+}
+
+.img {
+  max-width: 70px;
+  max-height: 70px;
+}
+
+#dataTable{
+  border-collapse: collapse;
+  width: 100%;
+}
+#dataTable th,
+#dataTable td {
+  padding: 8px;
+  text-align: left;
+}
+#dataTable tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+#dataTable th {
+  background-color: #04aa6d;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.catName{
+  text-transform: capitalize;
+}
+
+.pagen{
+  display: flex;
+  justify-content: center;
+}
+.sortorder:after{
+  content:'\25b2';
+  cursor: pointer;
+}
+.sortorder.descending:after{
+  content:'\25bc';
+  cursor: pointer;
+}
+
+
+
+
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #4CAF50;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #4CAF50;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.p{
+  // font-size: 16px;
+  width:60%;
+  // height: 150px; 
+}
+
+.inImg{
+  padding: 10px;
+  float: left; 
+}
+</css>
+        <data_table>sp_instance_table</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>table,filter,title</field_list>
+        <has_preview>false</has_preview>
+        <id>product_list</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>Product List</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function () {
+	data.arr = [];
+	data.table = $sp.getValue("table");
+	data.field_list = $sp.getValue('field_list');
+	data.fieldListArray = data.field_list.split(',');
+	var obj={};
+	var gr;
+
+
+
+
+	if(input && input.action=="Delete"){
+		//	data.action = '';
+		//console.log(input.deleteIDs);
+		var del = new GlideRecord(data.table);
+		del.addEncodedQuery('sys_idIN'+input.deleteIDs);
+		del.deleteMultiple();
+	}
+
+
+
+
+
+	// Delete a record
+	function deleteRecord(recordId) {
+		var grDelete = new GlideRecord(data.table);
+		if (grDelete.get(recordId)) {
+			grDelete.deleteRecord();
+		}
+	}
+
+	// Toggle a record
+	function toggleRecord(recordId) {
+		var grToggle = new GlideRecord(data.table);
+		if (grToggle.get(recordId)) {
+			grToggle.active = !grToggle.active;
+			grToggle.update();
+		}
+	}
+
+	if (input && input.currentTask) {
+		deleteRecord(input.currentTask);
+	}
+
+	if (input && input.currentRec) {
+		toggleRecord(input.currentRec);
+	}
+
+	// Getting records if isActive is true
+	gr = new GlideRecord(data.table);
+	gr.query();
+
+	while (gr.next()) {
+		obj = {};
+
+		data.fieldListArray.forEach(function (field) {
+			obj[field] = gr.getDisplayValue(field);
+		});
+
+		obj.sys_id = gr.getValue("sys_id");
+		obj.active = gr.getDisplayValue('active');
+		obj.category_code = gr.getDisplayValue('category_code');
+		obj.prod_image = gr.getDisplayValue('prod_image');
+		obj.prod_name = gr.getDisplayValue('prod_name');
+		obj.checked = false;
+		data.arr.push(obj);
+	}
+
+})();
+
+
+
+/*	
+	// Function to delete records based on sys_ids
+	function deleteRecords(deleteIDs) {
+		var grDelete = new GlideRecord(data.table);
+		grDelete.addQuery('sys_id', deleteIDs);
+		grDelete.deleteMultiple();
+	}
+
+		if (input && input.action == "delete" && input.deleteIDs) {
+			// Check if input.deleteIDs is an array
+			if (input.deleteIDs) {
+				deleteRecords(input.deleteIDs);
+			} else {
+				// If it's a single sys_id, delete that record
+				deleteRecord(input.deleteIDs);
+			}
+		}
+	*/
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-19 10:38:31</sys_created_on>
+        <sys_id>c1f1be8893db7d10acdc3f484dba10f0</sys_id>
+        <sys_mod_count>193</sys_mod_count>
+        <sys_name>Product List</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_c1f1be8893db7d10acdc3f484dba10f0</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-10 06:45:56</sys_updated_on>
+        <template><![CDATA[
+<div>
+  <div class="headDiv">
+    <div admin-back-button></div>
+    <input type="text" ng-model="searchQuery" ng-change="search()" placeholder="Search here..." class="sIn" />
+  </div>
+  <br />
+  <br />
+  <div class="headDiv">
+
+
+    <admin-button location="create_new_prod" label="Create Product"></admin-button>
+
+    <div class="dropdown">
+      <label for="maxInc">Show: </label>
+      <select
+              ng-model="maxInc"
+              ng-init="maxInc = '10'"
+              ng-change="updateMaxInc()"
+              >
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+      <label for="maxInc">entries</label>
+    </div>
+
+  </div>
+  <br />
+  <!-- List Section -->
+
+  <div class="panel-heading">
+    <button type="button" class="btn btn-outline-white btn-rounded btn-sm" ng-click="deletSelected()">
+      <i class="fa fa-trash" style ="color:red; font-size:1.5em;"></i>
+    </button>
+  </div>
+  <table id="dataTable">
+    <!-- Table Heading Section -->
+    <tr>
+      <th scope="col">
+        <input type='checkbox' value='' ng-model='checkall' ng-change='checkAll()'>
+      </th>
+      <th>Product Name</th>
+      <th
+          ng-repeat="headerName in data.fieldListArray"
+          ng-click="sort(data.fieldListArray[$index])"
+          >
+        {{headerName}}
+        <span
+              class="sortorder descending"
+              ng-show="(sortKey == data.fieldListArray[$index] && reverse == false)"
+              ></span>
+        <span
+              class="sortorder"
+              ng-show="(sortKey == data.fieldListArray[$index] && reverse == true)"
+              ></span>
+      </th>
+      <th>Category Name</th>
+      <th>Active</th>
+      <th>Delete</th>
+    </tr>
+
+
+    <!-- Table Body Section -->
+    <tr ng-repeat="row in data.arr | filter : searchQuery | limitTo : maxInc : currentIndex">
+      <td>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="{{row.sys_id}}" ng-checked="checkall" ng-model="row.checked" data-sys-id="{{row.sys_id}}">
+        </div>
+      </td>
+      <td>
+        <p class="p">
+          <img width="10%" class="inImg" src="{{row.prod_image}}"/>
+          {{row.prod_name}}
+        </p>
+
+      </td>
+      <td ng-repeat="col in data.fieldListArray">{{row[col]}}</td>
+      <td class="catName">{{row.category_code}}</td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" id="myCheckbox" ng-checked="row.active === 'true'" ng-click="toggle(row.sys_id)"/>
+          <span class="slider round"></span>
+        </label>
+      </td>
+      <td>
+        <button ng-click="fun(row.sys_id,row.prod_name,'Delete')" class="btn btn-danger">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Pagination -->
+  <admin-pagination></admin-pagination>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($timeout) {
+	var c = this;
+
+	c.submit = function (){
+		alert(c.role);
+		c.data.temp1 = c.fn;
+		c.data.temp2 = c.ln;
+		c.data.temp3 = c.email;
+		c.data.temp4 = c.uid;
+		c.data.temp6 = c.ia;
+		c.data.temp7 = c.role;
+
+		if (!c.data.temp1.trim() || !c.data.temp2.trim() || !c.data.temp3.trim() || !c.data.temp4.trim()) {
+			return;
+		} else {
+			c.server.update().then(function (response) {
+				if (response.errorMessage) {
+					c.errorMessage = response.errorMessage;
+					c.successMessage = null;
+				} else {
+					c.successMessage = response.successMessage;
+					c.errorMessage = null;
+
+					$timeout(function () {
+						location.href = "/ap?id=" + c.options.redirect_url;
+					}, 1500);
+				}
+			}).catch(function (error) {
+				c.successMessage = null;
+			});
+		}
+
+	}
+};
+
+
+/*i.controller=function($scope) {
+  /* widget controller //*./
+  var c = this;
+	
+		$scope.fetchProd=function(){
+							var obj={
+								value:"a"
+							}						//obj
+														
+		$('.w3-light-grey').css({
+        'visibility': 'visible',
+    })
+											//calling the loading bar function
+		//calling the server side code by passing the arguments for authentication
+	//Process your response
+			move();
+			c.server.get(obj).then(function(response){
+				if(response.data.bool=="hello"){	//closing the modal when the loading is done
+		$('.w3-light-grey').css({
+        'visibility': 'hidden',
+    });	
+				}
+			})
+		function move() {
+  var elem = document.getElementById("myBar");   
+  var width = 20;
+	elem.style.width=width+"%";
+	var lM=0;
+	var time=10;
+  var id = setInterval(frame,time);	
+		function frame (){
+			
+		if(lM===80){
+			lM=0
+		}															//if
+    if (lM >= 100) {
+			clearInterval(id);
+    } 															//if
+			else { 
+			lM++;
+				var x=lM+'%';
+				$('.w3-green').css({
+        'margin-left': x,
+    })
+     // elem.style.margin-left = x; 
+    }															//else		
+		}															//frame()
+	}																	//move()			
+		//c.server.update();				//reloading the server side code
+}	
+	
+	
+};*/
+
+
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/*
+.w3-light-grey,.w3-hover-light-grey:hover,.w3-light-gray,.w3-hover-light-gray:hover{color:#000!important;background-color:#f1f1f1!important;visibility:hidden}
+.w3-green,.w3-hover-green:hover{color:#fff!important;background-color:#4CAF50!important}
+.modalp{
+    display: none;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}*/
+
+.goBack {
+  position: relative;
+  width: 100px;
+  height: 40px; 
+}
+
+.goBack i {
+  display: inline-block;
+  transition: opacity 0.3s ease-out;
+}
+
+.goBack::before {
+  content: 'Go back';
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.goBack:hover i {
+  opacity: 0;
+}
+
+.goBack:hover::before {
+  display: inline-block;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=email], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+ 
+input[type=url], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+ 
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+ 
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+ 
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.head{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center; 
+}
+
+.required{
+	color:red;
+}
+.imageuser{
+  width:20%
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>demo</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>demo</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function () {
+    try {
+        // Check if a user with the same email exists
+        var grEmail = new GlideRecord('sys_user');
+        grEmail.addQuery("email", input.temp3);
+        grEmail.query();
+
+        if (grEmail.next()) {
+            var errorMessage = "User with the same email already exists.";
+            gs.addErrorMessage(errorMessage);
+            data.errorMessage = errorMessage;
+            current.setAbortAction(true);
+            return errorMessage;
+        }
+
+        // Check if a user with the same user_name exists
+        var grUserName = new GlideRecord('sys_user');
+        grUserName.addQuery("user_name", input.temp4);
+        grUserName.query();
+
+        if (grUserName.next()) {
+            var errorMessage = "User ID already exists.";
+            gs.addErrorMessage(errorMessage);
+            data.errorMessage = errorMessage;
+            current.setAbortAction(true);
+            return errorMessage;
+        }
+			gs.addInfoMessage(input.temp7);
+/*
+        // Insert the new user record
+        var grInsert = new GlideRecord('sys_user');
+        grInsert.initialize();
+        grInsert.setValue("first_name", input.temp1);
+        grInsert.setValue("last_name", input.temp2);
+        grInsert.setValue("email", input.temp3);
+        grInsert.setValue("user_name", input.temp4);
+        grInsert.setValue("roles", input.temp7);
+        grInsert.setValue("active", true);
+
+        grInsert.insert();*/
+
+        var successMessage = "Record inserted successfully.";
+        gs.addInfoMessage(successMessage);
+        data.successMessage = successMessage;
+    } catch (e) {
+        console.log("An error occurred: " + e);
+    }
+
+    // Process roles
+    data.rol = [];
+    var roler = new GlideRecord('sys_user_role');
+    roler.query();
+
+    while (roler.next()) {
+        var j = {};
+        var arr = roler.name.toString().split('-');
+        var c = "";
+        arr.forEach(func2);
+        j.code = c;
+        data.rol.push(j);
+    }
+
+    function func2(element) {
+        var b = element.toLowerCase();
+        b = b[0].toUpperCase() + b.substring(1);
+        c = c + " " + b;
+    }
+})();
+
+
+/*(function($scope) {
+  /* populate the 'data' object *./
+  /* e.g., data.table = $sp.getValue('table'); *./			
+	data.bool=false;
+	if(input &&input.value=="a"){
+		for(var i=0;i<1000000;i++){
+		}
+		data.bool="hello";
+	}
+	
+})();
+*/]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-29 07:27:25</sys_created_on>
+        <sys_id>b936ad53939bb950acdc3f484dba10f5</sys_id>
+        <sys_mod_count>283</sys_mod_count>
+        <sys_name>demo</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_b936ad53939bb950acdc3f484dba10f5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-08 05:44:02</sys_updated_on>
+        <template><![CDATA[<!-- Button trigger modal 
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hii">
+  Launch demo modal
+</button>
+
+<!-- Modal 
+<div class="modalp" id="hii" tabindex="-1" role="dialog"  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div>
+    
+  <div admin-back-button class="bt"></div>
+  <form >
+    <div class = "head"> 
+      <h2>Please fill the New User details here:</h2>
+      <img ng-src="https://th.bing.com/th?id=OIP.isMiRzNuox6kx5IuWDJO3QHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" class="imageuser"/>
+    </div>
+    <br />
+    <b>First Name: <span class="required">*</span></b>
+    <input
+           type="text"
+           ng-model="c.fn"
+           required
+           />
+    <br />
+    <b>Last Name: <span class="required">*</span></b>
+    <input
+           type="text"
+           ng-model="c.ln"
+           required
+           />
+    <br />
+    <b>Email: <span class="required">*</span></b>
+    <input
+           type="email"
+           ng-model="c.email"
+           required
+           />
+    <br />
+    <b>User ID: <span class="required">*</span></b>
+    <input
+           type="text"
+           ng-model="c.uid"
+           required
+           />
+    <br />
+    <b> Assign Role:</b>
+    <select ng-model="c.role" class="dropdown" size="5" multiple>
+      
+      <option value="IMG" selected disabled hidden>Choose here...</option>
+      <option ng-repeat="key in data.rol" value="{{key.code}}">{{key.code}}</option>
+    </select>
+           
+    <b>Avatar:</b>
+    <input
+           type="file"
+           ng-model="c.uimg"
+           accept="image/png, image/jpeg, image/jpg"
+           />
+    <br />
+    <div class="hidden">
+      <b>Is Active:</b>
+      <input type="checkbox" ng-model="c.ia" />
+    </div>
+    <br />
+    <input type="submit" value="Create User"  ng-click= "c.submit()" />
+    <br/>
+    
+   <span class="required">*</span> <p>marked fields are mandatory</p>
+   
+  </form>  
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

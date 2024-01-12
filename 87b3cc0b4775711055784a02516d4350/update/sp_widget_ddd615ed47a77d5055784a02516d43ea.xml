@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope, spModal) {
+	var c = this;
+	c.data.temp1 = c.options.title;
+	c.data.temp2 = c.options.description;
+	c.data.temp3 = c.options.image;
+	c.data.temp4 = c.options.offer;
+	if(c.options.title && c.options.description && c.options.image){
+		c.server.update();
+	}
+}
+
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.storage{
+  background: white;
+  margin: auto;
+  margin-top: 3rem;
+  border-radius: 15px;
+  //padding: 1rem;
+  width: 350px;
+  height: 350px; // tags are not at desired place
+  //height:fit-content; card w offer is longer
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+}
+.storage.offer {
+  position: relative;
+  background-color: green;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  color: white;
+}
+
+.storage img{
+  height:100px;
+  width:100px;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+}
+
+p{
+  //padding:10px;
+  width: 300px;
+  height:fit-content;
+  text-align:center;
+}</css>
+        <data_table>sp_instance_table</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>table,field_list</field_list>
+        <has_preview>true</has_preview>
+        <id>demo_prod</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>demo prod</name>
+        <option_schema>[{"hint":"Please enter Product title...","name":"title","section":"other","label":"Title","type":"string"},{"hint":"Please enter Product description..","name":"description","section":"other","label":"Description","type":"string"},{"hint":"Add an image...","name":"image","section":"other","label":"Image","type":"string"},{"name":"offer","section":"other","label":"Offer","type":"string"}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function(){
+	/*
+	try {
+		
+		data.table = $sp.getValue("table");
+
+		var gr = new GlideRecord(data.table);
+
+		// Insert new record
+		gr.initialize();
+		gr.setValue("prod_name", input.temp1);
+		gr.setValue("prod_desc", input.temp2);
+		gr.setValue("product_offer", input.temp4);
+		gr.setValue("prod_image", input.temp3);
+		gr.setValue("active", true);
+		gr.insert();
+
+		// Log success message
+		var successMessage = "Record inserted successfully.";
+		gs.addInfoMessage(successMessage);
+		return successMessage;
+		
+	} catch (e) {
+		
+		gs.error("An error occurred: " + e);
+		return "Error: " + e;
+		
+	}
+	*/
+	
+	try {
+		// Get table name from widget input
+		data.table = $sp.getValue("table");
+
+
+		// Create GlideRecord for the specified table
+		var gr = new GlideRecord(data.table);
+
+
+		// Check if prod_name already exists
+		gr.addQuery("prod_name", input.temp1);
+		gr.query();
+		if (gr.next()) {
+			var errorMessage = "Product name already exists.";
+			gs.addErrorMessage(errorMessage);
+			data.errorMessage = errorMessage;
+			current.setAbortAction(true);
+			return errorMessage;
+		}
+
+
+		// Insert new record
+		gr.initialize();
+		gr.setValue("prod_name", input.temp1);
+		gr.setValue("prod_desc", input.temp2);
+		gr.setValue("product_offer", input.temp4);
+		gr.setValue("prod_image", input.temp3);
+		gr.setValue("active", true);
+		gr.insert();
+
+		// Log success message
+		var successMessage = "Record inserted successfully.";
+		gs.addInfoMessage(successMessage);
+		return successMessage;
+	} catch (e) {
+		
+		gs.error("An error occurred: " + e);
+		return "Error: " + e;
+		
+	}
+	
+})();
+
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-05 06:06:33</sys_created_on>
+        <sys_id>ddd615ed47a77d5055784a02516d43ea</sys_id>
+        <sys_mod_count>90</sys_mod_count>
+        <sys_name>demo prod</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_ddd615ed47a77d5055784a02516d43ea</sys_update_name>
+        <sys_updated_by>harshitha</sys_updated_by>
+        <sys_updated_on>2024-01-11 06:33:02</sys_updated_on>
+        <template><![CDATA[<div>
+  <!-- your widget template -->
+  <div class="storage">
+    <div class="offer" ng-show="{{options.offer}}">{{options.offer}}% OFF</div>
+    <h2>
+     {{options.title}}
+    </h2>
+    <div>
+      <img src="{{options.image}}" alt = "image"/>
+    </div>
+    <p>
+      {{options.description}}
+    </p>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

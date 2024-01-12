@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_rptp_insureme.trail</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>trail</name>
+        <script><![CDATA[var trail = Class.create();
+trail.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+
+    getDetails: function() {
+        try {
+            var r = new sn_ws.RESTMessageV2('x_rptp_insureme.test3', 'Default GET');
+            var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+            i = JSON.parse(responseBody);
+
+			gs.info("Started running for user");
+			var arr = i.message;
+			//gs.info("Users: {0}", JSON.stringify(arr));
+
+			arr.slice(0,1).forEach(fun1);
+        } catch (ex) {
+            var message = ex.message;
+            gs.addErrorMessage(message);
+        }
+
+        function fun1(element) {
+			gr = new GlideRecord('x_rptp_insureme_customer');
+			gs.info('Executing for user');
+			gs.info('User {0}', element.username);
+			gs.info('Id {0}', element.userId);
+            gr.newRecord();
+            gr.setValue('userid', element.userId);
+            gr.setValue('email', element.email);
+            gr.setValue('registeredat', element.registeredAt);
+            gr.setValue('birthdate', element.birthdate);
+            gr.setValue('username', element.username);
+            gr.setValue('password', element.password);
+            gr.setValue('avatar', element.avatar);
+			// gs.info("The avatar value is" +element.avatar);
+            gr.insert();
+            
+			gs.info("Record Sys Id: {0}", gr.sys_id);
+			try {
+                var profileImageUrl = element.avatar;
+				//profileImageUrl = 'https://www.kasandbox.org/programming-images/avatars/mr-pants.png';
+                gs.info("profile image url: " + profileImageUrl);
+
+				var tablename   = 'ZZ_YYx_rptp_insureme_customer';
+				var recordSysId = gr.sys_id;
+				(/[.]/.exec(profileImageUrl)) ? /[^.]+$/.exec(profileImageUrl) :'png';
+				var extension = (/[.]/.exec(profileImageUrl)) ? /[^.]+$/.exec(profileImageUrl) :'png';
+				var filename    = 'profile_image.' + extension;
+
+				var request = new sn_ws.RESTMessageV2();
+				request.setHttpMethod('get');
+				request.setEndpoint(profileImageUrl);
+				// request.setBasicAuth("admin'", "Bit.air-28");
+
+                request.saveResponseBodyAsAttachment(tablename, recordSysId, filename);
+                var response = request.execute();
+
+                trgtAttchSysId = response.getResponseAttachmentSysid();
+                gs.info('trgtAttchSysId = {0}' + trgtAttchSysId);
+                var httpResponseStatus = response.getStatusCode();
+                
+				gs.info("response status code: " + httpResponseStatus);
+                gs.info("response status: " + JSON.stringify(response));
+				
+				gs.info(response.haveError());
+				gs.info(response.getResponseAttachmentSysid());
+				gs.info(response.getHeader('Content-Type'));
+				gs.info(response.getErrorMessage());
+
+				// var attachRec = new GlideRecord('sys_attachment');
+				// attachRec.get(trgtAttchSysId);
+				// attachRec.query();
+				// attachRec.setValue('table_name', 'ZZ_YY' + tablename);
+				// attachRec.update();
+            } catch (ex) {
+                var message = ex.getMessage();
+                gs.error(message);
+            }
+
+            // var attRec = new GlideRecord('sys_attachment');
+            // attRec.addQuery('table_name', 'ZZ_YYx_rptp_insureme_customer');
+            // attRec.addQuery('table_sys_id', gr.sys_id);
+            // attRec.query();
+
+            // gs.print('count = ' + attRec.getRowCount());
+
+            // if (attRec.next()) {
+
+            //     //Create a new record for thumb image
+            //     var gr1 = new GlideRecord('sys_attachment');
+            //     gr1.initialize();
+
+            //     //gr1.file_name = attRec.file_name;
+            //     gr1.file_name = 'thumb_' + attRec.sys_id;
+            //     gr1.content_type = attRec.content_type;
+            //     gr1.compressed = attRec.compressed;
+            //     gr1.table_name = 'sys_attachment';
+            //     gr1.size_bytes = attRec.size_bytes;
+            //     gr1.size_compressed = attRec.size_compressed;
+            //     gr1.table_sys_id = attRec.sys_id;
+            //     var attRec2 = gr1.insert();
+
+            // }
+
+            // //Copy attachment contents from live_profile image to thumb image
+            // var attDoc = new GlideRecord('sys_attachment_doc');
+            // attDoc.addQuery('sys_attachment', attRec.sys_id);
+            // attDoc.query();
+
+            // while (attDoc.next()) {
+            //     var attDocCopy = new GlideRecord('sys_attachment_doc');
+            //     attDocCopy.initialize();
+            //     attDocCopy.sys_attachment = attRec2;
+            //     attDocCopy.position = attDoc.position;
+            //     attDocCopy.length = attDoc.length;
+            //     attDocCopy.data = attDoc.data;
+            //     attDocCopy.insert();
+
+            // }
+
+
+        }
+    },
+
+    type: 'trail'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-02 10:11:15</sys_created_on>
+        <sys_id>9ef162e04727795055784a02516d438e</sys_id>
+        <sys_mod_count>50</sys_mod_count>
+        <sys_name>trail</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_script_include_9ef162e04727795055784a02516d438e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-08 13:15:31</sys_updated_on>
+    </sys_script_include>
+</record_update>

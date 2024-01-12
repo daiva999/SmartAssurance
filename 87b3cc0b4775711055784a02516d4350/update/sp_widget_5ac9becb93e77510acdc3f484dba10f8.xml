@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope) {
+    var c = this;
+    c.data.userInput = {};
+
+    $scope.submitForm = function () {
+        // Declare c.data.userInput object
+        c.data.userInput = {};
+    
+        // Proceed with form submission logic
+        for (var j = 0; j < c.data.arr_fields.length; j++) {
+            var currentFieldSubmission = c.data.arr_fields[j];
+ 
+            // Proceed to include the field in form submission
+            if (currentFieldSubmission.data_type !== ' ' && currentFieldSubmission.column_label !== ' ' && currentFieldSubmission.value !== '') {
+                c.data.userInput[currentFieldSubmission.column_label] = currentFieldSubmission.value;
+            }
+					
+        }
+			 
+
+        c.data.submit = true;
+
+        // Call the server-side function submitFormToTable
+        c.server.update({ submit: true, userInput: c.data.userInput, selectedFields: $scope.selectedFields }).then(function (response) {
+					
+            c.data.arr_fields.forEach(function (field) {
+							
+                field.value = ''; // Reset each field's value
+            });
+            alert('Form Submitted');
+        }).catch(function (error) {
+            console.log('Error submitting form data:', error);
+        });
+    };
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>product_form</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Product Form</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function () {
+    data.arr_fields = [];
+
+    var gr = new GlideRecord('sys_dictionary');
+    gr.addQuery('name', 'x_rptp_insureme_insurance_products');
+    gr.query();
+
+    while (gr.next()) {
+        data.arr_fields.push({
+            column_label: gr.column_label.toString(),
+            data_type: gr.internal_type.toString(),
+            Mandatory: gr.mandatory.toString(),
+            value: '' // Initialize value for each field
+        });
+    }
+
+    var fieldsToKeep = [
+        { column_label: 'Product Name', data_type: 'string' },
+        { column_label: 'Product Image URL', data_type: 'url' },
+        { column_label: 'Product Description', data_type: 'string' },
+    ];
+
+    data.arr_fields = data.arr_fields.filter(function (obj) {
+        return fieldsToKeep.some(function (fieldToKeep) {
+            return (
+                obj.column_label === fieldToKeep.column_label &&
+                obj.data_type === fieldToKeep.data_type
+            );
+        });
+    });
+	 if (input && input.submit) {
+        submitFormToTable(input.userInput);
+    }
+
+    function submitFormToTable(formData) {
+        try {
+					
+            // Initialize GlideRecord for the specified table
+            var targetTable = new GlideRecord('x_rptp_insureme_insurance_products');
+            targetTable.initialize();
+            
+					
+            // Iterate over formData and set values if the field exists in the GlideRecord
+            for (var field in formData) {
+							
+                if (targetTable.isValidField(field)) {
+                    targetTable.setValue(field, formData[field]);
+                }
+            }
+
+            // Insert the record
+            var newRecordSysId = targetTable.insert();
+
+            if (newRecordSysId) {
+                gs.info('Record inserted with Sys ID: ' + newRecordSysId);
+                return 'Form submitted successfully!';
+            } else {
+                gs.error('Failed to insert the record. ' + targetTable.getErrorMessage());
+                return 'Failed to submit the form. Please try again.';
+            }
+        } catch (e) {
+            gs.error('Error submitting form data:', e);
+            return 'Failed to submit the form. Please try again.';
+        }
+    }
+
+    // Expose the function to be used in the client code
+    data.submitFormToTable = submitFormToTable;
+})();
+
+
+	
+	 /*var customRecord = new GlideRecord('x_rptp_insureme_insurance_products');
+    customRecord.newRecord();
+
+    // Set field values based on the form input
+    customRecord.setValue('prod_name', data.input.pname);
+    customRecord.setValue('prod_image', data.input.pimage);
+    customRecord.setValue('prod_desc', data.input.pdesc);
+    customRecord.setValue('product_offer',data.input.poffer);
+    // Set more field values as needed
+
+    // Insert the record into the custom table
+    var customRecordSysId = customRecord.insert();
+
+    if (customRecordSysId) {
+        gs.info('Form data stored successfully with Sys ID: ' + customRecordSysId);
+    } else {
+        gs.error('Failed to insert the record.');
+    }
+
+    // Reset form fields after submission
+    input.pname = '';
+    input.pimage = '';
+    input.pdesc = '';
+    input.poffer = '';
+    // Reset more fields as needed
+*/
+
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-10 05:09:46</sys_created_on>
+        <sys_id>5ac9becb93e77510acdc3f484dba10f8</sys_id>
+        <sys_mod_count>144</sys_mod_count>
+        <sys_name>Product Form</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_5ac9becb93e77510acdc3f484dba10f8</sys_update_name>
+        <sys_updated_by>harshitha</sys_updated_by>
+        <sys_updated_on>2024-01-10 12:06:45</sys_updated_on>
+        <template><![CDATA[<div>
+  <h2>Product Information Form</h2>
+  <form id="productForm">
+    
+    <div ng-repeat="field in data.arr_fields">
+      <!-- Check if the field is included in the data.list array -->
+      <div ng-if="data.list.indexOf(field.column_label) !== -1">
+        <!-- Move the label outside the div -->
+        <label>{{ field.column_label }}:</label>
+
+        <!-- Input for Product Name -->
+        <input
+               ng-if="field.column_label === 'Product Name' && field.data_type === 'string'"
+               type="text"
+               ng-model="field.value"
+               ng-required="field.Mandatory === 'true'">
+
+        <!-- Input for Product Image -->
+        <input
+               ng-if="field.column_label === 'Product Image URL' && field.data_type === 'url'"
+               type="text"
+               ng-model="field.value"
+               ng-required="field.Mandatory === 'true'">
+
+        <!-- Textarea for Product Description -->
+        <textarea
+                  ng-if="field.column_label === 'Product Description' && field.data_type === 'string'"
+                  ng-model="field.value"
+                  ng-required="field.Mandatory === 'true'"></textarea>
+
+        <!-- Input for Product Offer -->
+        <input
+               ng-if="field.column_label === 'product_offer' && field.data_type === 'string'"
+               type="text"
+               ng-model="field.value"
+               ng-required="field.Mandatory === 'true'">
+
+        <br>
+      </div>
+    </div>
+
+    <button type="submit" ng-click="submitForm()">Submit</button>
+  </form>
+  
+ <!-- 
+  {{c.val1}}
+  {{c.val2}}
+-->
+</div>]]></template>
+    </sp_widget>
+</record_update>

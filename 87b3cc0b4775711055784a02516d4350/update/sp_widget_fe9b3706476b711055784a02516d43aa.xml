@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope, $window) {
+    var c = this;
+
+    // Function to open Widget A's preview in a new window
+    c.openWidgetAPreview = function () {
+        // Assuming 'new_insu_dynamic' is the name of your form widget
+        var widgetName = 'demo_prod';
+			
+			
+        
+        // Construct the URL for the form widget's preview page
+        var widgetPreviewUrl = 'https://ven06798.service-now.com/cab?id=prod_page';
+
+        // Open the widget preview in a new window or tab
+        $window.open(widgetPreviewUrl, '_self');
+    };
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>add_product_button</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Add product button</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+ // Get the current page's GlideRecord
+var gr = new GlideRecord('sp_page');
+gr.addQuery('name', 'product_view'); // Replace 'your_page_name' with the actual name of your page
+gr.query();
+
+// Check if the page record is found
+if (gr.next()) {
+    // Get the widget on the page by widget instance ID
+    var widget = new GlideRecord('sp_widget');
+    widget.addQuery('page', gr.getUniqueValue());
+    widget.query();
+
+    // Check if the widget record is found
+    if (widget.next()) {
+        // Construct the widget URL using GlideURL
+        var widgetURL = new GlideURL('sp?id=' + widget.getValue('sys_id'));
+			data.res = widgetURL.getURL();
+        gs.addInfoMessage('Widget URL: ' + data.res);
+			
+    } else {
+        gs.error('Widget not found on the specified page.');
+    }
+} else {
+    gs.error('Page not found.');
+}
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-07 07:23:25</sys_created_on>
+        <sys_id>fe9b3706476b711055784a02516d43aa</sys_id>
+        <sys_mod_count>33</sys_mod_count>
+        <sys_name>Add product button</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_fe9b3706476b711055784a02516d43aa</sys_update_name>
+        <sys_updated_by>harshitha</sys_updated_by>
+        <sys_updated_on>2024-01-11 06:56:25</sys_updated_on>
+        <template><![CDATA[<div>
+  
+  {{data.res}}
+  
+  <button ng-click="c.openWidgetAPreview()">
+    Add Product
+  </button>
+  
+    <!-- Container to display Widget A's preview -->
+    <div ng-if="c.showWidgetAPreview">
+        <!-- Include Widget A within Widget B -->
+       
+    </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

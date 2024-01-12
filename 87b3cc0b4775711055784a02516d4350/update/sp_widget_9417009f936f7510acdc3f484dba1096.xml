@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {
+  /* widget controller */
+  var c = this;
+	
+	c.submitForm= function (){
+		c.input.temp1=c.val1;
+		c.input.temp2=c.val2
+		c.input.temp3
+		c.input.temp4
+	}
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>prod_form</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>prod form</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function () {
+    data.arr_fields = [];
+ 
+ 
+	var gr = new GlideRecord('sys_dictionary');
+	//gs.addErrorMessage(input.tableName);
+	gr.addQuery('name', 'x_rptp_insureme_insurance_products');
+	gr.query();
+	//gs.addInfoMessage(gr.getRowCount());
+ 
+	while (gr.next()) {
+		data.arr_fields.push({
+			column_label: gr.element.toString(),
+			data_type: gr.internal_type.toString(),
+			Mandatory: gr.mandatory.toString(),
+			value: '' // Initialize value for each field
+		});
+ 
+		data.list = [
+			'prod_name',
+			'prod_image',
+			'prod_desc',
+			'product_offer'
+			// Add more fields as needed
+		];
+ 
+ 
+		var excludedColumns = [
+			{ column_label: 'sys_id', data_type: 'GUID' },
+			{ column_label: 'sys_created_by', data_type: 'string' },
+			{ column_label: 'sys_updated_on', data_type: 'glide_date_time' },
+			{ column_label: 'sys_mod_count', data_type: 'integer' },
+			{ column_label: 'sys_updated_by', data_type: 'string' },
+			{ column_label: 'sys_created_on', data_type: 'glide_date_time' },
+			{ column_label: ' ' },
+			{ data_type: ' ' },
+			{ column_label: undefined },
+			{ data_type: undefined },
+			{ column_label: '', data_type: 'collection' },
+		];
+ 
+		data.arr_fields = data.arr_fields.filter(function (obj) {
+			return !excludedColumns.some(function (excludedObj) {
+				return (
+					obj.column_label === excludedObj.column_label &&
+					obj.data_type === excludedObj.data_type
+				);
+			});
+		});
+	}
+
+})();
+ 
+(function () {
+  try {
+    // Retrieve table name
+    data.table = $sp.getValue("table");
+
+    // Initialize GlideRecord
+    var gr = new GlideRecord(data.table);
+
+    // Initialize GlideRecord for the final insert
+    gr.initialize();
+
+    // Set field values
+    gr.setValue("prod_name", input.temp1);
+    gr.setValue("prod_image", input.temp2);
+    gr.setValue("prod_desc", input.temp3);
+    gr.setValue("product_offer", input.temp4);
+
+    // Log the query parameters and values
+    gs.info(
+      "Inserting record with category_code: " +
+        input.temp1 +
+        ", category_name: " +
+        input.temp2 +
+        ", short_description: " +
+        input.temp3
+    );
+
+    // Insert the record
+    if (!gr.insert()) {
+      var errorMessage = "Error inserting record: " + gr.getErrorMessage();
+      gs.error(errorMessage);
+      data.errorMessage = errorMessage;
+      current.setAbortAction(true);
+      return errorMessage;
+    }
+
+    var successMessage = "Record inserted successfully.";
+    gs.addInfoMessage(successMessage);
+    data.successMessage = successMessage;
+    return successMessage;
+  } catch (e) {
+    gs.error("An error occurred: " + e);
+    return "Error: " + e;
+  }
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>harshitha</sys_created_by>
+        <sys_created_on>2024-01-10 10:47:25</sys_created_on>
+        <sys_id>9417009f936f7510acdc3f484dba1096</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>prod form</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_9417009f936f7510acdc3f484dba1096</sys_update_name>
+        <sys_updated_by>harshitha</sys_updated_by>
+        <sys_updated_on>2024-01-10 11:19:57</sys_updated_on>
+        <template><![CDATA[<div>
+  <h2>Product Information Form</h2>
+  <form id="productForm">
+    
+    <div ng-repeat="field in data.arr_fields">
+      <!-- Check if the field is included in the data.list array -->
+      <div ng-if="data.list.indexOf(field.column_label) !== -1">
+        <!-- Move the label outside the div -->
+        <label>{{ field.column_label }}:</label>
+
+        <!-- Input for Product Name -->
+        <input
+               ng-if="field.column_label === 'Product Name' && field.data_type === 'string'"
+               type="text"
+               ng-model="c.val1"
+               ng-required="field.Mandatory === 'true'">
+
+        <!-- Input for Product Image -->
+        <input
+               ng-if="field.column_label === 'Product Image URL' && field.data_type === 'url'"
+               type="text"
+               ng-model="c.val2"
+               ng-required="field.Mandatory === 'true'">
+
+        <!-- Textarea for Product Description -->
+        <textarea
+                  ng-if="field.column_label === 'Product Description' && field.data_type === 'string'"
+                  ng-model="c.val3"
+                  ng-required="field.Mandatory === 'true'"></textarea>
+
+        <!-- Input for Product Offer -->
+        <input
+               ng-if="field.column_label === 'product_offer' && field.data_type === 'string'"
+               type="text"
+               ng-model="c.val4"
+               ng-required="field.Mandatory === 'true'">
+
+        <br>
+      </div>
+    </div>
+
+    <button type="submit" ng-click="submitForm()">Submit</button>
+  </form>
+  
+ <!-- 
+  {{c.val1}}
+  {{c.val2}}
+-->
+</div>]]></template>
+    </sp_widget>
+</record_update>

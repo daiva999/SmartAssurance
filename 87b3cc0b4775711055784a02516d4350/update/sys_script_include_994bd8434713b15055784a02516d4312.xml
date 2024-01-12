@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_rptp_insureme.InsureProd</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>InsureProd</name>
+        <script><![CDATA[var InsureProd = Class.create();
+InsureProd.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+    getDetails: function(categories,prodTableName,tokenTableName) {
+		var newProdCount=0;
+		
+        var resultVariant = "";
+		var accessToken;
+        try {
+			
+            //here fetvhing the token from the token table
+		var grToken = new GlideRecord(tokenTableName);
+        grToken.addQuery('number', 'TOK000101');
+        grToken.query();
+        var expire;
+        while (grToken.next()) {
+            expire = new GlideDateTime(grToken.expireat);
+        }
+        var current = new GlideDateTime();
+        if (current >= expire) {
+            var getQuote = new sn_ws.RESTMessageV2();
+            getQuote.setEndpoint('https://app.skyfall.turtle-feature.com/api/minterprise/v1/token/issue');
+            getQuote.setHttpMethod('get');
+            getQuote.setRequestHeader('accept', 'application/json');
+            getQuote.setRequestHeader('x-broker', 'turtlemint');
+            getQuote.setRequestHeader('x-tenant', 'turtlemint');
+
+             getQuote = getQuote.execute();
+            var getQuoteBody = getQuote.getBody();
+            var getQuoteBodyJSON = JSON.parse(getQuoteBody);
+            grToken = new GlideRecord(tokenTableName);
+            grToken.addQuery('number', 'TOK000101');
+            grToken.query();
+			
+            while (grToken.next()) {
+                grToken.setValue('token', getQuoteBodyJSON.data.accessToken);
+                grToken.setValue('expireat', getQuoteBodyJSON.data.expireAt);
+                grToken.update();
+            }
+        }
+
+            var productResponseBodyJSON;
+             accessToken;
+            var categoryArray= [];
+             grToken = new GlideRecord(tokenTableName);
+            grToken.query();
+            while (grToken.next()) {
+                accessToken = "Bearer " + grToken.token;
+            }
+			
+            //all the categories
+            if (categories != "all") {
+				
+                categoryArray[0] = categories;
+            } else {
+				
+                categoryArray = ['group-hospicash', 'mobile', 'vector-borne', 'shop', 'credit-life', 'group-personal-accident', 'travel', 'lifestyle', 'wellness'];
+            }
+			
+            categoryArray.forEach(fun);
+        } catch (e) {
+			gs.addErrorMessage(e);
+        }
+
+        function fun(element) { //fetcthing the data for each category
+        	var restProduct = new sn_ws.RESTMessageV2('x_rptp_insureme.Fetch Data From api', 'Default GET');
+            restProduct.setStringParameterNoEscape('key2', 'productDetails');
+            restProduct.setStringParameterNoEscape('key1',element);
+            restProduct.setRequestHeader("Authorization", accessToken);
+            var productResponse = restProduct.execute();
+            var productResponseBody = productResponse.getBody();
+            var httpStatus = productResponse.getStatusCode();
+            productResponseBodyJSON = JSON.parse(productResponseBody);
+			
+            if (httpStatus == '200') { //ftech te=he info only if the status is 200                    
+                //checking if the record already exists //x_rptp_insureme_insurance_product_category
+
+      /*         //for category
+                var qrr = new GlideRecord('x_rptp_insureme_insurance_product_category');
+                qrr.addQuery('category_code', productResponseBodyJSON.data.productCode);
+                qrr.query();
+                if (qrr.next()) { //if the record already exists the update the record
+
+                    qrr.setValue('category_name', productResponseBodyJSON.data.name);
+                    qrr.setValue('category_code', productResponseBodyJSON.data.productCode);
+                    qrr.update();
+                } else { //if it is not thr create a new record and insert value
+                    gr = new GlideRecord('x_rptp_insureme_insurance_product_category');
+                    gr.newRecord();
+                    gr.setValue('category_name', productResponseBodyJSON.data.name);
+                    gr.setValue('category_code', productResponseBodyJSON.data.productCode);
+                    gr.insert();
+					//newCatCount++;
+                    //gr.close();
+                }*/
+				
+                //for products table
+                var variantsArray = productResponseBodyJSON.data.variants;
+                variantsArray.forEach(fun1);
+            }
+        }
+
+        function fun1(variant) {
+            var grProduct = new GlideRecord(prodTableName); //x_rptp_insureme_insurance_products
+            grProduct.addQuery('prod_code', variant.variantCode);
+            grProduct.query();
+            if (grProduct.next()) { //if the record already exists the update the record
+                grProduct.setValue('prod_desc', variant.metaInfo);
+                grProduct.setValue('prod_code', variant.variantCode);
+                var variantdata = variant.variantCode;
+                variantdata = variantdata.split('_');
+                resultVariant = "";
+                variantdata.forEach(func2);
+                grProduct.setValue('prod_name', resultVariant);
+                grProduct.update();
+            } else { //if it is not thr create a new record and insert value
+                grProduct = new GlideRecord(prodTableName);
+                grProduct.newRecord();
+                grProduct.setValue('prod_desc', variant.metaInfo);
+                grProduct.setValue('prod_code', variant.variantCode);
+                grProduct.setValue('category_code', productResponseBodyJSON.data.productCode);
+                var variantdata = variant.variantCode;
+                variantdata = variantdata.split('_');
+                resultVariant = "";
+                variantdata.forEach(func2);
+                grProduct.setValue('prod_name', resultVariant);
+				newProdCount++;
+
+                grProduct.insert();
+                //gr.close();
+            }
+
+        }
+
+        function func2(element) {
+            var lowerCaseString = element.toLowerCase();
+            lowerCaseString = lowerCaseString[0].toUpperCase() + lowerCaseString.substring(1);
+            resultVariant = resultVariant + " " + lowerCaseString;
+        }
+		return [newProdCount];
+
+    },
+
+    type: 'InsureProd'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-28 07:22:43</sys_created_on>
+        <sys_id>994bd8434713b15055784a02516d4312</sys_id>
+        <sys_mod_count>65</sys_mod_count>
+        <sys_name>InsureProd</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_script_include_994bd8434713b15055784a02516d4312</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-10 05:39:58</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope, spModal) {
+	var c = this;	
+	$scope.temp = $scope.searchQuery;	
+
+	$scope.$watch('searchQuery', function (newVal, oldVal) {
+		if (newVal !== oldVal) {
+			$scope.search();
+		}
+	});
+
+	$scope.search = function () {
+		$scope.temp = $scope.searchQuery;  // Set $scope.temp to the current value of $scope.searchQuery
+		$scope.data.arr = $scope.data.arr.filter(function (row) {
+			return (
+				row.category_code.toLowerCase().includes($scope.temp.toLowerCase()) ||
+				row.category_name().includes($scope.temp.toLowerCase())
+			);
+		});
+	};
+
+
+	$scope.maxInc = 10;
+
+	$scope.fun = function (id,name, action) {
+		if (action == "Delete") {
+			var opt = {
+				title: "Confirmation",
+				message: "<b>Please confirm</b> that you want to delete "+ "<b>"+ name +"</b>"+ " category",
+				buttons: [
+					{
+						label: "Cancel",
+						value: "cancel",
+						primary: true,
+					},
+					{
+						label: "Confirm",
+						value: "delete",
+						class: "close-popup",
+					},
+				],
+			};
+			spModal.open(opt).then(function (ans) {
+				if (ans.value == "delete") {
+					c.data.currentTask = id;
+					c.server.update().then(function () {
+						c.data.currentTask = "";
+					});
+				}
+			});
+		}
+	};
+
+	// Toggle
+	$scope.toggle = function(id){
+		c.data.currentRec = id;
+		c.server.update().then(function () {
+			c.data.currentRec = "";
+		});
+	}
+
+
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.goBack {
+  position: relative;
+  width: 100px;
+  height: 40px; 
+}
+
+.goBack i {
+  display: inline-block;
+  transition: opacity 0.3s ease-out;
+}
+
+.goBack::before {
+  content: 'Go back';
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.goBack:hover i {
+  opacity: 0;
+}
+
+.goBack:hover::before {
+  display: inline-block;
+}
+
+.sIn{
+	padding: 0 15px 0 15px;
+}
+
+
+
+.headDiv{
+  display:flex;
+  justify-content:space-between;
+}
+.img {
+  max-width: 70px;
+  max-height: 70px;
+}
+
+#dataTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+#dataTable th,
+#dataTable td {
+  padding: 8px;
+  text-align: left;
+}
+#dataTable tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+#dataTable th {
+  text-transform: capitalize;
+  background-color: #04aa6d;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.checkbox-input {
+  display: none;
+}
+
+/* Show the search input on hover over the table row */
+tr:hover .checkbox-input {
+  display: inline;
+}
+
+
+/**
+.search-input-row {
+display: none;
+width: 100%;
+padding: 8px;
+}
+Show the search input row on click 
+.search-input-row.show {
+display: table-row;
+}
+**/
+
+
+.pagen {
+  display: flex;
+  justify-content: center;
+}
+.sortorder:after {
+  content: "\25b2";
+  cursor: pointer;
+}
+.sortorder.descending:after {
+  content: "\25bc";
+  cursor: pointer;
+}
+
+.switch {
+position: relative;
+display: inline-block;
+width: 60px;
+height: 34px;
+}
+
+.switch input { 
+opacity: 0;
+width: 0;
+height: 0;
+}
+
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+.slider:before {
+position: absolute;
+content: "";
+height: 26px;
+width: 26px;
+left: 4px;
+bottom: 4px;
+background-color: white;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+input:checked + .slider {
+background-color: #4CAF50;
+}
+
+input:focus + .slider {
+box-shadow: 0 0 1px #4CAF50;
+}
+
+input:checked + .slider:before {
+-webkit-transform: translateX(26px);
+-ms-transform: translateX(26px);
+transform: translateX(26px);
+}
+
+.slider.round {
+border-radius: 34px;
+}
+
+.slider.round:before {
+border-radius: 50%;
+}</css>
+        <data_table>sp_instance_table</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>title,table,filter,field_list</field_list>
+        <has_preview>true</has_preview>
+        <id>category_list</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>Category List</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function () {
+
+	// Storing all the objects in this array
+	data.arr = [];
+	
+	data.table = $sp.getValue("table");
+	
+	data.field_list = $sp.getValue('field_list');
+	
+	
+	
+	data.fieldListArray = data.field_list.split(',');
+	data.headerListArray = data.field_list.split('_').join(" ").split(",");
+
+	
+	
+	
+	// delete a record
+	function deleteRecord(recordId) {
+		var grDelete = new GlideRecord(data.table);
+		if (grDelete.get(recordId)) {
+			grDelete.deleteRecord();
+		}
+	}
+
+	// toggle
+	function toggleRecord(recordId) {
+		var grToggle = new GlideRecord(data.table);
+		if (grToggle.get(recordId)) {
+			grToggle.isactive = !grToggle.isactive;
+			grToggle.update();
+		}
+	}
+
+	if (input && input.currentTask) {
+		deleteRecord(input.currentTask);
+	}
+
+	// toggle a record
+	if (input && input.currentRec) {
+		toggleRecord(input.currentRec);
+	}
+
+	
+	var gr = new GlideRecord(data.table);
+	gr.query();
+
+	while (gr.next()) {
+		var obj = {};
+
+		data.fieldListArray.forEach(function (field) {
+			obj[field] = gr.getDisplayValue(field);
+		});
+
+		
+		obj.sys_id = gr.getValue("sys_id");
+		obj.isactive = gr.getDisplayValue("isactive");
+		data.arr.push(obj);
+	}
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-19 09:27:23</sys_created_on>
+        <sys_id>a4a12e04939b7d10acdc3f484dba103d</sys_id>
+        <sys_mod_count>359</sys_mod_count>
+        <sys_name>Category List</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_a4a12e04939b7d10acdc3f484dba103d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-09 10:11:45</sys_updated_on>
+        <template><![CDATA[<div>
+  
+  
+  <div class="headDiv">
+    <div admin-back-button></div>
+
+    <input type="text" ng-model="searchQuery" ng-change="search()" placeholder="Search here..." class="sIn" />
+  </div>
+
+
+  <br />
+
+  <br />
+
+  <div class="headDiv">
+    <admin-button
+                  location="create_new_cat"
+                  label="Create Category"
+                  ></admin-button>
+
+    <div class="dropdown">
+      <label for="maxInc">Show: </label>
+      <select
+              ng-model="maxInc"
+              ng-init="maxInc = '10'"
+              ng-change="updateMaxInc()"
+              >
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+      <label for="maxInc">entries</label>
+    </div>
+  </div>
+  <br />
+
+  <!-- List Section -->
+  <table id="dataTable">
+    <!-- Table Heading Section -->
+    <tr>
+      <th
+          ng-repeat="headerName in data.headerListArray"
+          ng-click="sort(data.headerListArray[$index])"
+          >
+        {{headerName}}
+      </th>
+      <th>Active</th>
+      <th>Delete</th>
+    </tr>
+    <tr
+        ng-repeat="row in data.arr | filter : searchQuery | limitTo: maxInc : currentIndex"
+        >
+
+      <td ng-repeat="col in data.fieldListArray">{{row[col]}}</td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" id="myCheckbox" ng-checked="row.isactive === 'true'" ng-click="toggle(row.sys_id)"/>
+          <span class="slider round"></span>
+        </label>
+      </td>
+      <td>
+        <button ng-click="fun(row.sys_id,row.category_name,'Delete')" class="btn btn-danger">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Pagination -->
+  <admin-pagination></admin-pagination>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>
