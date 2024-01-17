@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {
+  /* widget controller */
+  var c = this;
+	
+
+api.controller = function($scope) {
+	// $scope.maxInc = 6;
+	
+	c.printDurationInDays=function() {
+    var startDate = g_form.getValue('txtStartDT');
+    var endDate = g_form.getValue('txtEnddt');
+
+    if (startDate && endDate) {
+        startDate = new GlideDateTime(startDate);
+        endDate = new GlideDateTime(endDate);
+
+        var dayDiff = gs.dateDiff(startDate, endDate, true);
+        g_form.setValue('lblduration', dayDiff);
+
+        var durationText = dayDiff + ' day' + (dayDiff !== 1 ? 's' : '');
+        g_form.setLabelOf('durationtxt', durationText);
+    } else {
+        g_form.setLabelOf('durationtxt', '0 day');
+    }
+
+    var numberOfPassengers = g_form.getValue('ddlTravellers');
+    var birthDate;
+
+    for (var i = 1; i <= 4; i++) {
+        birthDate = g_form.getValue('txtDTTraveller' + i);
+
+        if (i <= numberOfPassengers && startDate && birthDate) {
+            printTravellerAge(i, new GlideDateTime(birthDate));
+        } else {
+            g_form.setValue('txtDTTraveller' + i, '');
+            g_form.setValue('txtAgeTraveller' + i, '');
+        }
+    }
+}
+
+c.printTravellerAge=function (fieldIndex, birthDate) {
+    var startDate = g_form.getValue('txtStartDT');
+
+    if (startDate) {
+        startDate = new GlideDateTime(startDate);
+        var yearDiff = gs.dateDiff(birthDate, startDate, true);
+        yearDiff = yearDiff < 1 ? yearDiff + 1 : yearDiff;
+        g_form.setValue('txtAgeTraveller' + fieldIndex, yearDiff);
+    } else {
+        g_form.setValue('txtAgeTraveller' + fieldIndex, 0);
+    }
+}
+
+// Call printDurationInDays when the form loads or when other relevant fields change
+c.printDurationInDays();
+
+}
+
+
+
+
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 95%;
+    /*font-size: 10.5px;*/
+    vertical-align: baseline;
+    background: transparent
+}
+
+.traveller_blk {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+.travelinfo_blk {
+    width: 55%;
+}
+
+.travel_picblk {
+    width: 40%;
+}
+
+.field_ttl {
+    font-size: 30px;
+    line-height: 30px;
+    color: rgb(0,0,139);
+    font-family: 'Arial';
+   // font-style: italic;
+    margin: 0 0 20px 0;
+}
+
+.field_wrapper {
+    display: flex;
+    margin: 0 0 40px 0;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+    .field_wrapper:last-child {
+        margin: 0;
+    }
+
+        .field_wrapper:last-child .field_item {
+            margin: 0 20px 0 0;
+        }
+
+    .field_wrapper.single_field {
+        display: block;
+    }
+
+        .field_wrapper.single_field .field_item {
+            width: 100%;
+        }
+
+    .field_wrapper.two_fields {
+        justify-content: space-between;
+    }
+
+        .field_wrapper.two_fields .field_item {
+            width: 47%;
+            margin: 0;
+        }
+
+    .field_wrapper.jointwo_field .field_item {
+        width: 65%;
+    }
+
+.innerfield_item select {
+    font-family: 'Axiforma-Regular';
+    font-size: 15px;
+    color: #000;
+    ;
+    line-height: 15px;
+    border: 0;
+    outline: none;
+}
+
+.innerfield_item {
+    margin: 0 20px 0 0;
+}
+
+.radio_item .radio-label {
+    font-size: 15px;
+    color: #000;
+    font-family: 'Axiforma-Regular';
+    line-height: 16px;
+    cursor: pointer;
+}
+
+
+.info_fieldblk {
+    margin: 0 0 20px 0;
+}
+
+.fieldtxt {
+    font-family: 'Axiforma-Regular';
+    font-size: 15px;
+    line-height: 16px;
+    color: #000;
+}
+
+.field_wrapper.three_field {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+    .field_wrapper.three_field .field_item {
+        width: 31%;
+        margin: 0 20px 30px 0;
+    }
+
+        .field_wrapper.three_field .field_item:nth-child(3n+3) {
+            margin: 0 0 20px 0;
+        }
+
+.form_fieldblk {
+    margin: 0px 0 25px 0;
+}
+
+.inner_twofield {
+    display: flex;
+}
+
+.field_wrapper {
+    display: flex;
+    margin: 0 0 40px 0;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+    .field_wrapper:last-child {
+        margin: 0;
+    }
+
+        .field_wrapper:last-child .field_item {
+            margin: 0 20px 0 0;
+        }
+
+    .field_wrapper.single_field {
+        display: block;
+    }
+
+.field_wrapper.single_field .field_item {
+            width: 100%;
+        }
+
+    .field_wrapper.two_fields {
+        justify-content: space-between;
+    }
+
+        .field_wrapper.two_fields .field_item {
+            width: 47%;
+            margin: 0;
+        }
+
+    .field_wrapper.jointwo_field .field_item {
+        width: 65%;
+    }
+
+.innerfield_item select {
+    font-family: 'Axiforma-Regular';
+    font-size: 15px;
+    color: #000;
+    ;
+    line-height: 15px;
+    border: 0;
+    outline: none;
+}
+
+ .field_item label {
+        font-size: 12px;
+    }
+
+    .travelfield_infoblk.form_fieldblk .field_item {
+        width: 26%;
+    }
+
+ .field_item .label {
+        position: absolute;
+        top: -10px;
+        left: 15px;
+        font-size: 14px;
+        line-height: 14px;
+        color: #00ae8d;
+        background: #fff;
+        padding: 0 10px;
+        font-family: 'Axiforma-Bold';
+    }
+
+ .field_item .control_field {
+        border-radius: 4px;
+        border: 1px solid #00ae8d;
+        width: 100%;
+        padding: 10px;
+        font-size: 15px;
+        line-height: 15px;
+        color: #000;
+        font-family: 'Axiforma-Medium';
+		height:auto;
+    }
+
+.radio_item input[type=radio] {
+    position: absolute;
+    opacity: 0;
+    padding: 0;
+    width: auto;
+    cursor: pointer;
+}
+
+.radio_item input[type=radio] + .radio-label:before {
+        content: "";
+        background: #fff;
+        border-radius: 100%;
+        border: 1px solid #00AE8D;
+        display: inline-block;
+        width: 18px;
+        Height: 18px;
+        position: relative;
+        top: -0.2em;
+        margin-right: 8px;
+        vertical-align: top;
+        cursor: pointer;
+        text-align: center;
+  transition: all 250ms ease;
+    }
+
+ .radio_item input[type=radio]:checked + .radio-label:before {
+        background-color: #00AE8D;
+        box-shadow: inset 0 0 0 5px #fff;
+    }
+
+.radio_item .radio-label {
+    font-size: 15px;
+    color: #000;
+    font-family: 'Axiforma-Regular';
+    line-height: 16px;
+    cursor: pointer;
+}
+
+.radio_item {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 20px 0 0;
+}
+
+    .radio_item:last-child {
+        margin: 0;
+    }
+
+  .field_item .select_field {
+        border-radius: 4px;
+        border: 1px solid #00ae8d;
+        width: 100%;
+        padding: 13px 10px;
+        font-size: 15px;
+        line-height: 15px;
+        color: #000;
+        font-family: 'Axiforma-Medium';
+    }
+
+input, select {
+    vertical-align: middle;
+}
+
+select {
+  // Remove the inheritance of word-wrap in Safari.
+  // See https://github.com/twbs/bootstrap/issues/24990
+  word-wrap: normal;
+
+  // Undo the opacity change from Chrome
+  &amp;:disabled {
+    opacity: 1;
+  }
+}
+
+button, select {
+    text-transform: none;
+}
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+label {
+    display: inline-block;
+}
+
+
+.radio_item input[type=radio] {
+    position: absolute;
+    opacity: 0;
+    padding: 0;
+    width: auto;
+    cursor: pointer;
+}
+
+    .radio_item input[type=radio] + .radio-label:before {
+        content: "";
+        background: #fff;
+        border-radius: 100%;
+        border: 1px solid #00AE8D;
+        display: inline-block;
+        width: 18px;
+        Height: 18px;
+        position: relative;
+        top: -0.2em;
+        margin-right: 8px;
+        vertical-align: top;
+        cursor: pointer;
+        text-align: center;
+        transition: all 250ms ease;
+    }
+
+    .radio_item input[type=radio]:checked + .radio-label:before {
+        background-color: #00AE8D;
+        box-shadow: inset 0 0 0 5px #fff;
+    }
+
+.radio_item .radio-label {
+    font-size: 15px;
+    color: #000;
+    font-family: 'Axiforma-Regular';
+    line-height: 16px;
+    cursor: pointer;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.ibvm {
+    display: inline-block;
+    vertical-align: middle
+}
+
+.radiohover_item{
+  display:none;
+}
+
+.radiohover_item:hover{
+  display: block;
+}
+
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>travel_details</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Travel Details</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>harshitha</sys_created_by>
+        <sys_created_on>2024-01-17 04:46:01</sys_created_on>
+        <sys_id>227736dd93b3b110acdc3f484dba100c</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>Travel Details</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_227736dd93b3b110acdc3f484dba100c</sys_update_name>
+        <sys_updated_by>harshitha</sys_updated_by>
+        <sys_updated_on>2024-01-17 11:24:03</sys_updated_on>
+        <template><![CDATA[<div>
+  <div class="travelinfo_blk">
+    <div class="info_fieldblk">
+        <div class="field_ttl">Where?</div>
+        <div class="form_fieldblk">
+
+            <div>
+                <span id="lblStatement" style="font-size:Small;font-weight:bold;">*Secure your Trip with Mandatory
+                    Travel
+                    Assistance and Insurance (Covers Covid-19).</span><br>
+
+                <div><span> <br /></span></div>
+            </div>
+
+            <div class="field_wrapper">
+                <div class="radiobtnblk ibvm">
+                    <div class="radio_item">
+                        <input type="radio" id="single_trip" name="radio-group" checked value="Single" />
+                        <label for="single_trip" class="radio-label">Single Trip</label>
+                    </div>
+                    <div class="radio_item">
+                        <input type="radio" id="round_trip" name="radio-group" value="Multi-Trip" />
+                        <label for="round_trip" class="radio-label">Multi Trip</label>
+                        <div class="radiohover_item">
+
+                            You are now opting for a Multi-trip plan. However, please note that this plan will cover you
+                            for
+                            a maximum of 60 days/trip
+                        </div>
+                    </div>
+
+                    <div class="radio_item">
+                        <input type="radio" id="annual_trip" name="radio-group" value="Annual-Trip" />
+                        <label for="annual_trip" class="radio-label">Annual Trip</label>
+                        <div class="radiohover_item">
+                            Uninterrupted single trip cover for 365 days
+                        </div>
+                    </div>
+                    <div id="rdStudent" class="radio_item">
+                        <input type="radio" id="student_trip" name="radio-group" value="Student" />
+                        <label for="student_trip" class="radio-label">Student</label>
+                        <div class="radiohover_item">
+                            Uninterrupted single trip cover for 365 days
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form_fieldblk">
+            <div class="field_wrapper jointwo_field">
+                <div class="field_item">
+                    <label>Enter your travel region</label>
+                    <!--<input type="text" placeholder="India" class="control_field" />-->
+                    <select name="ddltravelregion" id="ddltravelregion" class="select_field"
+                        style="background-color:white;">
+                        <option value="Excluding USA &amp; Canada">
+                            Excluding USA &amp; Canada
+                        </option>
+                        <option value="Including USA &amp; Canada">
+                            Including USA &amp; Canada
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="info_fieldblk">
+        <div class="field_ttl">When?</div>
+        <div class="form_fieldblk">
+            <div class="field_wrapper three_field">
+                <div class="field_item">
+                    <label>Start Date</label>
+                    <input type='text' placeholder="dd/mm/yyyy" class="form-control control_field" id='txtStartDT'
+                        name='txtStartDT' autocomplete="off" />
+                </div>
+                <div class="field_item">
+                    <label id="lblenddate">End Date</label>
+                    <input type='text' placeholder="dd/mm/yyyy" class="form-control control_field" id='txtEnddt'
+                        name='txtEnddt' autocomplete="off" />
+                </div>
+                <div class="field_item duration_item">
+                    <div class="fieldtxt">Duration</div>
+                    <div class="fieldtxt durationtxt">0 day</div>
+                    <input type="hidden" name="lblduration" id="lblduration" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="info_fieldblk">
+        <div class="field_ttl">Who?</div>
+        <div class="form_fieldblk">
+            <div class="field_wrapper">
+                <div class="field_item">
+                    <label>Travellers</label>
+                    <select name="ddlTravellers" id="ddlTravellers" class="select_field"
+                        style="background-color:white;">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form_fieldblk">
+            <div id="T1Masterdiv" class="field_wrapper three_field dateageblk">
+                <div class="field_item">
+                    <span id="lbldobTraveller1" class="label">DOB of traveller 1</span>
+                    <input type='text' placeholder="dd/mm/yyyy" name="txtDTTraveller1" id='txtDTTraveller1'
+                        class="form-control control_field" autocomplete="off" />
+                </div>
+                <div class="field_item">
+                    <span id="lblAgeTraveller1" class="labelAge">T1 Age</span>
+                    <input name="txtAgeTraveller1" type="text" id="txtAgeTraveller1" class="control_fieldAge"
+                        readonly="readonly" autocomplete="off">
+                </div>
+            </div>
+            <div id="T2Masterdiv" class="field_wrapper three_field dateageblk" style="display:none">
+                <div class="field_item">
+                    <span id="lbldobTraveller2" class="label">DOB of traveller 2</span>
+                    <input type='text' placeholder="dd/mm/yyyy" name="txtDTTraveller2" id='txtDTTraveller2'
+                        class="form-control control_field" autocomplete="off" />
+                </div>
+                <div class="field_item">
+                    <span id="lblAgeTraveller2" class="labelAge">T2 Age</span>
+                    <input name="txtAgeTraveller2" type="text" id="txtAgeTraveller2" class="control_fieldAge"
+                        readonly="readonly" autocomplete="off">
+                </div>
+            </div>
+            <div id="T3Masterdiv" class="field_wrapper three_field dateageblk" style="display:none">
+                <div class="field_item">
+                    <span id="lbldobTraveller3" class="label">DOB of traveller 3</span>
+                    <input type='text' placeholder="dd/mm/yyyy" name="txtDTTraveller3" id='txtDTTraveller3'
+                        class="form-control control_field" autocomplete="off" />
+                </div>
+                <div class="field_item">
+                    <span id="lblAgeTraveller3" class="labelAge">T3 Age</span>
+                    <input name="txtAgeTraveller3" type="text" id="txtAgeTraveller3" class="control_fieldAge"
+                        readonly="readonly" autocomplete="off">
+                </div>
+            </div>
+            <div id="T4Masterdiv" class="field_wrapper three_field dateageblk" style="display:none">
+                <div class="field_item">
+                    <span id="lbldobTraveller4" class="label">DOB of traveller 4</span>
+                    <input type='text' placeholder="dd/mm/yyyy" name="txtDTTraveller4" id='txtDTTraveller4'
+                        class="form-control control_field" autocomplete="off" />
+                </div>
+                <div class="field_item">
+                    <span id="lblAgeTraveller4" class="labelAge">T4 Age</span>
+                    <input name="txtAgeTraveller4" type="text" id="txtAgeTraveller4" class="control_fieldAge"
+                        readonly="readonly" autocomplete="off">
+                </div>
+            </div>
+        </div>
+        <div class="form_fieldblk passport_holderblk">
+            <div class="txtfield">Are you an Indian passport holder?</div>
+            <div class="field_wrapper">
+                <div class="radiobtnblk ibvm">
+                    <div class="radio_item">
+                        <input id="yes_passport" type="radio" name="radio-group-1" value="Yes" checked="checked" />
+                        <label for="yes_passport" class="radio-label">Yes</label>
+
+                    </div>
+                    <div class="radio_item">
+                        <input id="no_passport" type="radio" name="radio-group-1" value="No" />
+                        <label for="no_passport" class="radio-label">No</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="passport-holder-message" class="form_fieldblk" style="display:none;">
+            <div class="txtfield nopassport_holder open"> If you do not have an Indian Passport, but have an Overseas Of
+                India (OCI) card instead, drop an email to, <a href="mailto:vfs@asego.in"
+                    class="orangetxt">vfs@asego.in</a>
+                or call on <span class="orangetxt">+91 8976873488.</span> Our team will be happy to assist you further.
+            </div>
+        </div>
+        <div class="form_fieldblk">
+            <div class="field_wrapper">
+                <div class="field_item">
+
+
+                </div>
+            </div>
+        </div>
+        <div class="form_fieldblk">
+            <div class="field_wrapper">
+                <div class="field_item">
+
+
+                </div>
+            </div>
+        </div>
+        <div class="form_fieldblk">
+            <div class="field_wrapper">
+
+                <input type="submit" name="btnSubmit" value="Continue" id="btnSubmit" disabled="disabled"
+                    class="aspNetDisabled btnitem disabled" />
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+</div>]]></template>
+    </sp_widget>
+</record_update>
