@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_column">
+    <sp_column action="INSERT_OR_UPDATE">
+        <class_name/>
+        <order>1</order>
+        <semantic_tag/>
+        <size>12</size>
+        <size_lg/>
+        <size_sm/>
+        <size_xs/>
+        <sp_row display_value="1">0fa6957193bff110acdc3f484dba104e</sp_row>
+        <sys_class_name>sp_column</sys_class_name>
+        <sys_created_by>madhurya.jagadeesh</sys_created_by>
+        <sys_created_on>2024-01-18 11:00:02</sys_created_on>
+        <sys_id>d7a6957193bff110acdc3f484dba1051</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>1</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_column_d7a6957193bff110acdc3f484dba1051</sys_update_name>
+        <sys_updated_by>madhurya.jagadeesh</sys_updated_by>
+        <sys_updated_on>2024-01-18 11:00:02</sys_updated_on>
+    </sp_column>
+</record_update>
