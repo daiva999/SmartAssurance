@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($scope) {
+  /* widget controller */
+  var c = this;
+	
+	$scope.putti = function (index) {
+		// alert("Hey! This is index " + index);
+		location.href = "/vfsp?id=" + $scope.options.redirect;
+	}
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>* { 
+  font-family: 'Inter', sans-serif;
+}
+
+.main{
+  // display: grid;
+  // grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin:auto;
+  padding-bottom:50px;
+  height: 100vh;
+  // overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-y: auto; /* Add vertical scrollbar */
+  
+  // margin-left: 30px;
+  
+}
+.main::-webkit-scrollbar {
+    display: none;
+}
+
+h4{
+ padding:5px;
+}
+
+.card {
+  background: white;
+  margin: auto;
+  margin-top: 3rem;
+  border-radius:20px;
+  //padding: 5px;
+  width: 25rem;
+  height: 28rem; 
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+  
+}
+
+/*.editable_card{
+background: white;
+margin: auto;
+margin-top: 3rem;
+border-radius: 15px;
+//padding: 1rem;
+width: 350px;
+height: 350px; // tags are not at desired place
+//height:fit-content; card w offer is longer
+text-align: center;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+display: flex;
+flex-direction: column;
+}
+*/
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  //border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.card .card-offer {
+  position: relative;
+  background-color: green;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  color: white;
+}
+
+
+.card-title {
+  word-wrap: break-word;
+  color:black;
+  display: inline-block;
+  font-weight: 800;
+ padding:10px;
+  height:30px;
+}
+
+.img-container {
+  position: relative;
+  //left:35%;
+
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+  width: 80px; 
+  height: 80px; 
+  //padding:5px;
+  //margin-top:-10px;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  margin-bottom:5px;
+   margin-top:5px;
+}
+
+/*
+.desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 10px;
+ text-align: justify;
+  padding:13px;
+}
+
+*/
+
+.desc {
+  	position: relative;
+    color: black;
+    // height: 2em;
+  	height: 5em;
+    //line-height: 1em; 
+    font-size: 12px;
+    //font-weight: 400;
+    text-overflow: ellipsis;
+    margin-bottom: 12px;
+    cursor: pointer;
+    word-break: normal;
+    overflow: hidden;
+   // white-space: initial;
+  	padding:10px;
+    text-align: justify;
+  background-color:white;
+ white-space: normal;
+}
+
+.tooltiptext {
+	display: none;
+    width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+    z-index: 10;
+}
+
+.desc:hover{
+    overflow: visible; 
+    white-space: normal; 
+}
+
+/*
+.desc:hover {
+  .tooltiptext {
+    display: block;
+    opacity: 1;
+    top: 0%;
+    left: 0%;
+  }
+}
+*/
+.card-footer {
+  margin-top: auto;
+  margin-bottom: 8px;/* Pushes the buttons to the bottom */
+}
+
+.card-footer .btn:hover {
+  background: #006994; 
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 	
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+button{
+ border: 2px solid #007bff; /* Default border color is blue */
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+        color: #007bff; /* Default text color is blue */
+        background-color: white; /* Default background color is white */
+        transition: border-color 0.3s ease;
+  border-radius:5px;
+}
+
+button:hover {
+        //border-color: #0056b3; /* Change border color to a darker shade of blue on hover */
+        background-color:  #007bff;
+  color:white;
+  /* Change text color to a darker shade of blue on hover */
+    }
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>vfs_product_card</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>VFS Product Card</name>
+        <option_schema>[{"name":"title","section":"other","label":"Title","type":"string"},{"name":"image","section":"other","label":"Image","type":"string"},{"name":"description","section":"other","label":"Description","type":"string"},{"name":"offer","section":"other","label":"Offer","type":"string"},{"displayValue":"Page","name":"redirect","section":"Behavior","default_value":"vfs_get_page","label":"redirect","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    /* populate the 'data' object */
+    /* e.g., data.table = $sp.getValue('table'); */
+
+    function fetchData() {
+        data.arr = [];
+        data.list = "prod_name,prod_desc,prod_image,product_offer".split(",");
+    }
+
+    // Function to remove HTML tags
+	
+    function removeHtmlTags(input) {
+        // Fallback solution to remove HTML tags using a regular expression
+        return input.replace(/<[^>]*>/g, '');
+    }
+		
+
+    // Define a function to fetch and process records
+    function fetchRecords() {
+        var gr = new GlideRecord('x_rptp_insureme_insurance_products');
+        gr.addQuery('active', true);
+        gr.query();
+
+        while (gr.next()) {
+            var obj = {};
+            for (var i = 0; i < data.list.length; i++) {
+                var fieldName = data.list[i];
+                try {
+                    if (fieldName === 'prod_desc') {
+                        var fieldValue = gr.getValue(fieldName);
+                        obj[fieldName] = fieldValue !== null ? removeHtmlTags(fieldValue) : '';
+                    } else {
+                        obj[fieldName] = gr.getDisplayValue(fieldName) || '';
+                    }
+                } catch (error) {
+                    console.error('Error processing field:', fieldName, 'Error:', error);
+                }
+            }
+            obj.sys_id = gr.getValue("sys_id");
+            data.arr.push(obj);
+        }
+    }
+
+    fetchData();
+    fetchRecords();
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>harshitha</sys_created_by>
+        <sys_created_on>2024-01-17 10:39:31</sys_created_on>
+        <sys_id>b4680cad933bb110acdc3f484dba10d7</sys_id>
+        <sys_mod_count>169</sys_mod_count>
+        <sys_name>VFS Product Card</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_b4680cad933bb110acdc3f484dba10d7</sys_update_name>
+        <sys_updated_by>harshitha</sys_updated_by>
+        <sys_updated_on>2024-01-23 12:15:52</sys_updated_on>
+        <template><![CDATA[<div>
+  <div class="main">
+    <div ng-repeat="field in data.arr">
+      <div class="card text-center">
+        <div class="card-offer" ng-if="field.product_offer !== ''">{{field.product_offer}}% OFF</div>
+         <div class="img-container">
+          <img class="card-img" src="{{field.prod_image}}">
+          <!-- Tooltip -->
+        </div>
+       <h4 class=""><strong>{{field.prod_name}}</strong> </h4>
+
+       
+        <div class="desc">
+          {{field.prod_desc}}
+          <span class="tooltiptext">{{field.prod_desc}}</span>
+        </div>
+        <div class="card-footer">
+          <button ng-click="putti($index)">Explore</button>
+          
+        </div>
+      </div>
+    </div>
+   
+    <!--<widget id="demo_prod">
+  </widget> -->
+    
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>
