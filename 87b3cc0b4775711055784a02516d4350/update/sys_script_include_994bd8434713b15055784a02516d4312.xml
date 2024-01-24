@@ -21,7 +21,7 @@ InsureProd.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         grToken.addQuery('number', 'TOK000101');
         grToken.query();
         var expire;
-        while (grToken.next()) {
+        if (grToken.next()) {
             expire = new GlideDateTime(grToken.expireat);
         }
         var current = new GlideDateTime();
@@ -83,7 +83,7 @@ InsureProd.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
             if (httpStatus == '200') { //ftech te=he info only if the status is 200                    
                 //checking if the record already exists //x_rptp_insureme_insurance_product_category
 
-      /*         //for category
+          /*    //for category
                 var qrr = new GlideRecord('x_rptp_insureme_insurance_product_category');
                 qrr.addQuery('category_code', productResponseBodyJSON.data.productCode);
                 qrr.query();
@@ -110,11 +110,12 @@ InsureProd.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 
         function fun1(variant) {
             var grProduct = new GlideRecord(prodTableName); //x_rptp_insureme_insurance_products
-            grProduct.addQuery('prod_code', variant.variantCode);
+			var prodCodeLower= variant.variantCode.toLowerCase();
+            grProduct.addQuery('prod_code',prodCodeLower);
             grProduct.query();
             if (grProduct.next()) { //if the record already exists the update the record
                 grProduct.setValue('prod_desc', variant.metaInfo);
-                grProduct.setValue('prod_code', variant.variantCode);
+                grProduct.setValue('prod_code', variant.variantCode.toLowerCase());
                 var variantdata = variant.variantCode;
                 variantdata = variantdata.split('_');
                 resultVariant = "";
@@ -125,7 +126,7 @@ InsureProd.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
                 grProduct = new GlideRecord(prodTableName);
                 grProduct.newRecord();
                 grProduct.setValue('prod_desc', variant.metaInfo);
-                grProduct.setValue('prod_code', variant.variantCode);
+                grProduct.setValue('prod_code', variant.variantCode.toLowerCase());
                 grProduct.setValue('category_code', productResponseBodyJSON.data.productCode);
                 var variantdata = variant.variantCode;
                 variantdata = variantdata.split('_');
@@ -155,13 +156,13 @@ InsureProd.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2023-12-28 07:22:43</sys_created_on>
         <sys_id>994bd8434713b15055784a02516d4312</sys_id>
-        <sys_mod_count>65</sys_mod_count>
+        <sys_mod_count>71</sys_mod_count>
         <sys_name>InsureProd</sys_name>
         <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sys_script_include_994bd8434713b15055784a02516d4312</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-01-10 05:39:58</sys_updated_on>
+        <sys_updated_by>akshay</sys_updated_by>
+        <sys_updated_on>2024-01-24 06:23:47</sys_updated_on>
     </sys_script_include>
 </record_update>
