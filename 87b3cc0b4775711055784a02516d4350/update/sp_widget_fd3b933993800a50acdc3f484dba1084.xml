@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function loginHandler() {
+    var emailInput = document.getElementById('email');
+    var passwordInput = document.getElementById('password');
+    var errorMessage = document.querySelector('.error');
+
+    var email = emailInput.value;
+    var password = passwordInput.value;
+
+    // Assuming you want to add reCAPTCHA validation
+    // Add your reCAPTCHA validation logic here
+
+    var ga = new GlideAjax('userAuth');
+    ga.addParam('sysparm_name', 'isValidUser');
+    ga.addParam('email', email);
+    ga.addParam('password', password);
+
+    ga.getXMLAnswer(function(response) {
+        var userDetails = JSON.parse(response);
+        if (userDetails && userDetails.name !== undefined) {
+            console.log(userDetails);
+            localStorage.setItem("userName", userDetails.name);
+            localStorage.setItem("userAge", userDetails.age);
+            window.location.href = 'https://ven06798.service-now.com/ui_page.do?sys_id=bb5434f293ce3510acdc3f484dba1098';
+        } else {
+            errorMessage.classList.remove('displayNone');
+        }
+    });
+}
+
+// Uncomment the following line if using in an environment that supports async/await
+// loginHandler();
+
+
+
+
+
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>trail</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>trail</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>pooja.jayaram</sys_created_by>
+        <sys_created_on>2024-01-31 06:55:14</sys_created_on>
+        <sys_id>fd3b933993800a50acdc3f484dba1084</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>trail</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_fd3b933993800a50acdc3f484dba1084</sys_update_name>
+        <sys_updated_by>pooja.jayaram</sys_updated_by>
+        <sys_updated_on>2024-01-31 09:34:30</sys_updated_on>
+        <template><![CDATA[<div class="login-container">
+<div class="form-header">
+<!-- <img src="logo.png" alt="Logo" class="logo"> -->
+<!-- <div class="translator">Language Translator</div> -->
+<h1 class=" text">Sign in</h1>
+<p class="text"> Enter your email and password to continue </p>
+</div>
+<br>
+<form action="#" method="post">
+<label for="email" class="mandatory">Email:</label>
+<input type="email" id="email" name="email" required>
+<label for="password" class="mandatory">Password:</label>
+<input type="password" id="password" name="password" required>
+<!-- Add reCAPTCHA element -->
+<!--<div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>-->
+<button ng-click="login()" onclick="loginHandler()">Sign In</button>
+<div class="additional-options">
+<a href="javascript:void(0)">Forgot Password?</a>
+<span>|</span>
+<a href="javascript:void(0)">Activate Account</a>
+<span>|</span>
+<a href="javascript:void(0)">Don't have an account?</a>
+</div>
+</form>
+</div>
+<!-- Include reCAPTCHA API script -->
+<!--<script src="
+https://www.google.com/recaptcha/api.js"
+async defer></script>-->
+<footer>
+<h6>AR-6.0.60 © 2024 VFS Global Group. All Rights Reserved. ISO 23026 compliant information.
+        Our websites are created for viewing on modern browsers; Internet Explorer users please upgrade.
+</h6>
+</footer>
+]]></template>
+    </sp_widget>
+</record_update>
