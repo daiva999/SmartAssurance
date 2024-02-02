@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_rptp_insureme_productt</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>image</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+
+	
+   var base64String = "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"; // Replace 'field_name' with the actual field name
+
+// Decode the base64 string into a byte array
+var base64Bytes = GlideStringUtil.base64DecodeAsBytes(base64String);
+
+// Create an attachment record
+var attachment = new GlideSysAttachment();
+attachment.setFileName("image.jpg"); // Set the desired file name for the attachment
+attachment.setTableName(current.getTableName());
+attachment.setTableSysId(current.getUniqueValue());
+
+// Attach the decoded image to the attachment record
+attachment.writeBase64Content(base64Bytes);
+
+// Insert the attachment record
+attachment.insert();
+	// Add your code here
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>akshay</sys_created_by>
+        <sys_created_on>2024-02-02 12:24:05</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>62f87aa293440e50acdc3f484dba10fe</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>image</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_script_62f87aa293440e50acdc3f484dba10fe</sys_update_name>
+        <sys_updated_by>akshay</sys_updated_by>
+        <sys_updated_on>2024-02-02 12:27:38</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=62f87aa293440e50acdc3f484dba10fe"/>
+</record_update>
