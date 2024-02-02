@@ -3,168 +3,196 @@
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>prod_name</element>
             <position>0</position>
-            <sys_created_by>kumar.raja</sys_created_by>
-            <sys_created_on>2024-01-30 12:03:06</sys_created_on>
-            <sys_id>cc381ba5930c8650acdc3f484dba1071</sys_id>
+            <sys_created_by>harshitha</sys_created_by>
+            <sys_created_on>2024-02-02 08:47:18</sys_created_on>
+            <sys_id>01288ee293000e50acdc3f484dba108c</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_insurance_products" sys_domain="global" view="Default view">c4890b48479b751055784a02516d4304</sys_ui_section>
-            <sys_updated_by>kumar.raja</sys_updated_by>
-            <sys_updated_on>2024-01-30 12:03:06</sys_updated_on>
+            <sys_updated_by>harshitha</sys_updated_by>
+            <sys_updated_on>2024-02-02 08:47:18</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>prod_code</element>
             <position>1</position>
-            <sys_created_by>kumar.raja</sys_created_by>
-            <sys_created_on>2024-01-30 12:03:06</sys_created_on>
-            <sys_id>c4381ba5930c8650acdc3f484dba1072</sys_id>
+            <sys_created_by>harshitha</sys_created_by>
+            <sys_created_on>2024-02-02 08:47:18</sys_created_on>
+            <sys_id>09288ee293000e50acdc3f484dba108c</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_insurance_products" sys_domain="global" view="Default view">c4890b48479b751055784a02516d4304</sys_ui_section>
-            <sys_updated_by>kumar.raja</sys_updated_by>
-            <sys_updated_on>2024-01-30 12:03:06</sys_updated_on>
+            <sys_updated_by>harshitha</sys_updated_by>
+            <sys_updated_on>2024-02-02 08:47:18</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>category_code</element>
             <position>2</position>
-            <sys_created_by>kumar.raja</sys_created_by>
-            <sys_created_on>2024-01-30 12:03:06</sys_created_on>
-            <sys_id>c8381ba5930c8650acdc3f484dba1072</sys_id>
+            <sys_created_by>harshitha</sys_created_by>
+            <sys_created_on>2024-02-02 08:47:18</sys_created_on>
+            <sys_id>0d288ee293000e50acdc3f484dba108c</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_insurance_products" sys_domain="global" view="Default view">c4890b48479b751055784a02516d4304</sys_ui_section>
-            <sys_updated_by>kumar.raja</sys_updated_by>
-            <sys_updated_on>2024-01-30 12:03:06</sys_updated_on>
+            <sys_updated_by>harshitha</sys_updated_by>
+            <sys_updated_on>2024-02-02 08:47:18</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>prod_image</element>
             <position>3</position>
-            <sys_created_by>kumar.raja</sys_created_by>
-            <sys_created_on>2024-01-30 12:03:06</sys_created_on>
-            <sys_id>cc381ba5930c8650acdc3f484dba1072</sys_id>
+            <sys_created_by>harshitha</sys_created_by>
+            <sys_created_on>2024-02-02 08:47:18</sys_created_on>
+            <sys_id>01288ee293000e50acdc3f484dba108d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_insurance_products" sys_domain="global" view="Default view">c4890b48479b751055784a02516d4304</sys_ui_section>
-            <sys_updated_by>kumar.raja</sys_updated_by>
-            <sys_updated_on>2024-01-30 12:03:06</sys_updated_on>
+            <sys_updated_by>harshitha</sys_updated_by>
+            <sys_updated_on>2024-02-02 08:47:18</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>active</element>
             <position>4</position>
-            <sys_created_by>kumar.raja</sys_created_by>
-            <sys_created_on>2024-01-30 12:03:06</sys_created_on>
-            <sys_id>c0381ba5930c8650acdc3f484dba1073</sys_id>
+            <sys_created_by>harshitha</sys_created_by>
+            <sys_created_on>2024-02-02 08:47:18</sys_created_on>
+            <sys_id>05288ee293000e50acdc3f484dba108d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_insurance_products" sys_domain="global" view="Default view">c4890b48479b751055784a02516d4304</sys_ui_section>
-            <sys_updated_by>kumar.raja</sys_updated_by>
-            <sys_updated_on>2024-01-30 12:03:06</sys_updated_on>
+            <sys_updated_by>harshitha</sys_updated_by>
+            <sys_updated_on>2024-02-02 08:47:18</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.split</element>
             <position>5</position>
-            <sys_created_by>kumar.raja</sys_created_by>
-            <sys_created_on>2024-01-30 12:03:06</sys_created_on>
-            <sys_id>c4381ba5930c8650acdc3f484dba1073</sys_id>
+            <sys_created_by>harshitha</sys_created_by>
+            <sys_created_on>2024-02-02 08:47:18</sys_created_on>
+            <sys_id>09288ee293000e50acdc3f484dba108d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_insurance_products" sys_domain="global" view="Default view">c4890b48479b751055784a02516d4304</sys_ui_section>
-            <sys_updated_by>kumar.raja</sys_updated_by>
-            <sys_updated_on>2024-01-30 12:03:06</sys_updated_on>
+            <sys_updated_by>harshitha</sys_updated_by>
+            <sys_updated_on>2024-02-02 08:47:18</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>prod_desc</element>
+            <element>REL.x_rptp_insureme_insurance_products.REL:b9edf0ca0a0a0b010035de2d6b579a03</element>
             <position>6</position>
-            <sys_created_by>kumar.raja</sys_created_by>
-            <sys_created_on>2024-01-30 12:03:06</sys_created_on>
-            <sys_id>c8381ba5930c8650acdc3f484dba1073</sys_id>
+            <sys_created_by>harshitha</sys_created_by>
+            <sys_created_on>2024-02-02 08:47:18</sys_created_on>
+            <sys_id>0d288ee293000e50acdc3f484dba108d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_insurance_products" sys_domain="global" view="Default view">c4890b48479b751055784a02516d4304</sys_ui_section>
-            <sys_updated_by>kumar.raja</sys_updated_by>
-            <sys_updated_on>2024-01-30 12:03:06</sys_updated_on>
+            <sys_updated_by>harshitha</sys_updated_by>
+            <sys_updated_on>2024-02-02 08:47:18</sys_updated_on>
+            <sys_user/>
+            <type>list</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>prod_desc</element>
+            <position>7</position>
+            <sys_created_by>harshitha</sys_created_by>
+            <sys_created_on>2024-02-02 08:47:18</sys_created_on>
+            <sys_id>01288ee293000e50acdc3f484dba108e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_insurance_products" sys_domain="global" view="Default view">c4890b48479b751055784a02516d4304</sys_ui_section>
+            <sys_updated_by>harshitha</sys_updated_by>
+            <sys_updated_on>2024-02-02 08:47:18</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>product_offer</element>
-            <position>7</position>
-            <sys_created_by>kumar.raja</sys_created_by>
-            <sys_created_on>2024-01-30 12:03:06</sys_created_on>
-            <sys_id>cc381ba5930c8650acdc3f484dba1073</sys_id>
+            <position>8</position>
+            <sys_created_by>harshitha</sys_created_by>
+            <sys_created_on>2024-02-02 08:47:18</sys_created_on>
+            <sys_id>05288ee293000e50acdc3f484dba108e</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_insurance_products" sys_domain="global" view="Default view">c4890b48479b751055784a02516d4304</sys_ui_section>
-            <sys_updated_by>kumar.raja</sys_updated_by>
-            <sys_updated_on>2024-01-30 12:03:06</sys_updated_on>
+            <sys_updated_by>harshitha</sys_updated_by>
+            <sys_updated_on>2024-02-02 08:47:18</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>insurer</element>
-            <position>8</position>
-            <sys_created_by>kumar.raja</sys_created_by>
-            <sys_created_on>2024-01-30 12:03:06</sys_created_on>
-            <sys_id>c0381ba5930c8650acdc3f484dba1074</sys_id>
+            <position>9</position>
+            <sys_created_by>harshitha</sys_created_by>
+            <sys_created_on>2024-02-02 08:47:18</sys_created_on>
+            <sys_id>09288ee293000e50acdc3f484dba108e</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_insurance_products" sys_domain="global" view="Default view">c4890b48479b751055784a02516d4304</sys_ui_section>
-            <sys_updated_by>kumar.raja</sys_updated_by>
-            <sys_updated_on>2024-01-30 12:03:06</sys_updated_on>
+            <sys_updated_by>harshitha</sys_updated_by>
+            <sys_updated_on>2024-02-02 08:47:18</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>insurer_name</element>
-            <position>9</position>
-            <sys_created_by>kumar.raja</sys_created_by>
-            <sys_created_on>2024-01-30 12:03:06</sys_created_on>
-            <sys_id>c4381ba5930c8650acdc3f484dba1074</sys_id>
+            <position>10</position>
+            <sys_created_by>harshitha</sys_created_by>
+            <sys_created_on>2024-02-02 08:47:18</sys_created_on>
+            <sys_id>0d288ee293000e50acdc3f484dba108e</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_insurance_products" sys_domain="global" view="Default view">c4890b48479b751055784a02516d4304</sys_ui_section>
-            <sys_updated_by>kumar.raja</sys_updated_by>
-            <sys_updated_on>2024-01-30 12:03:06</sys_updated_on>
+            <sys_updated_by>harshitha</sys_updated_by>
+            <sys_updated_on>2024-02-02 08:47:18</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>sum</element>
-            <position>10</position>
-            <sys_created_by>kumar.raja</sys_created_by>
-            <sys_created_on>2024-01-30 12:03:06</sys_created_on>
-            <sys_id>c8381ba5930c8650acdc3f484dba1074</sys_id>
+            <position>11</position>
+            <sys_created_by>harshitha</sys_created_by>
+            <sys_created_on>2024-02-02 08:47:18</sys_created_on>
+            <sys_id>01288ee293000e50acdc3f484dba108f</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_insurance_products" sys_domain="global" view="Default view">c4890b48479b751055784a02516d4304</sys_ui_section>
-            <sys_updated_by>kumar.raja</sys_updated_by>
-            <sys_updated_on>2024-01-30 12:03:06</sys_updated_on>
+            <sys_updated_by>harshitha</sys_updated_by>
+            <sys_updated_on>2024-02-02 08:47:18</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>template</element>
-            <position>11</position>
-            <sys_created_by>kumar.raja</sys_created_by>
-            <sys_created_on>2024-01-30 12:03:06</sys_created_on>
-            <sys_id>cc381ba5930c8650acdc3f484dba1074</sys_id>
+            <position>12</position>
+            <sys_created_by>harshitha</sys_created_by>
+            <sys_created_on>2024-02-02 08:47:18</sys_created_on>
+            <sys_id>05288ee293000e50acdc3f484dba108f</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_insurance_products" sys_domain="global" view="Default view">c4890b48479b751055784a02516d4304</sys_ui_section>
-            <sys_updated_by>kumar.raja</sys_updated_by>
-            <sys_updated_on>2024-01-30 12:03:06</sys_updated_on>
+            <sys_updated_by>harshitha</sys_updated_by>
+            <sys_updated_on>2024-02-02 08:47:18</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>currency</element>
+            <position>13</position>
+            <sys_created_by>harshitha</sys_created_by>
+            <sys_created_on>2024-02-02 08:47:18</sys_created_on>
+            <sys_id>09288ee293000e50acdc3f484dba108f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_insurance_products" sys_domain="global" view="Default view">c4890b48479b751055784a02516d4304</sys_ui_section>
+            <sys_updated_by>harshitha</sys_updated_by>
+            <sys_updated_on>2024-02-02 08:47:18</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
