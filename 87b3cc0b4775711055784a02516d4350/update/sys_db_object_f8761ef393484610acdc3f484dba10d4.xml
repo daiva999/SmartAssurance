@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_db_object">
+    <sys_db_object action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <actions_access>false</actions_access>
+        <alter_access>false</alter_access>
+        <caller_access/>
+        <client_scripts_access>false</client_scripts_access>
+        <configuration_access>false</configuration_access>
+        <create_access>true</create_access>
+        <create_access_controls>true</create_access_controls>
+        <delete_access>true</delete_access>
+        <is_extendable>true</is_extendable>
+        <label>recommendation</label>
+        <live_feed_enabled>false</live_feed_enabled>
+        <name>x_rptp_insureme_recommendation</name>
+        <number_ref/>
+        <provider_class/>
+        <read_access>true</read_access>
+        <scriptable_table>false</scriptable_table>
+        <super_class/>
+        <sys_class_name>sys_db_object</sys_class_name>
+        <sys_created_by>nikita</sys_created_by>
+        <sys_created_on>2024-02-06 07:08:15</sys_created_on>
+        <sys_id>f8761ef393484610acdc3f484dba10d4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>recommendation</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_db_object_f8761ef393484610acdc3f484dba10d4</sys_update_name>
+        <sys_updated_by>nikita</sys_updated_by>
+        <sys_updated_on>2024-02-06 07:08:15</sys_updated_on>
+        <update_access>true</update_access>
+        <user_role display_value="x_rptp_insureme.recommendation_user" name="x_rptp_insureme.recommendation_user">c5d756b793484610acdc3f484dba10bf</user_role>
+        <ws_access>true</ws_access>
+    </sys_db_object>
+</record_update>
