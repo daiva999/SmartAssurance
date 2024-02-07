@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="question_choice">
+    <question_choice action="INSERT_OR_UPDATE">
+        <inactive>false</inactive>
+        <order>400</order>
+        <published_ref/>
+        <question display_value="Choose your appointment category">45b1549847180a1055784a02516d43c3</question>
+        <sys_class_name>question_choice</sys_class_name>
+        <sys_created_by>Surya.Prathap</sys_created_by>
+        <sys_created_on>2024-02-07 10:39:13</sys_created_on>
+        <sys_id>ddb1949847180a1055784a02516d435f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>National Visa (stay of more than 90 days): Student Visa</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>question_choice_ddb1949847180a1055784a02516d435f</sys_update_name>
+        <sys_updated_by>Surya.Prathap</sys_updated_by>
+        <sys_updated_on>2024-02-07 10:39:13</sys_updated_on>
+        <text>National Visa (stay of more than 90 days): Student Visa</text>
+        <value>national_visa_stay_of_more_than_90_days_student_visa</value>
+    </question_choice>
+    <fx_price action="delete_multiple" query="id=ddb1949847180a1055784a02516d435f"/>
+</record_update>
