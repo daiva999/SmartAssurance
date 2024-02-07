@@ -7,13 +7,15 @@
         <billable>false</billable>
         <can_cancel>false</can_cancel>
         <category/>
-        <checked_out/>
+        <checked_out>false</checked_out>
         <cost>0</cost>
         <custom_cart/>
         <delivery_plan display_value="DEFAULT">523da512c611228900811a37c97c2014</delivery_plan>
         <delivery_plan_script/>
         <delivery_time>1970-01-03 00:00:00</delivery_time>
-        <description/>
+        <description><![CDATA[<p>All fields are mandatory</p>
+<h1>Appointment Details</h1>
+<p>Please provide information about the type of visa you wish to apply for. Be aware that the appointment category Applicant 1 chooses will be applied to each of the applicants added to your appointment booking.</p>]]></description>
         <display_price_property>non_zero</display_price_property>
         <entitlement_script/>
         <flow_designer_flow/>
@@ -21,7 +23,7 @@
         <group/>
         <hide_sp>false</hide_sp>
         <icon/>
-        <ignore_price>false</ignore_price>
+        <ignore_price>true</ignore_price>
         <image/>
         <location/>
         <mandatory_attachment>false</mandatory_attachment>
@@ -82,19 +84,19 @@
         <short_description/>
         <show_variable_help_on_load>false</show_variable_help_on_load>
         <start_closed>false</start_closed>
-        <state/>
+        <state>published</state>
         <sys_class_name>sc_cat_item_producer</sys_class_name>
         <sys_created_by>Surya.Prathap</sys_created_by>
         <sys_created_on>2024-02-07 07:35:32</sys_created_on>
         <sys_id>2c972bcc47d00a1055784a02516d43b3</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>Appointment Details</sys_name>
         <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sc_cat_item_producer_2c972bcc47d00a1055784a02516d43b3</sys_update_name>
         <sys_updated_by>Surya.Prathap</sys_updated_by>
-        <sys_updated_on>2024-02-07 07:35:32</sys_updated_on>
+        <sys_updated_on>2024-02-07 09:08:52</sys_updated_on>
         <table_name>x_rptp_insureme_appointment_details</table_name>
         <taxonomy_topic/>
         <template/>
@@ -102,7 +104,7 @@
         <type>item</type>
         <use_sc_layout>true</use_sc_layout>
         <vendor/>
-        <version/>
+        <version>11</version>
         <view/>
         <visible_bundle>true</visible_bundle>
         <visible_guide>true</visible_guide>
