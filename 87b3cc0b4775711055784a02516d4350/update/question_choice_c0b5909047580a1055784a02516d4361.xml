@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="question_choice">
+    <question_choice action="INSERT_OR_UPDATE">
+        <inactive>false</inactive>
+        <order>100</order>
+        <published_ref/>
+        <question display_value="Gender">9042d8d847180a1055784a02516d4398</question>
+        <sys_class_name>question_choice</sys_class_name>
+        <sys_created_by>Surya.Prathap</sys_created_by>
+        <sys_created_on>2024-02-07 10:56:56</sys_created_on>
+        <sys_id>c0b5909047580a1055784a02516d4361</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Male</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>question_choice_c0b5909047580a1055784a02516d4361</sys_update_name>
+        <sys_updated_by>Surya.Prathap</sys_updated_by>
+        <sys_updated_on>2024-02-07 10:57:26</sys_updated_on>
+        <text>Male</text>
+        <value>1</value>
+    </question_choice>
+    <fx_price action="delete_multiple" query="id=c0b5909047580a1055784a02516d4361"/>
+</record_update>
