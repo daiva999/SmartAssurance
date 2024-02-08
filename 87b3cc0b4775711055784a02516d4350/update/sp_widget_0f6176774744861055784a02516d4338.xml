@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope, $rootScope) {
+    /* widget controller */
+    //var secretKey="rpt@123";
+	
+	var c=this;
+$scope.days = [];
+for(var i=1;i<=70;i++){
+	$scope.days.push(i);
+}
+
+$scope.selectedDay = $scope.days[0]; // default value
+
+$scope.sendSelectedDayToClient = function() {
+  var selectedDay = $scope.selectedDay;
+  alert(selectedDay);
+};
+
+$scope.dateOfBirth = null;
+$scope.age = null;
+
+$scope.getAge = function() {
+  if ($scope.dateOfBirth && $scope.dateOfBirth !== '') {
+    var dob = new Date($scope.dateOfBirth);
+    var age = (new Date()).getFullYear() - dob.getFullYear();
+    if (new Date(dob.getFullYear() + age, dob.getMonth(), dob.getDate()) > new Date()) {
+      age--;
+    }
+    $scope.age = age;
+		alert(age);
+  }
+};
+
+	c.recordId=""
+	c.compareProducts = function() {
+		window.location.href = "/vfsp?id=compare_page&" + c.recordId;
+    // Your code to compare the selected products goes here
+};
+    //c.selectedProductCodes = new Set();
+		c.selectedInsurerCodes=[];
+	 var indexArray=[];
+		c.checkboxClicked = function(productCode,code,index,image,productId) {
+				var key="index"
+			c.recordId=""
+			if(productCode !="" && c.selectedInsurerCodes.length <2 && (indexArray.indexOf(index))==-1){
+				var obj={
+						"productCode":productCode.replace('_', ' '),
+						"insurerCode":code.replace('_', ' '),
+						"index":index,
+						"image":image,
+					"productId":productId
+				}
+				indexArray.push(index);
+				c.selectedInsurerCodes.push(obj);
+			}
+			else if(c.selectedInsurerCodes.length <=2 && (indexArray.indexOf(index)>-1)){
+				angular.element('#check-' +index).prop('checked', false);
+				var arrIndex=indexArray.indexOf(index)
+				indexArray.splice(arrIndex, 1);
+				c.selectedInsurerCodes.splice(arrIndex,1);
+			}
+			else{
+				alert("only two products can be selected")
+				angular.element('#check-' +index).prop('checked', false);
+			}
+			if(c.selectedInsurerCodes.length==2){
+				$('.compareButton').css({
+					'visibility': 'visible',
+				});	
+			}
+			else{$('.compareButton').css({
+					'visibility': 'visible',
+				});	
+				$('.compareButton').css({
+					'visibility': 'hidden',
+				});	
+			}
+			c.selectedInsurerCodes.forEach(function(n,i){
+				i=i+1;
+				c.recordId+= 'product_id'+i+"=";
+				c.recordId=c.recordId+n.productId+"&";
+				
+			})
+			
+			
+			alert(JSON.stringify(c.selectedInsurerCodes))
+      
+    };
+	
+
+    
+    //alert(c.data.user);
+    if (!sessionStorage.getItem(c.data.user)) {
+        // Initialize an empty session object and store it in sessionStorage
+        var emptySession = {};
+        sessionStorage.setItem(c.data.user, JSON.stringify(emptySession));
+    }
+
+    var userdetails;
+    var newDetails = {
+        'userdetails': userdetails,
+        "action": 'firstCall'
+    };
+    var sessionID = generateGUID();
+    var Insurer;
+
+    $rootScope.$on('details', function (event, vfsform) {
+        console.log('Received event: details');
+        userdetails = vfsform;
+        newDetails = {
+            'userdetails': userdetails,
+            'action': "dataCall"
+        };
+        console.log('Sending request with newDetails:', newDetails);
+        c.server.get(newDetails).then(function (response) {
+            $scope.tableDetails = response.data.tableDetails;
+            console.log($scope.tableDetails);
+            console.log('Server request successful');
+        });
+    });
+
+
+    c.server.get(newDetails).then(function (response) {
+        $scope.tableDetails = response.data.tableDetails;
+        console.log($scope.tableDetails);
+        console.log('Server request successful');
+    });
+
+
+    //alert(JSON.stringify(newDetails));
+    var redirectURL;
+    var dataToPass;
+
+    $scope.redirectToPaymentPage = function (prodCode, insurer) {
+        //alert('fnction working');
+        Insurer = insurer;
+        // will check whether all the user details are there or not 
+        if (
+            userdetails &&
+            userdetails.tripType &&
+            userdetails.travelRegion &&
+            userdetails.startDate &&
+            userdetails.endDate &&
+            userdetails.numberOfPersons &&
+            userdetails.indianPassportHolder &&
+            userdetails.travellerAges
+        ) {
+            dataToPass = prodCode;
+            redirectURL = "/vfsp?id=test_payment";
+            storeSessionDetails(dataToPass);
+            window.location.href = redirectURL;
+        } else {
+            // Handle the case where some details are missing
+            alert('Please provide all required details before proceeding to payment.');
+            /*dataToPass = prodCode;
+          redirectURL = "/vfsp?id=test_payment";
+          storeSessionDetails(dataToPass);
+          window.location.href = redirectURL;
+            */
+        }
+    };
+
+    $scope.redirectToProductPage = function (prodCode, insurer) {
+
+        // will check whether all the user details are there or not 
+        if (
+            userdetails &&
+            userdetails.tripType &&
+            userdetails.travelRegion &&
+            userdetails.startDate &&
+            userdetails.endDate &&
+            userdetails.numberOfPersons &&
+            userdetails.indianPassportHolder &&
+            userdetails.travellerAges
+        ) {
+            dataToPass = prodCode;
+            redirectURL = "/vfsp?id=prod_page";
+            storeSessionDetails(dataToPass);
+            window.location.href = redirectURL;
+        } else {
+            // Handle the case where some details are missing
+            alert('Please provide all required details before proceeding to details page.');
+            /*dataToPass = prodCode;
+          redirectURL = "/vfsp?id=prod_page";
+          storeSessionDetails(dataToPass);
+          window.location.href = redirectURL;
+                */
+
+        }
+    };
+    function generateGUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0,
+                v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
+    // Store session details in session storage
+    function storeSessionDetails(prodcode) {
+
+        var sessionDetails = {
+            id: sessionID,
+            prodCode: prodcode,
+            userdetails: userdetails,
+            insurer: Insurer,
+            premiumAmount: $scope.am
+
+        };
+        //var encryptedData = CryptoJS.AES.encrypt(sessionDetails, secretKey);
+        sessionStorage.setItem(c.data.user, JSON.stringify(sessionDetails));
+    }
+    $scope.redirectToDetailsPage = function (prodCode) {
+        var dataToPass = prodCode;
+        var redirectURL = "/id=demo?sessionId=" + encodeURIComponent(sessionID);
+        window.location.href = redirectURL;
+    };
+
+    $scope.termAndConditions = function (prodCode) {
+        var dataToPass = prodCode;
+        var redirectURL = "/id=test_page?sessionId=";
+        window.location.href = redirectURL;
+    };
+
+		 
+
+    // Function to get the data from the vfs form (placeholder comment)
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>#productCardMainContainer{
+	height:75vh;
+  overflow:scroll;
+  overflow-x:hidden;
+}
+
+//styling the scroll bar
+
+::-webkit-scrollbar {
+ display:none;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: lightblue; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: lightblue; 
+}
+
+
+/* #productCardMainContainer::-webkit-scrollbar {
+    display: none;
+}
+
+#productCardMainContainer {
+  -ms-overflow-style: none;
+  scrollbar-width: none;  
+}*/
+
+
+#productCardContainer{
+  font-family: "Helvetica";
+	height: fit-content;
+ 	border:0.4px solid #3D8BF2;
+  border-radius:0.5rem;
+  //box-shadow: 0 0 2px 2px #737a87;
+  margin: 0 0 1.5rem 0;
+  padding: 1rem 1.5rem;
+  background:#FFF;
+}
+#productCardimageContainer img{
+  margin-left:1rem;
+	height: 100px;
+  width:100px;
+}
+
+#benefitValue{
+	text-align:center;
+  font-weight:bold;
+}
+
+#productTitleAndBenefits&gt; p{
+  //margin-left:10px;
+  margin-top:0;
+  padding-top:0;
+  font-size:1.5rem;
+  font-weight:750;
+  color:#03A678;
+  
+}
+
+#productCardimageContainer{
+  max-width:22.5vw;
+  display:flex;
+  flex-direction:row;
+}
+
+#productCardRow1{
+  width:100%;
+	display:flex;
+  justify-content:space-between;
+}
+#productTitleAndBenefits{
+	margin:0 1rem 0.5rem 1rem;
+  width:65%;
+}
+#productCardPriceBar{
+	min-width:20%;
+  //height:7.5rem;
+  display:flex;
+  flex-direction:column;
+
+}
+#productCardPriceBar p{
+	//margin-right:20px;
+  font-size:1.7rem;
+  font-weight:750;
+  color:red;
+  //margin-top:10px;
+  text-align:center;
+}
+#productCardPriceBarButton{
+	min-width:3.5rem;
+  padding:0.25rem;;
+  text-align:center;
+  background-color:#6eb8b1;
+  color:white;
+  font-size: 1.5rem;
+  font-weight:500;
+  border:none;
+  border-radius:0.5rem;
+}
+
+
+#benefits{
+  //background:yellow;
+  margin-left:auto;
+  margin-right:auto;
+  display: flex;
+  //justify-content:space-between;
+  gap:1rem 0.3rem;
+  flex-wrap: wrap;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal-width columns */
+    gap: 5px; /* Gap between grid items */
+}
+
+.grid-item {
+    padding: 5px; /* Adjust padding for each grid item */
+    //background-color: #f0f0f0; /* Background color for grid items */
+    border-radius: 5px; /* Border radius for grid items */
+}
+
+button.grid-item {
+    text-align: center;
+    background-color: #ffffff; /* Background color for the button */
+    border: 1px solid #999999; /* Border color for the button */
+}
+
+.pill {
+  font-size:10px;
+  //min-width:50px;
+  display: block;
+  text-align: center;
+ // border:1.5px solid lightgrey;
+  //padding: 8px;
+  //background:yellow;
+  //margin: 4px;
+  border-radius: 15px;
+}
+
+
+#extraDetailContainer{
+  width:75%;
+  //background:yellow;
+  margin-left:auto;
+  margin-right:auto;
+   /* Allow items to wrap to the next line */
+	display:flex;
+  gap: 2.5rem;
+}
+#benefitItems {
+    position: relative;
+   // display: inline-block;
+  }
+.benefittooltip {
+  	width:fit-content;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 1;
+  }
+/*
+  #benefitItems:hover .benefittooltip {
+    display: block;
+  }
+*/
+#detailsPageRedirectButton{
+	background:none;
+  border:none;
+  text-decoration:underline;
+  color:#4287f5;
+  font-weight:700;
+  text-align:center;
+  font-size:10px;
+}
+#termsAndConditions{
+	background:none;
+  border:none;
+  text-decoration:underline;
+  color:#4287f5;
+  font-weight:700;
+  font-size:1rem;
+}
+#premiumDetails{
+	display:flex;
+  flex-direction:column;
+}
+#premium{
+  text-align:center;
+  font-weight:500;
+	font-size:1rem;
+  color:#65ba9b;
+}
+
+.sumAssured, .premiumValue{
+  margin-bottom:0px;
+}
+
+#premiumTitle{
+	font-size: 1rem;
+  color:#65ba9b; 
+}
+
+.form-check-input{
+  margin-left:0;
+}
+
+
+ .selected {
+            background-color: #36b37e;
+        }
+
+        .compareContainer {
+            display: flex;
+            align-items: center;
+        }
+
+        .compareContainer span {
+            margin-left: 5px;
+            color: #253858;
+        }
+
+        .productsSelected {
+            position: fixed;
+            height: 120px;
+            bottom: 0;
+            width: 99vw;
+            background: #fff;
+            z-index: 1;
+            border-radius: 30px 30px 0 0;
+            box-shadow: 0 -5px 5px #959595;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #productsSelectedContainer {
+            width: 900px;
+            height: 100px;
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        #productSelected {
+            border: 1px solid #b1b1b1;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
+
+        #productSelected img {
+            height: 40px;
+        }
+
+        #productSelected span {
+            font-weight: 600;
+            color: #686868;
+            margin-left: 10px;
+        }
+
+        .compareButton {
+            background: #2673e7;
+            padding: 10px 40px;
+            border-radius: 5px;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+			cursor:pointer;
+        }
+
+        #filter_conditions_container {
+            display: none;
+        }
+
+        .open_filter {
+            padding: 17px;
+            display: flex !important;
+            width: 30%;
+            float: left;
+            height: 60%;
+            background: white;
+            z-index: 1;
+            border-radius: 20px;
+            position: fixed;
+            margin-top: 30px;
+            box-shadow: 5px 5px 5px rgb(175, 175, 175);
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .filter_options {
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+        }
+
+     .card-image img{
+ width:120px;
+       height:120px;
+}
+
+#productsSelected{
+  display: inline-flex;
+    margin-left: 100px;
+}
+
+
+  .selected-item{
+    text-transform:capitalize;
+}
+
+.compareButton{
+  visibility:hidden;
+}
+.compareButton{
+    min-width: 3.5rem;
+    padding: 0.25rem;
+    text-align: center;
+    background-color: #6eb8b1;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 0.5rem;
+}
+
+
+
+.productsSelectedContainer{
+
+    width: 900px;
+    height: 100px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}</css>
+        <data_table>sp_instance_table</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>table,field_list</field_list>
+        <has_preview>true</has_preview>
+        <id>comparecheckbox</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>compareCheckBox</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function () {
+
+		data.compare=[]
+    var tableDetails = [];
+    if (input && input.action == "dataCall") {
+        //gs.addErrorMessage(input)
+        getRecordsData(input.userdetails);
+    }
+
+    if (input && input.action == "firstCall") {
+        gs.addErrorMessage('called');
+        getRecordsData(input.userdetails);
+    }
+
+    data.daysTravelling = 10;
+    function findPremium(prodCode, duration) {
+        if (!duration) {
+            duration = 10;
+        }
+        var daysFindTable = new GlideRecord('x_rptp_insureme_premium');
+        daysFindTable.addQuery('prod_code', prodCode);
+        daysFindTable.addQuery('insurer_code', 'future_easy');
+        daysFindTable.addQuery('min_age', '<=', 50); // corrected syntax
+        daysFindTable.addQuery('max_age', '>=', 50); // corrected syntax
+        daysFindTable.addQuery('max_days', '>=', duration);
+        daysFindTable.addQuery('min_days', '<=', duration)
+        daysFindTable.query();
+        //gs.debug(daysFindTable.getRowCount())
+
+        if (daysFindTable.next()) {
+            return daysFindTable.getValue('cost');
+        }
+    }
+    function findImage() {
+        var Iname = 'futureinsurance.png';
+        var gr = new GlideRecord("db_image");
+        gr.get(Iname);
+        return gr.getDisplayValue('image');
+
+    }
+    function getBenefits(prodCode, insurer) {
+        var benefitTable = new GlideRecord('x_rptp_insureme_insurance_products_benefits');
+        benefitTable.addQuery('product_code', prodCode);
+        benefitTable.addQuery('insurer', insurer);
+        benefitTable.query();
+        var benefit = [];
+        var count = 0;
+
+        while (benefitTable.next() && count < 5) {
+            var name = benefitTable.getValue('name');
+            var value = benefitTable.getValue('value');
+            if (name != null && value != null && name.split(' ').length < 3 && value != 'Not Applicable') {
+                benefit.push({
+                    benefit: name,
+                    value: benefitTable.getValue('value')
+                });
+                count++
+            }
+
+        }
+        return benefit;
+
+    }
+    function getRecordsData(details) {
+        data.user = gs.getUserID();
+
+        var table = new GlideRecord('x_rptp_insureme_insurance_products');
+        table.query();
+        while (table.next()) {
+            var prodCode = table.getValue('prod_code');
+            var insurer = table.getValue('insurer');
+            var insurer_name = table.getValue('insurer_name');
+            var prodName = table.getValue('prod_name');
+					  var productId = table.getValue('sys_id');
+            var duration = 10;
+						var age=22;
+            if (details) {
+                if (details.duration) {
+                    duration = details.duration;
+                }
+								if(details.travellerAges){
+									for(var i=0;i<details.travellerAges;i++){
+										gs.addInfoMessage(i);
+									}
+								}
+            }
+            else {
+                duration = 10;
+            }
+
+            var recordData = {
+                image: findImage(),
+                sumAssured: table.getValue('sum'),
+                name: table.getValue('prod_name'),
+                productCode: prodCode,
+                benefits: getBenefits(prodCode, insurer),
+                insurer: insurer,
+                insurerName: insurer_name,
+                premiumAmount: findPremium(prodCode, duration),
+							  productId: productId
+
+            };
+            if (recordData.benefits.length > 0) {
+                tableDetails.unshift(recordData);
+            } else {
+                tableDetails.push(recordData);
+            }
+
+
+        }
+        //gs.addInfoMessage(JSON.stringify(tableDetails));
+        data.tableDetails = JSON.parse(JSON.stringify(tableDetails));
+    }
+
+
+})();
+
+
+
+
+
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>akshay</sys_created_by>
+        <sys_created_on>2024-02-06 09:00:04</sys_created_on>
+        <sys_id>0f6176774744861055784a02516d4338</sys_id>
+        <sys_mod_count>252</sys_mod_count>
+        <sys_name>compareCheckBox</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_0f6176774744861055784a02516d4338</sys_update_name>
+        <sys_updated_by>akshay</sys_updated_by>
+        <sys_updated_on>2024-02-08 11:45:06</sys_updated_on>
+        <template><![CDATA[<select ng-model="selectedDay" ng-options="day for day in days" style="height: 2rem; overflow-y: scroll;" ng-change="sendSelectedDayToClient()"></select>
+<form>
+  <label for="dateOfBirth">Date of Birth:</label>
+  <input type="date" id="dateOfBirth" name="dateOfBirth" ng-model="dateOfBirth" ng-change="getAge()" required>
+
+
+<div id="productCardMainContainer">
+  <div ng-repeat="record in tableDetails">
+    <div id="productCardContainer">
+      <div id="productCardRow1">
+        <div style="display:inline-box">
+          
+        <div id="productCardimageContainer">
+          <img src={{record.image}} />
+                    
+          
+        </div>
+       <div class="form-check" style="padding-left:15px;">
+  <input class="form-check-input" type="checkbox" id="check-{{$index}}" value="{{record.productCode}}" ng-click="c.checkboxClicked(record.productCode,record.insurer,$index,record.image,record.productId)">
+  <label class="form-check-label" for="check-{{$index}}">
+    Add to compare
+  </label>
+</div>
+          </div>
+        
+        
+        <div id="productTitleAndBenefits">
+
+          <p>
+            {{record.insurerName}}-
+            {{record.name}}
+          </p>
+          <div id="benefits">
+            
+            <div class="grid-container">
+      
+              <div class="grid-item" ng-repeat="recordValue in record.benefits">
+                <div class="pill">
+                  {{ recordValue.benefit.split(' ').slice(0, 2).join(' ') }} <br/>
+                  <div id="benefitValue">{{ recordValue.value }}</div>
+                </div>
+      
+              </div>
+              <button id="detailsPageRedirectButton" ng-click="redirectToProductPage(record.productCode,record.insurer)" class="grid-item">
+                View All Benefits
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="productCardPriceBar">
+        <div id="premiumDetails">
+          <div id="premium">
+            Sum Assured
+          </div>
+          <p class="sumAssured">
+            &#8377;{{record.sumAssured}}
+          </p>
+          <p class="premiumValue">
+            <span id="premiumTitle">Premium</span><br/>
+            &#8377;{{record.premiumAmount}}
+          </p>
+        </div>
+        <button id="productCardPriceBarButton" ng-click="redirectToPaymentPage(record.productCode,record.insurer)">
+          Buy Now
+        </button>
+        <button id="termsAndConditions" ng-click="termAndConditions()">
+          T &amp;C
+        </button>
+      </div>
+    </div>
+  </div>  
+</div>
+<div class="productsSelectedContainer">
+  <div id="productsSelected" ng-controller="c" >
+    <div class="card" style="padding-right:35px;" ng-repeat="product in c.selectedInsurerCodes" >
+        <div class="card-image">
+          <img ng-src="{{product.image}}" alt="{{product.productCode}}">
+         <span class='selected-item'>{{product.productCode }}</span>
+        </div>
+    </div>
+   <button class="compareButton" ng-click="c.compareProducts()" style='margin: 39px 0;padding: 10px;' >Compare</button> 
+
+</div>
+
+</div>
+  ]]></template>
+    </sp_widget>
+</record_update>
