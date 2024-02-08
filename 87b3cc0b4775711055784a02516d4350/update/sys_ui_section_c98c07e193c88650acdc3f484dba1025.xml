@@ -3,184 +3,226 @@
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>number</element>
             <position>0</position>
-            <sys_created_by>harshitha</sys_created_by>
-            <sys_created_on>2024-01-30 11:12:07</sys_created_on>
-            <sys_id>cd8ccf2593c88650acdc3f484dba10f7</sys_id>
+            <sys_created_by>balakrishna</sys_created_by>
+            <sys_created_on>2024-02-08 09:31:00</sys_created_on>
+            <sys_id>afab8964931c4a10acdc3f484dba107d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
-            <sys_updated_by>harshitha</sys_updated_by>
-            <sys_updated_on>2024-01-30 11:12:07</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>age_band</element>
-            <position>1</position>
-            <sys_created_by>harshitha</sys_created_by>
-            <sys_created_on>2024-01-30 11:12:07</sys_created_on>
-            <sys_id>c58ccf2593c88650acdc3f484dba10f8</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
-            <sys_updated_by>harshitha</sys_updated_by>
-            <sys_updated_on>2024-01-30 11:12:07</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>category_code</element>
-            <position>2</position>
-            <sys_created_by>harshitha</sys_created_by>
-            <sys_created_on>2024-01-30 11:12:07</sys_created_on>
-            <sys_id>c98ccf2593c88650acdc3f484dba10f8</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
-            <sys_updated_by>harshitha</sys_updated_by>
-            <sys_updated_on>2024-01-30 11:12:07</sys_updated_on>
+            <sys_updated_by>balakrishna</sys_updated_by>
+            <sys_updated_on>2024-02-08 09:31:00</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>prod_code</element>
-            <position>3</position>
-            <sys_created_by>harshitha</sys_created_by>
-            <sys_created_on>2024-01-30 11:12:07</sys_created_on>
-            <sys_id>cd8ccf2593c88650acdc3f484dba10f8</sys_id>
+            <position>1</position>
+            <sys_created_by>balakrishna</sys_created_by>
+            <sys_created_on>2024-02-08 09:31:00</sys_created_on>
+            <sys_id>a7ab8964931c4a10acdc3f484dba107e</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
-            <sys_updated_by>harshitha</sys_updated_by>
-            <sys_updated_on>2024-01-30 11:12:07</sys_updated_on>
+            <sys_updated_by>balakrishna</sys_updated_by>
+            <sys_updated_on>2024-02-08 09:31:00</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>cost</element>
-            <position>4</position>
-            <sys_created_by>harshitha</sys_created_by>
-            <sys_created_on>2024-01-30 11:12:07</sys_created_on>
-            <sys_id>c18ccf2593c88650acdc3f484dba10f9</sys_id>
+            <position>2</position>
+            <sys_created_by>balakrishna</sys_created_by>
+            <sys_created_on>2024-02-08 09:31:00</sys_created_on>
+            <sys_id>abab8964931c4a10acdc3f484dba107e</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
-            <sys_updated_by>harshitha</sys_updated_by>
-            <sys_updated_on>2024-01-30 11:12:07</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>.begin_split</element>
-            <position>5</position>
-            <sys_created_by>harshitha</sys_created_by>
-            <sys_created_on>2024-01-30 11:12:07</sys_created_on>
-            <sys_id>c58ccf2593c88650acdc3f484dba10f9</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
-            <sys_updated_by>harshitha</sys_updated_by>
-            <sys_updated_on>2024-01-30 11:12:07</sys_updated_on>
-            <sys_user/>
-            <type>.begin_split</type>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>min_age</element>
-            <position>6</position>
-            <sys_created_by>harshitha</sys_created_by>
-            <sys_created_on>2024-01-30 11:12:07</sys_created_on>
-            <sys_id>c98ccf2593c88650acdc3f484dba10f9</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
-            <sys_updated_by>harshitha</sys_updated_by>
-            <sys_updated_on>2024-01-30 11:12:07</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>max_age</element>
-            <position>7</position>
-            <sys_created_by>harshitha</sys_created_by>
-            <sys_created_on>2024-01-30 11:12:07</sys_created_on>
-            <sys_id>cd8ccf2593c88650acdc3f484dba10f9</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
-            <sys_updated_by>harshitha</sys_updated_by>
-            <sys_updated_on>2024-01-30 11:12:07</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>max_days</element>
-            <position>8</position>
-            <sys_created_by>harshitha</sys_created_by>
-            <sys_created_on>2024-01-30 11:12:07</sys_created_on>
-            <sys_id>c18ccf2593c88650acdc3f484dba10fa</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
-            <sys_updated_by>harshitha</sys_updated_by>
-            <sys_updated_on>2024-01-30 11:12:07</sys_updated_on>
+            <sys_updated_by>balakrishna</sys_updated_by>
+            <sys_updated_on>2024-02-08 09:31:00</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.split</element>
-            <position>9</position>
-            <sys_created_by>harshitha</sys_created_by>
-            <sys_created_on>2024-01-30 11:12:07</sys_created_on>
-            <sys_id>c58ccf2593c88650acdc3f484dba10fa</sys_id>
+            <position>3</position>
+            <sys_created_by>balakrishna</sys_created_by>
+            <sys_created_on>2024-02-08 09:31:00</sys_created_on>
+            <sys_id>afab8964931c4a10acdc3f484dba107e</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
-            <sys_updated_by>harshitha</sys_updated_by>
-            <sys_updated_on>2024-01-30 11:12:07</sys_updated_on>
+            <sys_updated_by>balakrishna</sys_updated_by>
+            <sys_updated_on>2024-02-08 09:31:00</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>min_days</element>
-            <position>10</position>
-            <sys_created_by>harshitha</sys_created_by>
-            <sys_created_on>2024-01-30 11:12:07</sys_created_on>
-            <sys_id>c98ccf2593c88650acdc3f484dba10fa</sys_id>
+            <element>age_band</element>
+            <position>4</position>
+            <sys_created_by>balakrishna</sys_created_by>
+            <sys_created_on>2024-02-08 09:31:00</sys_created_on>
+            <sys_id>a3ab8964931c4a10acdc3f484dba107f</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
-            <sys_updated_by>harshitha</sys_updated_by>
-            <sys_updated_on>2024-01-30 11:12:07</sys_updated_on>
+            <sys_updated_by>balakrishna</sys_updated_by>
+            <sys_updated_on>2024-02-08 09:31:00</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>insurer_code</element>
-            <position>11</position>
-            <sys_created_by>harshitha</sys_created_by>
-            <sys_created_on>2024-01-30 11:12:07</sys_created_on>
-            <sys_id>cd8ccf2593c88650acdc3f484dba10fa</sys_id>
+            <element>category_code</element>
+            <position>5</position>
+            <sys_created_by>balakrishna</sys_created_by>
+            <sys_created_on>2024-02-08 09:31:00</sys_created_on>
+            <sys_id>a7ab8964931c4a10acdc3f484dba107f</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
-            <sys_updated_by>harshitha</sys_updated_by>
-            <sys_updated_on>2024-01-30 11:12:07</sys_updated_on>
+            <sys_updated_by>balakrishna</sys_updated_by>
+            <sys_updated_on>2024-02-08 09:31:00</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>u_prod_type</element>
+            <position>6</position>
+            <sys_created_by>balakrishna</sys_created_by>
+            <sys_created_on>2024-02-08 09:31:00</sys_created_on>
+            <sys_id>abab8964931c4a10acdc3f484dba107f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
+            <sys_updated_by>balakrishna</sys_updated_by>
+            <sys_updated_on>2024-02-08 09:31:00</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.end_split</element>
-            <position>12</position>
-            <sys_created_by>harshitha</sys_created_by>
-            <sys_created_on>2024-01-30 11:12:07</sys_created_on>
-            <sys_id>c18ccf2593c88650acdc3f484dba10fb</sys_id>
+            <position>7</position>
+            <sys_created_by>balakrishna</sys_created_by>
+            <sys_created_on>2024-02-08 09:31:00</sys_created_on>
+            <sys_id>afab8964931c4a10acdc3f484dba107f</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
-            <sys_updated_by>harshitha</sys_updated_by>
-            <sys_updated_on>2024-01-30 11:12:07</sys_updated_on>
+            <sys_updated_by>balakrishna</sys_updated_by>
+            <sys_updated_on>2024-02-08 09:31:00</sys_updated_on>
             <sys_user/>
             <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>8</position>
+            <sys_created_by>balakrishna</sys_created_by>
+            <sys_created_on>2024-02-08 09:31:00</sys_created_on>
+            <sys_id>a3ab8964931c4a10acdc3f484dba1080</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
+            <sys_updated_by>balakrishna</sys_updated_by>
+            <sys_updated_on>2024-02-08 09:31:00</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>min_age</element>
+            <position>9</position>
+            <sys_created_by>balakrishna</sys_created_by>
+            <sys_created_on>2024-02-08 09:31:00</sys_created_on>
+            <sys_id>a7ab8964931c4a10acdc3f484dba1080</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
+            <sys_updated_by>balakrishna</sys_updated_by>
+            <sys_updated_on>2024-02-08 09:31:00</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>max_age</element>
+            <position>10</position>
+            <sys_created_by>balakrishna</sys_created_by>
+            <sys_created_on>2024-02-08 09:31:00</sys_created_on>
+            <sys_id>abab8964931c4a10acdc3f484dba1080</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
+            <sys_updated_by>balakrishna</sys_updated_by>
+            <sys_updated_on>2024-02-08 09:31:00</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>max_days</element>
+            <position>11</position>
+            <sys_created_by>balakrishna</sys_created_by>
+            <sys_created_on>2024-02-08 09:31:00</sys_created_on>
+            <sys_id>afab8964931c4a10acdc3f484dba1080</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
+            <sys_updated_by>balakrishna</sys_updated_by>
+            <sys_updated_on>2024-02-08 09:31:00</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>12</position>
+            <sys_created_by>balakrishna</sys_created_by>
+            <sys_created_on>2024-02-08 09:31:00</sys_created_on>
+            <sys_id>a3ab8964931c4a10acdc3f484dba1081</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
+            <sys_updated_by>balakrishna</sys_updated_by>
+            <sys_updated_on>2024-02-08 09:31:00</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>min_days</element>
+            <position>13</position>
+            <sys_created_by>balakrishna</sys_created_by>
+            <sys_created_on>2024-02-08 09:31:00</sys_created_on>
+            <sys_id>a7ab8964931c4a10acdc3f484dba1081</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
+            <sys_updated_by>balakrishna</sys_updated_by>
+            <sys_updated_on>2024-02-08 09:31:00</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>insurer_code</element>
+            <position>14</position>
+            <sys_created_by>balakrishna</sys_created_by>
+            <sys_created_on>2024-02-08 09:31:00</sys_created_on>
+            <sys_id>abab8964931c4a10acdc3f484dba1081</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
+            <sys_updated_by>balakrishna</sys_updated_by>
+            <sys_updated_on>2024-02-08 09:31:00</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>currency</element>
+            <position>15</position>
+            <sys_created_by>balakrishna</sys_created_by>
+            <sys_created_on>2024-02-08 09:31:00</sys_created_on>
+            <sys_id>afab8964931c4a10acdc3f484dba1081</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_premium" sys_domain="global" view="Default view">c98c07e193c88650acdc3f484dba1025</sys_ui_section>
+            <sys_updated_by>balakrishna</sys_updated_by>
+            <sys_updated_on>2024-02-08 09:31:00</sys_updated_on>
+            <sys_user/>
+            <type/>
         </sys_ui_element>
         <sys_ui_section action="INSERT_OR_UPDATE">
             <caption/>
