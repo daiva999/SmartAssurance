@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($scope) {
+  /* widget controller */
+	var c = this;
+	
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter',sans-serif;
+        }
+		.body{
+      width:100%
+			position:absolute;
+			top:0;
+			left:0;
+		}
+        .comparisionPage {
+
+            background: #f4f5f7;
+            width: 100%;
+            //height: 100vh;
+          	
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+			//padding-top:40px;
+			
+        }
+
+        .title {
+            margin: 85px 0 15px 0;
+            font-size: 24px;
+            font-weight: 600;
+			      color:#253858;
+        }
+
+        .comparison-table {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ccc;
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 10px;
+            background: #f5f5f5;
+            box-shadow: 0px 0px 10px rgb(172, 172, 172);
+            color: #253858;
+			      padding: 0 10px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 10px;
+        }
+
+		
+        .row:nth-child(even) {
+            background: #dfdfdf;
+        } 
+
+        .key {
+            flex-basis: 30%;
+            font-weight: bold;
+            padding: 5px 0;
+        }
+
+        .product-a,
+        .product-b {
+            flex-basis: 35%;
+            padding: 5px 10px;
+        }
+
+        .key,
+        .product-a {
+            border-right: 1px solid #d0d0d0;
+        }
+
+        img {
+            height: 80px;
+            width:80px;
+        } 
+
+        .productTitle {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #686868;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            margin-left:15px;
+        }
+
+        .btn {
+            background: #2673e7;
+            padding: 10px 60px;
+            border-radius: 8px;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .productLogo {
+            background: #fff;
+            height: 60px;
+            width: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            border: 1px solid #dfe1e6;
+        }
+
+        .tableHeading {
+            font-size: 24px;
+            border-right: 1px solid #d0d0d0;
+            font-weight: 600;
+            color: #686868;
+            flex-basis: 30%;
+        }
+
+        .wrong {
+            color: rgb(135, 0, 0);
+            width: 30px;
+            height: 30px;
+        }
+		
+		.breadcrum {
+			position: absolute;
+			font-size: 14px;
+			font-style: normal;
+			font-weight: 400;
+			margin-top: 100px;
+			margin-left: 3%;
+		}
+		
+		.breadcrumbContent{
+			color:black;
+            text-decoration: none;
+		}
+		
+		.breadcrumbContent:hover{
+			color:#253858;
+            text-decoration: none;
+		}
+.product-a, .product-b{
+  display:inline-flex;
+}
+
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>product_compare</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>productCompare</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	var user= gs.getUserID();
+	/* e.g., data.table = $sp.getValue('table'); */
+	var prd1 = $sp.getParameter('product_id1');
+	var prd2 = $sp.getParameter('product_id2');
+	
+	
+	
+	data.productDetailsdata = [];
+
+	var productDetails =new GlideRecord('x_rptp_insureme_insurance_products');
+	productDetails.addQuery('sys_id', 'IN', [prd1,prd2] );
+	productDetails.query();
+	while(productDetails.next()){
+		var jObj={
+			"name":productDetails.getValue("prod_name"),
+			"image":findImage(),
+			"sum":productDetails.getValue('sum')
+		}
+		data.productDetailsdata.push(jObj);
+	}
+	function findImage() {
+		var Iname = 'futureinsurance.png';
+		var gr = new GlideRecord("db_image");
+		gr.get(Iname);
+		return gr.getDisplayValue('image');
+	}
+
+	var benefitsArray=[];
+	var gr=new GlideRecord("x_rptp_insureme_insurance_products_benefits");
+	gr.addQuery('u_prod_type', 'IN', [prd1,prd2]);
+	gr.setLimit(5);
+	gr.orderBy('name');
+	gr.query();
+	var arr=[];
+	while(gr.next()){
+		var obj1={
+			"name": gr.getValue('name'),
+			"value": gr.getValue('value')
+		}
+		arr.push(obj1);
+		benefitsArray.push(arr);
+	}
+
+	data.rows=[];
+	var requiredDetailsToCompare=["Automatic extension for 7 days","Emergency Sickness Dental Relief","Loss of Passport","Trip Cancellation"]
+	for(var arr1=0;arr1<benefitsArray[0].length;arr1++){
+		if(benefitsArray[0][arr1].name==benefitsArray[1][arr1].name){
+			var tableData={
+				"features":benefitsArray[0][arr1].name,
+				"product1":benefitsArray[0][arr1].value,
+				"product2":benefitsArray[1][arr1].value
+			}
+			data.rows.push(tableData);
+		}
+	}
+
+
+	/*	data.features=[];
+	benefitsArray.forEach(function (items){
+		var str=""
+		items.forEach(function(elements,i){
+			if(elements.value!="Not Applicable"){
+				str=str+elements.name;
+				if(i!=items.length-1){
+				str=str+",";
+				}
+			}
+
+		})
+		gs.addErrorMessage(str)
+		data.features.push(str);
+	})*/
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>akshay</sys_created_by>
+        <sys_created_on>2024-02-07 09:30:10</sys_created_on>
+        <sys_id>8f914c1c47940a1055784a02516d43c1</sys_id>
+        <sys_mod_count>161</sys_mod_count>
+        <sys_name>productCompare</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_8f914c1c47940a1055784a02516d43c1</sys_update_name>
+        <sys_updated_by>balakrishna</sys_updated_by>
+        <sys_updated_on>2024-02-09 05:30:43</sys_updated_on>
+        <template><![CDATA[<div>
+
+  <div class="body">
+
+    <!--   <p class="breadcrum">
+    Services/<a href="https://ven06798.service-now.com/x_rptp_insureme_category.do" class="breadcrumbContent">Category</a>/Health Insurance/<a href="https://ven06798.service-now.com/now/nav/ui/classic/params/target/x_rptp_insureme_productdisplaycopy.do" class="breadcrumbContent">Product</a>/<b>Comparison Page</b>
+    </p> -->
+    <div class="comparisionPage">
+      <div class="title">Comparison Summary</div>
+      <div class="comparison-table">
+        <div class="row">
+          <div class="tableHeading">Features</div>
+          <div class="product-a">
+            <div class="productLogo"><img src="{{data.productDetailsdata[0].image}}" alt="{{data.productDetailsdata[0].name}}" ></div>
+            <div class="productTitle">{{data.productDetailsdata[0].name}}</div> 
+          </div>
+          <div class="product-b">
+            <div class="productLogo"><img src="{{data.productDetailsdata[1].image}}" alt="{{data.productDetailsdata[1].name}}" ></div>
+            <div class="productTitle">{{data.productDetailsdata[1].name}} </div>
+          </div>
+        </div>
+        <div class="row" ng-repeat="row in data.rows">
+     		<div class="key">{{row.features}}</div>
+          <div class="product-a">{{row.product1}}</div>
+          <div class="product-b">{{row.product2}}</div>
+        </div>
+        <div class="row">
+          <div class="key">Sum Insured</div>
+          <div class="product-a">{{data.productDetailsdata[0].sum}}</div>
+          <div class="product-b">{{data.productDetailsdata[1].sum}}</div>
+        </div>
+        <!--
+                <div class="row">
+                    <div class="key">Policy Amount</div>
+                    <div class="product-a">1Year@15L</div>
+                    <div class="product-b">1Year@15L</div>
+                </div>
+                <div class="row">
+                    <div class="key">Policy Duration</div>
+                    <div class="product-a">11 months</div>
+                    <div class="product-b">60 months</div>
+                </div>-->
+      </div>
+    </div>
+
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>
