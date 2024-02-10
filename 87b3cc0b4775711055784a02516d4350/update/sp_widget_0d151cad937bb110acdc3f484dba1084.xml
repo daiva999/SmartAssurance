@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope, $rootScope, spUtil) {
+    var c = this;
+	/*var sI=c.data.userId;
+	
+	var ssid = sessionStorage.getItem(sI)
+	
+	console.log(ssid)
+	
+	console.log(ssid.id)
+	
+	if(sessionStorage.getItem(sI) !=null){
+			$scope.model.dropdown = sessionDetails.userdetails.tripType;
+			$scope.selectedRegion = sessionDetails.userdetails.travelRegion;
+			$scope.isIndianPassportHolder = sessionDetails.userdetails.indianPassportHolder
+			$scope.daysDifference = sessionDetails.userdetails.duration;
+			$scope.numberOfTravellers = sessionDetails.userdetails.numberOfPersons;
+			$scope.start = sessionDetails.userdetails.startDate;
+			$scope.end = sessionDetails.userdetails.endDate;
+			
+			for (var i = 0; i < sessionDetails.$scope.numberOfTravellers; i++) {
+            $scope.travellers[i].age = sessionDetails.travellerAges[i];
+        }
+	}*/
+	
+	
+    $scope.start = null;
+    $scope.end = null;
+    $scope.daysDifference = null;
+	
+    //Function for duration
+	
+    $scope.calculateStartDate = function () {
+        if ($scope.start) {
+            var startDate = new Date($scope.start);
+            //var endDate = new Date($scope.end);
+            var today = new Date();
+            startDate.setHours(0, 0, 0, 0);
+            today.setHours(0, 0, 0, 0);
+
+            if (startDate < today) {
+                $scope.start = null;
+                alert("Start date is before current date.");
+                return;
+            }
+            else if (startDate.getTime() === today.getTime()) {
+
+                return;
+            }
+        }
+    }
+
+    $scope.calculateDuration = function () {
+        if ($scope.start && $scope.end) {
+            var startDate = new Date($scope.start);
+            var endDate = new Date($scope.end);
+            if (endDate >= startDate) {
+                var timeDifference = Math.abs(endDate.getTime() - startDate.getTime());
+                $scope.daysDifference = (Math.ceil(timeDifference / (1000 * 3600 * 24))) + 1;
+            }
+            else {
+                //alert( $scope.end );
+                $scope.end = null;
+                $scope.daysDifference = null;
+                alert("End Date should be after start date.");
+            }
+        } else {
+            $scope.daysDifference = null;
+        }
+    }
+
+    //Function to validate daterange
+    function validateDateRange() {
+        var startDate = new Date($scope.start);
+        var endDate = new Date($scope.c.end);
+
+        // Check if start date is less than end date
+        if (startDate > endDate) {
+            $scope.dateForm.startdatepicker.$setValidity('dateRange', false);
+            $scope.dateForm.enddatepicker.$setValidity('dateRange', false);
+        } else {
+            $scope.dateForm.startdatepicker.$setValidity('dateRange', true);
+            $scope.dateForm.enddatepicker.$setValidity('dateRange', true);
+        }
+    }
+
+    $scope.dateRange = '';
+    // Date range picker options
+    $scope.datePickerOptions = {
+        autoUpdateInput: false,
+        locale: {
+            cancelLabel: 'Clear'
+        }
+    };
+
+    $scope.ages = [];
+    for (var i = 1; i <= 99; i++) {
+        $scope.ages.push(i);
+    }
+ // Retrieve session data
+    
+    //Function for session storage
+
+    $scope.storeSessionDetails = function () {
+        
+        /*var ages = {};
+        for (var i = 0; i < $scope.travellers.length; i++) {
+            var propertyName = "age" + (i + 1);
+            console.log("The age of traveller " + (i + 1) + " is " + $scope.travellers[i].age);
+            ages[propertyName] = $scope.travellers[i].age;
+        }*/
+        var fullData = {
+            "tripType": $scope.model.dropdown,
+            "travelRegion": $scope.selectedRegion,
+            "startDate": $scope.start,
+            "endDate": $scope.end,
+            "duration": $scope.daysDifference,
+            "numberOfPersons": $scope.numberOfTravellers,
+            "indianPassportHolder": $scope.isIndianPassportHolder,
+            "travellerAges": $scope.travellers
+        };
+
+        sessionStorage.setItem("sessionDetails", JSON.stringify(fullData));
+        $rootScope.$emit("details", fullData);
+    }
+    
+		$scope.updateSession = function(ages) {
+				// Update session with the selected ages array
+				sessionStorage.setItem("selectedAges", JSON.stringify(ages));
+		};
+	
+
+	// Watch for changes in the specified variables
+    $scope.$watchGroup(['model.dropdown',
+        'selectedRegion',
+        'start',
+        'end',
+        'daysDifference',
+				'numberOfTravellers',
+        'isIndianPassportHolder'
+    ], function (newValues, oldValues) {
+            // Check if any of the watched values have changed
+            if (!angular.equals(newValues, oldValues)) {
+                $scope.storeSessionDetails();
+            }
+        });
+	
+	
+/*
+	$scope.getSession=function(){
+	var sessionKey = $scope.data.userId;
+	spUtil.addInfoMessage("sessionKey: " + sessionKey)
+ 
+	if (sessionKey) {
+ 
+		var sessionDetails = JSON.parse(sessionStorage.getItem(sessionKey));
+		spUtil.addInfoMessage(JSON.stringify(sessionDetails))
+ 
+		if (sessionDetails) {
+			$scope.model.dropdown = sessionDetails.userdetails.tripType;
+			$scope.selectedRegion = sessionDetails.userdetails.travelRegion;
+			$scope.isIndianPassportHolder = sessionDetails.userdetails.indianPassportHolder
+			$scope.daysDifference = sessionDetails.userdetails.duration;
+			$scope.numberOfTravellers = sessionDetails.userdetails.numberOfPersons;
+			$scope.start = sessionDetails.userdetails.startDate;
+			$scope.end = sessionDetails.userdetails.endDate;
+			
+			for (var i = 0; i < sessionDetails.$scope.numberOfTravellers; i++) {
+            $scope.travellers[i].age = sessionDetails.travellerAges[i];
+        }
+		}
+	} else {
+		spUtil.addTrivialMessage(
+			"Session key not found. Please provide a valid session key."
+		);
+	}
+	
+	}
+	*/
+
+	
+    // Initial data setup
+    $scope.options = [
+        { label: 'Single Trip', name: 'radio', value: 'single', tooltiptext: 'Individual plans', selected: 'selected' },
+        { label: 'Multi Trip', name: 'radio', value: 'multi', tooltiptext: 'You are now opting for a Multi-trip.Please note that it will only cover for 60 days.' },
+        { label: 'Annual Trip', name: 'radio', value: 'annual', tooltiptext: 'Uninterrupted single trip cover for 365 days' },
+        { label: 'Student Trip', name: 'radio', value: 'student', tooltiptext: 'Student-friendly trip plans.' }
+    ];
+
+    $scope.model = {};
+    $scope.model.dropdown = 'single';
+    $scope.regions = []; // Initial empty array for regions
+
+    // Function to update dropdown options based on the selected radio button
+    $scope.updateDropdownOptions = function (value) {
+        $scope.regions = []; // Clear existing options
+        var selectedOption = value;
+
+        $scope.model.dropdown = value;
+
+        // Add new options based on the selected radio button
+        if (selectedOption === 'single') {
+            $scope.regions = [
+                { label: 'Asia', value: 'asia' },
+                { label: 'Schengen', value: 'schengen' },
+                { label: 'America', value: 'america' },
+                { label: 'Others', value: 'others' }
+            ];
+        } else if (selectedOption === 'multi') {
+            $scope.regions = [
+                { label: 'Worldwide', value: 'worldwide' }
+            ];
+        } else if (selectedOption === 'annual' || selectedOption === 'student') {
+            $scope.regions = [
+                { label: 'Excluding USA & Canada', value: 'excluding_usa_&_canada' },
+                { label: 'Including USA & Canada', value: 'including_usa_&_canada' }
+            ];
+        }
+
+    };
+
+    // Initial call to set up dropdown options based on the default checked radio button
+
+    $scope.updateDropdownOptions('single');
+    $scope.travellers = [];
+
+    $scope.generateFields = function () {
+        $scope.travellers = [];
+
+        for (var i = 0; i < $scope.numberOfTravellers; i++) {
+            $scope.travellers.push({
+                age: ''
+            });
+        }
+				
+				$scope.travellers.forEach(function(traveller, index) {
+						for(var key in traveller) {
+							if(traveller.hasOwnProperty(key)) {
+								var scopeKey = "travellers[" + index + "]." + key;
+								$scope.$watch(scopeKey, function(newValues, oldValues) {
+										if (!angular.equals(newValues, oldValues)) {
+												$scope.storeSessionDetails();
+										}
+								});
+							}
+						}
+				});
+    };
+
+}
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>input[type=text],input[type=date],select{
+  width: 250px;
+  height: 40px;
+}
+input,select{
+  padding:5px;
+  border-radius:5px;
+  margin-top:5px;
+  margin-bottom:5px;
+}
+
+input[type= "radio"]{
+		padding-left:10px
+}
+  
+  
+input[type="date"] {
+  color:rgb(0,0,0);
+  
+}
+
+
+input[type="date"]:visited {
+  color: black;
+}
+
+.selectT{
+  height: 40px;
+
+}
+
+label{
+  color:rgb(0,0,0);
+  margin-right:5px;
+  padding:5px;
+  font-style:bold;
+  //text-decoration: underline;
+
+}
+
+.box{
+  box-sizing: border-box;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  line-height: 19.2px;
+  margin-bottom: 10px;
+}
+option{
+  color:rgb(0,0,0);
+}
+.whole{  
+ // border:1px solid red;
+  box-sizing: border-box;
+  padding: 35px 15px;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10px;
+  font-family: 'Helvetica';
+  border-radius: 5px;
+  overflow: hidden;
+  padding-bottom: 5%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: 0 5%;
+  position: relative;
+  height: 65vh;
+  overflow-y : scroll;
+}
+
+.whole::-webkit-scrollbar { width: 0 !important }
+
+//.main::-webkit-scrollbar { width: 0 !important }
+
+.radioDiv{
+	display: flex;
+}
+.radioDivInner{
+ display: grid;
+  grid-template-rows: 30px 30px;
+  grid-template-columns: 130px 130px;
+  //grid-gap: 5px;
+  justify-items: center;
+  align-items: center;
+}
+.wi-40{
+	width:40%;
+  //margin-left:10px;
+}
+.db{
+  border-width:1px;
+}
+
+h4{
+
+  font-style:bold;
+  color:rgb(0,0,0);
+}
+
+.head{
+  box-sizing: border-box;
+  font-size: 16px;
+  color: rgb(102, 102, 102);
+  margin-bottom: 17px;
+  margin-top: 0px;
+  font-weight: 600;
+  text-align:center;
+  font-style:bold;
+  font-style:italic;
+  font-family: 'Helvetica';
+  color:rgb(0,0,0);
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  opacity: 1;
+  font-size: 14px;
+  //border: 1px solid red;
+  
+  /* border-bottom: 1px dotted black; If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 80%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.continue{
+  display:flex;
+  justify-content:center;
+}
+
+.invisible-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.id{
+  text-align:center;
+}
+
+.age-dropdown {
+  height: 2.5em; /* Adjust height as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+  width: 47%; /* Adjust width as needed */
+ 
+}
+
+.space{
+  margin-bottom:5px;
+}
+
+.pp{
+  margin-left:10px;
+  border:1px solid red;
+}
+.yes-btn{
+  position:relative;
+  left:5px;
+}
+.no-btn{
+  position:relative;
+  left:5px;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>vfs_form</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}
+
+]]></link>
+        <name>VFS  Form</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+	data.userId = gs.getUserID();
+	// gs.addInfoMessage(data.userId)
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>madhurya.jagadeesh</sys_created_by>
+        <sys_created_on>2024-01-17 11:35:43</sys_created_on>
+        <sys_id>0d151cad937bb110acdc3f484dba1084</sys_id>
+        <sys_mod_count>1390</sys_mod_count>
+        <sys_name>VFS  Form</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_0d151cad937bb110acdc3f484dba1084</sys_update_name>
+        <sys_updated_by>madhurya.jagadeesh</sys_updated_by>
+        <sys_updated_on>2024-02-10 04:32:30</sys_updated_on>
+        <template><![CDATA[<div class = "whole">
+  <h3 class="head">
+    Help us plan your trip, fill out these details!!
+  </h3>
+  <br>
+  <div class="">
+    <div class="radioBtns">
+      <form name="tripForm" >
+        <div class="radioDiv">
+          <label class="wi-40"><h5>
+            Choose Trip:
+            </h5></label>
+          <div class="radioDivInner">
+            <label ng-repeat="option in options track by $index">
+              <label > 
+                <input type="radio" ng-model="model.dropdown" name="option" value="{{option.value}}" ng-change="updateDropdownOptions(option.value)" required/>
+                {{ option.label }}
+                <!--<span class="tooltiptext">{{option.tooltiptext}}</span>-->
+              </label>
+            </label>
+          </div>
+        </div>
+        <br>
+        <div>
+          <label class="box wi-40" for="dropdown"><h5>Enter your travel region:</h5></label>
+          <select id="dropdown" ng-model="selectedRegion" class="selectT" required>
+            <option ng-repeat="region in regions" value="{{ region.value }}">{{ region.label }}</option>
+          </select>  
+        </div>
+        <div>
+          <label for="startdatepicker" class="wi-40"><h5>Start Date:</h5></label>
+          <input type="date" id="startdatepicker" class="db" ng-model="start" ng-change="calculateStartDate()" required />
+        </div>
+
+        <div>
+          <label for="enddatepicker" class="wi-40"><h5>End Date:</h5></label>
+          <input type="date" id="enddatepicker" class="db" ng-model="end" ng-change="calculateDuration()" required />
+        </div>
+
+        <div class = "radioDiv" ng-if="daysDifference">
+          <label for="startdatepicker" class="wi-40"></label>
+          <p class="wi-40">Duration is {{ daysDifference }} Day(s) </p>
+        </div>
+
+        <!--<div ng-show="tripForm.startdatepicker.$error.dateRange">
+          <p>Start date should be less than end date.</p>
+        </div>-->
+        <label for="travellers" class="wi-40" >
+          <!--<span class="tooltiptext">You can add up to 4 people for a trip</span>-->
+          <h5>No. of travellers(Upto 4):</h5>
+        </label>
+        <select id="trav" name="trav" ng-change="generateFields()" ng-model="numberOfTravellers" class="dob" required>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+ 
+        
+        
+          <div ng-repeat="traveller in travellers track by $index">
+             <!--<label class="wi-40">Name {{$index + 1}}:</label>
+            <input type="text" ng-model="traveller[$index].name" class="dob">          
+
+            <label class="wi-40">DOB of Traveller {{$index + 1}}:</label>
+            <input type="date" id="dob" ng-model="traveller[$index].dob" class="dob" ng-change="calculateAge($index)" >-->
+           
+            <label class="wi-40">Age of Person {{$index + 1}}:</label> 
+            <select id ="selectAge" name= "selectAge" ng-model="traveller.age" 
+       			 ng-options="age for age in ages" class="age-dropdown"></select>
+            <span class="space"ng-if="!$last"></span>
+            
+          </div>
+        
+        
+        <label  class="wi-40"><h5>
+          Are you/these Indian passport holder(s)?
+          </h5></label>
+        <label>
+          <input class="pp" type="radio" name="yes" value="yes" ng-model="isIndianPassportHolder" checked='true' /><span class="yes-btn">Yes</span></label>
+        <label >
+          <input class="pp" type="radio" name="yes" ng-model="isIndianPassportHolder" value="no" /><span class="no-btn">No
+          <!--<span class="tooltiptext">If you do not have an Indian Passport,
+            but have an Overseas Of India (OCI) card instead, drop an email to,
+            abc@gmail.com or call on +91 00 00 00 00. 
+            Our team will be happy to assist you further.</span>-->
+          </span>
+        </label>
+      </form>
+    </div>
+  </div>
+]]></template>
+    </sp_widget>
+</record_update>
