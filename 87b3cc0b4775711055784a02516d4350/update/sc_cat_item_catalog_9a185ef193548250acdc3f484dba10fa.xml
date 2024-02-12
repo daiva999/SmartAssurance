@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item_catalog">
+    <sc_cat_item_catalog action="INSERT_OR_UPDATE">
+        <sc_cat_item display_value="Insurance Product Questions">9826123193548250acdc3f484dba1075</sc_cat_item>
+        <sc_catalog display_value="Service Catalog">e0d08b13c3330100c8b837659bba8fb4</sc_catalog>
+        <sys_class_name>sc_cat_item_catalog</sys_class_name>
+        <sys_created_by>harshitha</sys_created_by>
+        <sys_created_on>2024-02-12 12:17:16</sys_created_on>
+        <sys_id>9a185ef193548250acdc3f484dba10fa</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Service Catalog.Insurance Product Questions</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sc_cat_item_catalog_9a185ef193548250acdc3f484dba10fa</sys_update_name>
+        <sys_updated_by>harshitha</sys_updated_by>
+        <sys_updated_on>2024-02-12 12:17:16</sys_updated_on>
+    </sc_cat_item_catalog>
+</record_update>
