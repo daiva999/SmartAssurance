@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($scope) {
+  /* widget controller */
+	
+	
+	
+
+	$scope.updates = function(){
+			var value = document.getElementById('checkbox1').value;
+	alert(!value);
+	if(value){
+		var get =  document.getElementById('model').value;
+		alert("hi");
+		
+	}
+	else{
+		value = false;
+		return;
+	}
+		
+	}
+
+	
+	
+	 
+ 
+
+
+	
+	
+	
+  var c = this;
+	console.log(JSON.stringify($scope.data));
+	c.user = $scope.data.user;
+	var obj = sessionStorage.getItem(c.user);
+
+	
+	var job = JSON.parse(obj);
+	$scope.firstName = job.firstname;	
+	$scope.lastName = job.lastName;
+	$scope.dob = job.dob;
+	$scope.Contact = job.Contact;
+	$scope.PassPort = job.Passports;
+	$scope.Passports = job.Passport;
+	$scope.Email = job.email;
+	var obj1 = sessionStorage.getItem($scope.data.user1);
+	
+	var jobj = JSON.parse(obj1);
+	
+	$scope.app1 = jobj.visaCentre;
+	$scope.app2 = jobj.appointmentCategory;
+	$scope.app3 = jobj.subCategory;
+	
+	
+	
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>body {
+  font-family: Arial, sans-serif;
+   border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+   padding: 20px;
+  border: 10px solid #ccc;
+  border-radius: 5px;
+}
+
+.section {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 5px solid #ccc;
+  
+  border-radius: 5px;
+}
+
+h2 {
+  margin-bottom: 10px;
+
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 10px;
+  
+}
+
+
+.info div {
+  font-weight: bold;
+
+}
+
+.submit-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+
+.dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid black;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Copy of review</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+ data.user = gs.getUserName();
+	
+	data.user1 = gs.getUserID();
+	
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>Ajmal.akram</sys_created_by>
+        <sys_created_on>2024-02-12 09:25:10</sys_created_on>
+        <sys_id>01b0b9fd479c825055784a02516d4338</sys_id>
+        <sys_mod_count>63</sys_mod_count>
+        <sys_name>Copy of review</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_01b0b9fd479c825055784a02516d4338</sys_update_name>
+        <sys_updated_by>Ajmal.akram</sys_updated_by>
+        <sys_updated_on>2024-02-12 11:19:05</sys_updated_on>
+        <template><![CDATA[<div>
+<!-- your widget template -->
+<div class="form-container">
+<section class="section">
+<h2>Applicant details</h2>
+<div class="info">
+<div>Country of residence</div>
+<div>INDIA </div>
+<div>Travelling to</div>
+  
+<div>GERMANY</div>
+<div>Visa Application Centre</div>
+<div>{{app1}}</div>
+<div>Appointment Category</div>
+<div>{{app2}}</div>
+<div>Appointment Sub Category</div>
+  
+<div>{{app3}}</div>
+</div>
+</section>
+ 
+    <section class="section">
+<h2>Your details</h2>
+<div class="info">
+<div>Applicant</div>
+<div> {{firstName}} {{lastName}}
+  </div>
+<div>Date Of Birth</div>
+<div>{{dob}}</div>
+<div>Passport Number</div>
+<div>{{PassPort}}</div>
+<div>Passport Expiry Date</div>
+<div>{{Passports}}</div>
+<div>Contact Phone</div>
+<div>{{Contact}}</div>
+<div>Email</div>
+<div>{{Email}}</div>
+</div>
+</section>
+ 
+ 
+    <section class="section">
+<h2>Appointment details</h2>
+<div class="info">
+<div>Appointment type</div>
+<div>Standard</div>
+<div>Date</div>
+<div>13-03-2024</div>
+<div>Time</div>
+<div>14:45-15:00</div>
+</div>
+</section>
+ 
+    <section class="section">
+<h2>Services</h2>
+<div class="info">
+<div>
+ 
+        </div>
+<div>0/-</div>
+</div>
+</section>
+ 
+    <section class="section">
+<h2>Fees</h2>
+<div class="info">
+<div>
+ 
+        </div>
+<div>0/-</div>
+</div>
+      
+</section>
+ 
+
+
+<section class="section">
+  <h2>Insurance Fees</h2>
+  <!-- Checkbox to trigger modal -->
+  <input id = "checkbox1" ng-click = "updates()" type="checkbox" class="btn btn-primary" ng-model="showModal" data-toggle="modal" data-target="#exampleModalCenter" required>Do you want to buy an Insurance
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" ng-show="showModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Modal body content goes here -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <!-- Button to buy insurance, replace href with ng-href -->
+          <a href="https://ven06798.service-now.com/vfsp?id=vfs_get_page">
+            <button  type="button" class="btn btn-primary">Buy Me An Insurance</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+ 
+    <section class="section">
+<h2>Total</h2>
+<div class="info">
+<div>
+ 
+        </div>
+<div>12232/-</div>
+</div>
+</section>
+ 
+    <section class="section">
+<h2>Acceptance</h2>
+<div class="info1">
+<label for="terms">I accept the <a href="javascript:void(0)">Terms and Conditions</a></label>
+<input type="checkbox" id="terms" name="terms" height=20px widht=20px>
+<label for="communication">Yes, I agree to receive future communication on optional value added services offered by VFS Global</label>
+<input type="checkbox" id="communication" name="communication" >
+</div>
+</section>
+ 
+    <button class="submit-button">Submit</button>
+</div>
+</div>]]></template>
+    </sp_widget>
+</record_update>
