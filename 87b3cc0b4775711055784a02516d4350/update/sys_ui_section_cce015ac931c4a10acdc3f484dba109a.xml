@@ -1,0 +1,897 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="" section_id="cce015ac931c4a10acdc3f484dba109a" sys_domain="global" table="x_rptp_insureme_payment_details" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>name</element>
+            <position>0</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-08 10:00:28</sys_created_on>
+            <sys_id>536251a0935c4a10acdc3f484dba102a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-08 10:00:28</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>odrer_id</element>
+            <position>1</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-08 10:00:28</sys_created_on>
+            <sys_id>5b6251a0935c4a10acdc3f484dba102a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-08 10:00:28</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>payment_id</element>
+            <position>2</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-08 10:00:28</sys_created_on>
+            <sys_id>5f6251a0935c4a10acdc3f484dba102a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-08 10:00:28</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>email</element>
+            <position>3</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-08 10:00:28</sys_created_on>
+            <sys_id>536251a0935c4a10acdc3f484dba102b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-08 10:00:28</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>gender</element>
+            <position>4</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-08 10:00:28</sys_created_on>
+            <sys_id>576251a0935c4a10acdc3f484dba102b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-08 10:00:28</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>phone_number</element>
+            <position>5</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-08 10:00:28</sys_created_on>
+            <sys_id>5b6251a0935c4a10acdc3f484dba102b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-08 10:00:28</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>start_date</element>
+            <position>6</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-08 10:00:28</sys_created_on>
+            <sys_id>5f6251a0935c4a10acdc3f484dba102b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-08 10:00:28</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>return_date</element>
+            <position>7</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-08 10:00:28</sys_created_on>
+            <sys_id>536251a0935c4a10acdc3f484dba102c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-08 10:00:28</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>duration</element>
+            <position>8</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-08 10:00:28</sys_created_on>
+            <sys_id>576251a0935c4a10acdc3f484dba102c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-08 10:00:28</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>product_code</element>
+            <position>9</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-08 10:00:28</sys_created_on>
+            <sys_id>5b6251a0935c4a10acdc3f484dba102c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-08 10:00:28</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>insurer_code</element>
+            <position>10</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-08 10:00:28</sys_created_on>
+            <sys_id>5f6251a0935c4a10acdc3f484dba102c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-08 10:00:28</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>trip_type</element>
+            <position>11</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-08 10:00:28</sys_created_on>
+            <sys_id>536251a0935c4a10acdc3f484dba102d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-08 10:00:28</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>travel_region</element>
+            <position>12</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-08 10:00:28</sys_created_on>
+            <sys_id>576251a0935c4a10acdc3f484dba102d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-08 10:00:28</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>number</element>
+            <position>13</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-08 11:40:45</sys_created_on>
+            <sys_id>dc69e56893dc4a10acdc3f484dba1007</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-08 11:40:45</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>gender2</element>
+            <position>14</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:44:42</sys_created_on>
+            <sys_id>267121f093d4ca10acdc3f484dba10f3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:44:42</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>gender3</element>
+            <position>15</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:44:42</sys_created_on>
+            <sys_id>a27121f093d4ca10acdc3f484dba10fd</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:44:42</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>gender4</element>
+            <position>16</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:44:42</sys_created_on>
+            <sys_id>667161f093d4ca10acdc3f484dba105d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:44:42</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>email2</element>
+            <position>17</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:44:43</sys_created_on>
+            <sys_id>327161f093d4ca10acdc3f484dba1080</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:44:43</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>email3</element>
+            <position>18</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:44:43</sys_created_on>
+            <sys_id>367161f093d4ca10acdc3f484dba1089</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:44:43</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>email4</element>
+            <position>19</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:44:43</sys_created_on>
+            <sys_id>327161f093d4ca10acdc3f484dba109f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:44:43</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>name2</element>
+            <position>20</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:44:43</sys_created_on>
+            <sys_id>be7161f093d4ca10acdc3f484dba10c1</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:44:43</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>name3</element>
+            <position>21</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:44:44</sys_created_on>
+            <sys_id>767161f093d4ca10acdc3f484dba10cb</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:44:44</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>name4</element>
+            <position>22</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:44:44</sys_created_on>
+            <sys_id>4f7161f093d4ca10acdc3f484dba10d4</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:44:44</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>phone_number2</element>
+            <position>23</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:44:44</sys_created_on>
+            <sys_id>c77161f093d4ca10acdc3f484dba10eb</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:44:44</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>phone_number3</element>
+            <position>24</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:44:44</sys_created_on>
+            <sys_id>0b71a1f093d4ca10acdc3f484dba1001</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:44:44</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>phone_number4</element>
+            <position>25</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:44:44</sys_created_on>
+            <sys_id>c371a1f093d4ca10acdc3f484dba100b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:44:44</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>nominee1</element>
+            <position>26</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:52:54</sys_created_on>
+            <sys_id>72532db493d4ca10acdc3f484dba108a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:52:54</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>nominee2</element>
+            <position>27</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:52:55</sys_created_on>
+            <sys_id>fe532db493d4ca10acdc3f484dba1094</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:52:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>nominee3</element>
+            <position>28</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:52:55</sys_created_on>
+            <sys_id>7e532db493d4ca10acdc3f484dba109e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:52:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>nominee4</element>
+            <position>29</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:52:55</sys_created_on>
+            <sys_id>3e532db493d4ca10acdc3f484dba10a8</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:52:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>nominee_relation1</element>
+            <position>30</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:52:55</sys_created_on>
+            <sys_id>3e532db493d4ca10acdc3f484dba10b2</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:52:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>nominee_relation2</element>
+            <position>31</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:52:55</sys_created_on>
+            <sys_id>07532db493d4ca10acdc3f484dba10c9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:52:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>nominee_relation3</element>
+            <position>32</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:52:55</sys_created_on>
+            <sys_id>87532db493d4ca10acdc3f484dba10d3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:52:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>nominee_relation4</element>
+            <position>33</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 05:52:56</sys_created_on>
+            <sys_id>4b532db493d4ca10acdc3f484dba10dd</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 05:52:56</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>dob</element>
+            <position>34</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 06:15:22</sys_created_on>
+            <sys_id>6f78a1309318ca10acdc3f484dba10ec</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 06:15:22</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>pan_number</element>
+            <position>35</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 06:15:22</sys_created_on>
+            <sys_id>2f7825309318ca10acdc3f484dba10d0</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 06:15:22</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>passport</element>
+            <position>36</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 06:15:22</sys_created_on>
+            <sys_id>337825309318ca10acdc3f484dba10f4</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 06:15:22</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>age</element>
+            <position>37</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 06:15:22</sys_created_on>
+            <sys_id>f37865309318ca10acdc3f484dba1030</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 06:15:22</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>email1</element>
+            <position>38</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 06:34:43</sys_created_on>
+            <sys_id>dfec61389358ca10acdc3f484dba10d6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 06:34:43</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>name1</element>
+            <position>39</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 06:52:17</sys_created_on>
+            <sys_id>ecf0b93493d8ca10acdc3f484dba1063</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 06:52:17</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>gender1</element>
+            <position>40</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 06:52:18</sys_created_on>
+            <sys_id>64f0b93493d8ca10acdc3f484dba106f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 06:52:18</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>phone_number1</element>
+            <position>41</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 07:12:40</sys_created_on>
+            <sys_id>0f9535fc93d8ca10acdc3f484dba101d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 07:12:40</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>age1</element>
+            <position>42</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 07:12:40</sys_created_on>
+            <sys_id>0b9539fc93d8ca10acdc3f484dba10d3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 07:12:40</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>age2</element>
+            <position>43</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 07:12:40</sys_created_on>
+            <sys_id>479539fc93d8ca10acdc3f484dba10de</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 07:12:40</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>age3</element>
+            <position>44</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 07:12:40</sys_created_on>
+            <sys_id>c39539fc93d8ca10acdc3f484dba10e9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 07:12:40</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>age4</element>
+            <position>45</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 07:12:41</sys_created_on>
+            <sys_id>5b9579fc93d8ca10acdc3f484dba1000</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 07:12:41</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>pan_number1</element>
+            <position>46</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 07:12:41</sys_created_on>
+            <sys_id>5b9579fc93d8ca10acdc3f484dba100b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 07:12:41</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>pan_number2</element>
+            <position>47</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 07:12:41</sys_created_on>
+            <sys_id>9b9579fc93d8ca10acdc3f484dba1016</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 07:12:41</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>pan_number3</element>
+            <position>48</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 07:12:41</sys_created_on>
+            <sys_id>1f9579fc93d8ca10acdc3f484dba1021</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 07:12:41</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>pan_number4</element>
+            <position>49</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 07:12:41</sys_created_on>
+            <sys_id>ef9579fc93d8ca10acdc3f484dba102c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 07:12:41</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>passport1</element>
+            <position>50</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 07:12:42</sys_created_on>
+            <sys_id>e39579fc93d8ca10acdc3f484dba1038</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 07:12:42</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>passport2</element>
+            <position>51</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 07:12:42</sys_created_on>
+            <sys_id>2b9579fc93d8ca10acdc3f484dba1043</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 07:12:42</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>passport3</element>
+            <position>52</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 07:12:42</sys_created_on>
+            <sys_id>af9579fc93d8ca10acdc3f484dba104e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 07:12:42</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>passport4</element>
+            <position>53</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 07:12:42</sys_created_on>
+            <sys_id>779579fc93d8ca10acdc3f484dba105a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 07:12:42</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>status</element>
+            <position>54</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 07:25:09</sys_created_on>
+            <sys_id>c2787174931cca10acdc3f484dba10d5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 07:25:09</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>users_details</element>
+            <position>55</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 09:07:52</sys_created_on>
+            <sys_id>eeff4afc939cca10acdc3f484dba1066</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 09:07:52</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>sum</element>
+            <position>56</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 09:21:29</sys_created_on>
+            <sys_id>ca13de7493dcca10acdc3f484dba1083</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 09:21:29</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>amount</element>
+            <position>57</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 09:21:29</sys_created_on>
+            <sys_id>1613de7493dcca10acdc3f484dba1090</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 09:21:29</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>number_of_persons</element>
+            <position>58</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-09 09:39:20</sys_created_on>
+            <sys_id>6327567c93dcca10acdc3f484dba1036</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-09 09:39:20</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>failed_response</element>
+            <position>59</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-10 08:56:58</sys_created_on>
+            <sys_id>2817578593dc4e10acdc3f484dba1024</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-10 08:56:58</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>primary_user</element>
+            <position>60</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-14 05:54:12</sys_created_on>
+            <sys_id>1e935b16939c4650acdc3f484dba101a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-14 05:54:12</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>primary_email</element>
+            <position>61</position>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-14 05:54:12</sys_created_on>
+            <sys_id>e293d356939c4650acdc3f484dba10e4</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_payment_details" sys_domain="global" view="Default view">cce015ac931c4a10acdc3f484dba109a</sys_ui_section>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-14 05:54:12</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption/>
+            <header>false</header>
+            <name>x_rptp_insureme_payment_details</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-08 09:53:41</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>cce015ac931c4a10acdc3f484dba109a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_rptp_insureme_payment_details</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+            <sys_update_name>sys_ui_section_cce015ac931c4a10acdc3f484dba109a</sys_update_name>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-08 09:53:41</sys_updated_on>
+            <sys_user/>
+            <title>true</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>
