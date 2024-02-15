@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="x_rptp_pdf_gen_api_html_template">
+    <x_rptp_pdf_gen_api_html_template action="INSERT_OR_UPDATE">
+        <acknowledgement_text/>
+        <category/>
+        <custom_font/>
+        <dependent_value_from_t1/>
+        <dependent_value_from_t2/>
+        <dependent_value_t1/>
+        <dependent_values_t2/>
+        <dependent_values_t3/>
+        <foot_text_position/>
+        <footer_image/>
+        <footer_image_height/>
+        <footer_image_position/>
+        <footer_text/>
+        <footer_text_position/>
+        <header_image/>
+        <header_image_height/>
+        <header_image_position/>
+        <html_script><![CDATA[<p><span style="font-family: verdana, geneva; font-size: 10pt;"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/VFS_Global_Logo.png" alt="Vfs Global" width="150" height="90" /></span></p>
+<p><span style="font-family: verdana, geneva; font-size: 10pt;">Date : ${date}</span></p>
+<p style="text-align: center;"><strong><span style="font-family: verdana, geneva; font-size: 10pt;">${choose_your_visa_application_centre}<br /></span></strong></p>
+<p style="text-align: center;"><strong><span style="font-family: verdana, geneva; font-size: 10pt;">Appointment Letter</span></strong></p>
+<p style="text-align: right;"><span style="font-family: verdana, geneva; font-size: 10pt;">Group URN - GEB52394272604</span></p>
+<p style="text-align: left;"><span style="font-family: verdana, geneva; font-size: 10pt;"><img style="float: right;" src="https://t3.ftcdn.net/jpg/02/55/97/94/360_F_255979498_vewTRAL5en9T0VBNQlaDBoXHlCvJzpDl.jpg" alt="Right prompt technologies" width="173" height="44" /></span></p>
+<p style="text-align: left;"><span style="font-family: verdana, geneva; font-size: 10pt;">Number of Applicants : 1</span></p>
+<p style="text-align: left;">&nbsp;</p>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+<tbody>
+<tr>
+<td style="width: 100%; text-align: center;"><strong><span style="font-family: verdana, geneva; font-size: 10pt;">Appointment Details:</span></strong></td>
+</tr>
+</tbody>
+</table>
+<table style="border-collapse: collapse; width: 100%; height: 46.2px;" border="1">
+<tbody>
+<tr style="height: 30.8px;">
+<td style="width: 18.6872%; height: 30.8px; text-align: center;"><span style="font-family: verdana, geneva; font-size: 10pt;">Applicant Name</span></td>
+<td style="width: 17.4414%; height: 30.8px; text-align: center;"><span style="font-family: verdana, geneva; font-size: 10pt;">Reference Number</span></td>
+<td style="width: 15.6973%; height: 30.8px; text-align: center;"><span style="font-family: verdana, geneva; font-size: 10pt;">Passport Number</span></td>
+<td style="width: 20.9413%; height: 30.8px; text-align: center;"><span style="font-family: verdana, geneva; font-size: 10pt;">Appointment date &amp; time</span></td>
+<td style="width: 25.1472%; height: 30.8px; text-align: center;"><span style="font-family: verdana, geneva; font-size: 10pt;">Visa Category</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 18.6872%; height: 15.4px; text-align: center;"><span style="font-family: verdana, geneva; font-size: 10pt;">&nbsp;${applicant_name}</span></td>
+<td style="width: 17.4414%; height: 15.4px; text-align: center;">
+<p style="text-align: left;"><span style="font-family: verdana, geneva; font-size: 10pt;"><img style="display: block; margin-left: auto; margin-right: auto;" src="https://t3.ftcdn.net/jpg/02/55/97/94/360_F_255979498_vewTRAL5en9T0VBNQlaDBoXHlCvJzpDl.jpg" alt="Right prompt technologies" width="126" height="32" /></span></p>
+<p style="text-align: left;"><span style="font-family: verdana, geneva; font-size: 10pt;">&nbsp;GEB52394272604</span></p>
+</td>
+<td style="width: 15.6973%; height: 15.4px; text-align: center;"><span style="font-family: verdana, geneva; font-size: 10pt;">&nbsp;${passport_no}</span></td>
+<td style="width: 16.9413%; height: 15.4px; text-align: center;">${date} ${time}</td>
+<td style="width: 31.1472%; height: 15.4px; text-align: center;">&nbsp;<span style="font-family: verdana, geneva; font-size: 10pt;">${choose_your_appointment_category}</span></td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;"><span style="font-family: verdana, geneva; font-size: 10pt;">${choose_your_visa_application_centre}</span></p>
+<p style="text-align: left;"><span style="font-family: verdana, geneva; font-size: 10pt;">VFS Global, Gopalan Innovation Mall, Bannerghatta Main Rd, Sarakki Industrial Layout, 3rd Phase, J. P.Nagar,Bengaluru, Karnataka, </span><span style="font-family: verdana, geneva; font-size: 10pt;">560076 India </span></p>
+<p style="text-align: left;"><span style="font-family: verdana, geneva; font-size: 10pt;">Banglore Consulate, </span></p>
+<p style="text-align: left;"><span style="font-family: verdana, geneva; font-size: 10pt;">India, </span><span style="font-family: verdana, geneva; font-size: 10pt;">560076&nbsp;</span></p>
+<p style="text-align: left;"><span style="font-family: verdana, geneva; font-size: 10pt;">If you do not wish to attend your appointment, please cancel it via <span style="text-decoration: underline;">THIS LINK</span>. There are a lot of other applicants on the waiting list, so please be fair and avoid no-shows.</span></p>
+<p style="text-align: left;"><strong><span style="font-family: verdana, geneva; font-size: 10pt;">Please note:</span></strong></p>
+<p style="text-align: left;"><span style="font-family: verdana, geneva; font-size: 10pt;">Please note: Please note it may take more than the prescribed time mentioned on your Appointment letter while submitting your Visa Application at VFS Centre. </span></p>
+<p style="text-align: left;"><span style="font-family: verdana, geneva; font-size: 10pt;">Applicants will be issued with a token number at the Application Centre and will be entertained as per the token number assigned. It may take more time depending on the number of Applications submitted at the counter by an Individual. </span></p>]]></html_script>
+        <language>en</language>
+        <left_right_margin/>
+        <main_table_dependent_value_t1/>
+        <name>Appointment Letter</name>
+        <page_number/>
+        <page_size/>
+        <signing_type>servicenow_sign</signing_type>
+        <state/>
+        <syntax_for_template_t1/>
+        <syntax_for_template_t2/>
+        <syntax_for_template_t3/>
+        <sys_class_name>x_rptp_pdf_gen_api_html_template</sys_class_name>
+        <sys_created_by>rushith</sys_created_by>
+        <sys_created_on>2024-02-14 10:24:09</sys_created_on>
+        <sys_id>bdf68c2e93d08650acdc3f484dba1093</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>Appointment Letter</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>x_rptp_pdf_gen_api_html_template_bdf68c2e93d08650acdc3f484dba1093</sys_update_name>
+        <sys_updated_by>rushith</sys_updated_by>
+        <sys_updated_on>2024-02-15 05:33:51</sys_updated_on>
+        <table>x_rptp_insureme_appointment_details</table>
+        <table_1/>
+        <table_1_fields/>
+        <table_2/>
+        <table_2_fields/>
+        <table_3/>
+        <table_3_fields/>
+        <tables_count/>
+        <top_bottom_margin/>
+        <type>x_rptp_pdf_gen_api_html_template</type>
+        <user_criteria/>
+        <vertical_alignment/>
+    </x_rptp_pdf_gen_api_html_template>
+</record_update>
