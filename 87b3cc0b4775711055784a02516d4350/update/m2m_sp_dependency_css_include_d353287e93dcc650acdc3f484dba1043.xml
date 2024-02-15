@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_dependency_css_include">
+    <m2m_sp_dependency_css_include action="INSERT_OR_UPDATE">
+        <order>100</order>
+        <sp_css_include display_value="Material CSS">ff43e47e93dcc650acdc3f484dba102c</sp_css_include>
+        <sp_dependency display_value="Angular Material">af502cf693dcc650acdc3f484dba10ec</sp_dependency>
+        <sys_class_name>m2m_sp_dependency_css_include</sys_class_name>
+        <sys_created_by>karthik.udaykumar</sys_created_by>
+        <sys_created_on>2024-02-15 06:21:10</sys_created_on>
+        <sys_id>d353287e93dcc650acdc3f484dba1043</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Material CSS.Angular Material</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>m2m_sp_dependency_css_include_d353287e93dcc650acdc3f484dba1043</sys_update_name>
+        <sys_updated_by>karthik.udaykumar</sys_updated_by>
+        <sys_updated_on>2024-02-15 06:21:10</sys_updated_on>
+    </m2m_sp_dependency_css_include>
+</record_update>
