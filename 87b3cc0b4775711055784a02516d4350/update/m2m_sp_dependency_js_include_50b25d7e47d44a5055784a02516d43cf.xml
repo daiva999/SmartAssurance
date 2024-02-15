@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_dependency_js_include">
+    <m2m_sp_dependency_js_include action="INSERT_OR_UPDATE">
+        <order>100</order>
+        <sp_dependency display_value="cal">e861d1fa47d44a5055784a02516d438d</sp_dependency>
+        <sp_js_include display_value="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">1ea29d7e47d44a5055784a02516d433f</sp_js_include>
+        <sys_class_name>m2m_sp_dependency_js_include</sys_class_name>
+        <sys_created_by>Surya.Prathap</sys_created_by>
+        <sys_created_on>2024-02-15 09:47:57</sys_created_on>
+        <sys_id>50b25d7e47d44a5055784a02516d43cf</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>cal.https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>m2m_sp_dependency_js_include_50b25d7e47d44a5055784a02516d43cf</sys_update_name>
+        <sys_updated_by>Surya.Prathap</sys_updated_by>
+        <sys_updated_on>2024-02-15 09:47:57</sys_updated_on>
+    </m2m_sp_dependency_js_include>
+</record_update>

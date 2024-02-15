@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_dependency_js_include">
+    <m2m_sp_dependency_js_include action="INSERT_OR_UPDATE">
+        <order>100</order>
+        <sp_dependency display_value="cal">e861d1fa47d44a5055784a02516d438d</sp_dependency>
+        <sp_js_include display_value="/text/javascript&quot; src=&quot;https://code.jquery.com/jquery-3.3.1.min.js">a9321d3e47d44a5055784a02516d43ef</sp_js_include>
+        <sys_class_name>m2m_sp_dependency_js_include</sys_class_name>
+        <sys_created_by>Surya.Prathap</sys_created_by>
+        <sys_created_on>2024-02-15 09:47:08</sys_created_on>
+        <sys_id>d082557e47d44a5055784a02516d4353</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>cal./text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>m2m_sp_dependency_js_include_d082557e47d44a5055784a02516d4353</sys_update_name>
+        <sys_updated_by>Surya.Prathap</sys_updated_by>
+        <sys_updated_on>2024-02-15 09:47:08</sys_updated_on>
+    </m2m_sp_dependency_js_include>
+</record_update>
