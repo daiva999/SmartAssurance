@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sysevent_email_action">
+    <sysevent_email_action action="INSERT_OR_UPDATE">
+        <action_insert>true</action_insert>
+        <action_update>false</action_update>
+        <active>true</active>
+        <advanced_condition/>
+        <affected_field_on_event/>
+        <category display_value="Uncategorized" name="Uncategorized">c97d83137f4432005f58108c3ffa917a</category>
+        <collection>x_rptp_insureme_appointment_details</collection>
+        <condition/>
+        <content_type>text/html</content_type>
+        <default_interval/>
+        <description/>
+        <digest_from/>
+        <digest_html/>
+        <digest_reply_to/>
+        <digest_separator_html><![CDATA[<p>&nbsp;</p>
+<hr />
+<p>&nbsp;</p>]]></digest_separator_html>
+        <digest_separator_text><![CDATA[\n--------------------------------------------------------------------------------\n]]></digest_separator_text>
+        <digest_subject/>
+        <digest_template/>
+        <digest_text/>
+        <digestable>false</digestable>
+        <enable_dynamic_translation>false</enable_dynamic_translation>
+        <event_name>x_rptp_insureme.appointment_letter</event_name>
+        <event_parm_1>true</event_parm_1>
+        <event_parm_2>false</event_parm_2>
+        <exclude_delegates>false</exclude_delegates>
+        <force_delivery>false</force_delivery>
+        <from/>
+        <generation_type>event</generation_type>
+        <importance/>
+        <include_attachments>true</include_attachments>
+        <item>event.parm1</item>
+        <item_table/>
+        <mandatory>false</mandatory>
+        <message/>
+        <message_html><![CDATA[<p><span style="font-family: verdana, geneva; font-size: 10pt;">${mail_script:insurance_payment_invoice}</span></p>
+<div align="center">
+<table class="MsoNormalTable" style="width: 100%; border: 1pt solid #e9e9e9; height: 69.05px;" border="1" cellspacing="10" cellpadding="0">
+<tbody>
+<tr style="height: 28px;">
+<td style="width: 40%; border: none; background: white; padding: 0cm; height: 28px;">
+<p><span style="font-family: verdana, geneva; font-size: 10pt;"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/VFS_Global_Logo.png" alt="Vfs Global" width="150" height="90" /></span></p>
+<p style="margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+</td>
+<td style="width: 60%; border: none; background: white; padding: 0cm; height: 28px;">
+<p style="text-align: right; margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-family: verdana, geneva; font-size: 12pt;"><strong><span style="color: #002f5d;">Your appointment is confirmed</span></strong></span></p>
+</td>
+</tr>
+<tr style="height: 41.05px;">
+<td style="width: 100%; border: none; background: white; padding: 0cm; height: 41.05px;" colspan="2">
+<p style="text-align: right; margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-family: verdana, geneva; font-size: 12pt;"><strong><span style="color: #002f5d;">Appointment Reference</span></strong></span></p>
+<p style="text-align: right; margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-family: verdana, geneva; font-size: 12pt;"><strong><span style="color: #002f5d;">Group URN - GEB52394272604</span></strong></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div align="center">
+<table class="MsoNormalTable" style="width: 100.0%; border: solid #E9E9E9 1.0pt;" border="1" cellspacing="10" cellpadding="0">
+<tbody>
+<tr>
+<td style="width: 100.0%; border: none; padding: 15.0pt 15.0pt 15.0pt 15.0pt;">
+<p style="margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-size: 10pt; font-family: verdana, geneva;">Dear <strong>${applicant_name}</strong>,<br /></span></p>
+<p style="text-align: justify; margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-size: 10pt; font-family: verdana, geneva;">Please note that your appointment for Unique Reference Number <strong>GEB52394272604 </strong>on <strong>${date} </strong>at <strong>${time}</strong> at VFS Global, Gopalan Innovation Mall, Bannerghatta Main Rd, Sarakki Industrial Layout, 3rd Phase, J. P.Nagar, Bengaluru, Karnataka 560076 India, Bangalore Consulate, India, 560076 .</span></p>
+<p style="text-align: justify; margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-size: 10pt; font-family: verdana, geneva;">Please find enclosed your Appointment Letter. Kindly print it and bring it with you on your appointment day so you will be allowed to access the center. On your appointment day, you must bring the documents required to apply for your visa. <br /><br />This appointment will be regulated by the Refund &lsquo;General Conditions&rsquo; and the &lsquo;Eligibility Criteria&rsquo; as mentioned on the VFS Global website.</span></p>
+<p style="text-align: justify; margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-size: 10pt; font-family: verdana, geneva;">If you require any assistance, please contact our helpline.</span></p>
+<p style="margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-family: verdana, geneva; font-size: 10pt;">Travel insurance is mandatory for all Schengen countries. If you have not purchased one please <a style="color: blue; text-decoration: underline;" href="https://visa.vfsglobal.com/ind/en/deu/travel-insurance?utm_source=TMI&amp;utm_medium=Email&amp;utm_campaign=India%2FGermany" target="_blank" rel="noopener">click here.</a></span></p>
+<p style="text-align: justify; margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-size: 10pt; font-family: verdana, geneva;">Thank you.</span></p>
+<p style="text-align: justify; margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-size: 10pt; font-family: verdana, geneva;">Regards,</span></p>
+<p style="text-align: justify; margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-size: 10pt; font-family: verdana, geneva;">Consulate of deu</span></p>
+<p style="margin: 0cm 0cm 12pt; font-size: 11pt; font-family: Calibri, sans-serif;"><br /><br /></p>
+<p style="margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-family: verdana, geneva; font-size: 10pt;"><strong>Please note:</strong></span></p>
+<p style="margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-family: verdana, geneva; font-size: 10pt;">Please note it may take more than the prescribed time mentioned on your Appointment letter while submitting your Visa Application at VFS Centre.</span></p>
+<p style="margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-family: verdana, geneva; font-size: 10pt;">Applicants will be issued with a token number at the Application Centre and will be entertained as per the token number assigned.</span></p>
+<p style="margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-family: verdana, geneva; font-size: 10pt;">It may take more time depending on the number of Applications submitted at the counter by an Individual.</span></p>
+<table class="MsoNormalTable" style="width: 100.0%; background: #DDDDDD; border-collapse: collapse;" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td style="border: solid windowtext 1.0pt; border-left: none; padding: 6.0pt 6.0pt 6.0pt 6.0pt; border-color: currentcolor;">
+<p style="margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-family: verdana, geneva; font-size: 10pt;"><strong><span style="color: black;">Appointment Date</span></strong></span></p>
+<p style="margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-size: 10pt; font-family: verdana, geneva;"><strong>${date}</strong></span></p>
+</td>
+<td style="border-top: solid #DDDDDD 6.0pt; border-left: none; border-bottom: solid #DDDDDD 2.25pt; border-right: none; padding: 0cm 0cm 0cm 0cm;">&nbsp;</td>
+<td style="border: solid windowtext 1.0pt; border-left: none; padding: 6.0pt 6.0pt 6.0pt 6.0pt; border-color: currentcolor;">
+<p style="margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-family: verdana, geneva; font-size: 10pt;"><strong><span style="color: black;">Appointment Time</span></strong></span></p>
+<p style="margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-family: verdana, geneva; font-size: 10pt;"><strong><span style="color: #002f5d;">${time}<br /></span></strong></span></p>
+</td>
+<td style="border-top: solid #DDDDDD 6.0pt; border-left: none; border-bottom: solid #DDDDDD 2.25pt; border-right: none; padding: 0cm 0cm 0cm 0cm;">&nbsp;</td>
+<td style="border: solid windowtext 1.0pt; border-left: none; padding: 6.0pt 6.0pt 6.0pt 6.0pt; border-color: currentcolor;">
+<p style="margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-family: verdana, geneva; font-size: 10pt;"><strong><span style="color: black;">Visa Application Center</span></strong></span></p>
+<p style="margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-family: verdana, geneva; font-size: 10pt;"><strong>${choose_your_visa_application_centre}</strong></span></p>
+</td>
+<td style="border: solid windowtext 1.0pt; border-left: none; padding: 6.0pt 6.0pt 6.0pt 6.0pt; border-color: currentcolor;">
+<p style="margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td style="border-top: none; border-left: solid white 1.0pt; border-bottom: solid #DDDDDD 6.0pt; border-right: solid white 1.0pt; background: white; padding: 5.0pt 1.0pt 0cm 0cm;" colspan="6">&nbsp;</td>
+</tr>
+<tr>
+<td style="border: solid windowtext 1.0pt; border-top: none; padding: 6.0pt 6.0pt 6.0pt 6.0pt; border-color: currentcolor #dddddd #dddddd;">
+<p style="margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-family: verdana, geneva; font-size: 10pt;"><strong><span style="color: black;">Number of Applicants</span></strong></span></p>
+<p style="margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-family: verdana, geneva; font-size: 10pt;"><strong><span style="color: #002f5d;">1</span></strong></span></p>
+</td>
+<td style="border: none; border-bottom: solid #DDDDDD 6.0pt; padding: 0cm 0cm 0cm 0cm;">&nbsp;</td>
+<td style="border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 6.0pt 6.0pt 6.0pt 6.0pt; border-color: currentcolor #dddddd #dddddd currentcolor;" colspan="4">
+<p style="margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-family: verdana, geneva; font-size: 10pt;"><strong><span style="color: black;">Visa Category</span></strong></span></p>
+<p style="margin: 0cm; font-size: 11pt; font-family: Calibri, sans-serif;"><span style="font-family: verdana, geneva; font-size: 10pt;"><strong>${choose_your_appointment_category}</strong></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>]]></message_html>
+        <message_list/>
+        <message_text/>
+        <name>Appointment Letter notification</name>
+        <omit_watermark>false</omit_watermark>
+        <order>100</order>
+        <push_message_only>false</push_message_only>
+        <recipient_fields>email</recipient_fields>
+        <recipient_groups/>
+        <recipient_users/>
+        <reply_to/>
+        <send_self>true</send_self>
+        <sms_alternate/>
+        <style/>
+        <subject>VFS Global Appointment Letter</subject>
+        <subscribable>false</subscribable>
+        <sys_class_name>sysevent_email_action</sys_class_name>
+        <sys_created_by>rushith</sys_created_by>
+        <sys_created_on>2024-02-14 11:14:42</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>fbcc54a293948650acdc3f484dba109a</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>Appointment Letter notification</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sysevent_email_action_fbcc54a293948650acdc3f484dba109a</sys_update_name>
+        <sys_updated_by>balakrishna</sys_updated_by>
+        <sys_updated_on>2024-02-16 05:30:45</sys_updated_on>
+        <sys_version>2</sys_version>
+        <template/>
+        <type>email</type>
+        <weight>0</weight>
+    </sysevent_email_action>
+</record_update>
