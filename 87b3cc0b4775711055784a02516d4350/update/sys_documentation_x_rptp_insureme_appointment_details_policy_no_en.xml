@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="policy_no" label="Policy NO" language="en" table="x_rptp_insureme_appointment_details">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>policy_no</element>
+            <help/>
+            <hint/>
+            <label>Policy NO</label>
+            <language>en</language>
+            <name>x_rptp_insureme_appointment_details</name>
+            <plural>Policy NOs</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>Surya.Prathap</sys_created_by>
+            <sys_created_on>2024-02-16 05:39:07</sys_created_on>
+            <sys_id>0553698793dc4a50acdc3f484dba10e2</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Policy NO</sys_name>
+            <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+            <sys_update_name>sys_documentation_x_rptp_insureme_appointment_details_policy_no_en</sys_update_name>
+            <sys_updated_by>Surya.Prathap</sys_updated_by>
+            <sys_updated_on>2024-02-16 05:39:07</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>
