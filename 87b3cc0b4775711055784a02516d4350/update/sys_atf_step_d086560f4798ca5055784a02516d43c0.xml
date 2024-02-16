@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Delete record 'Insurance Product Category: wsderftyghuji' and confirm record was deleted
+
+Warning: Modifying an existing record may cause unexpected behavior for other tests running in parallel&#13;
+See the documentation for Test Design Considerations</description>
+        <display_name>Record Delete</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>6</order>
+        <step_config display_value="Record Delete">8df72288df60220062fe6c7a4df2636d</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>chandan.parmar</sys_created_by>
+        <sys_created_on>2024-02-16 09:26:16</sys_created_on>
+        <sys_id>d086560f4798ca5055784a02516d43c0</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Record Delete</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_atf_step_d086560f4798ca5055784a02516d43c0</sys_update_name>
+        <sys_updated_by>chandan.parmar</sys_updated_by>
+        <sys_updated_on>2024-02-16 09:26:16</sys_updated_on>
+        <table>x_rptp_insureme_insurance_product_category</table>
+        <test display_value="Admin portal (create category)">f052c5aa93ebb110acdc3f484dba109f</test>
+        <timeout/>
+        <warning_message>Warning: Modifying an existing record may cause unexpected behavior for other tests running in parallel&#13;
+See the documentation for Test Design Considerations</warning_message>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=d086560f4798ca5055784a02516d43c0"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>d086560f4798ca5055784a02516d43c0</document_key>
+        <order>300</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>chandan.parmar</sys_created_by>
+        <sys_created_on>2024-02-16 09:26:16</sys_created_on>
+        <sys_id>1857da4f4798ca5055784a02516d43e6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>chandan.parmar</sys_updated_by>
+        <sys_updated_on>2024-02-16 09:26:16</sys_updated_on>
+        <value>d3b7310747d4ca5055784a02516d437c</value>
+        <variable display_value="Record">8f7d0f935320220002c6435723dc3471</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>d086560f4798ca5055784a02516d43c0</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>chandan.parmar</sys_created_by>
+        <sys_created_on>2024-02-16 09:26:16</sys_created_on>
+        <sys_id>9c57da4f4798ca5055784a02516d43e6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>chandan.parmar</sys_updated_by>
+        <sys_updated_on>2024-02-16 09:26:16</sys_updated_on>
+        <value>x_rptp_insureme_insurance_product_category</value>
+        <variable display_value="Table">3d6d8b935320220002c6435723dc349c</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>d086560f4798ca5055784a02516d43c0</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>chandan.parmar</sys_created_by>
+        <sys_created_on>2024-02-16 09:26:16</sys_created_on>
+        <sys_id>d857da4f4798ca5055784a02516d43e6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>chandan.parmar</sys_updated_by>
+        <sys_updated_on>2024-02-16 09:26:16</sys_updated_on>
+        <value>1</value>
+        <variable display_value="Enforce security">d13d0b935320220002c6435723dc34c8</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>d086560f4798ca5055784a02516d43c0</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>chandan.parmar</sys_created_by>
+        <sys_created_on>2024-02-16 09:26:16</sys_created_on>
+        <sys_id>dc57da4f4798ca5055784a02516d43e5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>chandan.parmar</sys_updated_by>
+        <sys_updated_on>2024-02-16 09:26:16</sys_updated_on>
+        <value>record_successfully_deleted</value>
+        <variable display_value="Assert type">c7e483f3671003007ba405225685effb</variable>
+    </sys_variable_value>
+    <sys_element_mapping action="delete_multiple" query="table=var__m_atf_input_variable_8df72288df60220062fe6c7a4df2636d^id=d086560f4798ca5055784a02516d43c0"/>
+</record_update>
