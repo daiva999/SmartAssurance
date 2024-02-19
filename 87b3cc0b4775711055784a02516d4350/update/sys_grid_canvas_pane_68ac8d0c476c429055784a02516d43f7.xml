@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_grid_canvas_pane">
+    <sys_grid_canvas_pane action="INSERT_OR_UPDATE">
+        <grid_canvas display_value="PA Stock Quotes">98ac8d0c476c429055784a02516d43e3</grid_canvas>
+        <height>10</height>
+        <portal_widget display_value="Created 2015-02-10 22:23:43">01cb1463eb023100871aac6aa206fe4b</portal_widget>
+        <posx>6</posx>
+        <posy>30</posy>
+        <sys_class_name>sys_grid_canvas_pane</sys_class_name>
+        <sys_created_by>harshitha</sys_created_by>
+        <sys_created_on>2024-02-19 06:33:54</sys_created_on>
+        <sys_id>68ac8d0c476c429055784a02516d43f7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>98ac8d0c476c429055784a02516d43e3</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_grid_canvas_pane_68ac8d0c476c429055784a02516d43f7</sys_update_name>
+        <sys_updated_by>harshitha</sys_updated_by>
+        <sys_updated_on>2024-02-19 06:33:54</sys_updated_on>
+        <width>6</width>
+    </sys_grid_canvas_pane>
+</record_update>
