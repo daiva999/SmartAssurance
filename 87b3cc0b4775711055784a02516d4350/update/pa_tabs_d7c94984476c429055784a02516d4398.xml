@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="pa_tabs">
+    <pa_tabs action="INSERT_OR_UPDATE">
+        <canvas_page display_value="PA Insurance DB - New Tab">5bc94984476c429055784a02516d4395</canvas_page>
+        <name>Insurance DB - New Tab</name>
+        <page display_value="PA Insurance DB - New Tab">9fc94984476c429055784a02516d4393</page>
+        <sys_class_name>pa_tabs</sys_class_name>
+        <sys_created_by>harshitha</sys_created_by>
+        <sys_created_on>2024-02-19 06:21:31</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>d7c94984476c429055784a02516d4398</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Insurance DB - New Tab</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>pa_tabs_d7c94984476c429055784a02516d4398</sys_update_name>
+        <sys_updated_by>harshitha</sys_updated_by>
+        <sys_updated_on>2024-02-19 06:21:31</sys_updated_on>
+    </pa_tabs>
+</record_update>
