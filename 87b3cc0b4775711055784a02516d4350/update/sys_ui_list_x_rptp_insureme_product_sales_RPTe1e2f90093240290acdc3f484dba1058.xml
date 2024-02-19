@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="x_rptp_insureme_product_sales" version="2" view="RPTe1e2f90093240290acdc3f484dba1058">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>u_commission</element>
+            <list_id display_value="x_rptp_insureme_product_sales" element="NULL" name="x_rptp_insureme_product_sales" parent="NULL" relationship="NULL" sys_domain="global" view="6dfe31c093640290acdc3f484dba10e9">69fe31c093640290acdc3f484dba10eb</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-19 10:13:46</sys_created_on>
+            <sys_id>a9fe31c093640290acdc3f484dba10ec</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-19 10:13:46</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>u_product_name</element>
+            <list_id display_value="x_rptp_insureme_product_sales" element="NULL" name="x_rptp_insureme_product_sales" parent="NULL" relationship="NULL" sys_domain="global" view="6dfe31c093640290acdc3f484dba10e9">69fe31c093640290acdc3f484dba10eb</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-19 10:13:46</sys_created_on>
+            <sys_id>a1fe31c093640290acdc3f484dba10ed</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-19 10:13:46</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>u_insurance</element>
+            <list_id display_value="x_rptp_insureme_product_sales" element="NULL" name="x_rptp_insureme_product_sales" parent="NULL" relationship="NULL" sys_domain="global" view="6dfe31c093640290acdc3f484dba10e9">69fe31c093640290acdc3f484dba10eb</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-19 10:13:46</sys_created_on>
+            <sys_id>a5fe31c093640290acdc3f484dba10ed</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-19 10:13:46</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>u_visa</element>
+            <list_id display_value="x_rptp_insureme_product_sales" element="NULL" name="x_rptp_insureme_product_sales" parent="NULL" relationship="NULL" sys_domain="global" view="6dfe31c093640290acdc3f484dba10e9">69fe31c093640290acdc3f484dba10eb</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-19 10:13:46</sys_created_on>
+            <sys_id>a9fe31c093640290acdc3f484dba10ed</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-19 10:13:46</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>u_sales_month</element>
+            <list_id display_value="x_rptp_insureme_product_sales" element="NULL" name="x_rptp_insureme_product_sales" parent="NULL" relationship="NULL" sys_domain="global" view="6dfe31c093640290acdc3f484dba10e9">69fe31c093640290acdc3f484dba10eb</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>4</position>
+            <sum>false</sum>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-19 10:13:46</sys_created_on>
+            <sys_id>6dfe3d4493640290acdc3f484dba10e5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-19 10:13:46</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_rptp_insureme_product_sales</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>chiranjit.behera</sys_created_by>
+            <sys_created_on>2024-02-19 10:13:46</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>69fe31c093640290acdc3f484dba10eb</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_rptp_insureme_product_sales</sys_name>
+            <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+            <sys_update_name>sys_ui_list_x_rptp_insureme_product_sales_RPTe1e2f90093240290acdc3f484dba1058</sys_update_name>
+            <sys_updated_by>chiranjit.behera</sys_updated_by>
+            <sys_updated_on>2024-02-19 10:13:46</sys_updated_on>
+            <sys_user/>
+            <view display_value="Rpte1e2f90093240290acdc3f484dba1058" name="RPTe1e2f90093240290acdc3f484dba1058">6dfe31c093640290acdc3f484dba10e9</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>
