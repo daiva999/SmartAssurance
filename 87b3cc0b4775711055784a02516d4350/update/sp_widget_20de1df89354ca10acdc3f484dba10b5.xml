@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope) {
+    /* widget controller */
+    var c = this;
+   
+
+    $scope.Updates = function () {
+        // Alerting selected values for debugging
+        // alert($scope.c.visaCentre);
+        // alert($scope.c.appointmentCategory);
+        // alert($scope.c.subCategory);
+        
+        // Retrieve values and store in variables
+        var selectedVisaCentre = c.visaCentre;
+		
+        var selectedAppointmentCategory = c.appointmentCategory;
+        var selectedSubCategory = c.subCategory;
+			
+			
+        
+        // Create an object with selected details
+        var details = {
+            "visaCentre": selectedVisaCentre,
+            "appointmentCategory": selectedAppointmentCategory,
+            "subCategory": selectedSubCategory
+        };
+
+        // Store details in sessionStorage
+       //sessionStorage.setItem(c.data.user, JSON.stringify(details));
+         sessionStorage.setItem("abc", JSON.stringify(details));
+			
+			
+        // Trigger a server update
+   //     $scope.server.get({"action":"storingData","data":details}).then(function(response){
+			//		
+		//		});
+        
+        // Redirect the user to the specified URL
+        window.location.href = "https://ven06798.service-now.com/vfsp?id=your_details";
+    };
+	
+	
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/* Add your CSS styles here */&#13;
+body {&#13;
+  font-family: Arial, sans-serif;&#13;
+  background-color:white;&#13;
+}&#13;
+&#13;
+.form-container {&#13;
+   font-family: Arial, sans-serif;&#13;
+  width: 100%;&#13;
+  height:100%;&#13;
+  margin: 5 auto;&#13;
+  border: 7px solid #ccc;&#13;
+  border-radius: 5px;&#13;
+  padding: 22px;&#13;
+}&#13;
+&#13;
+form {&#13;
+  /* No additional styling needed for the form */&#13;
+}&#13;
+&#13;
+h2 {&#13;
+  text-align: center;&#13;
+}&#13;
+&#13;
+label {&#13;
+  display: block;&#13;
+  margin-bottom: 5px;&#13;
+}&#13;
+&#13;
+select {&#13;
+  width: 100%;&#13;
+  padding: 8px;&#13;
+  margin-bottom: 10px;&#13;
+  border: 1px solid #ccc;&#13;
+  border-radius: 4px;&#13;
+  box-sizing: border-box;&#13;
+}&#13;
+&#13;
+button[type="submit"] {&#13;
+  background-color: #4CAF50;&#13;
+  color: white;&#13;
+  padding: 10px 20px;&#13;
+  border: none;&#13;
+  border-radius: 4px;&#13;
+  cursor: pointer;&#13;
+  width: 100%;&#13;
+}&#13;
+&#13;
+button[type="submit"]:hover {&#13;
+  background-color: #45a049;&#13;
+}&#13;
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>appointment_details</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Appointment Details</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    /* populate the 'data' object */
+    /* e.g., data.table = $sp.getValue('table'); */
+    data.user = gs.getUserID();
+	
+  /*  if (input && input.action=="storingData") {
+        var gr = new GlideRecord('x_rptp_insureme_appointment_details');
+        gr.query();
+        if (gr) {
+                gr.newRecord();
+                gr.choose_your_visa_application_centre = input.data.visaCentre;
+                gr.choose_your_appointment_category = input.data.appointmentCategory;
+                gr.choose_your_sub_category = input.data.subCategory;
+                gr.insert();
+				}
+		}
+		*/
+							
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>Surya.Prathap</sys_created_by>
+        <sys_created_on>2024-02-09 05:33:06</sys_created_on>
+        <sys_id>20de1df89354ca10acdc3f484dba10b5</sys_id>
+        <sys_mod_count>85</sys_mod_count>
+        <sys_name>Appointment Details</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_20de1df89354ca10acdc3f484dba10b5</sys_update_name>
+        <sys_updated_by>Ajmal.akram</sys_updated_by>
+        <sys_updated_on>2024-02-19 06:08:11</sys_updated_on>
+        <template><![CDATA[<div>
+<!-- your widget template -->
+  <div class="form-container">
+    <h1>Appointment Details</h1>
+    <h5>Please provide information about the type of visa you wish to apply for.
+      Be aware that the appointment category Applicant 1 chooses will be applied to each of the applicants added to your appointment booking.
+   </h5>
+    <form>
+      <div>
+        <label for="visaCentre">Choose your Visa Application Centre<span style = "color :red ">*</span></label>
+        <select id="visaCentre" ng-model="c.visaCentre" required>
+          <option value="" disabled>Select Visa Application Centre</option>
+          <option value=" Ahmedabad - Visa Application Centre"> Ahmedabad - Visa Application Centre</option>
+          <option value="Bangalore - Consulate General Of Germany">Bangalore - Consulate General Of Germany</option>
+          <option value=" Chandigarh - Visa Application Centre">Bangalore - Visa Application Centre</option>
+          <option value="Chennai - Consulate General Of Germany">Chennai - Consulate General Of Germany</option>
+          
+         </select>
+      </div>
+      <div>
+        <label for="appointmentCategory">Choose your appointment category <span style = "color :red ">*</span></label>
+        <select id="appointmentCategory" ng-model="c.appointmentCategory" required>
+          <option value="" disabled>Select Appointment Category</option>
+          <option value="National Visa (stay of more than 90 days): Re-entry">National Visa (stay of more than 90 days): Re-entry</option>
+           <option value="Internship_Training">National Visa (stay of more than 90 days) - Internship / Training</option>
+  <option value="AuPair">National Visa (stay of more than 90 days): Au Pair</option>
+  <option value="Employment">National Visa (stay of more than 90 days): Employment</option>
+  <option value="JobSeeker">National Visa (stay of more than 90 days ): Job Seeker</option>
+   <option value="JobSeekers">Schengen Visa (stay of max. 90 days or less)</option>
+ 
+        </select>
+      </div>
+      <div>
+        <label for="subCategory">Choose your sub-category <span style = "color :red ">*</span></label>
+        <select id="subCategory" ng-model="c.subCategory" required>
+          <option value="" disabled>Select Sub-Category</option>
+          <option value="AuPair">Au Pair</option>
+  <option value="JobSeeker">Job Seeker</option>
+  <option value="Employment">Employment</option>
+  <option value="Internship_Training">Internship / Training</option>
+<option value="visit (family and Friends)">visit (family and Friends)</option>
+          <option value="Tourism">Tourism</option>
+        </select>
+      </div>
+      
+      <button type="submit" ng-click = "Updates()">Submit</button>
+    </form>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>
