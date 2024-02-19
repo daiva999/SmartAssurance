@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sysevent_script_action">
+    <sysevent_script_action action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <condition_script/>
+        <description/>
+        <event_name>x_rptp_insureme.appointment_letter</event_name>
+        <name>test</name>
+        <order>100</order>
+        <script><![CDATA[gs.info("Inside Script action");
+
+var appDetails = new GlideRecord("x_rptp_insureme_appointment_details");
+appDetails.setLimit(1);
+appDetails.orderByDesc("sys_updated_on");
+appDetails.query();
+
+var PolicyNo = "";
+if (appDetails.next()) {
+    PolicyNo = appDetails.number;
+}
+gs.info("policy number - " + PolicyNo);
+
+var eT = new GlideRecord("sysevent");
+eT.addQuery("parm1", PolicyNo);
+eT.query();
+gs.info("policy no. " + PolicyNo);
+
+if (eT.next()) {
+    gs.info("inside if loop");
+
+    if (eT.state == "processed") {
+        gs.info("Mail sent successfully for " + PolicyNo);
+    }
+} else {
+    gs.info("Error while sending a mail for " + PolicyNo);
+}]]></script>
+        <synchronous>false</synchronous>
+        <sys_class_name>sysevent_script_action</sys_class_name>
+        <sys_created_by>rushith</sys_created_by>
+        <sys_created_on>2024-02-16 11:10:01</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>d5ee660793d48a50acdc3f484dba1036</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>test</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sysevent_script_action_d5ee660793d48a50acdc3f484dba1036</sys_update_name>
+        <sys_updated_by>rushith</sys_updated_by>
+        <sys_updated_on>2024-02-16 11:59:00</sys_updated_on>
+    </sysevent_script_action>
+</record_update>
