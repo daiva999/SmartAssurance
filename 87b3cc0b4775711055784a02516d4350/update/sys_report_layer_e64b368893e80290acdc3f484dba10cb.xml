@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_report_layer">
+    <sys_report_layer action="INSERT_OR_UPDATE">
+        <aggregate>COUNT</aggregate>
+        <aggregation_source>no_override</aggregation_source>
+        <allow_data_label_overlap>false</allow_data_label_overlap>
+        <bar_unstack>true</bar_unstack>
+        <color display_value="Default Color">de699435d7033100b4964ebfae610331</color>
+        <color_palette display_value="Blues light to dark (5)">b22671cdd7500200b96d45a3ce6103ee</color_palette>
+        <colors/>
+        <compute_percent>aggregate</compute_percent>
+        <custom_config>{"transforms":[{"transform":{"transform":"Reference","name":"chart-subjects"}}]}</custom_config>
+        <field>u_product_name</field>
+        <filter/>
+        <formatting_configuration>{"table":"incident","stringFormattingProperties":{},"durationFormattingProperties":{},"dateFormattingProperties":{},"numberFormattingProperties":{}}</formatting_configuration>
+        <import_table/>
+        <interval>month</interval>
+        <list_ui_view/>
+        <report display_value="Insurance Visa vs  Insurance">47da7e8493e80290acdc3f484dba1049</report>
+        <report_source/>
+        <sequence>1</sequence>
+        <series_name_text>Insurance Sales</series_name_text>
+        <set_color>color_palette</set_color>
+        <show_2nd_y_axis>false</show_2nd_y_axis>
+        <show_chart_data_label>false</show_chart_data_label>
+        <show_data_label_position_middle>false</show_data_label_position_middle>
+        <show_marker>false</show_marker>
+        <source_type>table</source_type>
+        <style_config/>
+        <sumfield/>
+        <sys_class_name>sys_report_layer</sys_class_name>
+        <sys_created_by>balakrishna</sys_created_by>
+        <sys_created_on>2024-02-19 14:37:21</sys_created_on>
+        <sys_id>e64b368893e80290acdc3f484dba10cb</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Insurance Sales</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_report_layer_e64b368893e80290acdc3f484dba10cb</sys_update_name>
+        <sys_updated_by>balakrishna</sys_updated_by>
+        <sys_updated_on>2024-02-20 12:52:52</sys_updated_on>
+        <table>x_rptp_insureme_product_sales</table>
+        <trend_field>u_sales_month</trend_field>
+        <type>line</type>
+        <use_null_in_trend>false</use_null_in_trend>
+        <y_axis_from/>
+        <y_axis_title/>
+        <y_axis_to/>
+    </sys_report_layer>
+</record_update>
