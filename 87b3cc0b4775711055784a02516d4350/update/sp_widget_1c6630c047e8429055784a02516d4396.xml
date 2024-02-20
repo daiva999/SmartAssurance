@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope) {
+	var c = this;
+	$scope.servicesArray = [];
+	$scope.hideArray = [true, true, true, true, true];
+	$scope.Selected_Services = true;
+	$scope.Selected_Services1 = false;
+
+	$scope.findFalse = function() {
+		var count = $scope.hideArray.filter(function(item) {
+			return item === false;
+		}).length;
+		if (count == $scope.hideArray.length) {
+			$scope.Selected_Services1 = true;
+		} else {
+			$scope.Selected_Services1 = false;
+		}
+	};
+
+	$scope.findTrue = function() {
+		if ($scope.hideArray.includes(false)) {
+			$scope.Selected_Services = false;
+		} else {
+			$scope.Selected_Services = true;
+		}
+	};
+
+	// Array containing objects with key-value pairs
+	$scope.arr = [{
+		Premium_Lounges: 2764.00,
+		SMS_Service: 131.00,
+		Courier_Assurance_Service: 1033.00,
+		Courier_Fees: 614.00,
+		Prime_Time_Collection: 520.00
+	}];
+
+	// Assigning keys and values to scope variables
+	$scope.firstKey = Object.keys($scope.arr[0])[0];
+	$scope.secondKey = Object.keys($scope.arr[0])[1];
+	$scope.thirdKey = Object.keys($scope.arr[0])[2];
+	$scope.fourKey = Object.keys($scope.arr[0])[3];
+	$scope.fifthKey = Object.keys($scope.arr[0])[4];
+
+	$scope.firstvalue = $scope.arr[0].Premium_Lounges;
+	$scope.secondvalue = $scope.arr[0].SMS_Service;
+	$scope.thirdvalue = $scope.arr[0].Courier_Assurance_Service;
+	$scope.fourvalue = $scope.arr[0].Courier_Fees;
+	$scope.fifthvalue = $scope.arr[0].Prime_Time_Collection;
+
+	// Array to store the elements
+
+
+	// Function to store elements into servicesArray and sessionStorage
+$scope.first = function() {
+    $scope.hideArray[0] = !$scope.hideArray[0];
+    $scope.findTrue();
+    $scope.findFalse();
+
+    // Using square bracket notation to dynamically set the key
+    var obj = {};
+    obj[$scope.firstKey] = $scope.firstvalue;
+    $scope.servicesArray.push(obj);
+
+};
+	$scope.second = function() {
+    $scope.Selected_Services = false;
+    $scope.hideArray[1] = !$scope.hideArray[1];
+    $scope.findTrue();
+    $scope.findFalse();
+    var secondOb = {};
+    secondOb[$scope.secondKey] = $scope.secondvalue;
+    $scope.servicesArray.push(secondOb);
+    
+};
+
+$scope.third = function() {
+    $scope.Selected_Services = false;
+    $scope.hideArray[2] = !$scope.hideArray[2];
+    $scope.findTrue();
+    $scope.findFalse();
+    var thirdOb = {};
+    thirdOb[$scope.thirdKey] = $scope.thirdvalue;
+    $scope.servicesArray.push(thirdOb);
+  
+};
+
+$scope.four = function() {
+    $scope.Selected_Services = false;
+    $scope.hideArray[3] = !$scope.hideArray[3];
+    $scope.findTrue();
+    $scope.findFalse();
+    var fourOb = {};
+    fourOb[$scope.fourKey] = $scope.fourvalue;
+    $scope.servicesArray.push(fourOb);
+    
+};
+
+$scope.five = function() {
+    $scope.Selected_Services = false;
+    $scope.hideArray[4] = !$scope.hideArray[4];
+    $scope.findTrue();
+    $scope.findFalse();
+    var fiveOb = {};
+    fiveOb[$scope.fifthKey] = $scope.fifthvalue;
+    $scope.servicesArray.push(fiveOb);
+    
+};
+
+
+
+
+
+
+	$scope.Updates = function() {
+		alert("Submit function called");
+		alert( 	JSON.stringify($scope.servicesArray));
+
+
+		function removeDuplicatesAndRemoveEven(arr) {
+			var countMap = {};
+			arr.forEach(function(item) {
+				var str = JSON.stringify(item);
+				countMap[str] = (countMap[str] || 0) + 1;
+			});
+			var result = arr.filter(function(item) {
+				var str = JSON.stringify(item);
+				return countMap[str] % 2 !== 0; // Keep elements with odd counts
+			});
+			return result;
+		}
+		var filteredArr = removeDuplicatesAndRemoveEven($scope.servicesArray);
+		sessionStorage.setItem('Services', 	JSON.stringify(filteredArr));
+	};
+
+
+
+};
+
+
+
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>
+
+    section {
+      margin: 20px;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width:80%;
+       margin-right: 80px;
+  margin-left: 80px;
+      
+      
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .service {
+      border: 1px solid #ddd;
+      padding: 10px;
+      background-color: #fff;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .service h3 {
+      color: #333;
+    }
+
+
+    h2 {
+      color: #333;
+      display: inline;
+      
+      
+table {
+      width: 100%;
+      border-collapse: collapse;
+       margin: 20px auto;
+  
+    }
+
+    td, th {
+      width:100px;
+      padding: 20px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+     tr #money{
+      width: 100px;
+      }
+    .service-description {
+      max-width: 600px;
+    }
+
+    .read-more {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .read-more:hover {
+      text-decoration: underline;
+    }
+      
+     .my-button {
+   background-color: white;
+  color: black;
+  border: 2px solid #04AA6D;
+     width: 100%;
+     
+      border-radius: 25%;;
+      cursor: pointer;
+      font-size: 16px;
+      text-decoration: none;
+    }
+      
+
+      
+      
+     
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>services</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>Services</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+
+	data.user = gs.getUserName();
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>Surya.Prathap</sys_created_by>
+        <sys_created_on>2024-02-19 04:57:07</sys_created_on>
+        <sys_id>1c6630c047e8429055784a02516d4396</sys_id>
+        <sys_mod_count>242</sys_mod_count>
+        <sys_name>Services</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_1c6630c047e8429055784a02516d4396</sys_update_name>
+        <sys_updated_by>Ajmal.akram</sys_updated_by>
+        <sys_updated_on>2024-02-20 12:28:13</sys_updated_on>
+        <template><![CDATA[<div>
+	<section>
+		<h1>Services</h1>
+		<p>
+			We offer a range of optional services to make your application
+			faster, more convenient and more relaxed. Click a service to find
+			out more about it.
+		</p>
+		<h4 style="margin-right: 80px">All available Additional services</h4>
+		<section>
+			<div ng-hide="Selected_Services" >
+				<table ng-model="Selected_Services">
+					<tbody>
+						<tr>
+							<th><h2>Services</h2></th>
+							<th><h4>UnitCost(INR)</h4></th>
+              <th style="padding: 20px;"><h4>Total cost(INR)</h4></th>
+
+							<th></th>
+						</tr>
+
+						<tr ng-hide=hideArray[0]>
+							<td>
+								<h3>Premium Lounge</h3>
+								<div class="service-description">
+									<p>
+										The VFS Premium Service Lounge is
+										available at the visa application
+										centers...
+									</p>
+									<a
+										href="javascript:void(0)"
+                                       
+										class="read-more"
+										>Read more →</a
+									>
+								</div>
+							</td>
+							<td
+								style="
+									width: 100px;
+									margin-left: 40px;
+									margin-right: 30px;
+								"
+							>
+								INR 2,764.00
+							</td>
+              	<td
+								style="
+									width: 100px;
+									margin-left: 40px;
+									margin-right: 30px;
+                  padding: 20px;
+								"
+							>
+								INR 2,764.00
+							</td>
+							<td>
+								<button class="my-button" ng-click="first()">
+									Remove
+								</button>
+							</td>
+						</tr>
+
+						<tr ng-hide=hideArray[1]>
+							<td>
+								<h3>SMS Service</h3>
+								<div class="service-description">
+									<p>
+										TStay up to date on the progress of your
+										application, with regular SMS updates...
+									</p>
+									<a
+										href="javascript:void(0)"
+										class="read-more"
+										>Read more →</a
+									>
+								</div>
+							</td>
+							<td>INR 131.00</td>
+							
+							<td style = "padding:20px">INR 131.00</td>
+							<td>
+								<button class="my-button" ng-click="second()">
+									Remove
+								</button>
+							</td>
+						</tr>
+						<tr ng-hide=hideArray[2]>
+							<td>
+								<h3>Courier Assurance Service</h3>
+								<div class="service-description">
+									<p>
+										This is an optional top-up insurance
+										that you can purchase with a courier....
+									</p>
+									<a
+										href="javascript:void(0)"
+										class="read-more"
+										>Read more →</a
+									>
+								</div>
+							</td>
+							<td>INR 1,033.00</td>
+							
+							<td style = "padding:20px">INR 1,033.00</td>
+							<td>
+								<button class="my-button" ng-click="third()">
+									Remove
+								</button>
+							</td>
+						</tr>
+						<tr ng-hide=hideArray[3]>
+							<td>
+								<h3>Courier Fees</h3>
+								<div class="service-description">
+									<p>
+										Get your documents delivered quickly and
+										directly to your home or office....
+									</p>
+									<a
+										href="javascript:void(0)"
+										class="read-more"
+										>Read more →</a
+									>
+								</div>
+							</td>
+							<td>INR 614.00</td>
+              <td style = "padding:20px">INR 614.00</td>
+							<td>
+								<button class="my-button" ng-click="four()">
+									Remove
+								</button>
+							</td>
+						</tr>
+						<tr ng-hide=hideArray[4]>
+							<td>
+								<h3>Prime Time Collection</h3>
+								<div class="service-description">
+									<p>
+										Collect your Passport/Application beyond
+										the normal processing hours....
+									</p>
+									<a
+										href="javascript:void(0)"
+										class="read-more"
+										>Read more →</a
+									>
+								</div>
+							</td>
+							<td>INR 520.00</td>
+              <td style = "padding:20px">INR 520.00</td>
+							<td>
+								<button class="my-button" ng-click="five()">
+									Remove
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<hr />
+
+			<table ng-hide="Selected_Services1">
+				<tbody>
+					<tr >
+						<th><h2>Services</h2></th>
+						<th><h4>UnitCost(INR)</h4></th>
+
+						<th></th>
+					</tr>
+
+					<tr ng-hide=!hideArray[0]>
+						<td>
+							<h3>Premium Lounge</h3>
+							<div class="service-description">
+								<p>
+									The VFS Premium Service Lounge is available
+									at the visa application centers...
+								</p>
+								<a href="javascript:void(0)" class="read-more"
+									>Read more →</a
+								>
+							</div>
+						</td>
+						<td
+							style="
+								width: 100px;
+								margin-left: 40px;
+								margin-right: 30px;
+							"
+						>
+							INR 2,764.00
+						</td>
+						<td>
+							<button class="my-button" ng-click="first()">
+								ADD
+							</button>
+						</td>
+					</tr>
+
+					<tr ng-hide=!hideArray[1]>
+						<td>
+							<h3>SMS Service</h3>
+							<div class="service-description">
+								<p>
+									TStay up to date on the progress of your
+									application, with regular SMS updates...
+								</p>
+								<a href="javascript:void(0)" class="read-more"
+									>Read more →</a
+								>
+							</div>
+						</td>
+						<td>INR 131.00</td>
+						<td>
+							<button class="my-button" ng-click="second()">
+								ADD
+							</button>
+						</td>
+					</tr>
+					<tr ng-hide=!hideArray[2]>
+						<td>
+							<h3>Courier Assurance Service</h3>
+							<div class="service-description">
+								<p>
+									This is an optional top-up insurance that
+									you can purchase with a courier....
+								</p>
+								<a href="javascript:void(0)" class="read-more"
+									>Read more →</a
+							>
+							</div>
+						</td>
+						<td>INR 1,033.00</td>
+						<td>
+							<button class="my-button" ng-click="third()">
+								ADD
+							</button>
+						</td>
+					</tr>
+					<tr ng-hide=!hideArray[3]>
+						<td>
+							<h3>Courier Fees</h3>
+							<div class="service-description">
+								<p>
+									Get your documents delivered quickly and
+									directly to your home or office....
+								</p>
+								<a href="javascript:void(0)" class="read-more"
+									>Read more →</a
+								>
+							</div>
+						</td>
+						<td>INR 614.00</td>
+						<td>
+							<button class="my-button" ng-click="four()">
+								ADD
+							</button>
+						</td>
+					</tr>
+					<tr ng-hide=!hideArray[4]>
+						<td>
+							<h3>Prime Time Collection</h3>
+							<div class="service-description">
+								<p>
+									Collect your Passport/Application beyond the
+									normal processing hours....
+								</p>
+								<a href="javascript:void(0)" class="read-more"
+									>Read more →</a
+								>
+							</div>
+						</td>
+						<td>INR 520.00</td>
+						<td>
+							<button class="my-button" ng-click="five()">
+								ADD
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+    <div style = "margin-left : 700px" class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <button class="btn btn-success me-md-2" type="button">Back</button>
+      <a href="https://ven06798.service-now.com/vfsp?id=review">
+  <button type="button" class="btn btn-success" ng-click = "Updates()" >Submit</button>
+      </a></div>
+	</section>
+
+	<footer>
+		<p>
+			AR-6.0.62 © 2024 VFS Global Group. All Rights Reserved. ISO 23026
+			compliant information.
+		</p>
+		<p>
+			Our websites are created for viewing on modern browsers; Internet
+			Explorer users please upgrade.
+		</p>
+	</footer>
+</div>
+
+
+]]></template>
+    </sp_widget>
+</record_update>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope) {
+    /* widget controller */
+    var c = this;
+
+    $scope.updates = function() {
+        var obj = {
+            "firstName": $scope.firstName,
+            "lastName": $scope.lastName,
+            "dob": $scope.dob,
+            "Passport": $scope.Passport_Expiry_Date,
+            "Passports": $scope.Passport_Number,
+            "Contact": $scope.Contact,
+            "email": $scope.Email,
+            "gender": $scope.gender
+        };
+
+       
+        if ($scope.firstName && $scope.lastName && $scope.dob && $scope.Passport_Expiry_Date && $scope.Passport_Number && $scope.Contact && $scope.Email && $scope.gender) {
+          
+            sessionStorage.setItem(c.data.userName, JSON.stringify(obj));
+           
+           window.location.href = "https://ven06798.service-now.com/vfsp?id=book_a_appiontment";
+        } else {
+            // Alert user to provide all required details
+            alert('Please provide all required details');
+        }
+    };
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/* Add your CSS styles here */
+body {
+  font-family: Arial, sans-serif;
+}
+
+form {
+  width: 100%;
+  margin: 0 auto;
+  border: 7px solid #ccc;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type='tel'],
+input[type='email'],
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+
+.required{
+  color : red;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>your_details</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>your details</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+
+	data.userName = gs.getUserName();
+	
+/*	if(input && input.action =="storingData1"){
+		gs.addErrorMessage(input.data.firstName);
+		  var gr = new GlideRecord('x_rptp_insureme_appointment_details');
+        gr.query();
+        if (gr) {
+                gr.applicant_name= input.data.firstName+ ''+input.data.lastName;
+             
+                gr.d_o_b= input.data.dob;
+					  gr.passport_exp_date= input.data.Passport;
+                gr.passport_no = input.data.Passports;
+					  gr.contact= input.data.Contact;
+                gr.email = input.data.email;
+                gr.insert();
+              
+				}
+	}
+	*/
+	
+	
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>Surya.Prathap</sys_created_by>
+        <sys_created_on>2024-02-09 05:02:54</sys_created_on>
+        <sys_id>82e791fc9314ca10acdc3f484dba1021</sys_id>
+        <sys_mod_count>217</sys_mod_count>
+        <sys_name>your details</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_82e791fc9314ca10acdc3f484dba1021</sys_update_name>
+        <sys_updated_by>Ajmal.akram</sys_updated_by>
+        <sys_updated_on>2024-02-20 12:14:50</sys_updated_on>
+        <template><![CDATA[<div style="padding: 20px;">
+
+  <form >
+    
+    <h1>Your Details</h1>
+    <p sytle="display:inline">Complete the fields as requested</p>
+    
+    <div style="margin-bottom: 15px;">
+      <label for="firstName">First Name <span style="color: red">*</span></label>
+      <input type="text" id="firstName" ng-model="firstName" placeholder="Enter your first name" required style="width: 100%;">
+    </div>
+    
+    <div style="margin-bottom: 15px;">
+      <label for="lastName">Last Name <span style="color: red">*</span></label>
+      <input type="text" id="lastName" ng-model="lastName" placeholder="Enter your last name" required style="width: 100%;">
+    </div>
+    
+    <div style="white-space: nowrap; overflow: hidden; margin-bottom: 15px;">
+      <label for="gender" style="display: inline-block; white-space: nowrap; margin-right: 10px;">Gender <span style="color: red">*</span></label>
+      <select id="gender" ng-model="gender" placeholder="Select your gender" required style="width:28%;">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+      
+      <label for="dob" style="display: inline-block; white-space: nowrap;">Date of Birth <span style="color: red">*</span></label>
+      <input type="date" id="dob" ng-model="dob" placeholder="YYYY-MM-DD" required style="width: 56%;">
+    </div>
+
+
+    <div style="margin-bottom: 15px;">
+  <label for="CurrentNationality">Current Nationality <span style="color: red">*</span></label>
+  <input type="text" id="CurrentNationality" ng-model="Current_Nationality" placeholder="Enter your current nationality" style="width: 100%;">
+</div>
+
+<div style="white-space: nowrap; overflow: hidden; margin-bottom: 15px;">
+  <label for="PassportNumber" style="display: inline-block; white-space: nowrap; margin-right: 10px;">Passport Number <span style="color: red">*</span></label>
+  <input type="text" id="PassportNumber" ng-model="Passport_Number" pattern="^[A-Z]{1}[0-9]{7}$" maxlength="8" required placeholder="Format: A1234567" style="width:37%; margin-right: 10px;">
+
+  <label for="PassportExpiryDate" style="display: inline-block; white-space: nowrap;">Passport Expiry Date <span style="color: red">*</span></label>
+  <input type="date" id="PassportExpiryDate" ng-model="Passport_Expiry_Date" required placeholder="Select expiry date" style="width:38.5%;">
+</div>
+
+<div style="margin-bottom: 15px;">
+  <label for="ContactNumber">Contact number <span style="color: red">*</span></label>
+  <input type="text" id="ContactNumber" maxlength="2" required placeholder="country code" style="width: 10%; margin-right: 10px;">
+  <input type="tel" id="ContactNumber" ng-model="Contact" maxlength="10" pattern="[0-9]{10}" required placeholder="Enter your phone number" style="width: 88%;">
+</div>
+
+<div style="margin-bottom: 15px;">
+  <label for="Email">Email <span style="color: red">*</span></label>
+  <input type="email" id="Email" ng-model="Email" required placeholder="Enter your email address" style="width: 100%;">
+</div>
+
+<div style="margin-bottom: 15px;">
+  <label for="AddressLine1">Address line 1 <span style="color: red">*</span></label>
+  <input type="text" id="AddressLine1" ng-model="Address_line_1" required placeholder="Enter your address line 1" style="width: 100%;">
+</div>
+
+<div style="margin-bottom: 15px;">
+  <label for="AddressLine2">Address line 2 <span style="color: red">*</span></label>
+  <input type="text" id="AddressLine2" ng-model="Address_line_2" required placeholder="Enter your address line 2" style="width: 100%;">
+</div>
+
+<div style="margin-bottom: 15px;">
+  <label for="State">State <span style="color: red">*</span></label>
+  <input type="text" id="State" ng-model="State" required placeholder="Enter your state" style="width: 100%;">
+</div>
+
+<div style="margin-bottom: 15px;">
+  <label for="City">City <span style="color: red">*</span></label>
+  <input type="text" id="City" ng-model="City" required placeholder="Enter your city" style="width: 100%;">
+</div>
+
+<div style="margin-bottom: 15px;">
+  <label for="Postcode">Postcode <span style="color: red">*</span></label>
+  <input type="text" id="Postcode" ng-model="Postcode" required placeholder="Enter your postcode" style="width: 100%;">
+</div>
+
+    <button type="submit" ng-click="updates()" style="padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px;">Submit</button>
+    
+  </form>
+
+</div>
+]]></template>
+    </sp_widget>
+</record_update>
