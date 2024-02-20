@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="x_rptp_pdf_gen_api_html_template">
+    <x_rptp_pdf_gen_api_html_template action="INSERT_OR_UPDATE">
+        <acknowledgement_text/>
+        <category/>
+        <custom_font/>
+        <dependent_value_from_t1/>
+        <dependent_value_from_t2/>
+        <dependent_value_t1/>
+        <dependent_values_t2/>
+        <dependent_values_t3/>
+        <foot_text_position/>
+        <footer_image/>
+        <footer_image_height/>
+        <footer_image_position/>
+        <footer_text/>
+        <footer_text_position/>
+        <header_image/>
+        <header_image_height/>
+        <header_image_position/>
+        <html_script><![CDATA[<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Future_Generali_India_Life_Insurance_logo.jpg" alt="Vfs Global" width="150" height="90" /></span></p>
+<p style="text-align: right;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Date : ${sys_updated_on}<br /></span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">Policy No.: <strong>${number}</strong><br /><br /><br /></span></p>
+<p style="text-align: left;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>Mr./Ms. ${applicant_name}<br /></strong></span></p>
+<p style="text-align: left;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>203 1st Cross Road, Krishna Reddy Colony, Bengaluru,</strong></span></p>
+<p style="text-align: left;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>Pincode: 560064 Telephone(Mob,Off) : ${contact}<br /></strong></span></p>
+<p style="text-align: left;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong> Email Id : ${email}<br /></strong></span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">Intermediary Name :K.M. DASTUR REINSURANCE BROKERS PVT. LTD. - BRC </span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">60008045 - BRC</span></p>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">Dear ${applicant_name}<br /></span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">Welcome to the Future Generali Family. </span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">We thank you for choosing us for your insurance requirements. Your Policy No. ${number}<strong>.</strong><br /></span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">Our initiatives will provide you with the highest standards of service, convenience and quality in insurance and it is our endeavour to constantly better your experience by innovating and evolving our basket of conveniences. </span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">In case of any service requirement, do call our care lines below: </span></p>
+<p style="text-align: left;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">1800-220-233, 1860-500-3333, <span style="background-color: rgb(var(--sn-tinymce_content-background,var(--now-form-field--background-color,var(--now-color_background--primary,var(--now-color--neutral-0,255,255,255))))); color: rgb(var(--sn-tinymce_content-text,var(--now-form-field--color,var(--now-color_text--primary,var(--now-color--neutral-18,22,27,28)))));">022-67837800.</span></span></p>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">For any claims assistance, please contact -</span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">Europ Assistance India Pvt. Ltd. </span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">7th Floor, Star Hub, Bldg No.2, Near ITC Maratha Hotel, Sahar, Andheri East, Mumbai - 400 059 </span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">Email ID: <a href="mailto:fgi@europ-assistance.in">fgi@europ-assistance.in </a></span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">India Helpline Number: 1800 209 2333 </span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">Claims landline number: +91 22 6734 7841 </span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">Fax number: +91 22 6734 7888</span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">We would like to assure you that the electronic copy of your policy is as authentic and valid as the physical copy and it can be used as a proof of insurance wherever required. </span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">As a part of the government&rsquo;s Digital India drive, you can now store your insurance policy documents digitally and securely under <strong>DigiLocker</strong> . Download and install the App &ldquo;DigiLocker&rdquo; from Playstore and with your Aadhaar number and mobile number create a User ID using an OTP. Under Banking and Insurance submenu, you will find<strong> Future Generali Total Insurance </strong>Tab wherein when you can select the product and update our policy number, the Policy PDF of the active policy can be viewed. For more details on DigiLocker, visit <strong><a href="https://digitallocker.gov.in/">https://digitallocker.gov.in/</a> </strong></span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">Once again, thank you for choosing to insure with Future Generali. Assuring you of our best services at all times. </span></p>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: right;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;"><strong>For Future Generali India Insurance Co. Ltd.</strong></span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><img style="float: right;" src="https://www.shutterstock.com/image-vector/fake-hand-drawn-autographs-set-260nw-2303856541.jpghttps://www.shutterstock.com/image-vector/fake-hand-drawn-autographs-set-260nw-2303856541.jpg" alt="Signature" width="200" height="130" /></span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">If undelivered, please return to:</span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;"><strong>Future Generali India Insurance Company Limited </strong></span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">3rd Floor, Central Warehousing </span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">Corporation Building, No 2253 </span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">Maveli Road, Kadavanthara Ernakulam, </span></p>
+<p style="text-align: left;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;">Cochin Kerala, 682020</span></p>
+<p>&nbsp;</p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Please review the communication address, email or contact nos. noted on this letter for correctness. In case of any change please contact our nearest branch or call our care lines mentioned above. This will ensure you do not miss out on 'Service Updates' and 'Renewal Reminders'.</span></p>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>Tax Invoice</strong></span></p>
+<table style="border-collapse: collapse; width: 99.9861%;" border="1">
+<tbody>
+<tr>
+<td style="width: 99.0132%; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>INSURED DETAILS </strong></span></td>
+</tr>
+</tbody>
+</table>
+<table style="border-collapse: collapse; width: 99.9861%; height: 291.6px;" border="1">
+<tbody>
+<tr style="height: 61.6px;">
+<td style="width: 49.993%; height: 61.6px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Policy Number : ${number}</span></td>
+<td style="width: 49.993%; height: 61.6px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Address of Service Provider : Off Code-39,Future Generali India Insurance Co Ltd, 3rd Floor, Central Warehousing,Corporation Building, No 2253, Maveli Road, Kadavanthara, Ernakulam, Cochin, Kerala, Pincode - 682020</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 49.993%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Invoice Number : 202332PNT0103381</span></td>
+<td style="width: 49.993%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Area Code : Cochin Branch Office</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 49.993%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Reverse Charge : No</span></td>
+<td style="width: 49.993%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">FGI State Code : 32&nbsp;</span></td>
+</tr>
+<tr style="height: 63.8px;">
+<td style="width: 49.993%; height: 63.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Name of Insured/Proposer : </span></span>${applicant_name}</td>
+<td style="width: 49.993%; height: 63.8px;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">FGI GSTIN Number : 32AABCF0191R1ZI</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">FGI PAN Number :&nbsp; AABCF0191R</span></p>
+</td>
+</tr>
+<tr style="height: 30.8px;">
+<td style="width: 49.993%; height: 30.8px;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Address : 203 1st Cross Road, Krishna Reddy Colony, </span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Bengaluru,&nbsp; Pincode- 560064&nbsp;</span></p>
+</td>
+<td style="width: 49.993%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Intermediary Name \ Code : K.M. DASTUR REINSURANCE BROKERS PVT. LTD. \ 60008045</span></td>
+</tr>
+<tr style="height: 25.4px;">
+<td style="width: 49.993%; height: 25.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Place of Supply(State Code) : 32</span></td>
+<td style="width: 49.993%; height: 25.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Date of Issue \ Invoice Date : 14/10/2023</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 49.993%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">GSTIN / UIN Number : -</span></td>
+<td style="width: 49.993%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">HSN : 997136</span></td>
+</tr>
+<tr style="height: 63.8px;">
+<td style="width: 49.993%; height: 63.8px;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Period of Insurance : From 00:00 hours of 15/10/2023</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;To Midnight of 03/11/2023&nbsp;</span></p>
+</td>
+<td style="width: 49.993%; height: 63.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Nature of Service : General Insurance Service</span></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Received with thanks from a sum of ₹ 3,979.00 towards premium on the above mentioned policy.</span></p>
+<table style="border-collapse: collapse; width: 99.9861%; height: 66.1px;" border="1">
+<tbody>
+<tr style="height: 16.525px;">
+<td style="width: 32.374%; height: 16.525px;"><span style="background-color: #ffffff; font-family: arial, helvetica, sans-serif; font-size: 10pt;"><strong>PARTICULARS </strong></span></td>
+<td style="width: 32.374%; height: 16.525px;"><span style="background-color: #ffffff; font-family: arial, helvetica, sans-serif; font-size: 10pt;"><strong>TAX(%) </strong></span></td>
+<td style="width: 32.3749%; height: 16.525px;"><span style="background-color: #ffffff; font-family: arial, helvetica, sans-serif; font-size: 10pt;"><strong>PREMIUM ( ₹ ) </strong></span></td>
+</tr>
+<tr style="height: 16.525px;">
+<td style="width: 32.374%; height: 16.525px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;">Gross Premium (inc.GST)</span></td>
+<td style="width: 32.374%; height: 16.525px;">&nbsp;</td>
+<td style="width: 32.3749%; height: 16.525px;"><span style="font-size: 10pt;">${u_premium_amount}</span></td>
+</tr>
+<tr style="height: 16.525px;">
+<td style="width: 32.374%; height: 16.525px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;">Additional</span></td>
+<td style="width: 32.374%; height: 16.525px;"><span style="font-size: 10pt;">-</span></td>
+<td style="width: 32.3749%; height: 16.525px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;">-</span></td>
+</tr>
+<tr style="height: 16.525px;">
+<td style="width: 32.374%; height: 16.525px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;">Total (Rounded to nearest rupee)&nbsp;</span></td>
+<td style="width: 32.374%; height: 16.525px;">&nbsp;</td>
+<td style="width: 32.3749%; height: 16.525px;"><span style="font-size: 10pt;">${u_premium_amount}</span></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">NOTE :</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">1. In case of payment by cheque, in the event of dishonour of cheque for any reason whatsoever, insurance cover provided under this receipt automatically stands cancelled from the inception irrespective of whether a seperate communication is sent or not.</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">2. Excess amount, if any, will be adjusted against subsequent policies, or will be refunded on demand.</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">3. We hereby declare that though our aggregate turnover in any preceding financial year from 2017-18 onwards is more than the aggregate turnover notified under sub-rule (4) of rule 48, we are not required to prepare an invoice in terms of the provisions of the said sub-rule. 4. The amount collected is towards proposal deposit and acceptance of risk is subject to meeting underwriting guidelines.</span></p>
+<p>&nbsp;</p>
+<p style="text-align: right;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>For Future Generali India Insurance Co. Ltd.</strong></span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><img style="float: right;" src="https://www.shutterstock.com/image-vector/fake-hand-drawn-autographs-set-260nw-2303856541.jpghttps://www.shutterstock.com/image-vector/fake-hand-drawn-autographs-set-260nw-2303856541.jpg" alt="Signature" width="200" height="130" /></span></p>
+<p><br /><br /><br /><br /></p>
+<table style="border-collapse: collapse; width: 99.9861%; height: 56px;" border="1">
+<tbody>
+<tr style="height: 26.1625px;">
+<td style="width: 62.5778%; text-align: center; height: 26.1625px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>Future Travel Suraksha - Policy Schedule</strong>&nbsp;</span></td>
+</tr>
+<tr style="height: 29.8375px;">
+<td style="width: 62.5778%; height: 29.8375px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Policy Servicing Office : Off Code-39,Future Generali India Insurance Co Ltd, 3rd Floor, Central Warehousing, Corporation Building, No 2253, Maveli Road, Kadavanthara, Ernakulam, Cochin, Kerala, Pincode - 682020</span></td>
+</tr>
+</tbody>
+</table>
+<table style="border-collapse: collapse; width: 99.9861%; height: 117.4px;" border="1">
+<tbody>
+<tr style="height: 26.2px;">
+<td style="width: 62.5778%; height: 26.2px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Policy and Certificate Number : ${number}</span></td>
+<td style="width: 62.5778%; height: 26.2px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Period of Insurance : From 00:00 hrs 15/10/2023 To Midnight of 03/11/2023: T0710777</span></td>
+</tr>
+<tr style="height: 21.2px;">
+<td style="width: 5.77157%; height: 21.2px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Proposer : </span></span>${applicant_name}</td>
+<td style="width: 5.77157%; height: 21.2px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Intermediary Name / Code : K.M. DASTUR REINSURANCE BROKERS PVT. LTD. / 60008045</span></td>
+</tr>
+<tr style="height: 46.8px;">
+<td style="width: 7.30079%; height: 46.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Address : 203 1st Cross Road, Krishna Reddy Colony, Bengaluru, 560064&nbsp;</span></td>
+<td style="width: 7.30079%; height: 46.8px;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Telephone(Hom) : 9088196623</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Email Id : SAYATA.CHATTERJEE@KMDASTUR.COM</span></p>
+</td>
+</tr>
+<tr style="height: 23.2px;">
+<td style="width: 16.1313%; height: 23.2px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">GSTIN Number : -</span></td>
+<td style="width: 16.1313%; height: 23.2px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">FGI GSTIN Number : 32AABCF0191R1ZI</span></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<table style="border-collapse: collapse; width: 99.9861%;" border="1">
+<tbody>
+<tr>
+<td style="width: 99.0132%; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>Details of the Plan </strong></span></td>
+</tr>
+</tbody>
+</table>
+<table style="border-collapse: collapse; width: 99.9861%;" border="1">
+<tbody>
+<tr>
+<td style="width: 49.0341%;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Plan Name : Platinum Excluding US &amp; Canada&nbsp;</span></td>
+<td style="width: 49.0341%;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Geog. Scope. : Worldwide Excluding US &amp; Canada</span></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<table style="border-collapse: collapse; width: 99.9861%;" border="1">
+<tbody>
+<tr>
+<td style="width: 99.0132%; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>Details of Insured Person(s) </strong></span></td>
+</tr>
+</tbody>
+</table>
+<table style="border-collapse: collapse; width: 99.9861%; height: 123.2px;" border="1">
+<tbody>
+<tr style="height: 61.6px;">
+<td style="width: 12.8115%; height: 61.6px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Name of the Insured Person/s</span></td>
+<td style="width: 9.71421%; height: 61.6px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Date of Birth</span></td>
+<td style="width: 9.29185%; height: 61.6px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Age</span></td>
+<td style="width: 9.29185%; height: 61.6px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Gender</span></td>
+<td style="width: 9.29185%; height: 61.6px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Relation with the Proposer</span></td>
+<td style="width: 9.43263%; height: 61.6px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Passport Number</span></td>
+<td style="width: 12.3891%; height: 61.6px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Nominee Name</span></td>
+<td style="width: 9.29185%; height: 61.6px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Nominee Relation with insured</span></td>
+<td style="width: 9.29185%; height: 61.6px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Pre-existing Condition</span></td>
+<td style="width: 9.29185%; height: 61.6px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Specific condition</span></td>
+</tr>
+<tr style="height: 30.8px;">
+<td style="width: 12.8115%; height: 30.8px;">${applicant_name}</td>
+<td style="width: 9.71421%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">07/03/1963</span></td>
+<td style="width: 9.29185%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">&nbsp;60 Years</span></td>
+<td style="width: 9.29185%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Male</span></td>
+<td style="width: 9.29185%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Primary Insured</span></td>
+<td style="width: 9.43263%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">N6158945</span></td>
+<td style="width: 12.3891%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">&nbsp;SYBILLA JOSE</span></td>
+<td style="width: 9.29185%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Spouse</span></td>
+<td style="width: 9.29185%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">NIL</span></td>
+<td style="width: 9.29185%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">NIL</span></td>
+</tr>
+<tr style="height: 30.8px;">
+<td style="width: 12.8115%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">SYBILLA JOSE</span></td>
+<td style="width: 9.71421%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">30/05/1966</span></td>
+<td style="width: 9.29185%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">57 Years</span></td>
+<td style="width: 9.29185%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Female</span></td>
+<td style="width: 9.29185%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Spouse</span></td>
+<td style="width: 9.43263%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">N6158941&nbsp;</span></td>
+<td style="width: 12.3891%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">JOSE JOSEPH PONNEZHATH</span></td>
+<td style="width: 9.29185%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Spouse</span></td>
+<td style="width: 9.29185%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">NIL</span></td>
+<td style="width: 9.29185%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">NIL</span></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<table style="border-collapse: collapse; width: 99.9403%;" border="1">
+<tbody>
+<tr>
+<td style="width: 97.9104%; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>Specific condition details </strong></span></td>
+</tr>
+</tbody>
+</table>
+<table style="border-collapse: collapse; width: 99.9403%;" border="1">
+<tbody>
+<tr>
+<td style="width: 47.9403%; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Name of the Insured Persons</span></td>
+<td style="width: 47.9403%; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Specific condition</span></td>
+</tr>
+<tr>
+<td style="width: 47.9403%;">&nbsp;</td>
+<td style="width: 47.9403%;">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<table style="border-collapse: collapse; width: 99.9403%;" border="1">
+<tbody>
+<tr>
+<td style="width: 97.9104%; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>Schedule of Benefits&nbsp;</strong></span></td>
+</tr>
+</tbody>
+</table>
+<table style="border-collapse: collapse; width: 99.9403%; height: 380.6px;" border="1">
+<tbody>
+<tr style="height: 30.8px;">
+<td style="width: 22.9552%; height: 30.8px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>Main Benefits</strong></span></td>
+<td style="width: 22.9552%; height: 30.8px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>&nbsp;Sub Benefit</strong></span></td>
+<td style="width: 22.9552%; height: 30.8px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>Limts (Maximum for the Policy Period)&nbsp;</strong></span></td>
+<td style="width: 22.9552%; height: 30.8px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>Deductible</strong></span></td>
+</tr>
+<tr style="height: 121px;">
+<td style="width: 22.9552%; height: 121px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Personal Accident</span></td>
+<td style="width: 22.9552%; height: 121px;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">A.D &amp; PTD</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Accd. Death Common Carrier</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Accidental Death On Air Travel</span></p>
+</td>
+<td style="width: 22.9552%; height: 121px; text-align: left;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 20,000</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 5,000</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 5,000</span></p>
+</td>
+<td style="width: 22.9552%; height: 121px;">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 22.9552%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Legal Liability</span></td>
+<td style="width: 22.9552%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Personal Liability</span></td>
+<td style="width: 22.9552%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 200,000</span></td>
+<td style="width: 22.9552%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 200</span></td>
+</tr>
+<tr style="height: 167.2px;">
+<td style="width: 22.9552%; height: 167.2px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Medical Care</span></td>
+<td style="width: 22.9552%; height: 167.2px;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Medical Care</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Accidental Medical Expenses Repatriation Of Remains Emergency Evacuation Sickness Medical Expenses Daily Hospital Allowance</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Emergency Dental Relief</span></p>
+</td>
+<td style="width: 22.9552%; height: 167.2px;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 500,000</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 25 PER DAY (MAX 5 DAYS)</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 300</span></p>
+</td>
+<td style="width: 22.9552%; height: 167.2px;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 75</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">1 DAY</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 100</span></p>
+</td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 22.9552%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Personal Care</span></td>
+<td style="width: 22.9552%; height: 15.4px;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Baggage Delay(Checked Baggage)&nbsp; &nbsp;</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Baggage Loss (Checked Baggage)&nbsp; &nbsp;</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Compassionate Visit&nbsp; &nbsp;Financial Emergency</span></p>
+</td>
+<td style="width: 22.9552%; height: 15.4px;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 200</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 1000</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">UPTO A MAX OF USD 1000**</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 500</span></p>
+</td>
+<td style="width: 22.9552%; height: 15.4px;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">12 HOURS</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 25</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 200</span></p>
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 22.9552%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Special Care</span></td>
+<td style="width: 22.9552%; height: 15.4px;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Golfer Hole In One Celebration&nbsp;</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Automatic Extension For 7 Days Home Burglary Insurance&nbsp;</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Child Escort&nbsp;</span></p>
+</td>
+<td style="width: 22.9552%; height: 15.4px;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 200</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">INR 200,000</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 2,500</span></p>
+</td>
+<td style="width: 22.9552%; height: 15.4px;">&nbsp;</td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 22.9552%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Travel Inconvenience</span></td>
+<td style="width: 22.9552%; height: 15.4px;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Hijack Benefit&nbsp;</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Trip Delay</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Trip Cancellation</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Trip Curtailment</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Missed Connection</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Loss Of Passport&nbsp;</span></p>
+</td>
+<td style="width: 22.9552%; height: 15.4px;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 150 PER DAY (MAX FOR 7 DAYS)</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 20 PER 12 HOURS (MAX USD 120)</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 500</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 300</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 500</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 250</span></p>
+</td>
+<td style="width: 22.9552%; height: 15.4px;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">1 DAY</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">12 HOURS</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 100</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 100</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 50</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">USD 25</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<table style="border-collapse: collapse; width: 99.9403%; height: 30.8px;" border="1">
+<tbody>
+<tr style="height: 15.4px;">
+<td style="width: 47.9403%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>Special Clauses, Conditions and Warranties </strong></span></td>
+<td style="width: 47.9403%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>Schedule of Premium ( ₹) </strong></span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 47.9403%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">NIL</span></td>
+<td style="width: 47.9403%; height: 15.4px;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Basic Premium </span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">(inc. Goods and Service Tax) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;${u_premium_amount}<br /></span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Total Premium &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ${u_premium_amount}</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>Important:</strong></span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">*Any claim arising or related to consequences of the pre-existing diseases is excluded from the scope of policy cover.</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">*In case of premium payment by cheque, in the event of dishonour of cheque for any reason whatsoever cover provided under this document automatically stands cancelled from the inception irrespective of whether a separate communication is sent or not.</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">*The above records the information of pre-existing illness/ hospitalization etc. given by the Insured, pursuant to Clause 8(2) of the IRDAI (Protection of Policyholder's interest) Regulations, 2017. If the information shown above is found to be either incomplete or incorrect at the time of claim, the same shall be construed as non-disclosure of material information.</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">*This Policy of Insurance is a Contract between the Company and the Insured Person(s). The Insured Person(s) shall not transfer, assign, alienate or in any way pass the benefits and /or liabilitiesto any other person, Institution, Hospital, Company or Body Corporate withoutspecific approval in writing by a duly authorised officer of the Company. However, if the Insured Person(s) is permanently incapacitated or deceased, the legal heirs of the Insured may represent him in respect of Claim under the Policy.</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">*Terms, Conditions and exclusions as per policy clause. *For complete terms, conditions and exclusions, please visit <a href="https://general.futuregenerali.in/customer-service/downloads/">https://general.futuregenerali.in/customer-service/downloads/</a></span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">*For any redressal of grievance and for escalation matrix <a href="https://general.futuregenerali.in/customer-service/grievance-redressal">https://general.futuregenerali.in/customer-service/grievance-redressal</a></span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">*The Transcript attached is as per the details provided online.</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">*Kindly refer to the policy wordings for Sublimits, Deductible if any.</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">*Kindly note that this policy will not cover any claims incurred in any country which is in the sanctioned list of travel restrictions issued by Government of India or prohibition or restriction under United Nations resolutions or the trade or economic sanctions, laws or regulations of the European Union, United Kingdom or the United States of America.</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">*This Policy covers Medical Expenses arising out of Covid-19 outside India.</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p style="text-align: center;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;"><strong>Annexure </strong></span></p>
+<p style="text-align: center;"><span style="font-size: 8pt; font-family: arial, helvetica, sans-serif;"><strong>HELPLINE NUMBERS</strong></span></p>
+<p>&nbsp;</p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">For Claim Assistance kindly contact below mentioned Europ Assistance Toll free numbers</span></p>
+<ul style="list-style-position: inside;">
+<li style="font-size: 8pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Overseas policy holders can call on any of the Toll free numbers listed below.</span></li>
+<li style="font-size: 8pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">All lines are accessible from Local Landline or payphone except for USA &amp; Canada which are accessible from Mobile Phone.</span></li>
+</ul>
+<table style="border-collapse: collapse; width: 99.9403%; height: 160.2px;" border="1">
+<tbody>
+<tr style="height: 15.4px;">
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>Country&nbsp;</strong></span></td>
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>Number to be dialled</strong></span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Argentina&nbsp;&nbsp;</span></td>
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">00 +800-55331345</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Australia</span></td>
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">0011 +800-55331345</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Austria</span></td>
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">00 +800-55331345</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Belgium</span></td>
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">00 +800-55331345</span></td>
+</tr>
+<tr style="height: 21.6px;">
+<td style="width: 47.9403%; height: 21.6px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Canada</span></td>
+<td style="width: 47.9403%; height: 21.6px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">011 +800-55331345</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">China</span></td>
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">00 +800-55331345</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Czech Republic</span></td>
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">00 +800-55331345</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Denmark</span></td>
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">00 +800-55331345</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">France</span></td>
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">00 +800-55331345</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Germany</span></td>
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">00 +800-55331345</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Greece</span></td>
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">86002038016</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Hong Kong</span></td>
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">001 or 006+800+55331345</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Hungary</span></td>
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">00 +80055331345</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Israel</span></td>
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">00 or 014+800+55331345</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Italy</span></td>
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">00+800+55331345</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Japan</span></td>
+<td style="width: 47.9403%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">010 or 001+010+800+55331345</span></td>
+</tr>
+</tbody>
+</table>
+<ul style="list-style-position: inside;">
+<li style="font-size: 8pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">In case there is no Toll free number for the country you are calling from, you may please call on the India Claims Landline number - +91 22 67347841 (This number is chargeable and accessible 24 X 7 X365).</span></li>
+<li style="font-size: 8pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">You may also ask for a call back on this number and we will immediately call you back on your preferred number as provided during the call request.</span></li>
+<li style="font-size: 8pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Alternatively, you may also write to fgi@europ-assistance.in / <a href="mailto:fgh.travel@futuregenerali.in">fgh.travel@futuregenerali.in</a></span></li>
+<li style="font-size: 8pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">National Toll Free number for your relatives in India is 1800 209 2333.(only from MTNL/BSNL network)</span></li>
+<li style="font-size: 8pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Fax number: +91 22 6734 7888</span></li>
+</ul>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">For any service requirement, kindly contact the care line numbers of Future Generali India Insurance Company Limited: 1800-220-233, 1860-500-3333, 022-67837800.</span></p>
+<table style="border-collapse: collapse; width: 99.9403%; height: 15.4px;" border="1">
+<tbody>
+<tr style="height: 15.4px;">
+<td style="width: 97.9104%; height: 15.4px;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Dear <strong>${applicant_name}</strong>,</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">We wish to inform you that the Insurance policy number 001<strong>&nbsp;</strong>has been issued on the basis of the information and declaration given by you, the transcript whereof is mentioned below. In case of any disagreement or objection or any changes with respect to information mentioned below, we request you to please revert back within a period of 15 days from date of your receipt of this transcript or the policy start date whichever is earlier, failing which it will be deemed that you are satisfied with the correctness of the details mentioned below. Please be informed that this Policy shall be construed to be void ab initio/invalid in the event we find that you have not disclosed material or correct information required for the purpose of providing the below insurance cover and in case of any claim arising under the policy in such a scenario, we shall be under no obligation whatsoever to settle such claim to you and the premium paid by you under this policy shall stand fully forfeited.</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<table style="border-collapse: collapse; width: 99.9403%;" border="1">
+<tbody>
+<tr>
+<td style="width: 97.9104%; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>FUTURE TRAVEL SURAKSHA - Transcript/Declaration</strong>&nbsp;</span></td>
+</tr>
+</tbody>
+</table>
+<table style="border-collapse: collapse; width: 99.9403%;" border="1">
+<tbody>
+<tr>
+<td style="width: 47.9403%;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Policy No : ${number}</span></td>
+<td style="width: 47.9403%;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Date of Proposal :14/10/2023</span></td>
+</tr>
+</tbody>
+</table>
+<table style="border-collapse: collapse; width: 99.9403%; height: 348.8px;" border="1">
+<tbody>
+<tr style="height: 15.4px;">
+<td style="width: 12.8692%; text-align: center; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>Sr No</strong></span></td>
+<td style="width: 48.3453%; text-align: center; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>Questions&nbsp;</strong></span></td>
+<td style="width: 38.7481%; text-align: center; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>Answer</strong></span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 12.8692%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">1</span></td>
+<td style="width: 48.3453%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Name of theProposer</span></td>
+<td style="width: 38.7481%; height: 15.4px;">${applicant_name}</td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 12.8692%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">2</span></td>
+<td style="width: 48.3453%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">ABHA Number</span></td>
+<td style="width: 38.7481%; height: 15.4px;">&nbsp;</td>
+</tr>
+<tr style="height: 30.8px;">
+<td style="width: 12.8692%; height: 30.8px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">3</span></td>
+<td style="width: 48.3453%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Address of the Proposer</span></td>
+<td style="width: 38.7481%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">203 1st Cross Road, Krishna Reddy Colony, Bengaluru, 560064&nbsp;</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 12.8692%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">4</span></td>
+<td style="width: 48.3453%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Mobile No of the Proposer</span></td>
+<td style="width: 38.7481%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">9947203762</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 12.8692%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">5</span></td>
+<td style="width: 48.3453%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Email id of the Proposer</span></td>
+<td style="width: 38.7481%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">${email}<br /></span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 12.8692%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">6</span></td>
+<td style="width: 48.3453%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Plan Name</span></td>
+<td style="width: 38.7481%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Platinum Excluding US &amp; Canada</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 12.8692%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">7</span></td>
+<td style="width: 48.3453%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Geographical Scope</span></td>
+<td style="width: 38.7481%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Worldwide Excluding US &amp; Canada</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 12.8692%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">8</span></td>
+<td style="width: 48.3453%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Visa Type</span></td>
+<td style="width: 38.7481%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Travel Visa</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 12.8692%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">9</span></td>
+<td style="width: 48.3453%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Purpose Of Travel</span></td>
+<td style="width: 38.7481%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Business</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 12.8692%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">10</span></td>
+<td style="width: 48.3453%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Name of the Insured</span></td>
+<td style="width: 38.7481%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">JOSE JOSEPH PONNEZHATH</span></td>
+</tr>
+<tr style="height: 10px;">
+<td style="width: 12.8692%; height: 10px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">11</span></td>
+<td style="width: 48.3453%; height: 10px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Date of Birth of Insured</span></td>
+<td style="width: 38.7481%; height: 10px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">07/03/1963</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 12.8692%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">12</span></td>
+<td style="width: 48.3453%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Gender of Insured</span></td>
+<td style="width: 38.7481%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Male</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 12.8692%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">13</span></td>
+<td style="width: 48.3453%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Relation of Insured with Proposer</span></td>
+<td style="width: 38.7481%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Self</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 12.8692%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">14</span></td>
+<td style="width: 48.3453%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Nationality of Insured</span></td>
+<td style="width: 38.7481%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">India</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 12.8692%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">15</span></td>
+<td style="width: 48.3453%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Passport Number of Insured</span></td>
+<td style="width: 38.7481%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">N6158945</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 12.8692%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">16</span></td>
+<td style="width: 48.3453%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Name of the nominee of the insured</span></td>
+<td style="width: 38.7481%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">SYBILLA JOSE</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 12.8692%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">17</span></td>
+<td style="width: 48.3453%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Relation of Nominee with Insured</span></td>
+<td style="width: 38.7481%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Spouse</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 12.8692%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">18</span></td>
+<td style="width: 48.3453%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Proposed Date of Departure from Republic of India</span></td>
+<td style="width: 38.7481%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">15/10/2023</span></td>
+</tr>
+<tr style="height: 15.4px;">
+<td style="width: 12.8692%; height: 15.4px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">19</span></td>
+<td style="width: 48.3453%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Insurance Required for Number of Days</span></td>
+<td style="width: 38.7481%; height: 15.4px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">20</span></td>
+</tr>
+<tr style="height: 30.8px;">
+<td style="width: 12.8692%; height: 30.8px; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">20</span></td>
+<td style="width: 48.3453%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">Do you have any pre-existing medical condition, Injury, physical deformity ,at present or in the past?</span></td>
+<td style="width: 38.7481%; height: 30.8px;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">No</span></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<table style="border-collapse: collapse; width: 100.032%; height: 234.575px;" border="1">
+<tbody>
+<tr style="height: 234.575px;">
+<td style="width: 97.6789%; height: 234.575px;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">In case of Disagreement or objection or any changes with respect to information and contents mentioned hereinabove, please contact our Help Line numbers &amp; register your objections/changes/disagreement to the contents of this transcript or you may also send us email or written correspondence at the below address within a period of 15 days from date of receipt of this transcript or the policy start date whichever is earlier.</span></p>
+<p style="text-align: right;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">For Future Generali India Insurance Company Limited</span></p>
+<p style="text-align: right;"><img style="float: right;" src="https://www.shutterstock.com/image-vector/fake-hand-drawn-autographs-set-260nw-2303856541.jpghttps://www.shutterstock.com/image-vector/fake-hand-drawn-autographs-set-260nw-2303856541.jpg" alt="Signature" width="99" height="64" /></p>
+<p style="text-align: right;">&nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<table style="border-collapse: collapse; width: 99.9403%;" border="1">
+<tbody>
+<tr>
+<td style="width: 97.9104%; text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;"><strong>DECLARATION </strong></span></td>
+</tr>
+<tr>
+<td style="width: 97.9104%;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">1.I hereby declare, on my behalf and on behalf of all persons proposed to be insured, that the above statements, answers and/or particulars given by me are true and complete in all respects to the best of my knowledge and that I am authorised to propose on behalf of these other persons.</span></td>
+</tr>
+<tr>
+<td style="width: 97.9104%;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">2.I understand that the information provided by me will form the basis of the insurance policy, is subject to the Board approved underwriting policy of the insurer and that the policy will come into force only after full payment of the premium chargeable.</span></td>
+</tr>
+<tr>
+<td style="width: 97.9104%;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">3.I further declare that I will notify in writing any change occurring in the occupation or general health of the life to be insured/proposer after the proposal has been submitted but before communication of the risk acceptance by the company.</span></td>
+</tr>
+<tr>
+<td style="width: 97.9104%;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">4.I declare that I consent to the company seeking medical information from any doctor or hospital who/which at any time has attended on the person to be insured/proposer or from any past or present employer concerning anything which affects the physical or mental health of the person to be insured/proposer and seeking information from any insurer to whom an application for insurance on the person to be insured /proposer has been made for the purpose of underwriting the proposal and/or claim settlement.</span></td>
+</tr>
+<tr>
+<td style="width: 97.9104%;"><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">5.I authorize the company to share information pertaining to my proposal including the medical records of the insured/proposer for the sole purpose of underwriting the proposal and/or claims settlement and with any Governmental and/or Regulatory authority. </span></td>
+</tr>
+<tr>
+<td style="width: 97.9104%;">
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">6.I further declare that: </span></p>
+<p><span style="font-family: arial, helvetica, sans-serif; font-size: 8pt;">There is no other material / relevant information, that has not been disclosed to FGIICL and if any information given in this proposal is found to be untrue, the Insurance policy shall be void ab initio and the premium shall be forfeited to FGIICL. I agree to receive Service related information from FGIICL and its service providers, through electronic and telecom modes including Whatsapp and further understand that no unsolicited information will be sent to me. The information/ data provided by me through this Proposal Form, to FGIICL and / or FGIICL authorized personnel / agency shall be stored by FGIICL, throughout the currency of my relationship with FGIICL and used for the purpose relating to my proposal for insurance cover andor servicing policies issued in my favour, whether by FGIICL or its authorized partners. I also understand that the said storage is necessary for my consumption of the services and consent to not hold FGIICL and / or its authorized partners / agency / personnel liable for legal utilization of the submitted information / data.</span></p>
+</td>
+</tr>
+</tbody>
+</table>]]></html_script>
+        <language>en</language>
+        <left_right_margin/>
+        <main_table_dependent_value_t1/>
+        <name>Insurance Payment Details Invoice</name>
+        <page_number/>
+        <page_size/>
+        <signing_type>servicenow_sign</signing_type>
+        <state/>
+        <syntax_for_template_t1/>
+        <syntax_for_template_t2/>
+        <syntax_for_template_t3/>
+        <sys_class_name>x_rptp_pdf_gen_api_html_template</sys_class_name>
+        <sys_created_by>balakrishna</sys_created_by>
+        <sys_created_on>2024-02-15 17:42:25</sys_created_on>
+        <sys_id>1e4ffa7a93dc0a50acdc3f484dba10fb</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>Insurance Payment Details Invoice</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>x_rptp_pdf_gen_api_html_template_1e4ffa7a93dc0a50acdc3f484dba10fb</sys_update_name>
+        <sys_updated_by>rushith</sys_updated_by>
+        <sys_updated_on>2024-02-20 11:05:53</sys_updated_on>
+        <table>x_rptp_insureme_appointment_details</table>
+        <table_1/>
+        <table_1_fields/>
+        <table_2/>
+        <table_2_fields/>
+        <table_3/>
+        <table_3_fields/>
+        <tables_count/>
+        <top_bottom_margin/>
+        <type>x_rptp_pdf_gen_api_html_template</type>
+        <user_criteria/>
+        <vertical_alignment/>
+    </x_rptp_pdf_gen_api_html_template>
+</record_update>
