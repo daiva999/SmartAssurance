@@ -14,6 +14,146 @@
             <sys_user/>
             <type/>
         </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>product_code</element>
+            <position>1</position>
+            <sys_created_by>nikita</sys_created_by>
+            <sys_created_on>2024-02-06 07:20:39</sys_created_on>
+            <sys_id>72aa56fb93484610acdc3f484dba10a4</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_recommendation" sys_domain="global" view="Default view">586a52fb93484610acdc3f484dba1000</sys_ui_section>
+            <sys_updated_by>nikita</sys_updated_by>
+            <sys_updated_on>2024-02-06 07:20:39</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>category_code</element>
+            <position>2</position>
+            <sys_created_by>nikita</sys_created_by>
+            <sys_created_on>2024-02-06 07:22:18</sys_created_on>
+            <sys_id>7e0bd63f93484610acdc3f484dba10a2</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_recommendation" sys_domain="global" view="Default view">586a52fb93484610acdc3f484dba1000</sys_ui_section>
+            <sys_updated_by>nikita</sys_updated_by>
+            <sys_updated_on>2024-02-06 07:22:18</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>coverage</element>
+            <position>3</position>
+            <sys_created_by>nikita</sys_created_by>
+            <sys_created_on>2024-02-06 07:33:56</sys_created_on>
+            <sys_id>99bd927393884610acdc3f484dba1013</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_recommendation" sys_domain="global" view="Default view">586a52fb93484610acdc3f484dba1000</sys_ui_section>
+            <sys_updated_by>nikita</sys_updated_by>
+            <sys_updated_on>2024-02-06 07:33:56</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>tags</element>
+            <position>4</position>
+            <sys_created_by>nikita</sys_created_by>
+            <sys_created_on>2024-02-06 07:33:56</sys_created_on>
+            <sys_id>15bd927393884610acdc3f484dba1029</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_recommendation" sys_domain="global" view="Default view">586a52fb93484610acdc3f484dba1000</sys_ui_section>
+            <sys_updated_by>nikita</sys_updated_by>
+            <sys_updated_on>2024-02-06 07:33:56</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>no_of_purchased</element>
+            <position>5</position>
+            <sys_created_by>nikita</sys_created_by>
+            <sys_created_on>2024-02-06 07:33:56</sys_created_on>
+            <sys_id>1dbd927393884610acdc3f484dba1031</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_recommendation" sys_domain="global" view="Default view">586a52fb93484610acdc3f484dba1000</sys_ui_section>
+            <sys_updated_by>nikita</sys_updated_by>
+            <sys_updated_on>2024-02-06 07:33:56</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>label</element>
+            <position>6</position>
+            <sys_created_by>nikita</sys_created_by>
+            <sys_created_on>2024-02-06 10:15:44</sys_created_on>
+            <sys_id>a7b20bfb934c4610acdc3f484dba10aa</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_recommendation" sys_domain="global" view="Default view">586a52fb93484610acdc3f484dba1000</sys_ui_section>
+            <sys_updated_by>nikita</sys_updated_by>
+            <sys_updated_on>2024-02-06 10:15:44</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>icons</element>
+            <position>7</position>
+            <sys_created_by>nikita</sys_created_by>
+            <sys_created_on>2024-02-07 11:32:46</sys_created_on>
+            <sys_id>b5fd501893100a10acdc3f484dba10ea</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_recommendation" sys_domain="global" view="Default view">586a52fb93484610acdc3f484dba1000</sys_ui_section>
+            <sys_updated_by>nikita</sys_updated_by>
+            <sys_updated_on>2024-02-07 11:32:46</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>image</element>
+            <position>8</position>
+            <sys_created_by>nikita</sys_created_by>
+            <sys_created_on>2024-02-08 05:09:11</sys_created_on>
+            <sys_id>2ccfccac93544a10acdc3f484dba1050</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_recommendation" sys_domain="global" view="Default view">586a52fb93484610acdc3f484dba1000</sys_ui_section>
+            <sys_updated_by>nikita</sys_updated_by>
+            <sys_updated_on>2024-02-08 05:09:11</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>type</element>
+            <position>9</position>
+            <sys_created_by>nikita</sys_created_by>
+            <sys_created_on>2024-02-08 06:29:58</sys_created_on>
+            <sys_id>3732a4ec93d44a10acdc3f484dba101d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_recommendation" sys_domain="global" view="Default view">586a52fb93484610acdc3f484dba1000</sys_ui_section>
+            <sys_updated_by>nikita</sys_updated_by>
+            <sys_updated_on>2024-02-08 06:29:58</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>orderby</element>
+            <position>10</position>
+            <sys_created_by>nikita</sys_created_by>
+            <sys_created_on>2024-02-20 09:46:16</sys_created_on>
+            <sys_id>5442835893648290acdc3f484dba10b6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_recommendation" sys_domain="global" view="Default view">586a52fb93484610acdc3f484dba1000</sys_ui_section>
+            <sys_updated_by>nikita</sys_updated_by>
+            <sys_updated_on>2024-02-20 09:46:16</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
         <sys_ui_section action="INSERT_OR_UPDATE">
             <caption/>
             <header>false</header>
