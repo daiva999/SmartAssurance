@@ -1,0 +1,827 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope, $rootScope) {
+	var c = this;
+
+	//compareButton Code
+	c.recordId = ""
+	c.compareProducts = function () {
+		window.location.href = "/vfsp?id=compare_page&" + c.recordId;
+	};
+	c.selectedInsurerCodes = [];
+	var indexArray = [];
+	c.checkboxClicked = function (productCode, code, index, image, productId,insurancePremium) {
+		//alert(insurancePremium);
+		var key = "index"
+		c.recordId = ""
+		if (productCode != "" && c.selectedInsurerCodes.length < 3 && (indexArray.indexOf(index)) == -1) {
+			var obj = {
+				"productCode": productCode.replace('_', ' '),
+				"insurerCode": code.replace('_', ' '),
+				"index": index,
+				"image": image,
+				"productId": productId,
+				"premiumAmount": insurancePremium
+			}
+			indexArray.push(index);
+			c.selectedInsurerCodes.push(obj);
+		}
+		else if (c.selectedInsurerCodes.length <= 3 && (indexArray.indexOf(index) > -1)) {
+			angular.element('#check-' + index).prop('checked', false);
+			var arrIndex = indexArray.indexOf(index)
+			indexArray.splice(arrIndex, 1);
+			c.selectedInsurerCodes.splice(arrIndex, 1);
+		}
+		else {
+			alert("only 3 products can be selected")
+			angular.element('#check-' + index).prop('checked', false);
+		}
+		if (c.selectedInsurerCodes.length >= 2) {
+			$('.compareButton').css({
+				'visibility': 'visible',
+			});
+		}
+		else {
+			$('.compareButton').css({
+				'visibility': 'visible',
+			});
+			$('.compareButton').css({
+				'visibility': 'hidden',
+			});
+		}
+		//alert(JSON.stringify( c.selectedInsurerCodes));
+		$rootScope.$emit('productCompare',c.selectedInsurerCodes);
+		//alert(JSON.stringify(c.selectedInsurerCodes))
+	};
+	//end of compare code
+
+	if (!sessionStorage.getItem(c.data.user)) {
+		// Initialize an empty session object and store it in sessionStorage
+		var emptySession = {};
+		sessionStorage.setItem(c.data.user, JSON.stringify(emptySession));
+	}
+
+	var newSessionData = JSON.parse(sessionStorage.getItem(c.data.userName));
+
+
+	var userdetails;
+	var newDetails = {
+		'userdetails': userdetails,
+		"action": 'firstCall'
+	};
+	var sessionID = generateGUID();
+	var Insurer;
+	var premiumAmount;
+
+	$rootScope.$on('details', function (event, vfsform) {
+		// console.log('Received event: details');
+		userdetails = vfsform;
+		newDetails = {
+			'userdetails': userdetails,
+			'action': "dataCall"
+		};
+		// console.log('Sending request with newDetails:', newDetails);
+		c.server.get(newDetails).then(function (response) {
+			$scope.tableDetails = response.data.tableDetails;
+			$scope.updateTableDetails();
+			// console.log('Server request successful');
+		});
+	});
+
+
+	c.server.get(newDetails).then(function (response) {
+
+		$scope.tableDetails = response.data.tableDetails;
+		$scope.updateTableDetails = function(){
+			$scope.tableDetails.sort(function(a, b) {
+				if (a.tags.orderby && b.tags.orderby) {
+					if (a.tags.orderby < b.tags.orderby) {
+						return -1;
+					} else if (a.tags.orderby > b.tags.orderby) {
+						return 1;
+					} else {
+						return 0;
+					}
+				} else if (a.tags.orderby && !b.tags.orderby) {
+					return -1;
+				} else if (!a.tags.orderby && b.tags.orderby) {
+					return 1;
+				} else {
+					return 0;
+				}
+			});
+		}
+
+		$scope.updateTableDetails();
+
+		// console.log($scope.tableDetails);
+		// console.log($scope.tableDetails);
+		// console.log('Server request successful');
+	});
+
+
+	//alert(JSON.stringify(newDetails));
+	var redirectURL;
+	var dataToPass;
+
+	$scope.redirectToPaymentPage = function (prodCode, insurer, premiumAmount) {
+		Insurer = insurer; 
+		if (
+			userdetails &&
+			userdetails.tripType &&
+			userdetails.travelRegion &&
+			userdetails.startDate &&
+			userdetails.endDate &&
+			userdetails.numberOfPersons &&
+			userdetails.indianPassportHolder &&
+			userdetails.travellerAges
+
+		) {
+			if(userdetails.duration>0){
+				dataToPass = prodCode;
+				redirectURL = "/vfsp?id=test_payment";
+				storeSessionDetails(dataToPass, premiumAmount);
+				window.location.href = redirectURL;
+			}
+			else{
+				alert('please enter valid Start and end dates');
+			}
+		} else {
+			alert('Please provide all required details before proceeding to payment.');
+		}
+	};
+
+	$scope.redirectToProductPage = function (prodCode, insurer) {
+		Insurer = insurer;
+		dataToPass = prodCode;
+		redirectURL = "/vfsp?id=prod_page";
+		storeSessionDetails(dataToPass, premiumAmount);
+		window.location.href = redirectURL;
+	};
+	function generateGUID() {
+		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+			var r = Math.random() * 16 | 0,
+					v = c === 'x' ? r : (r & 0x3 | 0x8);
+			return v.toString(16);
+		});
+	}
+	function storeSessionDetails(prodcode, premiumAmount) {
+
+		var sessionDetails = {
+			id: sessionID,
+			prodCode: prodcode,
+			userdetails: userdetails,
+			newSessionData: newSessionData,
+			insurer: Insurer,
+			premium: c.data.premium,
+			premiumAmount : premiumAmount
+
+		};
+		sessionStorage.setItem(c.data.user, JSON.stringify(sessionDetails));
+	}
+
+	$scope.termAndConditions = function (prodCode) {
+		var dataToPass = prodCode;
+		var redirectURL = "/id=test_page?sessionId=";
+		window.location.href = redirectURL;
+	};
+
+	//for nullifying compare
+	$rootScope.$on('productCheckBox',function(event,res){
+		res.forEach(function(product){
+			$scope.unCheck(product.index);	
+		});
+		c.selectedInsurerCodes = [];
+		indexArray=[]
+		// $scope.updateTableDetails();
+	})
+
+	$scope.unCheck=function(index){
+		angular.element('#check-' + index).prop('checked', false);
+
+	}
+
+
+};
+
+
+
+
+
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>#productCardMainContainer{
+	height:65vh;
+  overflow:scroll;
+  overflow-x:hidden;
+}
+//styling the scroll bar
+::-webkit-scrollbar {
+display:none;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+  background: #f1f1f1; 
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: lightblue; 
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: lightblue; 
+}
+
+/* #productCardMainContainer::-webkit-scrollbar {
+    display: none;
+}
+#productCardMainContainer {
+  -ms-overflow-style: none;
+  scrollbar-width: none;  
+}*/
+#recommendation {
+    position: relative;
+  	width: fit-content;
+    border: none; /* Remove the border */
+    background: #caded8;
+    color: #03A678;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    padding: 5px; /* Increase padding for spacing */
+    font-weight:600;
+    border-radius: 20px; /* Apply border radius for curved corners */
+    font-size: 12px;
+   border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0px; /* Set to 0 for a flat bottom border */
+    border-bottom-right-radius: 0px;
+  //margin-left:2rem;
+}
+
+#productCardContainer{
+  font-family: "Helvetica";
+	height: fit-content;
+	border:0.4px solid #3D8BF2;
+  border-radius:0.5rem;
+  //box-shadow: 0 0 2px 2px #737a87;
+  margin: 0 0 1.5rem 0;
+  padding: 1rem 1.5rem;
+  background:#FFF;
+}
+#productCardimageContainer img{
+  margin-left:1rem;
+	height: 100px;
+  width:100px;
+}
+#benefitValue{
+	text-align:center;
+  font-weight:bold;
+}
+#productTitleAndBenefits&gt; p{
+  //margin-left:10px;
+  margin-top:0;
+  padding-top:0;
+  font-size:1.5rem;
+  font-weight:750;
+  color:#03A678;
+}
+
+#productCardimageContainer{
+  max-width:22.5vw;
+  display:flex;
+  flex-direction:row;
+}
+#productCardRow1{
+  width:100%;
+	display:flex;
+  justify-content:space-between;
+}
+#productTitleAndBenefits{
+	margin:0 1rem 0.5rem 1rem;
+  width:65%;
+}
+#productCardPriceBar{
+	min-width:20%;
+  //height:7.5rem;
+  display:flex;
+  flex-direction:column;
+}
+#productCardPriceBar p{
+	//margin-right:20px;
+  font-size:1.7rem;
+  font-weight:750;
+  color:red;
+  //margin-top:10px;
+  text-align:center;
+}
+#productCardPriceBarButton{
+	min-width:3.5rem;
+  padding:0.25rem;;
+  text-align:center;
+  background-color:#6eb8b1;
+  color:white;
+  font-size: 1.5rem;
+  font-weight:500;
+  border:none;
+  border-radius:0.5rem;
+}
+
+#benefits{
+  //background:yellow;
+  margin-left:auto;
+  margin-right:auto;
+  display: flex;
+  //justify-content:space-between;
+  gap:1rem 0.3rem;
+  flex-wrap: wrap;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal-width columns */
+    gap: 5px; /* Gap between grid items */
+}
+.grid-item {
+    padding: 5px; /* Adjust padding for each grid item */
+    //background-color: #f0f0f0; /* Background color for grid items */
+    border-radius: 5px; /* Border radius for grid items */
+}
+button.grid-item {
+    text-align: center;
+    background-color: #ffffff; /* Background color for the button */
+    border: 1px solid #999999; /* Border color for the button */
+}
+.pill {
+  font-size:10px;
+  //min-width:50px;
+  display: block;
+  text-align: center;
+// border:1.5px solid lightgrey;
+  //padding: 8px;
+  //background:yellow;
+  //margin: 4px;
+  border-radius: 15px;
+}
+
+#extraDetailContainer{
+  width:75%;
+  //background:yellow;
+  margin-left:auto;
+  margin-right:auto;
+   /* Allow items to wrap to the next line */
+	display:flex;
+  gap: 2.5rem;
+}
+#benefitItems {
+    position: relative;
+   // display: inline-block;
+  }
+.benefittooltip {
+  	width:fit-content;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 1;
+  }
+/*
+  #benefitItems:hover .benefittooltip {
+    display: block;
+  }
+*/
+#detailsPageRedirectButton{
+	background:none;
+  border:none;
+  text-decoration:underline;
+  color:#4287f5;
+  font-weight:700;
+  text-align:center;
+  font-size:10px;
+}
+#termsAndConditions{
+	background:none;
+  border:none;
+  text-decoration:underline;
+  color:#4287f5;
+  font-weight:700;
+  font-size:1rem;
+}
+#premiumDetails{
+	display:flex;
+  flex-direction:column;
+}
+#premium{
+  text-align:center;
+  font-weight:500;
+	font-size:1rem;
+  color:#65ba9b;
+}
+.sumAssured, .premiumValue{
+  margin-bottom:0px;
+}
+#premiumTitle{
+	font-size: 1rem;
+  color:#65ba9b; 
+}
+
+.card-image img{
+  width:120px;
+  height:120px;
+}
+ 
+#productsSelected{
+  display: inline-flex;
+}
+ 
+ 
+.selected-item{
+  text-transform:capitalize;
+}
+ 
+.compareButton{
+  visibility:hidden;
+}
+.compareButton{
+  min-width: 3.5rem;
+  padding: 0.25rem;
+  text-align: center;
+  background-color: #6eb8b1;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.5rem;
+}
+ 
+ 
+.productsSelectedContainer{
+ 
+  width: 900px;
+  height: 100px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  //justify-content: center;
+  gap: 30px;
+}
+
+//for image of recommendation
+#people::before {
+    content: "\1F465";
+    font-size: 12px;
+ 
+}
+
+#star::before{
+  content: "\2605";
+    font-size: 12px;
+  
+</css>
+        <data_table>sp_instance_table</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>table,field_list</field_list>
+        <has_preview>true</has_preview>
+        <id>insure_product_cards</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>Product Cards</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function () {
+	data.user = gs.getUserID();
+	data.userName = gs.getUserName();
+
+	var tableDetails = [];
+	if (input && input.action == "dataCall") {
+		getRecordsData(input.userdetails);
+	}
+
+	if (input && input.action == "firstCall") {
+		getRecordsData(input.userdetails);
+	}
+
+	function findPremium(prodCode, duration, age) {
+
+		var daysFindTable = new GlideRecord('x_rptp_insureme_premium');
+		daysFindTable.addQuery('prod_code', prodCode);
+		daysFindTable.addQuery('insurer_code', 'future_easy');
+		daysFindTable.addQuery('min_age', '<=', age); // corrected syntax
+		daysFindTable.addQuery('max_age', '>=', age); // corrected syntax
+		daysFindTable.addQuery('max_days', '>=', duration);
+		daysFindTable.addQuery('min_days', '<=', duration);
+		daysFindTable.query();
+		//gs.debug(daysFindTable.getRowCount())
+
+		if (daysFindTable.next() && daysFindTable.getValue('cost')) {
+			//gs.addErrorMessage('line 13' + " " + duration + " " + age + " " +daysFindTable.getValue('cost'));
+			var premiumCost = daysFindTable.getValue('cost').replaceAll(',', '');
+			premiumCost = +premiumCost;
+			//gs.addInfoMessage(premiumCost);
+			return premiumCost;
+		}
+		else {
+			return 0;
+		}
+
+	}
+
+	function findTag(prodCode) {
+    var tagObj = {}; // Define tagObj inside the function
+
+    var rTable = new GlideRecord('x_rptp_insureme_recommendation');
+    rTable.addQuery('product_code.prod_code', prodCode);
+    rTable.query();
+
+    if (rTable.next()) {
+        tagObj.label = rTable.getValue('label');
+        tagObj.type = rTable.getValue('type');
+        tagObj.orderby = rTable.getValue('orderby');
+    } else {
+        // Handle case where no record is found, maybe set default values or log a message
+    }
+
+    return tagObj; // Return the tagObj
+}
+
+	
+	
+	
+	/*
+	function findTagImg(prodCode) {
+		var rTable = new GlideRecord('x_rptp_insureme_recommendation');
+		rTable.addQuery('product_code.prod_code', prodCode);
+		rTable.query();
+		if(rTable.next()){
+			return rTable.getValue('type');
+		}
+		//gs.debug(rTable.getRowCount());
+		
+	}
+ */
+	function findImage() {
+		var Iname = 'futureinsurance.png';
+		var gr = new GlideRecord("db_image");
+		gr.get(Iname);
+		return gr.getDisplayValue('image');
+
+	}
+	function findLength(ages,orgCount){
+		var count=0;
+		for(i=0;i<ages.length;i++){
+			if(ages[i].age!=null && ages[i].age!=''){
+				count++;
+			}
+		}
+		if(count==orgCount){
+			//gs.addErrorMessage('true');
+			return true
+		}
+		else{
+			//gs.addErrorMessage('false');
+			return false;
+		}
+	}
+	function getBenefits(prodCode, insurer) {
+		var benefitTable = new GlideRecord('x_rptp_insureme_insurance_products_benefits');
+		benefitTable.addQuery('product_code', prodCode);
+		//benefitTable.addQuery('insurer', insurer);
+		benefitTable.query();
+		var benefit = [];
+		var count = 0;
+
+		while (benefitTable.next() && count < 5) {
+			var name = benefitTable.getValue('name');
+			var value = benefitTable.getValue('value');
+			if (name != null && value != null && name.split(' ').length < 3 && value != 'Not Applicable') {
+				// Formatting benefit value with rupee symbol
+				var firstDigitIndex = value.search(/\d/);
+				if (firstDigitIndex !== -1) {
+					value = '₹' + value.slice(firstDigitIndex);
+				}
+				benefit.push({
+					benefit: name,
+					value: value
+				});
+				count++;
+			}
+		}
+		return benefit;
+	}
+	
+	
+	/*function getBenefits(prodCode, insurer) {
+		var benefitTable = new GlideRecord('x_rptp_insureme_insurance_products_benefits');
+		benefitTable.addQuery('product_code', prodCode);
+		//benefitTable.addQuery('insurer', insurer);
+		benefitTable.query();
+		var benefit = [];
+		var count = 0;
+
+		while (benefitTable.next()) {
+			var name = benefitTable.getValue('name');
+			var value = benefitTable.getValue('value');
+				benefit.push({
+					benefit: name,
+					value: value
+				});
+		}
+		gs.addErrorMessage(JSON.stringify(benefit))
+		return benefit;
+	}
+	*/
+	
+	
+	function getRecordsData(details) {
+		data.user = gs.getUserID();
+
+		var table = new GlideRecord('x_rptp_insureme_insurance_products');
+		//table.addQuery('prod_code', 'Canara Insurence');
+		table.query();
+		while (table.next()) {
+			var prodCode = table.getValue('prod_code');
+			var insurer = table.getValue('insurer');
+			var insurer_name = table.getValue('insurer_name');
+			var prodName = table.getValue('prod_name');
+			var productId = table.getValue('sys_id');
+			var duration = 10;
+			var premiumSum = findPremium(prodCode, duration, 25);
+			var tag = findTag(prodCode);			
+			if (details) {
+				//trial
+				premiumSum = findPremium(prodCode, duration, 25);
+				if (details.duration && details.duration > 0) {
+					duration = details.duration;
+					//gs.addInfoMessage(duration);
+					premiumSum = findPremium(prodCode, duration, 25);
+					if (details.numberOfPersons > 0 && findLength(details.travellerAges,details.numberOfPersons) > 0) {
+						//gs.addInfoMessage('entered');
+						var overallAges = details.travellerAges;
+						premiumSum = 0;
+						//gs.addErrorMessage(overallAges.length);
+						for (i = 0; i < overallAges.length; i++) {
+							//gs.addErrorMessage(JSON.stringify(overallAges[i]));
+							//gs.addErrorMessage(JSON.stringify(overallAges[i].age));
+							premiumSum = premiumSum + findPremium(prodCode, duration, overallAges[i].age);
+							//gs.addInfoMessage(prodCode + " " + duration + " " + overallAges[i].age);
+
+
+						}
+					}
+				}
+
+			}
+			data.premium=premiumSum;
+
+			var recordData = {
+				image: findImage(),
+				sumAssured: table.getValue('sum'),
+				name: table.getValue('prod_name'),
+				productCode: prodCode,
+				benefits: getBenefits(prodCode, insurer),
+				insurer: insurer,
+				insurerName: insurer_name,
+				tags: tag,
+				premiumAmount: premiumSum,
+				productId: productId
+				//findCompletePremium(prodCode, duration, ages)
+
+			};
+			if (recordData.benefits.length > 0) {
+				tableDetails.unshift(recordData);
+			} else {
+				tableDetails.push(recordData);
+			}
+
+			data.tableDetails = JSON.parse(JSON.stringify(tableDetails));
+
+		}
+
+	}
+
+
+	//to remove the compare checkButtons
+
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>kumar.raja</sys_created_by>
+        <sys_created_on>2024-01-22 09:29:05</sys_created_on>
+        <sys_id>03f7a987937f3910acdc3f484dba1081</sys_id>
+        <sys_mod_count>991</sys_mod_count>
+        <sys_name>Product Cards</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_03f7a987937f3910acdc3f484dba1081</sys_update_name>
+        <sys_updated_by>kumar.raja</sys_updated_by>
+        <sys_updated_on>2024-02-21 05:23:05</sys_updated_on>
+        <template><![CDATA[<div id="productCardMainContainer">
+
+  <div ng-repeat="record in tableDetails" >
+      <div id="recommendation" ng-if="record.tags.orderby">
+        
+        <div ng-if="record.tags.type=='people'" id='people'>
+          {{record.tags.label}}
+        </div>
+        <div ng-if="record.tags.type=='star'" id='star'>
+          {{record.tags.label}}
+        </div>
+				
+        <!--
+        <div ng-if="record.tags.type" id='people'>
+          {{record.tags.type}}
+        </div>
+				-->
+      </div>
+      <div id="productCardContainer">
+        <div id="productCardRow1">
+          <div>
+            <div id="productCardimageContainer">
+              <img src={{record.image}} />
+            </div>
+            <div class="form-check" style="padding-left:5px;">
+              <input class="form-check-input" type="checkbox" id="check-{{$index}}"
+                     value="{{record.productCode}}"
+                     ng-model='record.checked'
+                     ng-click="c.checkboxClicked(record.productCode,record.insurer,$index,record.image,record.productId,record.premiumAmount)">
+              <label class="form-check-label" for="check-{{$index}}"
+                     style="font-size:12px;padding-bottom:8px">
+                Add to compare
+              </label>
+            </div>
+          </div>
+
+          <div id="productTitleAndBenefits">
+            <p>
+              {{record.insurerName}}-
+              {{record.name}}
+            </p>
+            <div id="benefits">
+              <div class="grid-container">
+                <div class="grid-item" ng-repeat="recordValue in record.benefits">
+                  <div class="pill">
+                    {{ recordValue.benefit.split(' ').slice(0, 2).join(' ') }} <br />
+                    <div id="benefitValue">{{ recordValue.value }}</div>
+                  </div>
+                </div>
+                <button id="detailsPageRedirectButton"
+                        ng-click="redirectToProductPage(record.productCode,record.insurer)" class="grid-item"
+                        style="border: none; outline: none;">
+                  View All Benefits
+                </button>
+              </div>
+
+            </div>
+          </div>
+          <div id="productCardPriceBar">
+            <div id="premiumDetails">
+              <div id="premium">
+                Sum Assured
+              </div>
+              <p class="sumAssured">
+                &#36;{{record.sumAssured}}
+              </p>
+              <p class="premiumValue">
+                <span id="premiumTitle">Premium</span><br />
+                &#8377;{{record.premiumAmount}}
+              </p>
+            </div>
+            <button id="productCardPriceBarButton"
+                    ng-click="redirectToPaymentPage(record.productCode,record.insurer, record.premiumAmount)">
+              Buy Now
+            </button>
+            <button id="termsAndConditions" ng-click="termAndConditions()">
+              T &amp;C
+            </button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+<!--<div class="productsSelectedContainer">
+   <div id="productsSelected" ng-controller="c">
+        <div class="card" style="padding-right:35px;" ng-repeat="product in c.selectedInsurerCodes">
+            <div class="card-image">
+                <img ng-src="{{product.image}}" alt="{{product.productCode}}">
+                <span class='selected-item'>{{product.productCode }}</span>
+            </div>
+        </div>
+        <button class="compareButton" ng-click="c.compareProducts()"
+            style='margin: 39px 0;padding: 10px;background:#0065ff;'>Compare</button>
+
+    </div>
+-->
+]]></template>
+    </sp_widget>
+</record_update>
