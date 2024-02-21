@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($rootScope,$scope) {
+
+	/* widget controller */
+	var c = this;
+		c.getData=[]
+	$scope.close=function(){
+		$rootScope.$emit('productCheckBox',c.getData);
+		c.getData=[];
+		$('.compareButton').css({
+			'visibility': 'hidden',
+		});
+	}
+c.number=[]
+
+	c.productDetailsdata=[]
+	c.rows=[]
+	c.premiuim=[]
+	var obj={}
+	var productDetails=[];
+	var compareCount = 2;
+	$rootScope.$on('productCompare',function(event,data1){
+		c.getData=data1;
+		productDetails=[]
+		c.getData.forEach(function(product){
+			obj={
+				"prod_id":product.productId,
+				"premium":product.premiumAmount,
+			}
+			productDetails.push(obj);
+		});
+		if(productDetails.length==2){
+			c.compareCount = 2;
+			c.server.get({"value":"true","action":productDetails}).then(function(response){
+				c.productDetailsdata=response.data.productDetailsdata;
+				c.rows=response.data.rows;
+				c.premium=response.data.premium;
+			})
+		}
+		if(productDetails.length==3)
+		{
+			c.compareCount = 3;
+
+			c.server.get({"value":"true","action":productDetails}).then(function(response){
+				c.productDetailsdata=response.data.productDetailsdata;
+				c.rows=response.data.rows;
+				c.premium=response.data.premium;
+			})
+		}
+	});
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter',sans-serif;
+        }
+		.body{
+      width:110%
+			position:absolute;
+			top:0;
+			left:0;
+		}
+        .comparisionPage {
+
+            background: #f4f5f7;
+            width: 110%;
+            //height: 100vh;
+          	
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+			//padding-top:40px;
+			
+        }
+
+        .title {
+            margin: 20px;
+            font-size: 24px;
+            font-weight: 600;
+			      color:#253858;
+        }
+
+        .comparison-table {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ccc;
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 10px;
+            background: #f5f5f5;
+            box-shadow: 0px 0px 10px rgb(172, 172, 172);
+            color: #253858;
+			      padding: 0 10px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 10px;
+        }
+
+		
+        .row:nth-child(even) {
+            background: #dfdfdf;
+        } 
+
+        .key {
+            flex-basis: 30%;
+            font-weight: bold;
+            padding: 5px 0;
+        }
+
+        .product-a,
+        .product-b,.product-c {
+            flex-basis: 35%;
+            padding: 5px 10px;
+        }
+
+        .key,
+        .product-a {
+         //   border-right: 1px solid #d0d0d0;
+        }
+
+        img {
+            height: 100px;
+            width:100px;
+        } 
+
+        .productTitle {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #686868;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            margin-left:15px;
+        }
+
+        .btn {
+          margin:10px;
+            background: #03A678;
+            padding: 10px 40px;
+            border-radius: 10px;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .productLogo {
+            background: #fff;
+            height: 60px;
+            width: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            border: 1px solid #dfe1e6;
+        }
+
+        .tableHeading {
+            font-size: 24px;
+         //   border-right: 1px solid #d0d0d0;
+            font-weight: 600;
+            color: #686868;
+            flex-basis: 30%;
+        }
+
+        .wrong {
+            color: rgb(135, 0, 0);
+            width: 30px;
+            height: 30px;
+        }
+		
+		.breadcrum {
+			position: absolute;
+			font-size: 14px;
+			font-style: normal;
+			font-weight: 400;
+			margin-top: 100px;
+			margin-left: 3%;
+		}
+		
+		.breadcrumbContent{
+			color:black;
+            text-decoration: none;
+		}
+		
+		.breadcrumbContent:hover{
+			color:#253858;
+            text-decoration: none;
+		}
+.product-a, .product-b,.product-c{
+  display:inline-flex;
+}
+.modal{
+  visbility:hidden;
+      outline: none !important;
+
+}
+.compareButton{
+     background-color: #03A678;
+  background: #03A678
+  min-width: 3.5rem;
+  margin: 10px;
+    height: 35px;
+    padding: 9px;
+  text-align: center;
+   color: white;
+  font-size: 1.5rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.5rem;
+  visibility:hidden;
+    padding-left: 30px;
+   padding-right: 30px;
+}
+.selected-item{
+  text-transform:capitalize;
+}
+.card-image img{
+  width:120px;
+  height:120px;
+}
+#productsSelected{
+    padding-left: 10%;
+    margin: 30px;
+  	width: 100%;
+    height: 10rem;
+    padding: -1px 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.selected-item{
+    font-size: 1.5rem;
+    font-weight: 750;
+    color: #03A678;
+}
+
+.comparisionPage{
+      padding-left: 5%;
+    padding-right: 5%;
+}
+
+.product-c{
+ width:220px !important; 
+}
+.btn-primary{
+  border-radius: 0.5rem !important;
+  background-color: #03A678 !important;
+}
+
+
+
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>product_comp_model</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>productComparePopUp</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	data.productDetailsdata=[]
+	data.rows=[]
+	data.premium=[]
+//	data.finalRow=[]
+	//var prd1 = $sp.getParameter('product_id1');
+	//var prd2 = $sp.getParameter('product_id2');
+if(input && input.value=="true") {
+	var benefitsArray=[];
+	
+	var user= gs.getUserID();
+	var prd1="";
+	var prd2="";
+	var prd=[]
+	
+	data.premiuim=[]
+	input.action.forEach(function(prod_details,i){
+		prd.push(prod_details.prod_id);
+		data.premium.push(prod_details.premium);
+	});
+	
+	
+	
+	data.productDetailsdata=[]
+	var jObj={}
+	prd.forEach(function (prod_id){
+		var productDetails =new GlideRecord('x_rptp_insureme_insurance_products');
+	productDetails.addQuery('sys_id', prod_id );
+	productDetails.query();
+	while(productDetails.next()){
+		var currency=""
+		if(productDetails.getValue('currency')=="USD"){
+			currency="$ ";
+		}
+		 jObj={
+			"name":productDetails.getValue("prod_name"),
+			"image":findImage(),
+			"sum":currency+productDetails.getValue('sum')
+		}
+	
+		data.productDetailsdata.push(jObj);
+	}
+	});
+	
+//	gs.addErrorMessage(JSON.stringify(data.productDetailsdata))
+	
+	var arr=[];
+	var obj1={}
+	
+	prd.forEach(function (prod_id){
+		var featuresGr=new GlideRecord('x_rptp_insureme_product_feature');
+		
+		
+   featuresGr.addQuery("u_active",  true);
+		
+		//featuresGr.setLimit(7);
+		featuresGr.orderBy('u_priority_type');
+   featuresGr.query();
+
+		arr=[];
+while(featuresGr.next()){
+	
+	var benefitsGr=new GlideRecord('x_rptp_insureme_insurance_products_benefits');
+benefitsGr.addQuery('u_prod_type', prod_id);
+	
+benefitsGr.query();	
+	
+   var sys_id1=featuresGr.getValue('sys_id');
+	
+   while(benefitsGr.next()){
+		
+      var sys_id=benefitsGr.getValue('u_product_feature');
+    if(sys_id==sys_id1 ){
+	
+//	while(benefitsGr.next()){
+		var currency=""
+		if(benefitsGr.getValue('currency')=="USD"){
+			currency="$ ";
+		}
+		var valueEmpty=benefitsGr.getValue('value');
+		if(valueEmpty=="Not Applicable"){
+			valueEmpty="";
+		}
+		 obj1={
+			"name": benefitsGr.getValue('name'),
+			"value": currency +valueEmpty
+		}
+		
+		arr.push(obj1);
+//	}   
+    }
+		
+		 
+   }
+	
+//	gs.addErrorMessage(JSON.stringify(arr))
+}
+benefitsArray.push(arr);
+	});
+	
+	//gs.addErrorMessage(JSON.stringify(benefitsArray));
+	data.rows=[];
+	var length=0;
+	try{
+	if(benefitsArray.length==2 || benefitsArray.length==3 ){
+		
+		if(benefitsArray[0].length>=benefitsArray[1].length){
+			length=0;
+		}
+		else{
+			length=1;
+		}
+		if(benefitsArray.length==3){
+				if(benefitsArray[length].length>=benefitsArray[2].length){
+					length=length;
+		}
+		else{
+			length=2;
+		}
+		}
+		var countRow=0;
+		//gs.addInfoMessage(JSON.stringify(benefitsArray));
+		for(var arr1=0;arr1<benefitsArray[length].length;arr1++){
+		if(benefitsArray ){
+		
+			var tableData={
+				"features":benefitsArray[length][arr1].name,
+			}
+			for(var i=0;i<prd.length;i++){
+	
+				var prodtNum="product"+(i+1);
+				
+				tableData[prodtNum]=benefitsArray[i][arr1]?benefitsArray[i][arr1].value||"":"";
+			}
+					if(tableData.product1=="" && tableData.product2==""){
+						if((benefitsArray.length==3 && tableData.product3=="")||benefitsArray.length==2){
+							continue;
+						}else{
+							countRow++;
+					data.rows.push(tableData);
+						}
+					}
+					else {
+					countRow++;
+					data.rows.push(tableData);
+					}
+					if(countRow==6){
+						return;
+					}
+		}
+	}
+	}
+//	gs.addErrorMessage(JSON.stringify(data.rows))
+		
+		
+		
+	}
+	catch(e){
+		
+	}
+}
+	function findImage() {
+		var Iname = 'futureinsurance.png';
+		var gr = new GlideRecord("db_image");
+		gr.get(Iname);
+		return gr.getDisplayValue('image');
+	}
+	/*	data.features=[];
+	benefitsArray.forEach(function (items){
+		var str=""
+		items.forEach(function(elements,i){
+			if(elements.value!="Not Applicable"){
+				str=str+elements.name;
+				if(i!=items.length-1){
+				str=str+",";
+				}
+			}
+
+		})
+		gs.addErrorMessage(str)
+		data.features.push(str);
+	})*/
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>akshay</sys_created_by>
+        <sys_created_on>2024-02-09 06:56:32</sys_created_on>
+        <sys_id>05a13db493d8ca10acdc3f484dba102f</sys_id>
+        <sys_mod_count>519</sys_mod_count>
+        <sys_name>productComparePopUp</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_05a13db493d8ca10acdc3f484dba102f</sys_update_name>
+        <sys_updated_by>akshay</sys_updated_by>
+        <sys_updated_on>2024-02-21 13:15:04</sys_updated_on>
+        <template><![CDATA[<div>
+
+  <div class="productsSelectedContainer">
+    <div id="productsSelected" ng-controller="c" style="display: inline-flex;">
+      <div class="card" style="padding:20px;" ng-repeat="product in c.getData">
+        <div class="card-image">
+          <img ng-src="{{product.image}}" alt="{{product.productCode}}">
+          <span class='selected-item'>{{product.productCode }}</span>
+        </div>
+      </div>
+      <button class="compareButton btn btn-primary" style='padding: 7px;' data-toggle="modal"
+              data-target="#myPopupToGetInputData">Compare</button>
+
+    </div>
+  </div>
+
+
+  <!--<button type="button" class="btn btn-primary" ng-click="c.showModalPopup()"  data-toggle="modal" 
+                  data-target="#myPopupToGetInputData" style="margin-top:50px;">Compare</button> -->
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+       aria-hidden="true" id="myPopupToGetInputData" style="margin-left:250px; margin-top:20px;">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="body">
+          <div class="comparisionPage">
+            <div class="title">Comparison Summary</div>
+            <div class="comparison-table">
+              <div class="row">
+                <div class="tableHeading productTitle" style="text-align:left;">Features</div>
+                <div class="product-a">
+                  <div class="productLogo"><img src="{{c.productDetailsdata[0].image}}"
+                                                alt="{{c.productDetailsdata[0].name}}"></div>
+                  <div class="productTitle">{{c.productDetailsdata[0].name}}</div>
+                </div>
+                <div class="product-b">
+                  <div class="productLogo"><img src="{{c.productDetailsdata[1].image}}"
+                                                alt="{{c.productDetailsdata[1].name}}"></div>
+                  <div class="productTitle">{{c.productDetailsdata[1].name}} </div>
+                </div>
+                <div class="product-c" ng-if ="c.compareCount=='3'" >
+                  <div class="productLogo"><img src="{{c.productDetailsdata[2].image}}"
+                                                alt="{{c.productDetailsdata[2].name}}"></div>
+                  <div class="productTitle">{{c.productDetailsdata[2].name}}</div>
+                </div>
+              </div>
+              <div class="row"  style="color:green">
+                <div class="key">Premium Amount</div>
+                <div class="product-a">&#8377&nbsp;{{c.premium[0]}}</div>
+                <div class="product-b">&#8377&nbsp;{{c.premium[1]}}</div>
+                <div class="product-c" ng-if ="c.compareCount=='3'">&#8377&nbsp;{{c.premium[2]}}</div>
+              </div>
+              <div class="row">
+                <div class="key">Sum Insured</div>
+                <div class="product-a">{{c.productDetailsdata[0].sum}}</div>
+                <div class="product-b">{{c.productDetailsdata[1].sum}}</div>
+                <div class="product-c" ng-if ="c.compareCount=='3'">{{c.productDetailsdata[2].sum}}</div>
+              </div>
+
+              <div class="row" ng-repeat="row in c.rows">
+  <div class="key">{{row.features}}</div>
+  <div class="product-a">{{row.product1 ||"&#10060"}}</div>
+  <div class="product-b">{{row.product2 ||"&#10060"}}</div>
+  <div class="product-c" ng-if="c.compareCount=='3'">{{row.product3 ||"&#10060"}}</div>
+
+</div>
+              
+              <!--
+                  <div class="row">
+                      <div class="key">Policy Duration</div>
+                      <div class="product-a">11 months</div>
+                      <div class="product-b">60 months</div>
+                  </div>-->
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" style="background-color: #03A678" ng-click="close()" data-dismiss="modal" >OK</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>
