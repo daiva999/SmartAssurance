@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_grid_canvas_pane">
+    <sys_grid_canvas_pane action="INSERT_OR_UPDATE">
+        <grid_canvas display_value="PA VFS Dashboard - New Tab">7abb858c93ecce50acdc3f484dba1006</grid_canvas>
+        <height>18</height>
+        <portal_widget display_value="Created 2024-02-21 21:05:34">88351c0993a08690acdc3f484dba107a</portal_widget>
+        <posx>0</posx>
+        <posy>18</posy>
+        <sys_class_name>sys_grid_canvas_pane</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-02-22 05:05:35</sys_created_on>
+        <sys_id>44351c0993a08690acdc3f484dba107c</sys_id>
+        <sys_mod_count>29</sys_mod_count>
+        <sys_name>7abb858c93ecce50acdc3f484dba1006</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_grid_canvas_pane_44351c0993a08690acdc3f484dba107c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-02-22 05:15:32</sys_updated_on>
+        <width>6</width>
+    </sys_grid_canvas_pane>
+</record_update>
