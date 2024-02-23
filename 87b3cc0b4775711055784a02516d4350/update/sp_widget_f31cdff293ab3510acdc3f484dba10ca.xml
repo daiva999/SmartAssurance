@@ -12,6 +12,10 @@
 		location.href = "/ap?id="+"addbenefits";
 	}
 
+	$scope.addFeatures=function(){
+		location.href = "/ap?id="+"product_feature";
+	}
+
 	function toggleCheckbox() {
 		var checkbox = document.getElementById("myCheckbox");
 		var slider = document.querySelector(".slider");
@@ -245,6 +249,12 @@
   display: inline-block;
   transition: opacity 0.3s ease-out;
 }
+.headDivButtons{
+	width : 350px;
+  display:flex;
+  justify-content:space-between;
+  
+}
 
 .goBack::before {
   content: 'Go back';
@@ -393,14 +403,19 @@ input:checked + .slider:before {
         <script><![CDATA[(function () {
 	// Storing all the objects in this array
 	data.arr = [];
+	data.prdRecord = false;
 
 	data.table = $sp.getValue("table");
+	//gs.addInfoMessage(data.table);
 	data.field_list = $sp.getValue('field_list');
-	//data.fieldListArray = data.field_list.split(',');
-	//data.headerListArray = data.field_list.split('_').join(" ").split(",");
-	data.fieldListArray = ["prod_name","insurer_name", "prod_desc"];
-	data.headerListArray = ["Product Name", "Insurer Code", "Product Description"];
-
+	data.fieldListArray = data.field_list.split(',');
+	data.headerListArray = data.field_list.split('_').join(" ").split(",");
+	if(data.table =="x_rptp_insureme_insurance_products"){
+		data.prdRecord = true;
+		data.fieldListArray = ["prod_name","insurer_name", "prod_desc"];
+		data.headerListArray = ["Product Name", "Insurer Code", "Product Description"];
+	}
+	
 	//Delete multiple
 	if(input && input.action=="Delete"){
 		//	data.action = '';
@@ -467,14 +482,14 @@ input:checked + .slider:before {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-01-09 13:01:19</sys_created_on>
         <sys_id>f31cdff293ab3510acdc3f484dba10ca</sys_id>
-        <sys_mod_count>136</sys_mod_count>
+        <sys_mod_count>168</sys_mod_count>
         <sys_name>Reusable Table</sys_name>
         <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sp_widget_f31cdff293ab3510acdc3f484dba10ca</sys_update_name>
-        <sys_updated_by>balakrishna</sys_updated_by>
-        <sys_updated_on>2024-02-20 16:48:29</sys_updated_on>
+        <sys_updated_by>sinchana.shridhar</sys_updated_by>
+        <sys_updated_on>2024-02-23 05:54:17</sys_updated_on>
         <template><![CDATA[<div>
   <div class="headDiv">
     <div admin-back-button></div>
@@ -482,9 +497,15 @@ input:checked + .slider:before {
   </div>
   <br/>
 
+
   <div class="headDiv">
-    <div class="btn btn-primary" ng-click="redirection()">{{options.lable}}</div>
-		 <div class="btn btn-primary" ng-click="addBenefits()" style="margin-right:780px">Add Benefits</div>
+    <div class="headDivButtons">
+       <div class="btn btn-primary" ng-click="redirection()">{{options.lable}}</div>
+      <div ng-if="data.prdRecord">
+		 	<div id="benefits" class="btn btn-primary" ng-click="addBenefits()" >Add Benefits</div>
+    	<div id="features" class="btn btn-primary" ng-click="addFeatures()">View/Add Features</div>
+      </div>
+    </div>
     
     <div class="dropdown" >
         <label>Show: </label>
