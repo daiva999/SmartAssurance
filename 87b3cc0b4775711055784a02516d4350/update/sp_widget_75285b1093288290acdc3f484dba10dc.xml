@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($scope) {
+  /* widget controller */
+  var c = this;
+	//
+$scope.showFuture=false;
+	
+	$scope.toggleFContainer=function(){
+		$scope.showFuture=!$scope.showFuture;
+	}
+	
+	$scope.saveFeature=function(){
+		var feature=$scope.feature;
+		c.server.get({feature:feature,method:"insertfeature"}).then(function(res){
+			if(res.sys_id){
+				alert('Successfully Inserted');
+			}
+		})
+		$scope.showFuture=false;
+		$scope.feature='';
+	}
+	//
+	$scope.benefits=c.data.benefits;
+	$scope.modifyactive=function(name){
+		modify={
+			name: name,
+			method: "modifystate"
+		}
+		
+		c.server.get(modify).then(function(res){
+			
+		})
+		
+	}
+	
+	$scope.redirectToPrd=function(){
+		location.href='ap?id=product';
+	}
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.featureDisplay{
+  width : fit-content;
+}
+
+.featureDisplay .toggle-wrapper:nth-child(even) {
+  background-color: #dddddd; /* semi-black color for even rows */
+}
+
+.featureDisplay .toggle-wrapper:nth-child(odd) {
+  background-color: #d1d1d1; /* black color for odd rows */
+}
+
+.Fheader{
+  background-color: #04aa6d;
+  color:white;
+  font-weight:600;
+  height: 50px;
+  font-size:16px;
+  position: sticky; 
+  top: 0;
+  z-index:1;
+}
+.Ftitle{
+  width: 300px;
+  margin-left: 20px;
+
+}
+
+.buttonSection{
+  display:flex;
+  gap:20px;
+  margin-left:7rem;
+  width:fit-content;
+  margin-bottom:1rem;
+  margin-top:1rem;
+}
+
+
+.toggle-wrapper td{
+  
+  width: 500px;
+}
+
+/* Container for each toggle */
+.toggle-wrapper {
+  display: flex;
+  width: 1000px;
+  justify-content:space-between;
+  align-items: center;
+  height:50px;
+}
+
+/* Title of the record */
+.title {
+  width: 300px;
+  font-weight: bold;
+  margin-left: 20px;
+
+}
+
+/* Status of the record */
+.status {
+  width:300px;
+  color: #888; 
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.viewContainer{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+/* Container for the toggle switch */
+.toggle-container {
+  width:300px;
+  flex-shrink: 0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* Styling for the toggle switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+.switch.active + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+.switch.active .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+.switch.inactive .slider:before {
+  -webkit-transform: translateX(0px);
+  -ms-transform: translateX(0px);
+  transform: translateX(0px);
+}
+
+
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Styling for active toggle */
+.switch.active .slider {
+  background-color: #4CAF50; /* Example styling for active */
+}
+
+.switch.inactive .slider {
+  background-color: #aebdb2; /* Example styling for active */
+}
+
+/* Styling for inactive toggle */
+.switch.inactive .slider:before {
+  background-color: white; 
+
+}
+
+//
+
+.productFeatureContainer{
+	margin-left: 7rem;
+}
+.Bactive{
+  appearance: button;
+  backface-visibility: hidden;
+  background-color: #405cf5;
+  border-radius: 6px;
+  border-width: 0;
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
+  font-size: 16px;
+  height: 4rem;
+  line-height: 1.15;
+  //margin: .8rem 0rem 0.5rem;
+  outline: none;
+  overflow: hidden;
+  //padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transform: translateZ(0);
+  transition: all .2s,box-shadow .08s ease-in;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.backBtn{
+	width: 8rem;
+  height:4rem;
+  font-size: 16px;
+  background:#3071a9;
+}
+.Binactive{
+  width: 120px;
+  appearance: button;
+  backface-visibility: hidden;
+  background-color: red;
+  border-radius: 6px;
+  border-width: 0;
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
+  font-size: 16px;
+  height: 4rem;
+  line-height: 1.15;
+  //margin: .8rem 0rem 0.5rem;
+  outline: none;
+  overflow: hidden;
+  //padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transform: translateZ(0);
+  transition: all .2s,box-shadow .08s ease-in;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.featureSubmit{
+  width: 130px;
+  appearance: button;
+  backface-visibility: hidden;
+  background-color: #3071a9;
+  border-radius: 6px;
+  border-width: 0;
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
+  font-size: 16px;
+  height: 44px;
+  line-height: 1.15;
+  margin: 8px 0 0;
+  outline: none;
+  overflow: hidden;
+  //padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transform: translateZ(0);
+  transition: all .2s,box-shadow .08s ease-in;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  
+
+}
+
+
+.featureInput{
+  width: 450px;
+  height:44px;
+  padding-left: 20px;
+}
+
+.featureInput:focus{
+	outline:none;
+  border:none;
+}
+
+.FeatureInput label{
+	font-size: 20px;
+  
+}
+
+
+
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>This is to Configure Benefits</description>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>product_features</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>Product Features</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	
+	
+	var benefit=new GlideRecord('x_rptp_insureme_product_feature');
+	benefit.query();
+	var benefitArray=[];
+	while(benefit.next()){
+		benefitArray.push({
+			name: benefit.getValue('u_name'),
+			active : benefit.getValue('u_active')
+	})
+	
+	}
+	
+	if(input && input.method=="modifystate"){
+		//gs.addInfoMessage(input.name)
+			benefit=new GlideRecord('x_rptp_insureme_product_feature');
+			benefit.addQuery('u_name',input.name);
+			benefit.query();
+			if(benefit.next()){
+				//gs.addInfoMessage(benefit.u_active);
+				benefit.u_active=!benefit.u_active;
+				//gs.addInfoMessage(benefit.u_active);
+				benefit.update();
+				//gs.addInfoMessage(benefit.getValue('u_active'));
+			}
+	}
+	
+	if(input && input.method=="insertfeature"){
+		var fTable=new GlideRecord('x_rptp_insureme_product_feature');
+		fTable.query();
+		if(fTable.next()){
+			fTable.initialize();
+			fTable.u_name=input.feature;
+			fTable.active=true;
+			fTable.insert();
+			//gs.addInfoMessage(fTable.sys_id);
+		}
+	}
+	
+	
+	
+	
+	data.benefits=benefitArray;
+	
+	//gs.addInfoMessage(JSON.stringify(data.benefits))
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>kumar.raja</sys_created_by>
+        <sys_created_on>2024-02-20 11:22:39</sys_created_on>
+        <sys_id>75285b1093288290acdc3f484dba10dc</sys_id>
+        <sys_mod_count>209</sys_mod_count>
+        <sys_name>Product Features</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_75285b1093288290acdc3f484dba10dc</sys_update_name>
+        <sys_updated_by>sinchana.shridhar</sys_updated_by>
+        <sys_updated_on>2024-02-23 07:21:56</sys_updated_on>
+        <template><![CDATA[<div class="productFeatureContainer" ng-show='showFuture'>
+    <div class="FeatureInput">
+        <label htmlFor='feature'>Name of the Feature</label>
+        <br>  
+        <input id="name" type="text" name='feature' ng-model="feature" placeholder="Enter Name of Feature" class='featureInput'/>
+        <button ng-click='saveFeature()' class='featureSubmit' id="submit_button">
+            Submit
+        </button>
+    </div>
+</div>
+<div class='buttonSection'>
+  <button ng-click='redirectToPrd()' class='btn btn-primary backBtn' id='backbtn'>
+    Back
+  </button>
+  <button class='btn btn-primary' style="background-color:#3071a9 !important;" ng-class="{ 'Bactive': showFuture == false, 'Binactive': showFuture == true }"
+    ng-click="toggleFContainer()">{{showFuture == false ? 'Add Feature' : 'Discard'}}</button>
+</div>
+<div class='viewContainer'>
+  	<div class="toggle-wrapper Fheader">
+            <div class="Ftitle">Name of the Feature</div>
+            <div class="Fstatus">State</div>
+            <div class="toggle-container Ftoggle">
+                Active
+            </div>
+        </div>
+    <div class='featureDisplay'>
+        <div ng-repeat="record in benefits" class="toggle-wrapper">
+            <div class="title">{{record.name}}</div>
+            <div class="status">{{record.active == 1 ? 'Active' : 'Inactive'}}</div>
+            <div class="toggle-container">
+                <label class="switch" ng-class="{ 'active': record.active == 1, 'inactive': record.active == 0 }">
+                    <input type="checkbox" ng-click="modifyactive(record.name)" ng-model="record.active">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>
