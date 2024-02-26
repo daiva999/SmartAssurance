@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope, $window) {
+	/* widget controller */
+	var c = this;	
+	c.sum=0;
+	$scope.travelFrom = "India";
+c.element = [];
+c.prices = [];
+
+	c.user = $scope.data.user;
+
+	var obj = sessionStorage.getItem(c.user);
+	var job = JSON.parse(obj);
+	var Key = c.data.userId;
+	var session = sessionStorage.getItem(Key);
+	$scope.pay = JSON.parse(session);
+	if (job) {
+		$scope.firstName = job.firstName;
+		$scope.lastName = job.lastName;
+		$scope.dob = job.dob.substring(0, 10);
+		$scope.Contact = job.Contact;
+		$scope.Passport = job.Passport.substring(0, 10);
+		$scope.Passports = job.Passports;
+		$scope.Email = job.email;
+	}
+	var a = {
+		"first": job.firstName,
+		"last" : job.lastName,
+	}
+	var name = "aj";
+	sessionStorage.setItem(name , JSON.stringify((a)));
+	var sessionKey = 'abc';
+	var sessionDetails = sessionStorage.getItem(sessionKey);
+	var jobj = JSON.parse(sessionDetails);
+
+	if (jobj) {
+		$scope.visaCentre = jobj.visaCentre;
+		$scope.appointmentCategory = jobj.appointmentCategory;
+		$scope.subCategory = jobj.subCategory;
+	}
+	//var ab = document.getElementById('terms');
+	//var ab1 = document.getElementById('terms1');
+
+
+
+
+	if ($scope.pay) {
+		$scope.amount = $scope.pay.amount;
+		$scope.travelRegion = $scope.pay.userdetails.travelRegion;
+		$scope.prodCode = $scope.pay.prodName;
+		$scope.insurer = $scope.pay.insurerName;
+		$scope.persons = $scope.pay.userdetails.numberOfPersons;
+	}
+//	var key = "Services";
+$scope.Services = sessionStorage.getItem("Services");
+$scope.services = JSON.parse($scope.Services); // Parse the string back to an object
+$scope.services.forEach(function(ele){
+
+for (var key in ele) {
+   
+    c.sum += ele[key];
+    
+    
+    var elements = key.split('_').join(' ');
+    
+    // Push modified key and corresponding price to arrays
+    c.element.push(elements);
+    c.prices.push(ele[key]);
+}
+
+
+											
+	
+});
+	
+// Access the "Premium_Lounges" property
+	var arr=[];
+	
+/*$scope.key1=	$scope.services[0];
+	for (var i = 0; i < $scope.services.length; i++) {
+    alert($scope.services[i]);
+}*/
+	
+$scope.getKeys = function(obj) {
+	console.log(Object.keys(obj));
+	return Object.keys(obj).filter(function(k) {
+		return k !== "$$hashKey";
+	});
+	
+}
+	if($scope.pay ){
+		$scope.sum1=c.sum+$scope.amount + 1000;
+	}
+	else{
+			$scope.sum1 = c.sum+ 1000;
+	}
+ 
+	
+	
+	var session1 = JSON.parse(sessionStorage.getItem('appointmentTime'));
+	if(session1){
+		$scope.date = session1.date;
+		$scope.time = session1.time;
+		
+	}
+	
+
+	
+
+
+	//alert(array);
+	$scope.Updates = function() {   
+		var ob = {
+			"firstName": job.firstName,
+			"lastName" : job.lastName,
+			"dob": job.dob.substring(0, 10),
+			"Contact": job.Contact,
+			"Passport": job.Passport.substring(0, 10),
+			"Passports":  job.Passports,
+			"Email" : job.email,
+			"PremiumAmount":$scope.pay.premiumAmount
+		};
+
+		var ab = {
+			"visaCentre" : jobj.visaCentre,
+			"appointmentCategory" : jobj.appointmentCategory,
+			"subCategory" : jobj.subCategory,
+			"time": session1.date,
+			"date": session1.time
+			
+		};
+		$scope.server.get({"action": "storingData1", "data": ob , "data1" :ab}).then(function(response) {
+		});
+
+
+
+
+
+
+
+
+		/*	$window.sessionStorage.clear(c.user);
+			$window.sessionStorage.clear("abc");
+			$window.sessionStorage.clear(Key);
+			*/
+
+
+
+	};
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>body {
+  font-family: Arial, sans-serif;
+   border: 1px solid #ccc;
+  border-radius: 5px;
+}
+ 
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+   padding: 20px;
+  border: 5px solid #ccc;
+  border-radius: 5px;
+}
+ 
+.section {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 3px solid #ccc;
+  border-radius: 5px;
+}
+ 
+h2 {
+  margin-bottom: 10px;
+ 
+}
+ 
+.info1{
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 10px;
+ 
+  
+}
+ 
+ 
+.info1 div {
+  font-weight: bold;
+ 
+}
+ 
+.submit-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #1bae16;
+  border-radius : 10px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+ 
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+ 
+.btn.btn-danger {
+  margin-left: 140px;
+}
+.section {
+  border: 1px solid #ddd; 
+  padding: 20px;
+}
+.table {
+  display: flex;
+  flex-direction: column;
+   padding:0px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+
+  padding:20px;
+}
+
+.row.heading {
+  font-weight: bold;
+   padding:20px;
+  padding: 0px;
+}
+
+.row &gt; div {
+  flex: 1;
+  width:100%;
+  text-align: center;
+  padding: 5px;
+  border: none; 
+}
+ .line {
+      display: inline-flex;
+      justify-content: space-between;
+      align-items: center;
+    background-color: #d3d3d3;
+      color: black; 
+      padding: 10px;
+   width:100%;
+    }
+
+    .line div {
+      flex: 1;
+      text-align: center;
+    }
+
+    .line .inr {
+      text-align: right;
+    }
+
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>review</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>review</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+	data.user = gs.getUserName();
+
+	data.userId = gs.getUserID();
+
+
+	if(input && input.action =="storingData1"){
+		//	gs.addErrorMessage(input.data.firstName);
+		var gr = new GlideRecord('x_rptp_insureme_appointment_details');
+		gr.query();
+		if (gr) {
+			gr.applicant_name= input.data.firstName+ ''+input.data.lastName;
+			gr.d_o_b= input.data.dob;
+			gr.passport_exp_date= input.data.Passport;
+			gr.passport_no = input.data.Passports;
+			gr.contact= input.data.Contact;
+			gr.email = input.data.Email;
+			gr.choose_your_visa_application_centre = input.data1.visaCentre;
+			gr.choose_your_appointment_category = input.data1.appointmentCategory;
+			gr.choose_your_sub_category = input.data1.subCategory;
+			gr.u_premium_amount = input.data.PremiumAmount;
+			gr.primary_email = input.data.Email;
+			gr.primary_user = input.data.firstName+ ''+input.data.lastName;
+			gr.date =new GlideDate();
+
+			gr.insert();
+
+		}
+	}
+
+
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>Surya.Prathap</sys_created_by>
+        <sys_created_on>2024-02-08 10:53:04</sys_created_on>
+        <sys_id>357e91e4939c4a10acdc3f484dba1074</sys_id>
+        <sys_mod_count>801</sys_mod_count>
+        <sys_name>review</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_357e91e4939c4a10acdc3f484dba1074</sys_update_name>
+        <sys_updated_by>Surya.Prathap</sys_updated_by>
+        <sys_updated_on>2024-02-26 11:02:20</sys_updated_on>
+        <template><![CDATA[<div>
+  <div class="form-container">
+    <section class="section">
+      <h1>Applicant details</h1>
+      <div class="info">
+        <div>Country of residence</div>
+        <div>
+          <h4>
+            {{travelFrom}}
+
+          </h4>
+        </div>
+        <hr>
+        <div>Travelling to</div>
+        <div>
+          <h4>Germany</h4>
+        </div>
+        <hr>
+        <div>Visa Application Centre</div>
+        <div>
+          <h4>{{visaCentre}}</h4>
+        </div>
+        <hr>
+        <div>Appointment Category</div>
+        <div>
+          <h4>{{appointmentCategory}}</h4>
+        </div>
+        <hr>
+
+        <div>Appointment Sub Category </div>
+        <div>
+          <h4>{{subCategory}}</h4>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="section">
+      
+      <h1>Your details</h1>
+      <div class="info1">
+        <div>Applicant</div>
+        <div style="margin-left: 50px;"> {{firstName}} {{lastName}}
+        </div>
+        <div>Date Of Birth</div>
+        <div style="margin-left: 50px;">{{dob}}</div>
+        <div>Passport Number</div>
+        <div style="margin-left: 50px;">{{Passports}}</div>
+        <div>Passport Expiry Date</div>
+        <div style="margin-left: 50px;">{{Passport}}</div>
+        <div>Contact Phone</div>
+        <div style="margin-left: 50px;">{{Contact}}</div>
+        <div>Email</div>
+        <div style="margin-left: 50px;">{{Email}}</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h1>Appointment details</h1>
+      <div class="info">
+        <div>
+          <h4>Appointment type</h4>
+        </div>
+        <div>
+          <h4>
+            Standard
+          </h4>
+        </div>
+        <hr>
+        <div>Date</div>
+        <div>
+          <h4>
+           {{date}}
+          </h4>
+        </div>
+        <hr>
+        <div>Time</div>
+        <div>
+          <h4>
+            {{time}}</h4>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+    <h2>Services</h2>
+    <div class="table">
+        <div class="row heading" ng-repeat="item in c.element">
+            <div>
+                <h4>{{ item }}</h4>
+            </div>
+            <div>
+                <h4>1 unit</h4>
+            </div>
+            <div>
+                <h4>INR. {{ c.prices[$index] }}/-</h4>
+            </div>
+        </div>
+    
+    </div>
+
+    <div class="line">
+        <div style="text-align: left;">Sub-Total</div>
+        <div class="inr">
+            <h4>INR {{ c.sum }}/-</h4>
+        </div>
+    </div>
+</section>
+
+    <section class="section">
+      <div style="display: flex; align-items: center;">
+        <h2 style="margin-right: 50px;">Fees</h2>
+        <span style="text-align: right; margin-left:60%;"><h4>INR 1000/-</h4></span>
+      </div>
+      <div class="line">
+        <div style="text-align: left;">Sub-Total</div>
+
+
+        <div class="inr"><h4>
+          INR 1000/-
+          </h4></div>
+      </div>
+    </section>
+    <section class="section">
+      <h2>Insurance Fees <a href="https://ven06798.service-now.com/vfsp?id=vfs_get_page"><button type="button"
+            class="btn btn-danger">Purchase An Insurance</button></a></h2>
+      <hr>
+
+     <div class="table" ng-hide="!amount">
+  <table>
+    <tr>
+      <td>Insurer</td>
+      <td>Product Code</td>
+       <td>No. of Persons</td>
+      <td>Amount</td>
+      
+    </tr>
+    <tr>
+      <td>
+        <h4>{{insurer}}</h4>
+      </td>
+      
+      <td>
+        <h4>{{prodCode}}</h4>
+      </td>
+      <td>
+        <h4>{{persons}}</h4>
+      </td>
+      <td>
+        <h4>{{amount}}</h4>
+      </td>
+    </tr>
+    
+  </table>
+</div>
+
+      <div class="line" ng-hide= "!amount">
+        <div style="text-align: left;">Sub-Total</div>
+        <div></div>
+        <div class="inr"><h4>
+          INR {{amount? + amount +"/-" : ""}}
+          </h4></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Total</h2>
+      <div class="line">
+        <div style="text-align: left;">Sub-Total</div>
+        <div></div>
+        <div class="inr"><h4>
+          INR {{sum1}}/-
+          </h4></div>
+      </div>
+    </section>
+    <section name="myform" class="section">
+      <h2>Acceptance<span style="color :red">*</span></h2>
+      <div class="info">
+        <input type="checkbox" id="terms" name="terms" height=20px widht=20px ng-model="terms_conditions" requiredx>
+        <label for="terms">I accept the <a href="javascript:void(0)">Terms and Conditions</a></label><br>
+        <input type="checkbox" id="terms1" name="terms1" height=20px widht=20px ng-model="aggred_terms_conditions"
+          required /> <label for="communication" style="display:inline">Yes, I agree to receive future communication on
+          optional value added services offered by VFS Global</label>
+
+      </div>
+    </section>
+    <a href="https://ven06798.service-now.com/vfsp?id=login_page2">
+      <button ng-if="terms_conditions && aggred_terms_conditions" ng-click="Updates()"
+        class="submit-button">Submit</button>
+    </a>
+  </div>]]></template>
+    </sp_widget>
+</record_update>
