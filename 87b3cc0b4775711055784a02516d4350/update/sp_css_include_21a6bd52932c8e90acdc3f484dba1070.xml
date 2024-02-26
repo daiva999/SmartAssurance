@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_css_include">
+    <sp_css_include action="INSERT_OR_UPDATE">
+        <lazy_load>false</lazy_load>
+        <name>date picker css</name>
+        <rtl_css_file_url/>
+        <source>url</source>
+        <sp_css/>
+        <sys_class_name>sp_css_include</sys_class_name>
+        <sys_created_by>Surya.Prathap</sys_created_by>
+        <sys_created_on>2024-02-26 09:24:01</sys_created_on>
+        <sys_id>21a6bd52932c8e90acdc3f484dba1070</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>date picker css</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_css_include_21a6bd52932c8e90acdc3f484dba1070</sys_update_name>
+        <sys_updated_by>Surya.Prathap</sys_updated_by>
+        <sys_updated_on>2024-02-26 09:28:12</sys_updated_on>
+        <url>https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css</url>
+    </sp_css_include>
+</record_update>
