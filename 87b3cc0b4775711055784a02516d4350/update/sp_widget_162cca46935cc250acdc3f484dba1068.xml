@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope,$window, $uibModal) {
+	var c = this;
+
+	// set of questions
+	c.questions = [
+		{ text: 'Have you and/or any of your immediate family members travelled outside India in the last 45 days or do you plan to travel outside India during the next 6 months?', response: null },
+		{ text: 'Have you and/or any of your immediate family member tested positive for COVID-19 or are awaiting results of such a test or been advised to be under quarantine due to COVID-19?', response: null },
+		{ text: 'Have you and/or any of your immediate family members currently suffering from or in the last 2 months, have suffered from fever, persistent cough, sore throat, breathing difficulties, gastro-intestinal symptoms(vomiting/diarrhea)?', response: null }
+	];
+
+	// Function to open the modal dialog when the button is clicked
+	c.openModal = function() {
+		// Open the modal using the $uibModal service
+		c.modalInstance = $uibModal.open({
+			templateUrl: 'modalTemplate',  // Template for the modal content
+			scope: $scope  // Use the same scope as the controller
+		});
+	};
+
+	// submits answers to the server
+	c.submitAnswers = function() {
+		var responses = []; // this array holds user responses
+		var index = 0;
+		var allQuestionsAnswered = true; 
+
+		// Loop through each question and collect the user's response
+		c.questions.forEach(function(question) {
+			var response = {
+				question: question.text,  //Question
+				answer: question.response,  // User's response to the question
+				index: index  // Index of question
+			};
+			if (!question.response) {
+				allQuestionsAnswered = false; // Set the flag to false if any question is not answered
+			}
+
+			// $window.location.href = '';
+
+			// Push the response object to the responses array
+			responses.push(response);
+			index++;
+		});
+		
+if (!allQuestionsAnswered) {
+			alert('Please answer all questions.');
+			return;
+		}
+
+		// Object that sends data to the server
+		var details = {
+			"method": 'questionAsked',  // Method or action being requested on the server
+			"answerGiven": responses  // Include the user's answers ("answerGiven") as responses
+		};
+
+		// Send the data to the server via an HTTP GET request
+		c.server.get({"method": "questionAsked", "answerGiven": responses});
+
+		alert('Thank You');
+
+	};
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>button{
+  background: none;
+  border:none;
+}
+
+img{
+  border-radius:10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height:200px;
+  width:250px;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>insurance__questionnaire</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Insurance  Questionnaire</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+
+	if (input && input.method == "questionAsked") {
+		// Checks if there is input data and if the method is "questionAsked".
+
+		var details = input.answerGiven;
+		// Retrieves the answer data from the input.
+
+		var fields = ['field1', 'field2', 'field3'];
+		// Defines an array of field names.
+
+		var gr = new GlideRecord('x_rptp_insureme_insurance_questionnaire');
+
+		gr.initialize();
+		// GlideRecord object fwill be creating new records.
+
+		details.forEach(function(detail) {
+			// Iterates over each detail in the answer data.
+
+			var index = detail.index;
+			// Retrieves the index of the detail.
+
+			var field = fields[index];
+			// Retrieves the field name corresponding to the index from the fields array.
+
+			var ans = detail.answer;
+			// Retrieves the answer from the detail.
+
+			var userAns = false;
+			// Initializes a variable to store the processed answer.
+
+			if (ans === "Yes") {
+				// Checks if the answer is "Yes".
+				userAns = true;
+				// Sets eAns to true if the answer is "Yes".
+			}
+
+			gr[field] = userAns;
+			// Sets the field value in the GlideRecord object based on the processed answer.
+		});
+
+		gr.insert();
+		// Inserts the new record into the table.
+	}
+
+	// Optionally, you can return the sys_id of the newly created record
+	// data.sys_id = newRecordSysId;
+
+
+
+//'Populated fields array: ' + JSON.stringify(data.fields));
+})();
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>harshitha</sys_created_by>
+        <sys_created_on>2024-02-13 06:03:35</sys_created_on>
+        <sys_id>162cca46935cc250acdc3f484dba1068</sys_id>
+        <sys_mod_count>185</sys_mod_count>
+        <sys_name>Insurance  Questionnaire</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_162cca46935cc250acdc3f484dba1068</sys_update_name>
+        <sys_updated_by>harshitha</sys_updated_by>
+        <sys_updated_on>2024-02-26 09:20:37</sys_updated_on>
+        <template><![CDATA[<div>
+  
+  {{data.fields}}
+  <div class="panel-body">
+    <div class="form-group">
+      <!--   <button class="btn btn-primary btn-block" ng-click="c.openModal()">Answer Questions</button> -->
+      <button ng-click="c.openModal()">
+
+        <!-- Image 1 -->
+        <img src="https://karanji.com/wp-content/uploads/2021/08/Basics_of_Insurancel2-min.jpg" alt="Image 1" ng-click="c.openModal()">
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/ng-template" id="modalTemplate">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">Take a moment to answer these questions.</h4>
+  </div>
+    <div class="panel-body wrapper-xl">
+        <div ng-repeat="question in c.questions">
+            <p>{{ question.text }}</p>
+            <label><input type="radio" ng-model="question.response" ng-value="'Yes'" required> Yes</label>
+            <label><input type="radio" ng-model="question.response" ng-value="'No'" required> No</label>
+  </div>
+        <button class="btn btn-primary" ng-click="c.submitAnswers()">Check Plans</button>
+  </div>
+  </div>
+
+
+</script>
+<!-- End popup modal -->]]></template>
+    </sp_widget>
+</record_update>
