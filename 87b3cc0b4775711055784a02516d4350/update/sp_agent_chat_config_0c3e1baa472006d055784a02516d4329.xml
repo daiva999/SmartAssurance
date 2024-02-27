@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_agent_chat_config">
+    <sp_agent_chat_config action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <name>HidePreviousChat</name>
+        <order>10</order>
+        <portal>aa2ea35847bf791055784a02516d437f,81b75d3147032100ba13a5554ee4902b</portal>
+        <public>true</public>
+        <roles/>
+        <server_script><![CDATA[(function($sp) {
+	return {
+		live_agent_queue: $sp.getDisplayValue('sp_chat_queue'),
+		skip_load_history:true
+		};
+})($sp);]]></server_script>
+        <sys_class_name>sp_agent_chat_config</sys_class_name>
+        <sys_created_by>kumar.raja</sys_created_by>
+        <sys_created_on>2024-02-27 11:35:48</sys_created_on>
+        <sys_id>0c3e1baa472006d055784a02516d4329</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>HidePreviousChat</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_agent_chat_config_0c3e1baa472006d055784a02516d4329</sys_update_name>
+        <sys_updated_by>kumar.raja</sys_updated_by>
+        <sys_updated_on>2024-02-27 11:35:48</sys_updated_on>
+    </sp_agent_chat_config>
+    <sys_translated_text action="delete_multiple" query="documentkey=0c3e1baa472006d055784a02516d4329"/>
+</record_update>
