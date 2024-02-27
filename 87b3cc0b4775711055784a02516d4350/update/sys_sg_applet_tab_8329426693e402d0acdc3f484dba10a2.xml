@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_applet_tab">
+    <sys_sg_applet_tab action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <icon display_value="New icon">fe29426693e402d0acdc3f484dba109e</icon>
+        <label>Get Page</label>
+        <screen display_value="Get page">36f88e2693e402d0acdc3f484dba1090</screen>
+        <sys_class_name>sys_sg_applet_tab</sys_class_name>
+        <sys_created_by>chiranjit.behera</sys_created_by>
+        <sys_created_on>2024-02-27 05:23:11</sys_created_on>
+        <sys_id>8329426693e402d0acdc3f484dba10a2</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Get Page</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_sg_applet_tab_8329426693e402d0acdc3f484dba10a2</sys_update_name>
+        <sys_updated_by>chiranjit.behera</sys_updated_by>
+        <sys_updated_on>2024-02-27 05:33:02</sys_updated_on>
+    </sys_sg_applet_tab>
+</record_update>
