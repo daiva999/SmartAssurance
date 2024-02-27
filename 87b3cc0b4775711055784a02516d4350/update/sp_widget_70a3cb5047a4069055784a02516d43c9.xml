@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope, $element, $window, $location, $rootScope, $timeout, snAttachmentHandler, $http, spUtil, userPreferences, $filter, i18n, $uibModal, spAriaUtil) {
+	
+	var c = this;
+	
+	// validation
+		var isValidData = true;
+	
+	c.checkForNumber = function(value) {
+		global.getScripts('x_rptp_insureme.validationForm.jsdbx',function (){
+			alert("hii");
+		})
+		
+  if (!/^[0-9]*$/.test(value)) {
+		isValidData = false;
+    $scope.benefitsForm.value.$setValidity("pattern", false);
+  } else {
+			isValidData = true;
+    $scope.benefitsForm.value.$setValidity("pattern", true);
+  }
+};
+	//end of validation
+	
+	c.redirection=function(){
+		   window.history.back();
+	}
+	
+	
+	c.submit = function(){
+		if(!isValidData || !c.pName || !c.bName) 
+		{	alert('Please fill the required field with valid details');
+			return false;
+		}
+	var obj={
+		"categoryCode":"travel",
+		"insurer":"future_travel",
+		"productName":c.pName||"",
+		"benefitName":c.bName||"",
+		"currency":"USD",
+		"benefitValue":c.value || "",
+	}
+	c.server.get({action:"createBenefit",value:obj}).then(function(response){
+		
+			location.href = "/ap?id="+"product";
+		
+	});
+	};
+	
+	
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.goBack {
+  position: relative;
+  width: 100px;
+  height: 40px; 
+}
+
+.goBack i {
+  display: inline-block;
+  transition: opacity 0.3s ease-out;
+}
+
+.goBack::before {
+  content: 'Go back';
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.goBack:hover i {
+  opacity: 0;
+}
+
+.goBack:hover::before {
+  display: inline-block;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+ 
+input[type=url], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+ 
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+ 
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+ 
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.flex{
+	display: flex;
+  justify-content :space-between;
+}
+.head{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+ 
+  
+}
+
+.required {
+    color: red;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>Add Benefits</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function(){
+	data.prod = [];
+	var prodGr = new GlideRecord('x_rptp_insureme_insurance_products');
+	prodGr.query();
+
+	var prod_feild = "prod_name";
+
+	while (prodGr.next()) {
+			data.prod.push({
+				"product_name":prodGr.getDisplayValue(prod_feild),
+				"sysId":prodGr.getValue('sys_id'),
+				"prodCode":prodGr.getValue("prod_code")
+			}	
+			);
+	
+	}
+
+	data.features=[];
+	var featuresGr = new GlideRecord('x_rptp_insureme_product_feature');
+	featuresGr.addQuery('u_active',true);
+	featuresGr.query();
+
+	var features_feild = "u_name";
+
+	while (featuresGr.next()) {
+			data.features.push(
+				{
+					"feature_benefits":featuresGr.getDisplayValue(features_feild),
+					"sysId":featuresGr.getValue('sys_id')
+				}
+				)
+	}
+
+	if(input && input.action=="createBenefit"){
+		featuresGr.get('sys_id', input.value.benefitName);
+		prodGr.get('sys_id', input.value.productName);
+		var productCode = prodGr.getValue('prod_code');
+		//gs.addErrorMessage(input.value.productName)
+		var benefitGr=new  GlideRecord('x_rptp_insureme_insurance_products_benefits');
+		benefitGr.addQuery("u_prod_type", input.value.productName);
+		benefitGr.addQuery("u_product_feature", input.value.benefitName);
+		benefitGr.query()
+		if(!benefitGr.next()){
+	benefitGr.newRecord()
+		benefitGr.setValue("category_code",input.value.categoryCode);
+		benefitGr.setValue("insurer",input.value.insurer);
+		benefitGr.setValue("product_code",productCode);
+		benefitGr.setValue("name", featuresGr.getDisplayValue('u_name'));
+		benefitGr.setValue("currency",input.value.currency);
+		benefitGr.setValue("value",input.value.benefitValue);	
+		benefitGr.setValue("u_prod_type",input.value.productName);
+		benefitGr.setValue("u_product_feature",input.value.benefitName);
+			benefitGr.insert();
+		}
+		else {
+			benefitGr.setValue("category_code",input.value.categoryCode);
+		benefitGr.setValue("insurer",input.value.insurer);
+		benefitGr.setValue("product_code",productCode);
+		benefitGr.setValue("name", featuresGr.getDisplayValue('u_name'));
+		benefitGr.setValue("currency",input.value.currency);
+		benefitGr.setValue("value",input.value.benefitValue);	
+		benefitGr.setValue("u_prod_type",input.value.productName);
+		benefitGr.setValue("u_product_feature",input.value.benefitName);
+			benefitGr.update();
+		}
+		
+		
+	}
+	
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>akshay</sys_created_by>
+        <sys_created_on>2024-02-20 09:52:56</sys_created_on>
+        <sys_id>70a3cb5047a4069055784a02516d43c9</sys_id>
+        <sys_mod_count>186</sys_mod_count>
+        <sys_name>Add Benefits</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_70a3cb5047a4069055784a02516d43c9</sys_update_name>
+        <sys_updated_by>akshay</sys_updated_by>
+        <sys_updated_on>2024-02-27 09:10:03</sys_updated_on>
+        <template><![CDATA[<div>
+   <div class="btn btn-primary" ng-click="c.redirection()" style="background-color:#428bca;font-size:25px;padding:2px 20px" >&#8592</div>
+  <div admin-back-button class="bt"></div>
+  <form name="benefitsForm">
+    <div class = "head"> 
+      <h2>Please fill the Benefits details here:</h2>
+      <img ng-src="https://th.bing.com/th?id=OIP.ha59T_qkxIapRr_WWUtGnQHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" style="width:300px"/>
+    </div>
+    <br />
+    	
+    <b>Product Name:<span class="required">*</span></b>
+    <select id="prodName" ng-model="c.pName" required class="dropdown">
+      <option ng-repeat="key in data.prod" ng-attr-id="option_{{$index}}" value="{{key.sysId}}">{{key.product_name}}</option>
+    </select>
+    
+    <b>Benefits Name:<span class="required">*</span></b>
+    <select id="benefitsName" ng-model="c.bName"  class="dropdown">
+      <option ng-repeat="feature in data.features" ng-attr-id="option_{{$index}}" value="{{feature.sysId}}">{{feature.feature_benefits}}</option>
+    </select>
+    <br />
+  <b>Benefits Value</b>
+<b>Benefits Value</b>
+<input id="prodDesc" type="text" name="value" ng-model="c.value" ng-change="c.checkForNumber(c.value)" ng-pattern="/^[0-9]*$/">
+<span ng-show="benefitsForm.value.$error.pattern" style="color:red">Only numbers are allowed.</span>
+    <br />
+    <input  id="submit!" type="submit" value="addBenefits" ng-click="c.submit()" />
+  </form> 
+</div>]]></template>
+    </sp_widget>
+</record_update>
