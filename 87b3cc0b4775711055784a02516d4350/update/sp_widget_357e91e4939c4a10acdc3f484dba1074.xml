@@ -279,12 +279,14 @@ input[type="checkbox"] {
 	data.userId = gs.getUserID();
 
 
+
 	if(input && input.action =="storingData1"){
 		//	gs.addErrorMessage(input.data.firstName);
 		var gr = new GlideRecord('x_rptp_insureme_appointment_details');
 		gr.query();
 		if (gr) {
-			gr.applicant_name= input.data.firstName+ ''+input.data.lastName;
+
+			gr.applicant_name= input.data.firstName +' '+ input.data.lastName;
 			gr.d_o_b= input.data.dob;
 			gr.passport_exp_date= input.data.Passport;
 			gr.passport_no = input.data.Passports;
@@ -293,7 +295,7 @@ input[type="checkbox"] {
 			gr.choose_your_visa_application_centre = input.data1.visaCentre;
 			gr.choose_your_appointment_category = input.data1.appointmentCategory;
 			gr.choose_your_sub_category = input.data1.subCategory;
-			gr.u_premium_amount = input.data.PremiumAmount;
+			//		gr.u_premium_amount = input.data.PremiumAmount;
 			gr.primary_email = input.data.Email;
 			gr.primary_user = input.data.firstName+ ''+input.data.lastName;
 			gr.date =new GlideDate();
@@ -311,14 +313,14 @@ input[type="checkbox"] {
         <sys_created_by>Surya.Prathap</sys_created_by>
         <sys_created_on>2024-02-08 10:53:04</sys_created_on>
         <sys_id>357e91e4939c4a10acdc3f484dba1074</sys_id>
-        <sys_mod_count>801</sys_mod_count>
+        <sys_mod_count>810</sys_mod_count>
         <sys_name>review</sys_name>
         <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sp_widget_357e91e4939c4a10acdc3f484dba1074</sys_update_name>
-        <sys_updated_by>Surya.Prathap</sys_updated_by>
-        <sys_updated_on>2024-02-26 11:02:20</sys_updated_on>
+        <sys_updated_by>Ajmal.akram</sys_updated_by>
+        <sys_updated_on>2024-02-27 10:09:26</sys_updated_on>
         <template><![CDATA[<div>
   <div class="form-container">
     <section class="section">
