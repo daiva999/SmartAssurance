@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic">
+    <sys_cb_topic action="INSERT_OR_UPDATE">
+        <applicability/>
+        <applicability_mode>query</applicability_mode>
+        <autopilot_topic>false</autopilot_topic>
+        <category/>
+        <channels/>
+        <connect_queue/>
+        <description/>
+        <dialog_acts_enabled>false</dialog_acts_enabled>
+        <expose_on_palette>false</expose_on_palette>
+        <flexible_conversation_switching>false</flexible_conversation_switching>
+        <foundational>false</foundational>
+        <graph>{
+  "graph_api_version": "1.0.55",
+  "goals": {
+    "primary": {
+      "id": "primary",
+      "trigger": {
+        "type": "primary"
+      },
+      "name": "primary",
+      "applicability": "",
+      "description": "",
+      "nodes": {
+        "69bac40da7db4090bb0e7ac4d789d75d": {
+          "id": "69bac40da7db4090bb0e7ac4d789d75d",
+          "stepType": "Start",
+          "name": "Start",
+          "greetingResponse": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "e7e21e5dd339429299b445cd1380f480": {
+          "id": "e7e21e5dd339429299b445cd1380f480",
+          "stepType": "TerminateGoal",
+          "name": "End",
+          "confirmationMessage": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "33af8ce2ec7045fdb13474d9154884e7": {
+          "id": "33af8ce2ec7045fdb13474d9154884e7",
+          "stepType": "TextPrompt",
+          "name": "Policy Number",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Please enter your Policy Number "
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "2f580d106bdf40fe9248d9d794cf950a",
+          "detailDescription": "",
+          "inputType": {
+            "format": "Text",
+            "script": ""
+          },
+          "requestFeedback": true
+        },
+        "f487f47907cf4fbd83a6509efbdf158d": {
+          "id": "f487f47907cf4fbd83a6509efbdf158d",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "17030a719b654f8d886a59f18b06467a": {
+          "id": "17030a719b654f8d886a59f18b06467a",
+          "stepType": "TextOutput",
+          "name": "Greetings",
+          "secure": false,
+          "value": [
+            {
+              "value": "(function execute() {\n    /* Return a quoted string.  For example:\n\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessageLang(\"hi there {0}\", vaContext.getRequesterLang(), [vaInputs.first_name]);\n       } else {\n           return gs.getMessageLang(\"how are you {0}\", vaContext.getRequesterLang(), [vaInputs.last_name]);\n       }\n    */\n\n    var paymentDetails = new GlideRecord(\"x_rptp_insureme_payment_details\");\n    paymentDetails.addQuery(\"number\", vaInputs.policy_number);\n    paymentDetails.query();\n\n    if(paymentDetails.next()){\n        name = paymentDetails.getDisplayValue(\"primary_user\");\n        return gs.getMessageLang(\"Hello \" + name);\n    }\n\n})()\n",
+              "mode": "script"
+            }
+          ],
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "315a8458bbda47af9dfd36f286788c0a": {
+          "id": "315a8458bbda47af9dfd36f286788c0a",
+          "stepType": "TextOutput",
+          "name": "Check",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "No policy is associated with the provided policy number. Kindly input a valid Policy number."
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "30fd5913e324423ebe5633fa4da8e5f6"
+            }
+          ],
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "362acd7b746d43878ad8d2f564ee86c0": {
+          "name": "Choices",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "How may I help you?"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "7e60e8b97748482a86865cc883fd42cb",
+          "detailDescription": "",
+          "id": "362acd7b746d43878ad8d2f564ee86c0",
+          "stepType": "ChoicePrompt",
+          "hasCardHeader": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        },
+        "a502026a11f742f1b7f32c64de3d6044": {
+          "id": "a502026a11f742f1b7f32c64de3d6044",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "058141f3e8a843709605f2bf48ef01a6": {
+          "id": "058141f3e8a843709605f2bf48ef01a6",
+          "stepType": "TextOutput",
+          "name": "Sum Assured",
+          "secure": false,
+          "value": [
+            {
+              "value": "(function execute() {\n    /* Return a quoted string.  For example:\n\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessageLang(\"hi there {0}\", vaContext.getRequesterLang(), [vaInputs.first_name]);\n       } else {\n           return gs.getMessageLang(\"how are you {0}\", vaContext.getRequesterLang(), [vaInputs.last_name]);\n       }\n    */\n\n    var paymentDetails = new GlideRecord(\"x_rptp_insureme_payment_details\");\n    paymentDetails.addQuery(\"number\", vaInputs.policy_number);\n    paymentDetails.query();\n\n    if(paymentDetails.next()){\n        var sumAssured = paymentDetails.getDisplayValue(\"sum\");\n        return gs.getMessageLang(\"Sum Assured is \" + sumAssured);\n    }\n})()\n",
+              "mode": "script"
+            }
+          ],
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "e0ec41a9c6ce4ed382daee84338cb194": {
+          "id": "e0ec41a9c6ce4ed382daee84338cb194",
+          "stepType": "TextOutput",
+          "name": "Premium Amount",
+          "secure": false,
+          "value": [
+            {
+              "value": "(function execute() {\n    /* Return a quoted string.  For example:\n\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessageLang(\"hi there {0}\", vaContext.getRequesterLang(), [vaInputs.first_name]);\n       } else {\n           return gs.getMessageLang(\"how are you {0}\", vaContext.getRequesterLang(), [vaInputs.last_name]);\n       }\n    */\n    var paymentDetails = new GlideRecord(\"x_rptp_insureme_payment_details\");\n    paymentDetails.addQuery(\"number\", vaInputs.policy_number);\n    paymentDetails.query();\n\n    if(paymentDetails.next()){\n        var premiumAmount = paymentDetails.getDisplayValue(\"amount\");\n        return gs.getMessageLang(\"Premium Amount is \" + premiumAmount);\n    }\n})()\n",
+              "mode": "script"
+            }
+          ],
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "2727bcde65a94e2e9450131413bc157e": {
+          "name": "Help",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Is there any way I can help you?"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "9c2b4c267d734f8280c996fecad759e8",
+          "detailDescription": "",
+          "id": "2727bcde65a94e2e9450131413bc157e",
+          "stepType": "ChoicePrompt",
+          "hasCardHeader": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        },
+        "ea38aafa47234e87916bebbb6439db1e": {
+          "id": "ea38aafa47234e87916bebbb6439db1e",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "1f99d182e755412090b614bd65f43763": {
+          "id": "1f99d182e755412090b614bd65f43763",
+          "stepType": "TableOutput",
+          "name": "List of Benefits",
+          "header": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "List of Benefits "
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "displayColumnHeaders": true,
+          "dataSourceType": "table",
+          "script": "",
+          "tableName": "x_rptp_insureme_insurance_products_benefits",
+          "sortByColumns": [
+            {
+              "column": "name",
+              "sortDirection": "ASC"
+            }
+          ],
+          "tableCondition": {
+            "mode": "glide_scripted_query",
+            "value": "(function execute(table) {\n    /* Write a glide record query, and return the glide record.\n       For example:\n       var gr = new GlideRecordSecure(table);\n       gr.addEncodedQuery('active=true^number=INC0010099');\n       gr.query();\n       return gr;\n    */\n    \n    var prodCode = '';\n    var insurerCode = '';\n\n    var paymentDetails = new GlideRecord(\"x_rptp_insureme_payment_details\");\n    paymentDetails.addQuery(\"number\", vaInputs.policy_number);\n    paymentDetails.query();\n\n    if(paymentDetails.next()){\n        prodCode = paymentDetails.getDisplayValue(\"product_code\");\n        insurerCode = paymentDetails.getDisplayValue(\"insurer_code\");\n    }\n\n    \n    var insuranceBenefits = new GlideRecord(table);\n    insuranceBenefits.addQuery(\"product_code\", prodCode);\n    insuranceBenefits.addQuery(\"insurer\", insurerCode);\n    insuranceBenefits.query();\n\n    return insuranceBenefits;\n\n})(table)\n"
+          },
+          "columns": [
+            {
+              "key": "name",
+              "value": "Name",
+              "label": "Name"
+            },
+            {
+              "key": "value",
+              "value": "Value (USD)",
+              "label": "Value"
+            }
+          ],
+          "noRecordsResponseMsg": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "No Benefits are associated with this Insurance"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "b770c8aff8a74ca1b56bbe9e441f4a07": {
+          "id": "b770c8aff8a74ca1b56bbe9e441f4a07",
+          "stepType": "ImageOutput",
+          "name": "Thank you image",
+          "url": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "https://t3.ftcdn.net/jpg/02/91/52/22/360_F_291522205_XkrmS421FjSGTMRdTrqFZPxDY19VxpmL.jpg"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "altText": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Thank you"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "variableId": "",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        }
+      },
+      "edges": [
+        {
+          "id": "4955ffc51d8147c19c67afdadea6053b",
+          "edgeType": "Branch",
+          "source": "a502026a11f742f1b7f32c64de3d6044",
+          "target": "1f99d182e755412090b614bd65f43763",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.choices=Benefits of the Insurance",
+            "mode": "query"
+          },
+          "label": "Benefits"
+        },
+        {
+          "id": "8979d9f844a340b398d4aef4007a1634",
+          "edgeType": "Edge",
+          "source": "e0ec41a9c6ce4ed382daee84338cb194",
+          "target": "2727bcde65a94e2e9450131413bc157e",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "cc3b8acf91924e6183fbaffe59494946",
+          "edgeType": "Edge",
+          "source": "058141f3e8a843709605f2bf48ef01a6",
+          "target": "2727bcde65a94e2e9450131413bc157e",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "58449fd53a6b48729b531d1b6ad4c920",
+          "edgeType": "Branch",
+          "source": "a502026a11f742f1b7f32c64de3d6044",
+          "target": "e0ec41a9c6ce4ed382daee84338cb194",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.choices=Premium Amount",
+            "mode": "query"
+          },
+          "label": "Premium Amount"
+        },
+        {
+          "id": "7b42f7ad66d84c05a9bcc713f7d1abdc",
+          "edgeType": "Branch",
+          "source": "a502026a11f742f1b7f32c64de3d6044",
+          "target": "058141f3e8a843709605f2bf48ef01a6",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.choices=Sum Assured",
+            "mode": "query"
+          },
+          "label": "Sum Assured"
+        },
+        {
+          "id": "fdf330f78fd040429568143d8e392a34",
+          "edgeType": "Edge",
+          "source": "69bac40da7db4090bb0e7ac4d789d75d",
+          "target": "33af8ce2ec7045fdb13474d9154884e7",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "f7aabc79af964c0ca7118f9876f73343",
+          "edgeType": "Edge",
+          "source": "33af8ce2ec7045fdb13474d9154884e7",
+          "target": "f487f47907cf4fbd83a6509efbdf158d",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "58e5a19b90d043aa8ad2c889d49947a1",
+          "edgeType": "Branch",
+          "source": "f487f47907cf4fbd83a6509efbdf158d",
+          "target": "17030a719b654f8d886a59f18b06467a",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n\n    // var paymentDetails = new GlideRecord(\"x_rptp_insureme_payment_details\");\n    // if(paymentDetails.number == vaInputs.policy_number){\n    //     return true;\n    // }\n\n    var paymentDetails = new GlideRecord(\"x_rptp_insureme_payment_details\");\n    paymentDetails.addQuery(\"number\", vaInputs.policy_number);\n    paymentDetails.query();\n\n    if(paymentDetails.next()){\n        return true;\n    }\n    return false;\n})()\n"
+          },
+          "label": "Yes"
+        },
+        {
+          "id": "6f307d13e3224941aa020b5da6f38d53",
+          "edgeType": "Branch",
+          "source": "f487f47907cf4fbd83a6509efbdf158d",
+          "target": "315a8458bbda47af9dfd36f286788c0a",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n\n    var paymentDetails = new GlideRecord(\"x_rptp_insureme_payment_details\");\n    paymentDetails.addQuery(\"number\", vaInputs.policy_number);\n    paymentDetails.query();\n\n    if(!paymentDetails.next()){\n        return true;\n    }\n    return false;\n})()\n"
+          },
+          "label": "No"
+        },
+        {
+          "id": "61acc78bdacd444ab3161729c987c7d7",
+          "edgeType": "Edge",
+          "source": "315a8458bbda47af9dfd36f286788c0a",
+          "target": "33af8ce2ec7045fdb13474d9154884e7",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "a90c684a8c5c4422b04da3a9816c7e43",
+          "edgeType": "Edge",
+          "source": "17030a719b654f8d886a59f18b06467a",
+          "target": "362acd7b746d43878ad8d2f564ee86c0",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "4324915589b742ac97cc2dfe650d40f0",
+          "edgeType": "Edge",
+          "source": "362acd7b746d43878ad8d2f564ee86c0",
+          "target": "a502026a11f742f1b7f32c64de3d6044",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "6fa146039f9d4ac4a1dddda77dc52f6e",
+          "edgeType": "Edge",
+          "source": "2727bcde65a94e2e9450131413bc157e",
+          "target": "ea38aafa47234e87916bebbb6439db1e",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "2d00ca4fb3be40cc85165354606c6b4c",
+          "edgeType": "Branch",
+          "source": "ea38aafa47234e87916bebbb6439db1e",
+          "target": "362acd7b746d43878ad8d2f564ee86c0",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.help=Yes, Main Menu",
+            "mode": "query"
+          },
+          "label": "Main Menu"
+        },
+        {
+          "id": "108bdfc880204843a7da89dbaca19654",
+          "edgeType": "Edge",
+          "source": "1f99d182e755412090b614bd65f43763",
+          "target": "2727bcde65a94e2e9450131413bc157e",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "0e20a301ba8c4c42a7ab17cf0ff87332",
+          "edgeType": "Branch",
+          "source": "ea38aafa47234e87916bebbb6439db1e",
+          "target": "b770c8aff8a74ca1b56bbe9e441f4a07",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.help=No, Thank You",
+            "mode": "query"
+          },
+          "label": "Thank You"
+        },
+        {
+          "id": "17db53bb5786419a81fd4723005fe68f",
+          "edgeType": "Edge",
+          "source": "b770c8aff8a74ca1b56bbe9e441f4a07",
+          "target": "e7e21e5dd339429299b445cd1380f480",
+          "sourcePort": "",
+          "targetPort": ""
+        }
+      ]
+    }
+  },
+  "variables": {
+    "1a78854ad2e5424287b2b9fd0927da8f": {
+      "category": "vaInputs",
+      "id": "1a78854ad2e5424287b2b9fd0927da8f",
+      "label": "User",
+      "name": "user",
+      "table": "sys_user",
+      "varType": "reference"
+    },
+    "2f580d106bdf40fe9248d9d794cf950a": {
+      "id": "2f580d106bdf40fe9248d9d794cf950a",
+      "name": "policy_number",
+      "label": "Policy Number",
+      "varType": "string",
+      "secure": false,
+      "category": "vaInputs",
+      "encryptionHashFunction": "SHA-256",
+      "encryptionSalt": {
+        "value": "MTcwOTAxNDg3MTk5NCBWQSBEZXNpZ25lciBpcyBhd2Vzb21l",
+        "mode": "simple"
+      },
+      "nodeId": "33af8ce2ec7045fdb13474d9154884e7",
+      "isHidden": false
+    },
+    "7e60e8b97748482a86865cc883fd42cb": {
+      "id": "7e60e8b97748482a86865cc883fd42cb",
+      "name": "choices",
+      "label": "Choices",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "Premium Amount",
+          "value": "Premium Amount"
+        },
+        {
+          "label": "Sum Assured",
+          "value": "Sum Assured"
+        },
+        {
+          "label": "Benefits of the Insurance",
+          "value": "Benefits of the Insurance",
+          "checked": true,
+          "meta": {}
+        }
+      ],
+      "category": "vaInputs",
+      "nodeId": "362acd7b746d43878ad8d2f564ee86c0",
+      "isHidden": false
+    },
+    "9c2b4c267d734f8280c996fecad759e8": {
+      "id": "9c2b4c267d734f8280c996fecad759e8",
+      "name": "help",
+      "label": "Help",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "Yes, Main Menu",
+          "value": "Yes, Main Menu"
+        },
+        {
+          "label": "No, Thank You",
+          "value": "No, Thank You"
+        }
+      ],
+      "category": "vaInputs",
+      "nodeId": "2727bcde65a94e2e9450131413bc157e",
+      "isHidden": false
+    }
+  }
+}</graph>
+        <key_phrases>VFS Support 2,VFS Global Support,vfs,VFS,Insurance,VFS insurance,VFS global,Life insuranace,Vehicle insurance</key_phrases>
+        <library>false</library>
+        <live_agent>false</live_agent>
+        <model_type>nlu_keyword</model_type>
+        <modify_confirmation_enabled>false</modify_confirmation_enabled>
+        <name>VFS Support 2</name>
+        <nlu_intent/>
+        <nlu_intent_label/>
+        <nlu_model/>
+        <nlu_model_label/>
+        <nlu_provider/>
+        <palette_label/>
+        <roles/>
+        <root_topic_id>89369eea932802d0acdc3f484dba100b</root_topic_id>
+        <secure_custom_input_control>false</secure_custom_input_control>
+        <source_topic_id>89369eea932802d0acdc3f484dba100b</source_topic_id>
+        <sys_class_name>sys_cb_topic</sys_class_name>
+        <sys_created_by>kumar.raja</sys_created_by>
+        <sys_created_on>2024-02-28 07:00:46</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>b119afb293ac4210acdc3f484dba100d</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>VFS Support 2</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_cb_topic_b119afb293ac4210acdc3f484dba100d</sys_update_name>
+        <sys_updated_by>kumar.raja</sys_updated_by>
+        <sys_updated_on>2024-02-28 07:01:01</sys_updated_on>
+        <triggerable_by_notification>false</triggerable_by_notification>
+        <type>STANDARD</type>
+        <variables/>
+    </sys_cb_topic>
+    <sys_translated_text action="delete_multiple" query="documentkey=b119afb293ac4210acdc3f484dba100d"/>
+    <sys_variable_value action="delete_multiple" query="document_key=b119afb293ac4210acdc3f484dba100d"/>
+</record_update>
