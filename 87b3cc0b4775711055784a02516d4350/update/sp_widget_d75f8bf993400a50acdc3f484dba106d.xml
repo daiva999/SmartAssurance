@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller=function($scope) {
+        <client_script><![CDATA[api.controller=function($scope,$window) {
   /* widget controller */
   var c = this;
 	$scope.shareschengen=function(){
@@ -11,73 +11,101 @@
 		};
 		sessionStorage.setItem('schengen',JSON.stringify(schengenDetails));
 	}
+	
+	 
+	
+	
+	var sessionKey = 'aj';
+    var sessionDetails = sessionStorage.getItem(sessionKey);
+    var job = JSON.parse(sessionDetails);
+	
+	
+	
+	if(job){
+		$scope.Name = job.first+ ' ' + job.last;
+		//alert(job.first + ' ' + job.last);
+		
+}
+	var backupValue = sessionStorage.getItem(sessionKey);
+	
+
+	
+$window.sessionStorage.removeItem("abc");
+	$window.sessionStorage.removeItem(c.data.userName);
+	$window.sessionStorage.removeItem("c.user");
+	
+//	$window.sessionStorage.removeItem("aj");
+	
+	sessionStorage.setItem("sessionKey", backupValue);
+	
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css> body {&#13;
-      font-family: 'Arial', sans-serif;&#13;
-      margin: 0;&#13;
-      padding: 0;&#13;
-    }&#13;
- &#13;
-    .widget-container1 {&#13;
-      display: flex;&#13;
-      justify-content: space-between;&#13;
-      align-items: center;&#13;
-      padding: 10px;&#13;
-      &lt;!--background-color: #f0f0f0;--&gt;&#13;
-      bottom:0;&#13;
-    }&#13;
- &#13;
-    .widget-container2 {&#13;
-      display: flex;&#13;
-      justify-content: space-between;&#13;
-      align-items: center;&#13;
-      padding: 10px;&#13;
-     /* background-color: #f0f0f0;*/&#13;
-      bottom:0;&#13;
-      width:70%;&#13;
-      margin-left:15%;&#13;
-      /* margin-right:30%; */&#13;
-    }&#13;
- &#13;
-    .section-heading {&#13;
-      font-size: 18px;&#13;
-      font-weight: bold;&#13;
-    }&#13;
- &#13;
-    .start-booking-button {&#13;
-      background-color: #1bae16;&#13;
-      color: white;&#13;
-      padding: 10px 20px;&#13;
-      border: none;&#13;
-      border-radius: 5px;&#13;
-      cursor: pointer;&#13;
-    }&#13;
- &#13;
-    .get-quotes-button {&#13;
-      background-color: #1bae16;&#13;
-      color: white;&#13;
-      padding: 10px 20px;&#13;
-      border: none;&#13;
-      border-radius: 5px;&#13;
-      cursor: pointer;&#13;
-      margin-right: 15%;&#13;
-    }&#13;
- &#13;
-    .active-applications {&#13;
-      font-size: 16px;&#13;
-      height: 250px;&#13;
-    }&#13;
- &#13;
-    .info-box {&#13;
-      /* background-color: #ddd; */&#13;
-      padding: 20px;&#13;
-      width: 50%;&#13;
-      border-radius: 5px;&#13;
-      bottom:0;&#13;
-      align-items:center;&#13;
-      margin-left:15%;&#13;
-    }</css>
+        <css> body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+ 
+    .widget-container1 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      &lt;!--background-color: #f0f0f0;--&gt;
+      bottom:0;
+    }
+ 
+    .widget-container2 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+     /* background-color: #f0f0f0;*/
+      bottom:0;
+      width:70%;
+      margin-left:15%;
+      /* margin-right:30%; */
+    }
+ 
+    .section-heading {
+      font-size: 18px;
+      font-weight: bold;
+    }
+ 
+    .start-booking-button {
+      background-color: #e86020;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+ 
+    .get-quotes-button {
+    background-color: #e86020;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 15%;
+    }
+ 
+    .active-applications {
+      font-size: 16px;
+      height: 250px;
+    }
+ 
+    .info-box {
+      /* background-color: #ddd; */
+      padding: 20px;
+      width: 50%;
+      border-radius: 5px;
+      bottom:0;
+      align-items:center;
+      margin-left:15%;
+    }
+   table {       width: 100%;       border-collapse: collapse;    border: none; }     th, td {       border: 1px solid #dddddd;       text-align: left;       padding: 8px; border: none; } th { background-color: #f2f2f2; border: none; }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -94,44 +122,78 @@
         <public>true</public>
         <roles>public</roles>
         <script><![CDATA[(function() {
-  /* populate the 'data' object */
-  /* e.g., data.table = $sp.getValue('table'); */
+	 data.applicantNames = [];
 
-})();]]></script>
+  data.userName = gs.getUserName();
+  data.userId = gs.getUserID();
+
+  //gs.addErrorMessage(data.userName);
+
+  var gr = new GlideRecord('x_rptp_insureme_appointment_details');
+	gr.addQuery('sys_created_by',data.userName);
+  gr.query();
+  while (gr.next()) {
+    data.applicantNames.push({ name : gr.getValue('applicant_name')});
+  }
+
+  var count = gr.getRowCount();
+	//gs.addInfoMessage(JSON.stringify(data.applicantNames));
+  //gs.addInfoMessage("Number of records created by " + data.userName + ": " + count);
+  //gs.addInfoMessage("Applicant names: " + data.applicantNames.join(', '));
+})();
+]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>pooja.jayaram</sys_created_by>
         <sys_created_on>2024-01-31 06:03:47</sys_created_on>
         <sys_id>d75f8bf993400a50acdc3f484dba106d</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>126</sys_mod_count>
         <sys_name>page2</sys_name>
         <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sp_widget_d75f8bf993400a50acdc3f484dba106d</sys_update_name>
-        <sys_updated_by>pooja.jayaram</sys_updated_by>
-        <sys_updated_on>2024-02-14 11:57:25</sys_updated_on>
+        <sys_updated_by>Surya.Prathap</sys_updated_by>
+        <sys_updated_on>2024-02-28 07:01:20</sys_updated_on>
         <template><![CDATA[<div class="widget-container1">
   <div class="section-heading">Active Application(s)</div>
+  <!-- Start New Booking Button -->
   <a href="https://ven06798.service-now.com/vfsp?id=appointment_details">
-    <button class="start-booking-button">Start New Booking</button></a>
+    <button class="start-booking-button">Start New Booking</button>
+  </a>
 </div>
+
 <div class="active-applications">
-  <!-- Your active applications content goes here -->
-  <!-- <p>Application 1</p>
-    <p>Application 2</p> -->
+  <!-- Show message when no applications found -->
+  <h2 ng-show="!data.applicantNames || data.applicantNames.length === 0">
+    No Application(s) Found
+  </h2>
   
+  <!-- Table to display active applications -->
+  <table ng-show='data.applicantNames && data.applicantNames.length > 0'>
+    <tr>
+      <th>Application No.</th>
+      <th>Applicant Name</th>
+    </tr>
+    <tr ng-repeat="applicant in data.applicantNames">
+      <td>{{$index + 1}}</td>
+      <td>{{applicant.name}}</td>
+    </tr>
+  </table>
 </div>
 
 <div class="widget-container2">
+  <!-- Info box for applying for travel medical insurance -->
   <div class="info-box">
     <h2>Apply for travel medical insurance</h2>
-
-    <h4>Travel insurance is mandatory for Schegen Visa</h4>
+    <h4>Travel insurance is mandatory for Schengen Visa</h4>
   </div>
+  
+  <!-- Get Quotes Button -->
   <a href="https://ven06798.service-now.com/vfsp">  
     <button class="get-quotes-button" ng-click='shareschengen()'>Get Quotes</button>
   </a> 
-</div>]]></template>
+</div>
+]]></template>
     </sp_widget>
 </record_update>
