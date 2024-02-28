@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($scope){
+	var c=this;
+	var a=[];
+		$scope.length=c.data.premiumData.length;
+	
+	$scope.removeData=function(index){
+		c.data.premiumData[index]={};
+		//alert(JSON.stringify(c.data.premiumData));
+		if($scope.length<3){
+		for(i=0;i<length;i++){
+			a.push(i);
+			alert(JSON.stringify(a))
+		}
+	}
+		
+	}
+
+
+
+}
+
+
+
+
+
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.compareContainer{
+  display:flex;
+  justify-content:space-between;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>comparewidget</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>compare widget</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	data.premiumData=[
+    {
+        'title': "1st Year Premium",
+        "img": "https://globalprimenews.com/wp-content/uploads/2020/03/IMG_20200326_143535-777x437.png",
+        "premiumValue": "1000/month",
+        "benefits": {
+            "premium_from_2nd_year": "100 Years",
+            "Max Coverage Upto": "85 Years",
+            "Claim Settelement Ratio": "95%",
+            "Claims Settelement Ratio": "96%"
+        }
+    },
+    {
+        'title': "2nd Year Premium",
+        "img": "https://globalprimenews.com/wp-content/uploads/2020/03/IMG_20200326_143535-777x437.png",
+        "premiumValue": "1002/month",
+        "benefits": {
+            "premium from 2nd year": "100 Years",
+            "Max Coverage Upto": "85 Years",
+            "Claim Settelement Ratio": "95%",
+            "Claims Settelement Ratio": "96%"
+        }
+    },
+    {
+        'title': "3rd Year Premium",
+        "img": "https://globalprimenews.com/wp-content/uploads/2020/03/IMG_20200326_143535-777x437.png",
+        "premiumValue": "1003/month",
+        "benefits": {
+            "premium from 2nd year": "100 Years",
+            "Max Coverage Upto": "85 Years",
+            "Claim Settelement Ratio": "95%",
+            "Claims Settelement Ratio": "96%"
+        }
+    }
+];
+
+	if(input && input.method=="remove"){
+		gs.addErrorMessage('called')
+		gs.addInfoMessage(input.index)
+		data.premiumData[input.index]=null;
+	}
+	
+	
+	
+	
+	
+})();
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>kumar.raja</sys_created_by>
+        <sys_created_on>2024-02-28 05:13:54</sys_created_on>
+        <sys_id>a8a0d77693e84210acdc3f484dba1013</sys_id>
+        <sys_mod_count>49</sys_mod_count>
+        <sys_name>compare widget</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_a8a0d77693e84210acdc3f484dba1013</sys_update_name>
+        <sys_updated_by>kumar.raja</sys_updated_by>
+        <sys_updated_on>2024-02-28 06:26:24</sys_updated_on>
+        <template><![CDATA[<div class='compareContainer'>
+  <div ng-repeat='(index, premiumData) in c.data.premiumData'>
+    <button ng-click='removeData(index)' ng-if="!isEmpty(premiumData)">
+      X
+    </button>
+    <div>{{premiumData.title}}</div>
+    <div>{{premiumData.premiumValue}}</div>
+    <div ng-repeat='(key, benefit) in premiumData.benefits'>
+      <div>
+        {{key}}: {{benefit}}
+      </div>
+    </div>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>
