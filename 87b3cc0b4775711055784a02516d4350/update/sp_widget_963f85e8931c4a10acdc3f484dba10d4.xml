@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope) {
+  var c = this;
+
+  var date = new Date();
+  var monthIndex = date.getMonth();
+  $scope.year = date.getFullYear();
+
+  $scope.isCurrentDate = function (day) {
+    var currentDate = new Date();
+    return (
+      day === currentDate.getDate() &&
+      $scope.months[monthIndex] === $scope.month &&
+      $scope.year === currentDate.getFullYear()
+    );
+  };
+
+  $scope.month = date.toLocaleString("default", {
+    month: "long",
+  });
+  $scope.buttonText = "Select";
+  $scope.buttonColor = "";
+
+  $scope.buttontext = "Select";
+  $scope.buttoncolor = "";
+
+  $scope.ButtonClicked = function () {
+    $scope.buttonText = "Selected";
+    $scope.buttonColor = "green";
+    $scope.fontcolor = "white";
+  };
+  $scope.ButtonClick = function () {
+    $scope.buttontext = "Selected";
+    $scope.buttoncolor = "green";
+    $scope.fontcolor = "white";
+  };
+  $scope.Firstslot = false;
+  $scope.Secondslot = false;
+
+  $scope.toggleButton = function (slot) {
+    if (slot === "Firstslot") {
+      $scope.Firstslot = true;
+      $scope.Secondslot = false;
+    } else if (slot === "Secondslot") {
+      $scope.Secondslot = true;
+      $scope.Firstslot = false;
+    }
+    if ($scope.Firstslot === true) {
+      $scope.time1 = "8:15 - 9:00";
+    } else if ($scope.Secondslot === true) {
+      $scope.time1 = "14:00 - 14:30";
+    }
+  };
+
+  $scope.months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  var max = $scope.months.length - 1;
+  var min = 0;
+
+  $scope.month = $scope.months[monthIndex];
+
+  $scope.days = [];
+
+  $scope.updateDays = function () {
+    var year = $scope.year;
+    var daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+    $scope.days = [];
+    for (var i = 1; i <= daysInMonth; i++) {
+      $scope.days.push(i);
+    }
+  };
+
+  $scope.updateDays();
+
+  $scope.currentDate = new Date().getDate();
+
+  $scope.isCurrentDate = function (day) {
+    return day === $scope.currentDate;
+  };
+
+  $scope.check = true;
+
+  $scope.Forward = function () {
+    monthIndex++;
+    if (monthIndex > max) {
+      monthIndex = min;
+      $scope.year++;
+    }
+    $scope.month = $scope.months[monthIndex];
+    $scope.updateDays();
+  };
+
+  $scope.Backward = function () {
+    monthIndex--;
+    if (monthIndex < min) {
+      monthIndex = max;
+      $scope.year--;
+    }
+    $scope.month = $scope.months[monthIndex];
+    $scope.updateDays();
+  };
+
+  var selectedDate, selectedMonth, selectedYear, finalDate;
+
+  $scope.selectDate = function (day, event) {
+    var currentFocused = document.querySelector(".dates button.today");
+    if (currentFocused) {
+      currentFocused.classList.remove("today");
+    }
+
+    selectedDate = day;
+    selectedMonth = $scope.months.indexOf($scope.month) + 1;
+    selectedYear = 2024;
+    finalDate = selectedDate + "-" + selectedMonth + "-" + selectedYear;
+
+    event.target.classList.add("today");
+  };
+
+  $scope.Updates = function () {
+    if (!$scope.time1 || !finalDate) {
+      alert("Please select both time and date.");
+      return;
+    }
+
+    var appointmentTimeObj = {
+      time: $scope.time1,
+      date: finalDate,
+    };
+
+    sessionStorage.setItem(
+      "appointmentTime",
+      JSON.stringify(appointmentTimeObj)
+    );
+
+    location.href = "/vfsp?id=services";
+  };
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>body {&#13;
+  margin: 0;&#13;
+  padding: 0;&#13;
+  font-family: Arial, sans-serif;&#13;
+  &#13;
+}&#13;
+&#13;
+.container {&#13;
+  display: flex;&#13;
+}&#13;
+&#13;
+.container .left-container,&#13;
+.container .right-container {&#13;
+  width: 50%;&#13;
+  padding: 20px;&#13;
+  box-sizing: border-box;&#13;
+  border: none;&#13;
+}&#13;
+&#13;
+.calendar {&#13;
+  display: inline-grid;&#13;
+  justify-content: center;&#13;
+  width: 100%;&#13;
+  align-items: center;&#13;
+  background: #fff;&#13;
+  padding: 20px;&#13;
+  border-radius: 5px;&#13;
+  box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3);&#13;
+&#13;
+  .month {&#13;
+    display: flex;&#13;
+    justify-content: space-between;&#13;
+    align-items: center;&#13;
+    font-size: 20px;&#13;
+    margin-bottom: 20px;&#13;
+    font-weight: 300;&#13;
+    width: 100%;&#13;
+&#13;
+    .year {&#13;
+      font-weight: 600;&#13;
+      margin-left: 10px;&#13;
+      width: 100%;&#13;
+    }&#13;
+&#13;
+    .nav {&#13;
+      display: flex;&#13;
+      justify-content: center;&#13;
+      align-items: center;&#13;
+      text-decoration: none;&#13;
+      color: #0a3d62;&#13;
+      width: 40px;&#13;
+      height: 40px;&#13;
+      border-radius: 40px;&#13;
+      transition-duration: 0.2s;&#13;
+      position: relative;&#13;
+&#13;
+      &amp;:hover {&#13;
+        background: #eee;&#13;
+      }&#13;
+    }&#13;
+  }&#13;
+&#13;
+  .days {&#13;
+    display: grid;&#13;
+    justify-content: center;&#13;
+    align-items: center;&#13;
+    grid-template-columns: repeat(7, 1fr);&#13;
+    color: #999;&#13;
+    font-weight: 600;&#13;
+    margin-bottom: 15px;&#13;
+    width: 100%;&#13;
+&#13;
+    span {&#13;
+      width: 50px;&#13;
+      justify-self: center;&#13;
+      align-self: center;&#13;
+      text-align: center;&#13;
+      width: 100%;&#13;
+    }&#13;
+  }&#13;
+&#13;
+  .dates {&#13;
+    display: grid;&#13;
+    grid-template-columns: repeat(7, 1fr);&#13;
+    width: 100%;&#13;
+&#13;
+    button {&#13;
+      cursor: pointer;&#13;
+      outline: 0;&#13;
+      border: 0;&#13;
+      background: transparent;&#13;
+      font-family: "Montserrat", sans-serif;&#13;
+      font-size: 16px;&#13;
+      justify-self: center;&#13;
+      align-self: center;&#13;
+      width: 50px;&#13;
+      height: 50px;&#13;
+      border-radius: 50px;&#13;
+      margin: 2px;&#13;
+      transition-duration: 0.2s;&#13;
+&#13;
+      &amp;.today {&#13;
+        box-shadow: inset 0px 0px 0px 2px #0a3d62;&#13;
+      }&#13;
+&#13;
+      &amp;:first-child {&#13;
+        grid-column: 3;&#13;
+      }&#13;
+&#13;
+      &amp;:hover {&#13;
+        background: #eee;&#13;
+      }&#13;
+&#13;
+      &amp;:focus {&#13;
+        background: #0a3d62;&#13;
+        color: #fff;&#13;
+        font-weight: 600;&#13;
+      }&#13;
+&#13;
+      &amp;:active {&#13;
+        background: #0a3d62;&#13;
+        color: #fff;&#13;
+        font-weight: 600;&#13;
+      }&#13;
+    }&#13;
+  }&#13;
+}&#13;
+&#13;
+.dates button.today {&#13;
+  background: #0a3d62;&#13;
+  color: #fff;&#13;
+  font-weight: 600;&#13;
+}&#13;
+&#13;
+.container {&#13;
+  display: flex;&#13;
+}&#13;
+&#13;
+.option {&#13;
+  display: inline-block;&#13;
+  margin-right: 20px;&#13;
+}&#13;
+&#13;
+.option input[type="radio"] {&#13;
+  display: none;&#13;
+}&#13;
+&#13;
+.checkmark {&#13;
+  position: relative;&#13;
+  display: inline-block;&#13;
+  width: 20px;&#13;
+  height: 20px;&#13;
+  background-color: #ccc;&#13;
+  border-radius: 50%;&#13;
+  margin-right: 5px;&#13;
+}&#13;
+&#13;
+.option input[type="radio"]:checked + .checkmark {&#13;
+  background-color: #007bff;&#13;
+}&#13;
+&#13;
+.checkmark:after {&#13;
+  content: "";&#13;
+  position: absolute;&#13;
+  display: none;&#13;
+}&#13;
+&#13;
+.option input[type="radio"]:checked + .checkmark:after {&#13;
+  display: block;&#13;
+}&#13;
+&#13;
+.checkmark:after {&#13;
+  top: 50%;&#13;
+  left: 50%;&#13;
+  transform: translate(-50%, -50%);&#13;
+  width: 10px;&#13;
+  height: 10px;&#13;
+  border-radius: 50%;&#13;
+  background: white;&#13;
+}&#13;
+&#13;
+.time-table {&#13;
+  width: 100%;&#13;
+  height: 10px;&#13;
+  border-collapse: collapse;&#13;
+  overflow-y: auto;&#13;
+}&#13;
+&#13;
+.time-table th,&#13;
+.time-table td {&#13;
+  border: 1px solid #ccc;&#13;
+  padding: 8px;&#13;
+  text-align: center;&#13;
+}&#13;
+&#13;
+/* Make the outer borders invisible */&#13;
+.time-table th:first-child,&#13;
+.time-table td:first-child {&#13;
+  border-left: 0;&#13;
+}&#13;
+&#13;
+.time-table th:last-child,&#13;
+.time-table td:last-child {&#13;
+  border-right: 0;&#13;
+}&#13;
+&#13;
+.time-table tr:first-child th,&#13;
+.time-table tr:first-child td,&#13;
+.time-table tr:last-child th,&#13;
+.time-table tr:last-child td {&#13;
+  border-top: 0;&#13;
+  border-bottom: 0;&#13;
+}&#13;
+&#13;
+&#13;
+.time-table tr:nth-child(even) {&#13;
+  // background-color: #f2f2f2;&#13;
+}&#13;
+&#13;
+select {&#13;
+  width: 100%;&#13;
+  padding: 6px;&#13;
+  border: 1px solid #ccc;&#13;
+  border-radius: 4px;&#13;
+  box-sizing: border-box;&#13;
+}&#13;
+&#13;
+.button-container {&#13;
+  display: flex;&#13;
+}&#13;
+&#13;
+.go-back-button,&#13;
+.submit-button {&#13;
+  padding: 10px 20px;&#13;
+  border: none;&#13;
+  background-color: #007bff;&#13;
+  color: #fff;&#13;
+  font-size: 16px;&#13;
+  cursor: pointer;&#13;
+}&#13;
+&#13;
+.go-back-button {&#13;
+  margin-right: 10px;&#13;
+}&#13;
+&#13;
+.submit-button {&#13;
+  margin-left: 10px;&#13;
+}&#13;
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>book_a_appoinment</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>book a appoinment</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script/>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>Surya.Prathap</sys_created_by>
+        <sys_created_on>2024-02-08 09:46:28</sys_created_on>
+        <sys_id>963f85e8931c4a10acdc3f484dba10d4</sys_id>
+        <sys_mod_count>264</sys_mod_count>
+        <sys_name>book a appoinment</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_963f85e8931c4a10acdc3f484dba10d4</sys_update_name>
+        <sys_updated_by>Ajmal.akram</sys_updated_by>
+        <sys_updated_on>2024-02-28 05:05:18</sys_updated_on>
+        <template><![CDATA[<div>
+  <h1>Book an Appointment</h1>
+  <p>
+    First choose the type of appointment you would like, followed by your
+    preferred date. You will then be able to select from all the time slots
+    currently available on that day.
+  </p>
+</div>
+<div class="container">
+  <label class="option">
+    <input type="radio" name="appointmentType" value="walkIn" />
+    <span class="checkmark"></span>
+    Walk-in
+  </label>
+  <label class="option">
+    <input
+      type="radio"
+      name="appointmentType"
+      value="chooseSlot"
+      checked="checked"
+    />
+    <span class="checkmark"></span>
+    Choose a Slot
+  </label>
+</div>
+<div class="container">
+  <div class="left-container">
+    <div class="calendar">
+      <div class="month">
+        <a href="javascript:void(0)" class="nav"
+          ><i class="fa fa-angle-left" ng-click="Backward()"></i
+        ></a>
+        <div>{{month}}<span class="year">{{year}}</span></div>
+        <a href="javascript:void(0)" class="nav"
+          ><i class="fa fa-angle-right" ng-click="Forward()"></i
+        ></a>
+      </div>
+      <div class="days">
+        <span>Mon</span>
+        <span>Tue</span>
+        <span>Wed</span>
+        <span>Thu</span>
+        <span>Fri</span>
+        <span>Sat</span>
+        <span>Sun</span>
+      </div>
+      <div class="dates">
+        <button
+          ng-repeat="day in days"
+          ng-class="{ 'today': isCurrentDate(day) }"
+          ng-click="selectDate(day, $event)"
+        >
+          <time>{{ day }}</time>
+        </button>
+      </div>
+    </div>
+
+    <br />
+  </div>
+
+  <div class="right-container">
+    <div style="padding: 20px; margin: 20px">
+      <h2>Choose an Appointment time</h2>
+
+      <table class="time-table" style="border: none; width: 100%">
+        <tr>
+          <th style="padding: 10px">Time</th>
+          <th style="padding: 10px">Standard</th>
+        </tr>
+        <tr>
+          <td style="padding: 10px">8:15</td>
+          <td style="padding: 10px">
+            <button
+              ng-click="toggleButton('Firstslot')"
+              ng-style="{'background-color': Firstslot ? 'green' : '', 'color': Firstslot ? 'white' : ''}"
+            >
+              {{ Firstslot ? 'Selected' : 'Select' }}
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 10px">14:00</td>
+          <td style="padding: 10px">
+            <button
+              ng-click="toggleButton('Secondslot')"
+              ng-style="{'background-color': Secondslot ? 'green' : '', 'color': Secondslot ? 'white' : ''}"
+            >
+              {{ Secondslot ? 'Selected' : 'Select' }}
+            </button>
+          </td>
+        </tr>
+      </table>
+      <div
+        class="button-container ny-3"
+        style="padding: 10px; margin-top: 20px; margin-left: 40px"
+      >
+        <!-- "Go Back" button with border radius -->
+        <button
+          class="go-back-button"
+          style="
+            margin-right: 10px;
+            background-color: green;
+            border-radius: 10px;
+          "
+        >
+          Go Back
+        </button>
+
+        <!-- "Submit" button with border radius -->
+        <button
+          class="submit-button"
+          style="background-color: green; border-radius: 10px"
+          ng-click="Updates()"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>
