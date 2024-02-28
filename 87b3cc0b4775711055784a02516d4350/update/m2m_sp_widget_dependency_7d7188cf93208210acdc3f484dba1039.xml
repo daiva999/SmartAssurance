@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_widget_dependency">
+    <m2m_sp_widget_dependency action="INSERT_OR_UPDATE">
+        <sp_dependency display_value="date range picker">acd18e4f477b755055784a02516d435a</sp_dependency>
+        <sp_widget display_value="Copy of VFS  Form">317188cf93208210acdc3f484dba1035</sp_widget>
+        <sys_class_name>m2m_sp_widget_dependency</sys_class_name>
+        <sys_created_by>harshitha</sys_created_by>
+        <sys_created_on>2024-02-28 08:47:16</sys_created_on>
+        <sys_id>7d7188cf93208210acdc3f484dba1039</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>date range picker.Copy of VFS  Form</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>m2m_sp_widget_dependency_7d7188cf93208210acdc3f484dba1039</sys_update_name>
+        <sys_updated_by>harshitha</sys_updated_by>
+        <sys_updated_on>2024-02-28 08:47:16</sys_updated_on>
+    </m2m_sp_widget_dependency>
+</record_update>
