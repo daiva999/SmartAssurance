@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope) {
+    var c = this;
+
+    var policy = sessionStorage.getItem('policy');
+    if (policy) {
+        policy = JSON.parse(policy);
+			$scope.policynumber = policy.policyNumber;
+    }
+	alert($scope.data.Productcode);
+	c.server.get({"action":"create" , "value": $scope.policynumber});
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>body {
+  font-family: Arial, sans-serif;
+   border: 1px solid #ccc;
+  border-radius: 5px;
+}
+ 
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+   padding: 20px;
+  border: 5px  #ccc;
+  border-radius: 5px;
+}
+ 
+.section {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 3px solid #ccc;
+  border-radius: 5px;
+}
+ 
+h2 {
+  margin-bottom: 10px;
+ 
+}
+ 
+.info1{
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 10px;
+ 
+  
+}
+ 
+ 
+.info1 div {
+  font-weight: bold;
+ 
+}
+ 
+.submit-button {
+  padding: 10px 20px;
+  border: none;
+   background-color: #e86020;
+  border-radius : 10px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+   text-align: center;
+    margin-left:40%; 
+}
+ 
+
+ 
+
+
+
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>policy claim</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	var data = [];
+	
+	if(input && input.action == "create"){
+		gs.addErrorMessage(input.value);
+		
+		var gr = new GlideRecord('x_rptp_insureme_payment_details');
+		gr.addQuery('number',input.value);
+		gr.query();
+		if(gr.next()){
+			gs.addInfoMessage( gr.getValue('insurer_code'));
+		/*	data.push({
+				"productCode" : gr.getValue('product_code'),
+				"insurerCode" : gr.getValue('insurer_code'),
+				"premiumamount": gr.getValue('amount'),
+				"Sum" : gr.getValue('sum'),
+				"name" : gr.getValue('primary_user')
+			})
+			*/
+			
+			data.Productcode=  gr.getValue('product_code');
+			data.insurerCode =gr.getValue('insurer_code');
+			data.premiumamount = gr.getValue('amount');
+			data.Sum =gr.getValue('sum');
+			data.name = gr.getValue('primary_user');
+			
+			gs.addErrorMessage(data.Productcode);
+		}
+		
+}
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>Surya.Prathap</sys_created_by>
+        <sys_created_on>2024-02-28 10:49:25</sys_created_on>
+        <sys_id>a35dd887472486d055784a02516d4357</sys_id>
+        <sys_mod_count>56</sys_mod_count>
+        <sys_name>policy claim</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_a35dd887472486d055784a02516d4357</sys_update_name>
+        <sys_updated_by>Surya.Prathap</sys_updated_by>
+        <sys_updated_on>2024-02-28 12:17:36</sys_updated_on>
+        <template><![CDATA[  <div>
+  <div class="form-container">
+    <section class="section">
+      <h1>Your Policy Details</h1>
+      <hr>
+      <div class="info">
+        <div>Policy Number</div>
+        <div>
+          <h4>
+            {{policynumber}}
+
+          </h4>
+        </div>
+        <hr>
+        <div>Product Code</div>
+        <div>
+          <h4>{{data.Productcode}}</h4>
+        </div>
+        <hr>
+        <div>Insurer Code</div>
+        <div>
+          <h4>{{data.insurerCode}}</h4>
+        </div>
+        <hr>
+        <div>Premium Amount</div>
+        <div>
+          <h4>{{data.premiumamount}}</h4>
+        </div>
+        <hr>
+
+        <div>Sum Insured </div>
+        <div>
+          <h4>{{data.Sum}}</h4>
+        </div>
+  <hr>
+
+        <div>Applicant Name</div>
+        <div>
+          <h4>{{data.name}}</h4>
+        </div>
+        
+      </div>
+      <hr>
+      <div>
+    <a href="">
+      <button ng-click="Updates()"
+        class="submit-button">Submit</button>
+    </a>
+      </div>
+  
+    </section>
+    </div>
+
+
+   
+
+]]></template>
+    </sp_widget>
+</record_update>
