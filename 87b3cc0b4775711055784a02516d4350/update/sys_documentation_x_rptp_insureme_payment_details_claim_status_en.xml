@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="claim_status" label="claim status" language="en" table="x_rptp_insureme_payment_details">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>claim_status</element>
+            <help/>
+            <hint/>
+            <label>claim status</label>
+            <language>en</language>
+            <name>x_rptp_insureme_payment_details</name>
+            <plural>claim status</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>Surya.Prathap</sys_created_by>
+            <sys_created_on>2024-02-29 09:37:45</sys_created_on>
+            <sys_id>5796d9d347e40ad055784a02516d4394</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>claim status</sys_name>
+            <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+            <sys_update_name>sys_documentation_x_rptp_insureme_payment_details_claim_status_en</sys_update_name>
+            <sys_updated_by>Surya.Prathap</sys_updated_by>
+            <sys_updated_on>2024-02-29 09:37:45</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>
