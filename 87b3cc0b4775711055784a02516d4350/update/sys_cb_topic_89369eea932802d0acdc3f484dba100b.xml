@@ -1,0 +1,1572 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic">
+    <sys_cb_topic action="INSERT_OR_UPDATE">
+        <applicability/>
+        <applicability_mode>query</applicability_mode>
+        <autopilot_topic>false</autopilot_topic>
+        <category/>
+        <channels/>
+        <connect_queue/>
+        <description/>
+        <dialog_acts_enabled>false</dialog_acts_enabled>
+        <expose_on_palette>false</expose_on_palette>
+        <flexible_conversation_switching>false</flexible_conversation_switching>
+        <foundational>false</foundational>
+        <graph>{
+  "graph_api_version": "1.0.55",
+  "goals": {
+    "primary": {
+      "id": "primary",
+      "trigger": {
+        "type": "primary"
+      },
+      "name": "primary",
+      "applicability": "",
+      "description": "",
+      "nodes": {
+        "7e7fc30d7a9b47edaec3f709df2009dc": {
+          "id": "7e7fc30d7a9b47edaec3f709df2009dc",
+          "stepType": "Start",
+          "name": "Start",
+          "greetingResponse": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "de190f79851941baa05a913d66268d01": {
+          "id": "de190f79851941baa05a913d66268d01",
+          "stepType": "TerminateGoal",
+          "name": "End",
+          "confirmationMessage": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "e0adf026686d4c9d916d24cc2b98f811": {
+          "id": "e0adf026686d4c9d916d24cc2b98f811",
+          "stepType": "TextPrompt",
+          "name": "Policy Number",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Please enter your Policy Number "
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "f8131acb40d24b2aad57bf0adc1b363b",
+          "detailDescription": "",
+          "inputType": {
+            "format": "Text",
+            "script": ""
+          },
+          "requestFeedback": true
+        },
+        "73ede6fcbab146949a8298da874feb0f": {
+          "id": "73ede6fcbab146949a8298da874feb0f",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "a4c45d3db5f445b3ba57592bef375587": {
+          "id": "a4c45d3db5f445b3ba57592bef375587",
+          "stepType": "TextOutput",
+          "name": "Check",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "No policy is associated with the provided policy number. Kindly input a valid Policy number."
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "30fd5913e324423ebe5633fa4da8e5f6"
+            }
+          ],
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "e6bbfdae24b5407e925f6d2ab5387acd": {
+          "name": "Choices",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "How may I help you?"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "ed69d478565f4fd39fd6b85d1fa67efe",
+          "detailDescription": "",
+          "id": "e6bbfdae24b5407e925f6d2ab5387acd",
+          "stepType": "ChoicePrompt",
+          "hasCardHeader": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        },
+        "c3cdee1f127e4886b969ed1d241a117e": {
+          "id": "c3cdee1f127e4886b969ed1d241a117e",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "aab16d98bef14664a2fc95b572089d92": {
+          "id": "aab16d98bef14664a2fc95b572089d92",
+          "stepType": "TextOutput",
+          "name": "Sum Assured",
+          "secure": false,
+          "value": [
+            {
+              "value": "(function execute() {\n    /* Return a quoted string.  For example:\n\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessageLang(\"hi there {0}\", vaContext.getRequesterLang(), [vaInputs.first_name]);\n       } else {\n           return gs.getMessageLang(\"how are you {0}\", vaContext.getRequesterLang(), [vaInputs.last_name]);\n       }\n    */\n\n    var paymentDetails = new GlideRecord(\"x_rptp_insureme_payment_details\");\n    paymentDetails.addQuery(\"number\", vaInputs.policy_number);\n    paymentDetails.query();\n\n    if(paymentDetails.next()){\n        var sumAssured = paymentDetails.getDisplayValue(\"sum\");\n        return gs.getMessageLang(\"Sum Assured is \" + sumAssured);\n    }\n})()\n",
+              "mode": "script"
+            }
+          ],
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "fa3c0007e1484d218410886ce9894eb2": {
+          "id": "fa3c0007e1484d218410886ce9894eb2",
+          "stepType": "TextOutput",
+          "name": "Premium Amount",
+          "secure": false,
+          "value": [
+            {
+              "value": "(function execute() {\n    /* Return a quoted string.  For example:\n\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessageLang(\"hi there {0}\", vaContext.getRequesterLang(), [vaInputs.first_name]);\n       } else {\n           return gs.getMessageLang(\"how are you {0}\", vaContext.getRequesterLang(), [vaInputs.last_name]);\n       }\n    */\n    var paymentDetails = new GlideRecord(\"x_rptp_insureme_payment_details\");\n    paymentDetails.addQuery(\"number\", vaInputs.policy_number);\n    paymentDetails.query();\n\n    if(paymentDetails.next()){\n        var premiumAmount = paymentDetails.getDisplayValue(\"amount\");\n        return gs.getMessageLang(\"Premium Amount is \" + premiumAmount);\n    }\n})()\n",
+              "mode": "script"
+            }
+          ],
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "82c3789ba9294f76b15916e4de2e9025": {
+          "name": "Help",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Is there any way I can help you?"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "a250e96704cc47bba60d6ad1d5d2445a",
+          "detailDescription": "",
+          "id": "82c3789ba9294f76b15916e4de2e9025",
+          "stepType": "ChoicePrompt",
+          "hasCardHeader": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        },
+        "5e7ed0b7fb36402aa3b5e5c27f356bb8": {
+          "id": "5e7ed0b7fb36402aa3b5e5c27f356bb8",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "da67b81317b94c15bb984823a6f237da": {
+          "id": "da67b81317b94c15bb984823a6f237da",
+          "stepType": "TableOutput",
+          "name": "List of Benefits",
+          "header": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "List of Benefits "
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "displayColumnHeaders": true,
+          "dataSourceType": "table",
+          "script": "",
+          "tableName": "x_rptp_insureme_insurance_products_benefits",
+          "sortByColumns": [
+            {
+              "column": "name",
+              "sortDirection": "ASC"
+            }
+          ],
+          "tableCondition": {
+            "mode": "glide_scripted_query",
+            "value": "(function execute(table) {\n    /* Write a glide record query, and return the glide record.\n       For example:\n       var gr = new GlideRecordSecure(table);\n       gr.addEncodedQuery('active=true^number=INC0010099');\n       gr.query();\n       return gr;\n    */\n    \n    var prodCode = '';\n    var insurerCode = '';\n\n    var paymentDetails = new GlideRecord(\"x_rptp_insureme_payment_details\");\n    paymentDetails.addQuery(\"number\", vaInputs.policy_number);\n    paymentDetails.query();\n\n    if(paymentDetails.next()){\n        prodCode = paymentDetails.getDisplayValue(\"product_code\");\n        insurerCode = paymentDetails.getDisplayValue(\"insurer_code\");\n    }\n\n    \n    var insuranceBenefits = new GlideRecord(table);\n    insuranceBenefits.addQuery(\"product_code\", prodCode);\n    insuranceBenefits.addQuery(\"insurer\", insurerCode);\n    insuranceBenefits.query();\n\n    return insuranceBenefits;\n\n})(table)\n"
+          },
+          "columns": [
+            {
+              "key": "name",
+              "value": "Name",
+              "label": "Name"
+            },
+            {
+              "key": "value",
+              "value": "Value (USD)",
+              "label": "Value"
+            }
+          ],
+          "noRecordsResponseMsg": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "No Benefits are associated with this Insurance"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "a94087e7c90548a3bb3c835d6354f3f5": {
+          "name": "Policy ",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Please choose the option for which you would like to receive more detailed information"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "93a9f19452a9405c9ccd5fba8d6134a1",
+          "detailDescription": "",
+          "id": "a94087e7c90548a3bb3c835d6354f3f5",
+          "stepType": "ChoicePrompt",
+          "hasCardHeader": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        },
+        "cf5d07e7614c4551a3391a71cae3a1f9": {
+          "id": "cf5d07e7614c4551a3391a71cae3a1f9",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "df7bbdbc1cf14ef2a310425ae8db85e0": {
+          "id": "df7bbdbc1cf14ef2a310425ae8db85e0",
+          "stepType": "TextPrompt",
+          "name": "Age",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Enter your age"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "008cf146e2194945b9de648ed833a709",
+          "detailDescription": "",
+          "inputType": {
+            "format": "Custom",
+            "script": "function validate(value) {\n    /* Return the results of your custom validation.  For example:\n\n        var isValid = value === 'foo@bar.com'\n\n        return {\n            valid: isValid,\n            error: isValid ? undefined : \"Sorry, email must be 'foo@bar.com'\"\n        };\n    */\n    var isValid = value &gt;= 1 &amp;&amp; value &lt;= 70;\n\n    return{\n        valid : isValid,\n        error : isValid ? undefined : \"Age must be between 1 and 70\"\n    };\n}\n"
+          },
+          "requestFeedback": true
+        },
+        "d7185db6a7b74f0db4980398870f5d9f": {
+          "id": "d7185db6a7b74f0db4980398870f5d9f",
+          "stepType": "TextPrompt",
+          "name": "Duration",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Enter your travel duration (in days)"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "ca4f781df382408c94108da56f765a72",
+          "detailDescription": "",
+          "inputType": {
+            "format": "Custom",
+            "script": "function validate(value) {\n    /* Return the results of your custom validation.  For example:\n\n        var isValid = value === 'foo@bar.com'\n\n        return {\n            valid: isValid,\n            error: isValid ? undefined : \"Sorry, email must be 'foo@bar.com'\"\n        };\n    */\n    var isValid = value &gt;= 1 &amp;&amp; value &lt;= 180;\n    return{\n        valid : isValid,\n        error : isValid ? undefined : \"Duration must be between 1 and 180\"\n    };\n}\n"
+          },
+          "requestFeedback": true
+        },
+        "61c5207be2264123b2eebc76d64b3ec0": {
+          "id": "61c5207be2264123b2eebc76d64b3ec0",
+          "stepType": "TableOutput",
+          "name": "product details",
+          "header": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "List of Policies"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "displayColumnHeaders": true,
+          "dataSourceType": "script",
+          "script": "(function execute() {\n    /* Code your script logic here. For example, you might want to call an external web service\n    to find the best local Italian restaurants.  Call a Restaurants Web Service then use the results\n    to populate a rows array.\n        var headers = [\n          'Name',        // Column 1 header\n          'Description'  // Column 2 header\n        ];\n        var rows = [];\n        rows.push([                                        // Row 1\n          'De Napoli',                                     // Column 1 value\n          gs.getMessageLang(\"Best Italian Restaurant Ever\", vaContext.getRequesterLang())    // Column 2 value\n        ]);\n        rows.push([                                        // Row 2\n          'Albertos',                                      // Column 1 value\n          gs.getMessageLang(\"Even Better Italian Restaurant\", vaContext.getRequesterLang())  // Column 2 value\n        ]);\n        return {\n            columnHeaders: headers,\n            columnValues: rows\n        };\n    */\n\n    var headers = [\n        'Product Name',\n        'Premium Amount (INR)'\n    ];\n\n    var insurPremium =new GlideRecord('x_rptp_insureme_premium');\n    insurPremium.addQuery('min_age','&lt;=', vaInputs.age);\n    insurPremium.addQuery('max_age','&gt;=', vaInputs.age);\n    insurPremium.addQuery('min_days','&lt;=', vaInputs.duration);\n    insurPremium.addQuery('max_days','&gt;=', vaInputs.duration);\n    insurPremium.query();\n\n    var rows = [];\n\n    while(insurPremium.next()){\n        var premiumAmount = insurPremium.getDisplayValue(\"cost\");\n        var productName = insurPremium.getDisplayValue(\"u_prod_type.prod_name\");\n        if(productName!= \"\"){\n            rows.push([\n            productName,\n            premiumAmount\n        ]);\n        }\n    }\n\n    return {\n        columnHeaders: headers,\n        columnValues: rows\n    };\n})()\n",
+          "tableName": "",
+          "sortByColumns": [
+            {
+              "column": "cost",
+              "sortDirection": "ASC"
+            }
+          ],
+          "tableCondition": {
+            "mode": "glide_query",
+            "value": "min_age&lt;={{vaInputs.age}}^max_age&gt;={{vaInputs.age}}^min_days&lt;={{vaInputs.duration}}^max_days&gt;={{vaInputs.duration}}"
+          },
+          "columns": [
+            {
+              "key": "prod_code",
+              "value": "Product Code",
+              "label": "Prod code"
+            },
+            {
+              "key": "cost",
+              "value": "Premium Amount (INR)",
+              "label": "Cost"
+            }
+          ],
+          "noRecordsResponseMsg": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "There are no policies according to your inputs"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "f0b16594e5b04ba29cd89fdb076c1f6a": {
+          "id": "f0b16594e5b04ba29cd89fdb076c1f6a",
+          "stepType": "TextOutput",
+          "name": "policies details",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "Here are the policy details you requested. For further information, please refer to our website."
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "92a6cf64052b4e63a6378de29896028e"
+            }
+          ],
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "933b8f2020704dafa2bfeb7216440e04": {
+          "id": "933b8f2020704dafa2bfeb7216440e04",
+          "stepType": "TextPrompt",
+          "name": "Product name (user input)",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Kindly input the name of the product you wish to know more about"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "4347421086304cf2a5ee0b0c41defa2f",
+          "detailDescription": "",
+          "inputType": {
+            "format": "Text",
+            "script": ""
+          },
+          "requestFeedback": true
+        },
+        "f9c81391e5de4129bcfc2f6563f694b7": {
+          "id": "f9c81391e5de4129bcfc2f6563f694b7",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "daeb277850994dc7894b5643f4487a14": {
+          "id": "daeb277850994dc7894b5643f4487a14",
+          "stepType": "TextOutput",
+          "name": "Premium and Sum Assured",
+          "secure": false,
+          "value": [
+            {
+              "value": "(function execute() {\n    /* Return a quoted string.  For example:\n\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessageLang(\"hi there {0}\", vaContext.getRequesterLang(), [vaInputs.first_name]);\n       } else {\n           return gs.getMessageLang(\"how are you {0}\", vaContext.getRequesterLang(), [vaInputs.last_name]);\n       }\n    */\n    var sumAssured = '';\n    var prodCode = '';\n    var premiumAmount = '';\n    var sumCurrency = '';\n    var pCurrency = '';\n\n    var prod = new GlideRecord(\"x_rptp_insureme_insurance_products\");\n    prod.addQuery(\"prod_name\", vaInputs.product_name_user_input_);\n    prod.query();\n\n    if(prod.next()){\n        sumAssured = prod.getDisplayValue(\"sum\");\n        prodCode = prod.getDisplayValue(\"prod_code\");\n        sumCurrency = prod.getDisplayValue(\"currency\");\n    }\n\n    var insurPremium =new GlideRecord('x_rptp_insureme_premium');\n    insurPremium.addQuery('min_age','&lt;=', vaInputs.age);\n    insurPremium.addQuery('max_age','&gt;=', vaInputs.age);\n    insurPremium.addQuery('min_days','&lt;=', vaInputs.duration);\n    insurPremium.addQuery('max_days','&gt;=', vaInputs.duration);\n    insurPremium.addQuery(\"prod_code\", prodCode);\n    insurPremium.query();\n\n    if(insurPremium.next()){\n        premiumAmount = insurPremium.getDisplayValue(\"cost\");\n        pCurrency = insurPremium.getDisplayValue(\"currency\");\n    }\n\n    return gs.getMessageLang(\"Premium Amount for \" + vaInputs.product_name_user_input_ + \" is \" + \" INR \" + premiumAmount + \"\\n\" + \n    \"Sum Assured for \" + vaInputs.product_name_user_input_ + \" is \" + sumCurrency + \" \" + sumAssured);\n\n})()\n",
+              "mode": "script"
+            }
+          ],
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "35b9342e12b44b1cbb21815f780f825e": {
+          "id": "35b9342e12b44b1cbb21815f780f825e",
+          "stepType": "TextOutput",
+          "name": "Enter valid product name",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "Please enter the product name correctly and in the proper format as shown in the above table."
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "108f6c11f6bf43969d82b4b967877be8"
+            }
+          ],
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "a62c8bb572384a3da7f82fd1332d3178": {
+          "id": "a62c8bb572384a3da7f82fd1332d3178",
+          "stepType": "TableOutput",
+          "name": "Benefits",
+          "header": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Benefits of the Product"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "displayColumnHeaders": true,
+          "dataSourceType": "table",
+          "script": "",
+          "tableName": "x_rptp_insureme_insurance_products_benefits",
+          "sortByColumns": [
+            {
+              "column": "name",
+              "sortDirection": "ASC"
+            }
+          ],
+          "tableCondition": {
+            "mode": "glide_scripted_query",
+            "value": "(function execute(table) {\n    /* Write a glide record query, and return the glide record.\n       For example:\n       var gr = new GlideRecordSecure(table);\n       gr.addEncodedQuery('active=true^number=INC0010099');\n       gr.query();\n       return gr;\n    */\n    var prodCode = '';\n\n    var prod = new GlideRecord(\"x_rptp_insureme_insurance_products\");\n    prod.addQuery(\"prod_name\", vaInputs.product_name_user_input_);\n    prod.query();\n\n    if(prod.next()){\n        prodCode = prod.getDisplayValue(\"prod_code\");\n    }\n\n    var insuranceBenefits = new GlideRecord(table);\n    insuranceBenefits.addQuery(\"product_code\", prodCode);\n    insuranceBenefits.query();\n\n    return insuranceBenefits;\n})(table)\n"
+          },
+          "columns": [
+            {
+              "key": "name",
+              "value": "Name",
+              "label": "Name"
+            },
+            {
+              "key": "value",
+              "value": "Value (USD)",
+              "label": "Value"
+            }
+          ],
+          "noRecordsResponseMsg": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "There are no benefits for this Product"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "de213231260a47ad9e0ed400ba318975": {
+          "id": "de213231260a47ad9e0ed400ba318975",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "be40b9b6072d4094a9bc244405eb1cdc": {
+          "id": "be40b9b6072d4094a9bc244405eb1cdc",
+          "stepType": "TextOutput",
+          "name": "No policies found",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "There are no policies according to your inputs."
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "299ceb4a70b44e30aa9a3a6fbea7b459"
+            }
+          ],
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "31afc663e9d44e69a25ac4dbea468863": {
+          "id": "31afc663e9d44e69a25ac4dbea468863",
+          "stepType": "TextOutput",
+          "name": "otp sent message",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "An email with an OTP has been sent to your registered email id."
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "96133b9a300a48efbda80c5488968bad"
+            }
+          ],
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "d17273e36742482787a940d5e8fe641f": {
+          "id": "d17273e36742482787a940d5e8fe641f",
+          "stepType": "TextPrompt",
+          "name": "Otp ",
+          "prompt": {
+            "value": "(function execute() {\n    /* Return a quoted string.  For example:\n\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessageLang(\"hi there {0}\", vaContext.getRequesterLang(), [vaInputs.first_name]);\n       } else {\n           return gs.getMessageLang(\"how are you {0}\", vaContext.getRequesterLang(), [vaInputs.last_name]);\n       }\n    */\n    if(vaVars.count == 1 || vaVars.count == 0){\n        return gs.getMessageLang(\"Enter the OTP\");\n    }else if(vaVars.count &gt; 1){\n        return gs.getMessageLang(\"Entered OTP is incorrect, Please re-enter the OTP\");\n    }\n})()\n",
+            "mode": "script"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "cba98ae97b19401db3334bb5724e5d02",
+          "detailDescription": "",
+          "inputType": {
+            "format": "Text",
+            "script": ""
+          },
+          "requestFeedback": true
+        },
+        "4039cd96c6b947ff8b116fd650a0a908": {
+          "id": "4039cd96c6b947ff8b116fd650a0a908",
+          "name": "new record in Otp table",
+          "script": "(function execute() {\n    /* Code your scripted action here. For example, you might update a\n       record based on conditional logic:\n\n        if (vaVars.my_flag == 'say hello') {\n            gs.info('hi there');\n        } else {\n            gs.info('bye now');\n        }\n    */\n    var Email = '';\n    var paymentDetails = new GlideRecord(\"x_rptp_insureme_payment_details\");\n    paymentDetails.addQuery(\"number\", vaInputs.policy_number);\n    paymentDetails.query();\n\n    if(paymentDetails.next()){\n        Email = paymentDetails.getDisplayValue(\"primary_email\");\n    }\n\n    var otpTable = new GlideRecord(\"x_rptp_insureme_otptable\");\n    otpTable.addQuery('policy_number', vaInputs.policy_number);\n    otpTable.query();\n\n    if(!otpTable.next()){\n    otpTable.newRecord();\n    otpTable.policy_number = vaInputs.policy_number;\n    otpTable.email = Email;\n    var otpVar= Math.floor(100000 + Math.random()*900000)+\"\";\n    otpTable.otp= otpVar.split(\".\")[0];\n    otpTable.insert();\n    }\n    else {\n    otpTable.email = Email;\n    var otpVar= Math.floor(100000 + Math.random()*900000)+\"\";\n    otpTable.otp= otpVar.split(\".\")[0];\n    otpTable.update();\n    }\n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "a6ddf38fdcb247348d6cb730e5515669": {
+          "id": "a6ddf38fdcb247348d6cb730e5515669",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "ed3d35e622d14c0fbdecf6bbc315f11d": {
+          "name": "Otp choice",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Select from the options below"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "6959bafe7979469db71bd1746a0a60fa",
+          "detailDescription": "",
+          "id": "ed3d35e622d14c0fbdecf6bbc315f11d",
+          "stepType": "ChoicePrompt",
+          "hasCardHeader": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        },
+        "e018e067c0b646c4a356d3a860c68131": {
+          "id": "e018e067c0b646c4a356d3a860c68131",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "1bcb9f7cab1b4e25b09b84a26360d056": {
+          "id": "1bcb9f7cab1b4e25b09b84a26360d056",
+          "stepType": "Decision",
+          "name": "Decision"
+        }
+      },
+      "edges": [
+        {
+          "id": "582a7e2157044874b701253b13a80f0a",
+          "edgeType": "Branch",
+          "source": "a6ddf38fdcb247348d6cb730e5515669",
+          "target": "e6bbfdae24b5407e925f6d2ab5387acd",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    var otpTable = new GlideRecord(\"x_rptp_insureme_otptable\");\n    otpTable.addQuery(\"policy_number\", vaInputs.policy_number);\n    otpTable.query();\n\n    if(otpTable.next()){\n        if(otpTable.otp == vaInputs.otp_){\n            return true;\n        }\n    }\n    return false;\n})()\n"
+          },
+          "label": "Valid otp"
+        },
+        {
+          "id": "036388903dfb400589434b1a5da1cc29",
+          "edgeType": "Edge",
+          "source": "4039cd96c6b947ff8b116fd650a0a908",
+          "target": "31afc663e9d44e69a25ac4dbea468863",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "0bae2c67a4fb4d359e39c0151e2605e9",
+          "edgeType": "Edge",
+          "source": "df7bbdbc1cf14ef2a310425ae8db85e0",
+          "target": "d7185db6a7b74f0db4980398870f5d9f",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "797d4b7ee9644370b5b8eff2435a7676",
+          "edgeType": "Branch",
+          "source": "5e7ed0b7fb36402aa3b5e5c27f356bb8",
+          "target": "de190f79851941baa05a913d66268d01",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.help=No, Thank You",
+            "mode": "query"
+          },
+          "label": "Thank You"
+        },
+        {
+          "id": "47b505566d714a53947e7a71eaceb5af",
+          "edgeType": "Edge",
+          "source": "933b8f2020704dafa2bfeb7216440e04",
+          "target": "f9c81391e5de4129bcfc2f6563f694b7",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "83df6051c34d46c6b4e2fc6b0b93e0c8",
+          "edgeType": "Branch",
+          "source": "c3cdee1f127e4886b969ed1d241a117e",
+          "target": "da67b81317b94c15bb984823a6f237da",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.choices=Benefits of the Insurance",
+            "mode": "query"
+          },
+          "label": "Benefits"
+        },
+        {
+          "id": "7986f33f23d1448a8dd936cfa5057bf5",
+          "edgeType": "Edge",
+          "source": "fa3c0007e1484d218410886ce9894eb2",
+          "target": "82c3789ba9294f76b15916e4de2e9025",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "4929a6a149ce41b89ab96eabc99e632b",
+          "edgeType": "Edge",
+          "source": "aab16d98bef14664a2fc95b572089d92",
+          "target": "82c3789ba9294f76b15916e4de2e9025",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "048ced3792f24a1f95aa56929d508a41",
+          "edgeType": "Branch",
+          "source": "c3cdee1f127e4886b969ed1d241a117e",
+          "target": "fa3c0007e1484d218410886ce9894eb2",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.choices=Premium Amount",
+            "mode": "query"
+          },
+          "label": "Premium Amount"
+        },
+        {
+          "id": "a5440823393c4f3b95b9b36669496380",
+          "edgeType": "Branch",
+          "source": "c3cdee1f127e4886b969ed1d241a117e",
+          "target": "aab16d98bef14664a2fc95b572089d92",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.choices=Sum Assured",
+            "mode": "query"
+          },
+          "label": "Sum Assured"
+        },
+        {
+          "id": "a5a1600e29b4498b857b5291e8d0be17",
+          "edgeType": "Edge",
+          "source": "e0adf026686d4c9d916d24cc2b98f811",
+          "target": "73ede6fcbab146949a8298da874feb0f",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "89dbbf5647c34b0b8566e95e527ba2f6",
+          "edgeType": "Branch",
+          "source": "73ede6fcbab146949a8298da874feb0f",
+          "target": "a4c45d3db5f445b3ba57592bef375587",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n\n    var paymentDetails = new GlideRecord(\"x_rptp_insureme_payment_details\");\n    paymentDetails.addQuery(\"number\", vaInputs.policy_number);\n    paymentDetails.query();\n\n    if(!paymentDetails.next()){\n        return true;\n    }\n    return false;\n})()\n"
+          },
+          "label": "No"
+        },
+        {
+          "id": "ccbf751b226840fb9a81e838b760795c",
+          "edgeType": "Edge",
+          "source": "a4c45d3db5f445b3ba57592bef375587",
+          "target": "e0adf026686d4c9d916d24cc2b98f811",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "d3b1d77b61094ef28da5a0f68a71a2f8",
+          "edgeType": "Edge",
+          "source": "e6bbfdae24b5407e925f6d2ab5387acd",
+          "target": "c3cdee1f127e4886b969ed1d241a117e",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "08dd392389e1435e89f50e43990272bb",
+          "edgeType": "Edge",
+          "source": "82c3789ba9294f76b15916e4de2e9025",
+          "target": "5e7ed0b7fb36402aa3b5e5c27f356bb8",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "0b6a5699beb143e19e853caeee84007f",
+          "edgeType": "Branch",
+          "source": "5e7ed0b7fb36402aa3b5e5c27f356bb8",
+          "target": "e6bbfdae24b5407e925f6d2ab5387acd",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.help=Yes, Main Menu",
+            "mode": "query"
+          },
+          "label": "Main Menu"
+        },
+        {
+          "id": "036b9f6f553a4fc785e4eb46ae65c029",
+          "edgeType": "Edge",
+          "source": "da67b81317b94c15bb984823a6f237da",
+          "target": "82c3789ba9294f76b15916e4de2e9025",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "d41360acb9134630b2e53237502eadf4",
+          "edgeType": "Edge",
+          "source": "7e7fc30d7a9b47edaec3f709df2009dc",
+          "target": "a94087e7c90548a3bb3c835d6354f3f5",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "a54d6b4dbd194f4d8533369293839b57",
+          "edgeType": "Edge",
+          "source": "a94087e7c90548a3bb3c835d6354f3f5",
+          "target": "cf5d07e7614c4551a3391a71cae3a1f9",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "f2e514fdfd694743a3c45b1516d5d3d0",
+          "edgeType": "Branch",
+          "source": "cf5d07e7614c4551a3391a71cae3a1f9",
+          "target": "e0adf026686d4c9d916d24cc2b98f811",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.policy_=Already purchased policy",
+            "mode": "query"
+          },
+          "label": "Existing policy"
+        },
+        {
+          "id": "5006bc51b50c450c82cf60ea9ad8af98",
+          "edgeType": "Branch",
+          "source": "cf5d07e7614c4551a3391a71cae3a1f9",
+          "target": "df7bbdbc1cf14ef2a310425ae8db85e0",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.policy_=New policy details",
+            "mode": "query"
+          },
+          "label": "New policy"
+        },
+        {
+          "id": "c21feff3ee1f429c8b9ff49c34af09ea",
+          "edgeType": "Edge",
+          "source": "f0b16594e5b04ba29cd89fdb076c1f6a",
+          "target": "de190f79851941baa05a913d66268d01",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "f72efe9c4e284d66aadf51ea50abef9f",
+          "edgeType": "Edge",
+          "source": "61c5207be2264123b2eebc76d64b3ec0",
+          "target": "933b8f2020704dafa2bfeb7216440e04",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "f8dac6b443ed4f4293c6611939ed4aae",
+          "edgeType": "Branch",
+          "source": "f9c81391e5de4129bcfc2f6563f694b7",
+          "target": "daeb277850994dc7894b5643f4487a14",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    var prod = new GlideRecord(\"x_rptp_insureme_insurance_products\");\n    prod.addQuery(\"prod_name\", vaInputs.product_name_user_input_);\n    prod.query();\n\n    if(prod.next()){\n        return true;\n    }\n    return false;\n})()\n"
+          },
+          "label": "correct"
+        },
+        {
+          "id": "024a53aca5dd4132a679710c58b2c774",
+          "edgeType": "Branch",
+          "source": "f9c81391e5de4129bcfc2f6563f694b7",
+          "target": "35b9342e12b44b1cbb21815f780f825e",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    var prod = new GlideRecord(\"x_rptp_insureme_insurance_products\");\n    prod.addQuery(\"prod_name\", vaInputs.product_name_user_input_);\n    prod.query();\n\n    if(!prod.next()){\n        return true;\n    }\n    return false;\n})()\n"
+          },
+          "label": "wrong"
+        },
+        {
+          "id": "f07b0cf59ef541b1b2de0fd2bb0ddd9e",
+          "edgeType": "Edge",
+          "source": "35b9342e12b44b1cbb21815f780f825e",
+          "target": "933b8f2020704dafa2bfeb7216440e04",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "691eccb2082e4938a7c5930f90eb2c27",
+          "edgeType": "Edge",
+          "source": "daeb277850994dc7894b5643f4487a14",
+          "target": "a62c8bb572384a3da7f82fd1332d3178",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "5bff8ec6e47142afb2e21f45643771ad",
+          "edgeType": "Edge",
+          "source": "a62c8bb572384a3da7f82fd1332d3178",
+          "target": "f0b16594e5b04ba29cd89fdb076c1f6a",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "0af9af9ae9c948dbb40d823e773ccb88",
+          "edgeType": "Edge",
+          "source": "d7185db6a7b74f0db4980398870f5d9f",
+          "target": "de213231260a47ad9e0ed400ba318975",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "9080913f4ae7432cae0c0c288f94c85a",
+          "edgeType": "Branch",
+          "source": "de213231260a47ad9e0ed400ba318975",
+          "target": "61c5207be2264123b2eebc76d64b3ec0",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    var insurPremium =new GlideRecord('x_rptp_insureme_premium');\n    insurPremium.addQuery('min_age','&lt;', vaInputs.age);\n    insurPremium.addQuery('max_age','&gt;', vaInputs.age);\n    insurPremium.addQuery('min_days','&lt;', vaInputs.duration);\n    insurPremium.addQuery('max_days','&gt;', vaInputs.duration);\n    insurPremium.query();\n\n    if(insurPremium.next()){\n        return true;\n    }\n    return false;\n})()\n"
+          },
+          "label": "Checking policies"
+        },
+        {
+          "id": "a569ee26b4074d239668881201bb8ac6",
+          "edgeType": "Branch",
+          "source": "de213231260a47ad9e0ed400ba318975",
+          "target": "be40b9b6072d4094a9bc244405eb1cdc",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    var insurPremium =new GlideRecord('x_rptp_insureme_premium');\n    insurPremium.addQuery('min_age','&lt;', vaInputs.age);\n    insurPremium.addQuery('max_age','&gt;', vaInputs.age);\n    insurPremium.addQuery('min_days','&lt;', vaInputs.duration);\n    insurPremium.addQuery('max_days','&gt;', vaInputs.duration);\n    insurPremium.query();\n\n    if(!insurPremium.next()){\n        return true; \n    }\n    return false;\n})()\n"
+          },
+          "label": "No policies found"
+        },
+        {
+          "id": "8c491778f5ab41669bd51abfadffc467",
+          "edgeType": "Edge",
+          "source": "be40b9b6072d4094a9bc244405eb1cdc",
+          "target": "df7bbdbc1cf14ef2a310425ae8db85e0",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "e2c9325291f24cdeb6dcfc61e0745b4b",
+          "edgeType": "Edge",
+          "source": "31afc663e9d44e69a25ac4dbea468863",
+          "target": "d17273e36742482787a940d5e8fe641f",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "f2b75fa7de1a4fc4bcca5d6426b5d4ca",
+          "edgeType": "Branch",
+          "source": "73ede6fcbab146949a8298da874feb0f",
+          "target": "4039cd96c6b947ff8b116fd650a0a908",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n\n    // var paymentDetails = new GlideRecord(\"x_rptp_insureme_payment_details\");\n    // if(paymentDetails.number == vaInputs.policy_number){\n    //     return true;\n    // }\n\n    var paymentDetails = new GlideRecord(\"x_rptp_insureme_payment_details\");\n    paymentDetails.addQuery(\"number\", vaInputs.policy_number);\n    paymentDetails.query();\n\n    if(paymentDetails.next()){\n        return true;\n    }\n    return false;\n})()\n"
+          },
+          "label": "Yes"
+        },
+        {
+          "id": "c3e4e6f601834449ab3370cc77d5619b",
+          "edgeType": "Edge",
+          "source": "d17273e36742482787a940d5e8fe641f",
+          "target": "a6ddf38fdcb247348d6cb730e5515669",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "f6e4c6908dc5439e93cbf3ed799ba4c8",
+          "edgeType": "Edge",
+          "source": "ed3d35e622d14c0fbdecf6bbc315f11d",
+          "target": "e018e067c0b646c4a356d3a860c68131",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "a4eb1f6110244137ab7e767c55800c74",
+          "edgeType": "Branch",
+          "source": "e018e067c0b646c4a356d3a860c68131",
+          "target": "4039cd96c6b947ff8b116fd650a0a908",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.otp_choice=Resend OTP",
+            "mode": "query"
+          },
+          "label": "Resend otp"
+        },
+        {
+          "id": "6bf67f8220b44e408b1aa25eec2501bc",
+          "edgeType": "Branch",
+          "source": "e018e067c0b646c4a356d3a860c68131",
+          "target": "de190f79851941baa05a913d66268d01",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.otp_choice=End ",
+            "mode": "query"
+          },
+          "label": "End"
+        },
+        {
+          "id": "869e226dcaeb46a6a3d3a0b58c9383eb",
+          "edgeType": "Branch",
+          "source": "a6ddf38fdcb247348d6cb730e5515669",
+          "target": "1bcb9f7cab1b4e25b09b84a26360d056",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    var otpTable = new GlideRecord(\"x_rptp_insureme_otptable\");\n    otpTable.addQuery(\"policy_number\", vaInputs.policy_number);\n    otpTable.query();\n\n    if(otpTable.next()){\n        if(otpTable.otp != vaInputs.otp_){\n            return true;\n        }\n    }\n    return false;\n})()\n"
+          },
+          "label": "Invalid otp"
+        },
+        {
+          "id": "1fc6e33bee7a43318399f07a47c13a11",
+          "edgeType": "Branch",
+          "source": "1bcb9f7cab1b4e25b09b84a26360d056",
+          "target": "ed3d35e622d14c0fbdecf6bbc315f11d",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    if(vaVars.count &gt;= 3){\n        vaVars.count = 0; \n        return true;\n    }else{\n        return false;\n    }\n})()\n"
+          },
+          "label": "Count exceeded"
+        },
+        {
+          "id": "b05f2ce05b2e4846927519f03f80d299",
+          "edgeType": "Branch",
+          "source": "1bcb9f7cab1b4e25b09b84a26360d056",
+          "target": "d17273e36742482787a940d5e8fe641f",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    if(vaVars.count &lt; 3){\n        vaVars.count++;\n        return true;\n    }else{\n        return false;\n    }\n})()\n"
+          },
+          "label": "Count below 3"
+        }
+      ]
+    }
+  },
+  "variables": {
+    "current-user": {
+      "category": "vaInputs",
+      "id": "current-user",
+      "label": "User",
+      "name": "user",
+      "table": "sys_user",
+      "varType": "reference"
+    },
+    "f8131acb40d24b2aad57bf0adc1b363b": {
+      "id": "f8131acb40d24b2aad57bf0adc1b363b",
+      "name": "policy_number",
+      "label": "Policy Number",
+      "varType": "string",
+      "secure": false,
+      "category": "vaInputs",
+      "encryptionHashFunction": "SHA-256",
+      "encryptionSalt": {
+        "value": "MTcwOTAxNDg3MTk5NCBWQSBEZXNpZ25lciBpcyBhd2Vzb21l",
+        "mode": "simple"
+      },
+      "nodeId": "e0adf026686d4c9d916d24cc2b98f811",
+      "isHidden": false
+    },
+    "ed69d478565f4fd39fd6b85d1fa67efe": {
+      "id": "ed69d478565f4fd39fd6b85d1fa67efe",
+      "name": "choices",
+      "label": "Choices",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "Premium Amount",
+          "value": "Premium Amount"
+        },
+        {
+          "label": "Sum Assured",
+          "value": "Sum Assured"
+        },
+        {
+          "label": "Benefits of the Insurance",
+          "value": "Benefits of the Insurance",
+          "checked": true,
+          "meta": {}
+        }
+      ],
+      "category": "vaInputs",
+      "nodeId": "e6bbfdae24b5407e925f6d2ab5387acd",
+      "isHidden": false
+    },
+    "a250e96704cc47bba60d6ad1d5d2445a": {
+      "id": "a250e96704cc47bba60d6ad1d5d2445a",
+      "name": "help",
+      "label": "Help",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "Yes, Main Menu",
+          "value": "Yes, Main Menu"
+        },
+        {
+          "label": "No, Thank You",
+          "value": "No, Thank You"
+        }
+      ],
+      "category": "vaInputs",
+      "nodeId": "82c3789ba9294f76b15916e4de2e9025",
+      "isHidden": false
+    },
+    "93a9f19452a9405c9ccd5fba8d6134a1": {
+      "id": "93a9f19452a9405c9ccd5fba8d6134a1",
+      "name": "policy_",
+      "label": "Policy ",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "Already purchased policy",
+          "value": "Already purchased policy"
+        },
+        {
+          "label": "New policy ",
+          "value": "New policy details"
+        }
+      ],
+      "category": "vaInputs",
+      "nodeId": "a94087e7c90548a3bb3c835d6354f3f5",
+      "isHidden": false
+    },
+    "008cf146e2194945b9de648ed833a709": {
+      "id": "008cf146e2194945b9de648ed833a709",
+      "name": "age",
+      "label": "Age",
+      "varType": "string",
+      "secure": false,
+      "category": "vaInputs",
+      "encryptionHashFunction": "SHA-256",
+      "encryptionSalt": {
+        "value": "MTcwOTEwNDM2NjA1NCBWQSBEZXNpZ25lciBpcyBhd2Vzb21l",
+        "mode": "simple"
+      },
+      "nodeId": "df7bbdbc1cf14ef2a310425ae8db85e0",
+      "isHidden": false
+    },
+    "ca4f781df382408c94108da56f765a72": {
+      "id": "ca4f781df382408c94108da56f765a72",
+      "name": "duration",
+      "label": "Duration",
+      "varType": "string",
+      "secure": false,
+      "category": "vaInputs",
+      "encryptionHashFunction": "SHA-256",
+      "encryptionSalt": {
+        "value": "MTcwOTEwNDQxMjI4MiBWQSBEZXNpZ25lciBpcyBhd2Vzb21l",
+        "mode": "simple"
+      },
+      "nodeId": "d7185db6a7b74f0db4980398870f5d9f",
+      "isHidden": false
+    },
+    "4347421086304cf2a5ee0b0c41defa2f": {
+      "id": "4347421086304cf2a5ee0b0c41defa2f",
+      "name": "product_name_user_input_",
+      "label": "Product Name (user Input)",
+      "varType": "string",
+      "secure": false,
+      "category": "vaInputs",
+      "encryptionHashFunction": "SHA-256",
+      "encryptionSalt": {
+        "value": "MTcwOTExNDk3OTk1MyBWQSBEZXNpZ25lciBpcyBhd2Vzb21l",
+        "mode": "simple"
+      },
+      "nodeId": "933b8f2020704dafa2bfeb7216440e04",
+      "isHidden": false
+    },
+    "cba98ae97b19401db3334bb5724e5d02": {
+      "id": "cba98ae97b19401db3334bb5724e5d02",
+      "name": "otp_",
+      "label": "Otp ",
+      "varType": "string",
+      "secure": false,
+      "category": "vaInputs",
+      "encryptionHashFunction": "SHA-256",
+      "encryptionSalt": {
+        "value": "MTcwOTE4NDg1Nzc3MSBWQSBEZXNpZ25lciBpcyBhd2Vzb21l",
+        "mode": "simple"
+      },
+      "nodeId": "d17273e36742482787a940d5e8fe641f",
+      "isHidden": false
+    },
+    "6959bafe7979469db71bd1746a0a60fa": {
+      "id": "6959bafe7979469db71bd1746a0a60fa",
+      "name": "otp_choice",
+      "label": "Otp Choice",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "Resend OTP",
+          "value": "Resend OTP"
+        },
+        {
+          "label": "End ",
+          "value": "End "
+        }
+      ],
+      "category": "vaInputs",
+      "nodeId": "ed3d35e622d14c0fbdecf6bbc315f11d",
+      "isHidden": false
+    },
+    "6cf194c676f84b6dbb3598d2ccf1b352": {
+      "id": "6cf194c676f84b6dbb3598d2ccf1b352",
+      "value": {
+        "mode": "simple",
+        "value": "1"
+      },
+      "name": "count",
+      "label": "count",
+      "varType": "script",
+      "category": "vaVars"
+    }
+  }
+}</graph>
+        <key_phrases>Smart Assurance Support,vfs,VFS,Insurance,VFS insurance,VFS global,Life insuranace,Vehicle insurance</key_phrases>
+        <library>false</library>
+        <live_agent>false</live_agent>
+        <model_type>nlu_keyword</model_type>
+        <modify_confirmation_enabled>false</modify_confirmation_enabled>
+        <name>Smart Assurance Support</name>
+        <nlu_intent/>
+        <nlu_intent_label/>
+        <nlu_model/>
+        <nlu_model_label/>
+        <nlu_provider/>
+        <palette_label/>
+        <roles/>
+        <root_topic_id/>
+        <secure_custom_input_control>false</secure_custom_input_control>
+        <source_topic_id/>
+        <sys_class_name>sys_cb_topic</sys_class_name>
+        <sys_created_by>rushith</sys_created_by>
+        <sys_created_on>2024-02-27 06:20:08</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>89369eea932802d0acdc3f484dba100b</sys_id>
+        <sys_mod_count>66</sys_mod_count>
+        <sys_name>Smart Assurance Support</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_cb_topic_89369eea932802d0acdc3f484dba100b</sys_update_name>
+        <sys_updated_by>rushith</sys_updated_by>
+        <sys_updated_on>2024-02-29 11:35:05</sys_updated_on>
+        <triggerable_by_notification>false</triggerable_by_notification>
+        <type>STANDARD</type>
+        <variables/>
+    </sys_cb_topic>
+    <sys_translated_text action="delete_multiple" query="documentkey=89369eea932802d0acdc3f484dba100b"/>
+    <sys_variable_value action="delete_multiple" query="document_key=89369eea932802d0acdc3f484dba100b"/>
+</record_update>
