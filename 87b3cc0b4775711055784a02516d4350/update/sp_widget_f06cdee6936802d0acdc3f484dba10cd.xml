@@ -11321,14 +11321,14 @@ body.disabled_by_dlmenu:after {
         <sys_created_by>Surya.Prathap</sys_created_by>
         <sys_created_on>2024-02-27 06:47:31</sys_created_on>
         <sys_id>f06cdee6936802d0acdc3f484dba10cd</sys_id>
-        <sys_mod_count>57</sys_mod_count>
+        <sys_mod_count>59</sys_mod_count>
         <sys_name>VFS about</sys_name>
         <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sp_widget_f06cdee6936802d0acdc3f484dba10cd</sys_update_name>
-        <sys_updated_by>Surya.Prathap</sys_updated_by>
-        <sys_updated_on>2024-02-27 12:14:12</sys_updated_on>
+        <sys_updated_by>Ajmal.akram</sys_updated_by>
+        <sys_updated_on>2024-02-29 05:13:25</sys_updated_on>
         <template><![CDATA[<head>
 
 
@@ -11345,6 +11345,7 @@ body.disabled_by_dlmenu:after {
 <body>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KCT7T5SV" height="0" width="0"
+                    
                     style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <div id="main_content_container" class="owl-carousel-container">
@@ -11451,7 +11452,7 @@ body.disabled_by_dlmenu:after {
             <ul class="extra_nav">
               <li><a href="https://www.vfsglobal.com/en/individuals/contact.html" class="button">Contact
                 us</a></li>
-               <li><a href="" class="button">Claim  Insurance</a></li>
+               <li><a href="https://ven06798.service-now.com/vfsp?id=policy_pg" class="button">Claim  Insurance</a></li>
             </ul>
           </div>
         </nav>
