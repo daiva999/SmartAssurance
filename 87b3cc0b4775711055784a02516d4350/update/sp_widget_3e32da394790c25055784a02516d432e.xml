@@ -1,0 +1,1441 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope) {
+    var c = this;
+	//	$scope.lifeCover="1 crore";
+    $scope.plans = c.data.mock.products;
+		c.data.plans=$scope.plans;
+	 $scope.selectedOption = 'monthly';
+	//alert($scope.plans.length);
+		
+
+var uniqueLifeCoverOptions = new Set();
+var uniqueCoverageTillOptions = new Set();
+
+$scope.plans.forEach(function(product) {
+    product.benefits.forEach(function(benefit) {
+        if (benefit.name === 'Life Cover') {
+            uniqueLifeCoverOptions.add(benefit.value);
+        } else if (benefit.name === 'Coverage Till') {
+            uniqueCoverageTillOptions.add(benefit.value);
+        }
+    });
+});
+
+$scope.lifeCoverOptions = Array.from(uniqueLifeCoverOptions);
+$scope.coverageTillOptions = Array.from(uniqueCoverageTillOptions);
+
+// Set default options
+$scope.lifeCover = $scope.lifeCoverOptions.length > 0 ? $scope.lifeCoverOptions[0] : null;
+$scope.coverage = $scope.coverageTillOptions.length > 0 ? $scope.coverageTillOptions[0] : null;
+
+	//alert($scope.lifeCover)
+	 // alert($scope.lifeCover);
+	
+$scope.updateLifeCover = function() {
+  
+    $scope.plans = c.data.mock.products;
+    $scope.plans = $scope.plans.filter(function(product) {
+			
+        return product.benefits.some(function(benefit) {
+					//alert(benefit.name);
+				
+					if($scope.coverage==null){
+            return benefit.name === 'Life Cover' && benefit.value === $scope.lifeCover ;
+					}
+				else {
+    
+    var hasLifeCover = product.benefits.some(function(benefit) {
+        return benefit.name === 'Life Cover' && benefit.value === $scope.lifeCover;
+    }); 
+    var hasCoverageTill = product.benefits.some(function(benefit) {
+        return benefit.name === 'Coverage Till' && benefit.value === $scope.coverage;
+    });
+   return hasLifeCover && hasCoverageTill;
+}
+        });
+    });
+   // alert($scope.plans.length);
+};
+	
+
+	$scope.updateCoverage = function() {
+    //alert($scope.lifeCover);
+    $scope.plans = c.data.mock.products;
+    $scope.plans = $scope.plans.filter(function(product) {
+			
+        return product.benefits.some(function(benefit) {
+					//alert(benefit.name);
+				
+					if($scope.lifeCover==null){
+            return benefit.name === 'Coverage Till' && benefit.value === $scope.coverage ;
+					}
+				else {
+    
+    var hasLifeCover = product.benefits.some(function(benefit) {
+        return benefit.name === 'Life Cover' && benefit.value === $scope.lifeCover;
+    });
+ var hasCoverageTill = product.benefits.some(function(benefit) {
+        return benefit.name === 'Coverage Till' && benefit.value === $scope.coverage;
+    });
+  return hasLifeCover && hasCoverageTill;
+}
+        });
+    });
+   // alert($scope.plans.length);
+};
+	
+	
+$scope.updateButtonValue = function() {
+	//alert($scope.selectedOption)
+    $scope.plans = c.data.mock.products;
+
+    $scope.plans = $scope.plans.filter(function(product) {
+        var lifeCoverMatch = product.benefits.some(function(benefit) {
+            return benefit.name === 'Life Cover' && benefit.value === $scope.lifeCover;
+        });
+
+        var coverageTillMatch = product.benefits.some(function(benefit) {
+            return benefit.name === 'Coverage Till' && benefit.value === $scope.coverage;
+        });
+
+        if (lifeCoverMatch && coverageTillMatch) {
+            if ($scope.selectedOption === 'monthly') {
+							//alert(product.monthlyPremium)
+                return product.monthlyPremium === product.monthlyPremium;
+            } else if ($scope.selectedOption === 'yearly') {
+							//alert(product.yearlyPremium)
+                return product.yearlyPremium === product.yearlyPremium;
+            }
+        }
+
+        return false;
+    });
+};
+	
+/*	$scope.updateButtonValue=function(){
+		//alert($scope.coverage)
+		$scope.plans=c.data.mock.premium;
+		//var value=$scope.lifeCover;
+		//alert($scope.selectedOpt);
+		$scope.plans=$scope.plans.filter(function(premium) {
+         if ($scope.lifeCover && $scope.coverage && $scope.selectedOption) {
+            return premium.type === $scope.selectedOption && premium.coverage === $scope.lifeCover && premium.coverage_till === $scope.coverage ;
+        } else if ($scope.lifeCover) {
+            return premium.type === $scope.selectedOption;
+        } else if ($scope.coverage) {
+            return premium.type === $scope.selectedOpt;
+        } else if ($scope.selectedOption) {
+					alert($scope.selectedOption)
+					  
+             return premium.type === $scope.selectedOption;
+        } 
+			else {
+				
+		   return false; // No filtering applied if both $scope.type and $scope.coverage_till are empty
+        }
+		});
+		//alert($scope.plans.length);
+	}*/
+	
+
+
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.cardd {
+  height: fit-content;
+  width: 385px;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  border-top: 1px solid #f0f3f4; 
+  border-left: 1px solid #f0f3f4; 
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 17px;
+  border-radius: 10px;
+  background-color: white;
+}
+.top{
+  display:flex;
+  flex-direction:column;
+}
+
+ul li a {
+  text-decoration: none;
+}
+
+.grid-card{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  grid-gap: .3125rem 1.5rem
+}
+.card-container{
+  margin-top:1rem;
+  margin-left:4px;
+}
+
+
+img{
+  height:70px;
+  width:auto;
+  //mix-blend-mode:color-burn;
+  object-fit:contain;
+}
+
+.top-right{
+  margin-left:1rem;
+  //padding-right:40px;
+  //padding-bottom:90px;
+  width:5cm;
+  height:3cm;
+}
+
+
+.title {
+  background-color: #f0f3f4;
+  //padding: 10px;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 20px;
+  font-size:100px;
+}
+
+.title h2 {
+  background-color: #f0f3f4;
+  padding: 20px; 
+  height: 60px; 
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.tools-calculators {
+  //padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #f0f3f4;
+  height:fit-content;
+  width:20rem;
+}
+
+
+hr{
+  margin-top:5px;
+}
+
+.list{
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+.list a{
+  color:blue;
+}
+
+.tools-calculators ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tools-calculators ul li a {
+  color: blue;
+  text-decoration: none;
+  position: relative;
+}
+
+.tools-calculators ul li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background-color: blue;
+  transition: bottom 0.3s ease;
+}
+/*
+.line2 {
+display: flex;
+justify-content: space-between;
+}
+
+.line-item {
+flex: 1;
+text-align: center;
+}
+*/
+
+
+
+.line1{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+     margin-top: 15px;
+  
+}
+
+.line1a{
+  margin-right:auto;
+
+}
+.line1 .line1a img {
+  width: 100px; 
+  height: 50px; 
+}
+.line1b {
+    display: flex;
+    align-items: center; /* Align items vertically in the center */
+}
+
+.line1b input[type=checkbox] {
+    appearance: none; /* Remove default appearance */
+    -webkit-appearance: none; /* For Safari/Chrome */
+    -moz-appearance: none; /* For Firefox */
+    width: 18px; /* Adjust width as needed */
+    height: 18px; /* Adjust height as needed */
+    border: 2px solid #ccc; /* Border color */
+    border-radius: 3px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+    //margin-right: 10px; /* Adjust margin as needed */
+}
+
+
+.line1b input[type=checkbox]:checked {
+    background-color: #9747FF;
+}
+
+
+.line1b input[type=checkbox]::after {
+    content: "\2713"; /* Unicode for check mark */
+    font-size: 16px;
+    color: white; /* Color of the tick mark */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease;
+}
+
+
+.line1b input[type=checkbox]:checked::after {
+    opacity: 1;
+}
+
+
+.compare{
+    margin-top: 0.7rem;
+    color: #585D62;
+    margin-left: 5px;
+}
+
+
+.small{
+  font-size: 12px;
+  opacity:0.7;
+}
+
+.radioBtns {
+  display: inline-flex;
+    justify-content: normal;
+    padding-bottom: 62.5rem;
+    padding-left: 0rem;
+    margin-bottom: 6.25rem;
+    margin-left: 3.4rem;
+  margin-top: -28px;
+}
+
+.radioBtns input[type=radio] {
+    width: 17px; 
+    height: 17px; 
+    background-color: white; 
+    border: 2px solid #ccc; 
+    border-radius: 50%;
+    appearance: none; /* Remove the default appearance */
+    position: relative;
+    cursor: pointer;
+}
+
+/* Style for the radio button when it's checked */
+.radioBtns input[type=radio]:checked {
+    background-color: #9747FF; /* Change to your desired background color */
+    border-color: #9747FF; /* Change the border color to match the background */
+}
+
+/* Style for the inner circle */
+.radioBtns input[type=radio]::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px; /* Adjust the size of the inner circle */
+    height: 8px; /* Adjust the size of the inner circle */
+    border-radius: 50%;
+    background: white; /* Color of the inner circle */
+    display: none; /* Initially hidden */
+}
+
+/* Show the inner circle when the radio button is checked */
+.radioBtns input[type=radio]:checked::after {
+    display: block; /* Show the inner circle */
+}
+.radioBtns .form-check {
+       display: inline-flex;
+    align-items: center;
+    margin-right: 1.rem;
+   
+}
+.radioBtns .form-check-label {
+    font-size: 15px;
+}
+
+
+.radioBtns .form-check input[type="radio"] {
+    margin-right: 5px; /* Add space between radio button and label */
+}
+
+.line2{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+
+.line3{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.line3 a {
+  color: blue; 
+}
+
+
+.smaller-text {
+  font-size: 12px; 
+}
+
+.btn-primary {
+  background-color: #9747FF;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  //cursor: pointer;
+  font-size: 16px;
+}
+
+
+
+
+.topStuff{
+  display:flex;
+
+}
+
+.top-left {
+  height: 100px;
+  width: 21.2cm;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid #f0f3f4; 
+  background-color: #f0f3f4; 
+}
+
+.left-content {
+  width: 150px;
+  height: 30px;
+  padding-top:18px;
+  padding-bottom:30px;
+  padding-left:30px;
+  padding-right:100px;
+}
+.left-content p {
+  white-space: nowrap; 
+  color: #333333;
+}
+.left-content select.custom-select {
+    font-weight: bold;
+  border: 1px solid #D5D6D6; 
+  height: 30px;
+  width: 110px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-sizing: border-box;
+    //-webkit-appearance: none;
+    //-moz-appearance: none;
+   // appearance: none;
+    cursor: pointer;
+    position: relative; /* Add position relative for pseudo element positioning */
+}
+
+
+/* Style for custom dropdown arrow */
+.left-content select.custom-select:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+   // border: 6px solid red;
+   // border-color: #fff transparent transparent transparent;
+}
+
+.middle-content {
+  width: 150px;
+  height: 30px;
+  padding-top:18px;
+  padding-bottom:30px;
+  padding-left:40px;
+  padding-right:100px;
+}
+.middle-content p {
+  white-space: nowrap; 
+  color: #333333;
+}
+
+.custom {
+  font-weight: bold;
+  border: 1px solid #D5D6D6;
+  border-radius: 5px;
+  height:30px;
+  width:110px;
+}
+.end-content {
+  padding-top: 5;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  height: 50px;
+}
+
+.end-content p {
+    color: #333333;
+    padding-bottom: 0rem;
+    padding-left: 1.875rem;
+    margin-top: 1.22rem;
+    margin-left: .625rem;
+}
+}
+}
+
+.end-content label {
+     margin-right: .75rem;
+    margin-bottom: -0.5rem;
+    color: #333333;
+}
+
+
+
+
+.icon1 {
+  text-align: center; 
+  position: relative; 
+  padding-top: 50px; 
+  padding-left:70px;
+}
+
+.icon1::before {
+  content: '\2261'; 
+  position: absolute; 
+  top: 0; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  font-size: 24px;
+  padding-top: 12px;
+  padding-left:70px;
+}
+
+.icon2 {
+  text-align: center; 
+  position: relative; 
+  padding-top: 50px; 
+  padding-right:30px;
+}
+
+.icon2::before {
+  content: '\2261'; 
+  position: absolute; 
+  top: 0; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  font-size: 24px;
+  padding-top: 12px;
+  padding-right:30px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  border: 2px solid black; 
+  padding: 5px;
+  background-color: white;
+  z-index: 1; 
+}
+
+
+.dropdown-content ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.dropdown-content li {
+  padding: 5px;
+  cursor: pointer;
+}
+.icon2 {
+  cursor: pointer;
+  position: relative; 
+}
+#compare-button {
+  background-color: yellow;
+  color: black;
+  border: 2px solid yellow;
+  border-radius: 10px;
+  padding: 10px 40px; 
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block; 
+  text-align: center; 
+  width: 320px;
+}
+
+#compare-button:hover {
+  background-color: darkyellow;
+  border-color: darkyellow;
+}
+
+
+
+
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>first_insurance</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>first insurance</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+ data.mock ={
+  "products":[
+  {
+    "id": "001",
+    "productName": "Product 1",
+    "productCode": "P01_001",
+		"monthlyPremium": 1200,
+  	"yearlyPremium": 10000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value": "18Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 99.2
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "1 Crore"
+      }
+    ]
+  },
+  {
+    "id": "002",
+    "productName": "Product 2",
+    "productCode": "P02_002",
+		"monthlyPremium": 1800,
+  	"yearlyPremium": 15000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value": "35Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 97.5
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "5 Crore"
+      }
+    ]
+  },
+  {
+    "id": "003",
+    "productName": "Product 3",
+    "productCode": "P03_003",
+		"monthlyPremium": 1500,
+  	"yearlyPremium": 15000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value": "60Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 98.7
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "10 Crore"
+      }
+    ]
+  },
+  {
+    "id": "004",
+    "productName": "Product 4",
+    "productCode": "P04_004",
+		"monthlyPremium": 2000,
+  	"yearlyPremium": 19000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value": "60Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 95.3
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "5 Crore"
+      }
+    ]
+  },
+  {
+    "id": "005",
+    "productName": "Product 5",
+    "productCode": "P05_005",
+		"monthlyPremium": 2150,
+  	"yearlyPremium": 20000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value": "60Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 96.8
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "1 Crore"
+      }
+    ]
+  },
+  {
+    "id": "006",
+    "productName": "Product 6",
+    "productCode": "P06_006",
+		"monthlyPremium": 2300,
+  	"yearlyPremium": 22000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value":  "60Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 98.0
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "1 Crore"
+      }
+    ]
+  },
+  {
+    "id": "007",
+    "productName": "Product 7",
+    "productCode": "P07_007",
+		"monthlyPremium": 1900,
+  	"yearlyPremium": 12500,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value":  "35Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 97.0
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "10 Crore"
+      }
+    ]
+  },
+  {
+    "id": "008",
+    "productName": "Product 8",
+    "productCode": "P08_008",
+		"monthlyPremium": 1700,
+  	"yearlyPremium": 23000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value":  "18Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 99
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "1 Crore"
+      }
+    ]
+  },
+{
+    "id": "009",
+    "productName": "Product 8",
+    "productCode": "P08_008",
+		"monthlyPremium": 1600,
+  	"yearlyPremium": 21000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value":  "60Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 99
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "5 Crore"
+      }
+    ]
+  },
+		{
+    "id": "010",
+    "productName": "Product 8",
+    "productCode": "P08_008",
+		"monthlyPremium": 1400,
+  	"yearlyPremium": 19000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value":  "18Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 97.5
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "10 Crore"
+      }
+    ]
+  },
+			{
+    "id": "011",
+    "productName": "Product 8",
+    "productCode": "P08_008",
+		"monthlyPremium": 1300,
+  	"yearlyPremium": 18000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value":  "35Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 98.5
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "1 Crore"
+      }
+    ]
+  },
+			{
+    "id": "012",
+    "productName": "Product 8",
+    "productCode": "P08_008",
+		"monthlyPremium": 1300,
+  	"yearlyPremium": 18000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value":  "18Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 98.5
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "5 Crore"
+      }
+    ]
+  }, {
+    "id": "013",
+    "productName": "Product 1",
+    "productCode": "P01_001",
+		"monthlyPremium": 1200,
+  	"yearlyPremium": 10000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value": "18Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 99.2
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "1 Crore"
+      }
+    ]
+  },
+  {
+    "id": "014",
+    "productName": "Product 2",
+    "productCode": "P02_002",
+		"monthlyPremium": 1800,
+  	"yearlyPremium": 15000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value": "35Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 97.5
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "5 Crore"
+      }
+    ]
+  },
+  {
+    "id": "015",
+    "productName": "Product 3",
+    "productCode": "P03_003",
+		"monthlyPremium": 1500,
+  	"yearlyPremium": 15000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value": "60Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 98.7
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "10 Crore"
+      }
+    ]
+  },
+  {
+    "id": "016",
+    "productName": "Product 4",
+    "productCode": "P04_004",
+		"monthlyPremium": 2000,
+  	"yearlyPremium": 19000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value": "60Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 95.3
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "5 Crore"
+      }
+    ]
+  },
+  {
+    "id": "017",
+    "productName": "Product 5",
+    "productCode": "P05_005",
+		"monthlyPremium": 2150,
+  	"yearlyPremium": 20000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value": "60Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 96.8
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "1 Crore"
+      }
+    ]
+  },
+  {
+    "id": "018",
+    "productName": "Product 6",
+    "productCode": "P06_006",
+		"monthlyPremium": 2300,
+  	"yearlyPremium": 22000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value":  "60Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 98.0
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "1 Crore"
+      }
+    ]
+  },
+  {
+    "id": "019",
+    "productName": "Product 7",
+    "productCode": "P07_007",
+		"monthlyPremium": 1900,
+  	"yearlyPremium": 12500,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value":  "35Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 97.0
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "10 Crore"
+      }
+    ]
+  },
+  {
+    "id": "020",
+    "productName": "Product 8",
+    "productCode": "P08_008",
+		"monthlyPremium": 1700,
+  	"yearlyPremium": 23000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value":  "18Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 99
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "1 Crore"
+      }
+    ]
+  },
+{
+    "id": "021",
+    "productName": "Product 8",
+    "productCode": "P08_008",
+		"monthlyPremium": 1600,
+  	"yearlyPremium": 21000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value":  "60Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 99
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "5 Crore"
+      }
+    ]
+  },
+		{
+    "id": "022",
+    "productName": "Product 8",
+    "productCode": "P08_008",
+		"monthlyPremium": 1400,
+  	"yearlyPremium": 19000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value":  "18Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 97.5
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "10 Crore"
+      }
+    ]
+  },
+			{
+    "id": "023",
+    "productName": "Product 8",
+    "productCode": "P08_008",
+		"monthlyPremium": 1300,
+  	"yearlyPremium": 18000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value":  "35Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 98.5
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "1 Crore"
+      }
+    ]
+  },
+			{
+    "id": "024",
+    "productName": "Product 8",
+    "productCode": "P08_008",
+		"monthlyPremium": 1300,
+  	"yearlyPremium": 18000,
+    "benefits": [
+      {
+        "id": "B001",
+        "name": "Coverage Till",
+        "description": "Till how many years the insurance covers",
+        "value":  "18Yrs of age"
+      },
+      {
+        "id": "B002",
+        "name": "Claim Settled",
+        "description": "Percentage of claims settled till now",
+        "value": 98.5
+      },
+      {
+        "id": "B003",
+        "name": "Life Cover",
+        "description": "How much amount it covers",
+        "value": "5 Crore"
+      }
+    ]
+  }
+ 
+ 
+ 
+]
+}
+
+	})();
+
+/*{
+	//prem amt
+	// payme
+	
+
+	premium: [
+		{
+			type: "monthly",
+			id: 1
+			amt: "213",
+			coverage: 1cr
+		},
+		{
+			type: "yearly",
+			id: 2
+			amt: "1233"
+		}
+	]
+
+
+}*/]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>sachin_hm</sys_created_by>
+        <sys_created_on>2024-02-12 11:51:38</sys_created_on>
+        <sys_id>3e32da394790c25055784a02516d432e</sys_id>
+        <sys_mod_count>1116</sys_mod_count>
+        <sys_name>first insurance</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_3e32da394790c25055784a02516d432e</sys_update_name>
+        <sys_updated_by>sachin_hm</sys_updated_by>
+        <sys_updated_on>2024-02-29 07:42:44</sys_updated_on>
+        <template><![CDATA[<div class="topStuff">
+  <div class="top">
+    <div class="top-left">
+      <div class="left-content">
+        <p>Life Cover</p>
+        <label for="lifeCoverDropdown" hidden>Life Cover</label>
+       <select id="lifeCoverDropdown" class="custom-select" ng-model='lifeCover' ng-change="updateLifeCover()"
+            ng-options="option for option in lifeCoverOptions">
+    </select>
+      </div>
+
+      <div class="middle-content">
+        <p>Coverage Till</p>
+         <label for="coverageTillDropdown" hidden>Coverage Till</label>
+         <select id="coverageTillDropdown" class="custom" ng-model='coverage' ng-change="updateCoverage()"
+            ng-options="option for option in coverageTillOptions">
+    </select>
+      </div>
+    <div class="end-content">
+    <p>Premium Payment</p>
+    <div class="radioBtns">
+        <div class="form-check">
+            <input type="radio" class="form-check-input1" id="monthly" name="paymentOption" value="monthly"
+                ng-model="selectedOption" ng-change="updateButtonValue()" checked>
+            <label class="form-check-label" for="monthly"> Monthly </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input2" id="yearly" name="paymentOption" value="yearly"
+                ng-model="selectedOption" ng-change="updateButtonValue()">
+            <label class="form-check-label" for="yearly"> Yearly</label>
+        </div>
+    </div>
+</div>
+
+      <div class="icon1">
+
+        <p>
+          More Filters
+        </p>
+        <i class="bi bi-filter"></i>
+
+      </div>
+      <div class="icon2">
+        <p>
+          Sorting
+        </p>
+      </div>
+    </div>
+    <div class="grid-card">
+      <div class="card-container" ng-repeat="product in plans">
+        <div class="cardd">
+          <div class="line1">
+            <div class="line1a">
+              <img src="https://ven06798.service-now.com/x_rptp_insureme.india%20firstlife.png" alt="home">
+            </div>
+            <div class="line1b">
+              <input type="checkbox" class="checkbox1" id="preference1" name="preference1">
+              <label for="preference" class="compare">Compare</label>
+            </div>
+          </div>
+          <div class="line2">
+            <div class="line-item" ng-repeat="benefit in product.benefits">
+              <p ng-if="benefit.name === 'Claim Settled'">
+                <span class="small">Claim Settled</span><br>{{ benefit.value }}<span
+                  id="claimSettledPercentage"></span>%
+              </p>
+            </div>
+            <div class="line-item" ng-repeat="benefit in product.benefits">
+              <br>
+              <p ng-if="benefit.name === 'Coverage Till'">
+                <span class="small">Coverage till</span><br>{{ benefit.value }}<br><span class="small">(Max limit
+                  100yrs)</span>
+              </p>
+            </div>
+            <div class="line-item" ng-repeat="benefit in product.benefits">
+              <p ng-if="benefit.name === 'Life Cover'">
+                <span class="small">Life Cover</span><br>{{ benefit.value }}
+              </p>
+            </div>
+          </div>
+          <div class="line3">
+            <h6><a href="#" class="small">Plan Details</a></h6>
+            <button type="button" class="btn-primary">
+              {{selectedOption === 'monthly' ? '₹' + product.monthlyPremium + '/month' : selectedOption === 'yearly' ?
+              '₹ ' + product.yearlyPremium + ' /year' : ''}}
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="top-right">
+    <div class="tools-calculators">
+      <div class="title">
+        <h2><strong>Tools & Calculators</strong></h2>
+      </div>
+      <div class="list">
+        <a href="#">BMI Calculator</a><br>
+        <hr>
+        <a href="#">Child's Marriage Planner</a><br>
+        <hr>
+        <a href="#">Ideal Body Weight Calculator</a><br>
+        <hr>
+        <a href="#">Future Expense Planner</a><br>
+        <hr>
+      </div>
+
+    </div>
+    <br>
+    <button id="compare-button">
+      Compare
+    </button>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>
