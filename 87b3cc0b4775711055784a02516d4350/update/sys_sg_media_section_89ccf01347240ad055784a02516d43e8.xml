@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_media_section">
+    <sys_sg_media_section action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <button_instance/>
+        <card_size/>
+        <column_count/>
+        <custom_height/>
+        <custom_width/>
+        <data_item/>
+        <headline>Right Prompt</headline>
+        <hide_header>false</hide_header>
+        <hide_section_if_empty>false</hide_section_if_empty>
+        <image_attachment display_value="image.jpg" sys_id="537cdd1347280ad055784a02516d4387">537cdd1347280ad055784a02516d4387</image_attachment>
+        <is_custom_size>false</is_custom_size>
+        <is_hidden_preference_name/>
+        <orientation>horizontal</orientation>
+        <required_roles/>
+        <row_count/>
+        <sys_class_name>sys_sg_media_section</sys_class_name>
+        <sys_created_by>chiranjit.behera</sys_created_by>
+        <sys_created_on>2024-02-29 07:44:49</sys_created_on>
+        <sys_id>89ccf01347240ad055784a02516d43e8</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>New media section</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_sg_media_section_89ccf01347240ad055784a02516d43e8</sys_update_name>
+        <sys_updated_by>chiranjit.behera</sys_updated_by>
+        <sys_updated_on>2024-02-29 10:03:28</sys_updated_on>
+        <table/>
+        <text>AUTOMATE. </text>
+        <title>New media section</title>
+        <type>image</type>
+        <video_url/>
+        <visible_condition/>
+        <wide_column_count/>
+    </sys_sg_media_section>
+</record_update>
