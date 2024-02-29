@@ -265,12 +265,16 @@ display:none;
 #productCardContainer{
   font-family: "Helvetica";
 	height: fit-content;
-	border:0.4px solid #3D8BF2;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  border-top: 1px solid #f0f3f4; 
+  border-left: 1px solid #f0f3f4; 
+	//border:0.4px solid #3D8BF2;
   border-radius:0.5rem;
   //box-shadow: 0 0 2px 2px #737a87;
   margin: 0 0 1.5rem 0;
   padding: 1rem 1.5rem;
   background:#FFF;
+  
 }
 #productCardimageContainer img{
   margin-left:1rem;
@@ -480,7 +484,8 @@ button.grid-item {
 #star::before{
   content: "\2605";
     font-size: 12px;
-  
+}
+
 </css>
         <data_table>sp_instance_table</data_table>
         <demo_data/>
@@ -718,14 +723,14 @@ button.grid-item {
         <sys_created_by>kumar.raja</sys_created_by>
         <sys_created_on>2024-01-22 09:29:05</sys_created_on>
         <sys_id>03f7a987937f3910acdc3f484dba1081</sys_id>
-        <sys_mod_count>991</sys_mod_count>
+        <sys_mod_count>997</sys_mod_count>
         <sys_name>Product Cards</sys_name>
         <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sp_widget_03f7a987937f3910acdc3f484dba1081</sys_update_name>
-        <sys_updated_by>kumar.raja</sys_updated_by>
-        <sys_updated_on>2024-02-21 05:23:05</sys_updated_on>
+        <sys_updated_by>sachin_hm</sys_updated_by>
+        <sys_updated_on>2024-02-29 09:55:40</sys_updated_on>
         <template><![CDATA[<div id="productCardMainContainer">
 
   <div ng-repeat="record in tableDetails" >
