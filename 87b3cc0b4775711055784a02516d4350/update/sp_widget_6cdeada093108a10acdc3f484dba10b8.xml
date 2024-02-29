@@ -3,6 +3,16 @@
         <category>custom</category>
         <client_script><![CDATA[api.controller = function ($scope, $rootScope, spUtil) {
 	var c = this;
+	
+	$scope.isSectionCollapsed = false;
+	// $scope.containerHeight = "50vh";
+
+	$scope.toggleSection = function () {
+		$scope.isSectionCollapsed = !$scope.isSectionCollapsed;
+
+		// $scope.containerHeight = $scope.showDummyData ? "60vh" : "50vh";
+	};
+	
 	var schengen=JSON.parse(sessionStorage.getItem('schengen'));
 	//alert(JSON.stringify(schengen))
 	if(schengen && schengen.tourtype && schengen.place){
@@ -222,17 +232,23 @@
 
 ]]></client_script>
         <controller_as>c</controller_as>
-        <css>input[type=text],input[type=date],select{
-  width: 250px;
-  height: 40px;
+        <css>*{
+  font-family: 'Helvetica';
 }
+/*
+input[type=text],input[type=date],select{
+width: 250px;
+height: 40px;
+}
+
 input,select{
-  padding:5px;
-  border-radius:5px;
-  margin-top:5px;
-  margin-bottom:5px;
+padding:5px;
+border-radius:5px;
+margin-top:5px;
+margin-bottom:5px;
 
 }
+*/
 
 .invalid {
   display:none;
@@ -241,7 +257,7 @@ input,select{
 
 input[type="date"] {
   color:rgb(0,0,0);
-  
+
 }
 
 
@@ -251,17 +267,17 @@ input[type="date"]:visited {
 
 .selectT{
   height: 40px;
-
 }
 
+/*
 label{
-  color:rgb(0,0,0);
-  margin-right:5px;
-  padding:5px;
-  font-style:bold;
-  //text-decoration: underline;
-
+color:rgb(0,0,0);
+margin-right:5px;
+padding:5px;
+font-style:bold;
+//text-decoration: underline;
 }
+*/
 
 .box{
   box-sizing: border-box;
@@ -274,35 +290,83 @@ option{
   color:rgb(0,0,0);
 }
 .whole{  
-  //border:1px solid red;
+  // border:1px solid red;
   box-sizing: border-box;
-  padding: 35px 15px;
+  padding: 35px 15px 0 15px;
   background-color: rgb(255, 255, 255);
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   align-items: center;
   justify-content: center;
   padding-left: 10px;
-  font-family: 'Helvetica';
   border-radius: 5px;
   overflow: hidden;
-  padding-bottom: 15%;
+  padding-bottom: 5px;
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: 0 5%;
   position: relative;
-  height: 65vh;
-  overflow-y : scroll;
-  
+  // height: 65vh;
+  // overflow-y : scroll;
+  margin-bottom: 40px;
 }
 
-.whole::-webkit-scrollbar { width: 0 !important }
+.iFrameDiv  i{
+  font-size: 18px;
+}
+
+.line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+// .whole::-webkit-scrollbar { width: 0 !important }
+
+.topSection{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-label {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+  pointer-events: none;
+  transition: top 0.5s, font-size 0.3s;
+}
+
+.input-box {
+  width: 250px;
+  height: 50px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  font-size: 16px;
+}
+
+.input-box:focus+.input-label,
+.input-box:not(:placeholder-shown)+.input-label {
+  top: 0.1px;
+  font-size: 12px;
+  color: #333;
+  background: #fff;
+  // padding: 5px;
+}
 
 .radioDiv{
-	display: flex;
+  display: flex;
 }
 .radioDivInner{
- display: grid;
+  display: grid;
   grid-template-rows: 30px 30px;
   grid-template-columns: 130px 130px;
   //grid-gap: 1px;
@@ -310,8 +374,14 @@ option{
   align-items: center;
 }
 .wi-40{
-	width:40%;
+  width:40%;
   margin-left:10px;
+}
+.wi-60{
+  width:50%;
+}
+.daysDifference{
+  margin-bottom: 10px;
 }
 .db{
   border-width:1px;
@@ -333,7 +403,6 @@ h4{
   text-align:center;
   font-style:bold;
   font-style:italic;
-  font-family: 'Helvetica';
   color:rgb(0,0,0);
 }
 
@@ -343,7 +412,7 @@ h4{
   opacity: 1;
   font-size: 14px;
   //border: 1px solid red;
-  
+
   /* border-bottom: 1px dotted black; If you want dots under the hoverable text */
 }
 
@@ -404,13 +473,68 @@ h4{
   height: 2.5em; /* Adjust height as needed */
   overflow-y: auto; /* Enable vertical scrolling */
   width: 47%; /* Adjust width as needed */
- 
+
 }
 
 .space{
   margin-bottom:5px;
 }
-</css>
+
+
+@media only screen and (max-width: 380px) {
+
+  .input-box {
+    width: 150px;
+    height: 50px;
+  }
+
+  .line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+@media only screen and (min-width: 381px) and (max-width: 460px) {
+  .input-box {
+    width: 180px;
+    height: 50px;
+  }
+
+  .line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+@media only screen and (min-width: 461px) and (max-width: 767px) {
+  .input-box {
+    width: 200px;
+    height: 50px;
+  }
+
+  .line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+  .input-box {
+    width: 310px;
+    height: 50px;
+  }
+  
+  .line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+  }
+  
+}</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -442,20 +566,31 @@ h4{
         <sys_created_by>kumar.raja</sys_created_by>
         <sys_created_on>2024-02-08 12:04:31</sys_created_on>
         <sys_id>6cdeada093108a10acdc3f484dba10b8</sys_id>
-        <sys_mod_count>338</sys_mod_count>
+        <sys_mod_count>488</sys_mod_count>
         <sys_name>VFS  Form</sys_name>
         <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sp_widget_6cdeada093108a10acdc3f484dba10b8</sys_update_name>
-        <sys_updated_by>kumar.raja</sys_updated_by>
-        <sys_updated_on>2024-02-26 05:58:46</sys_updated_on>
-        <template><![CDATA[<div class = "whole">
-  <h3 class="head">
-    Help us plan your trip, fill out these details!!
-  </h3>
+        <sys_updated_by>sinchana.shridhar</sys_updated_by>
+        <sys_updated_on>2024-02-29 05:35:01</sys_updated_on>
+        <template><![CDATA[<div class = "whole" >
+
+  <div class="topSection">
+    <h3 class="head" ng-click="toggleSection()">
+      Help us plan your trip, fill out these details!!
+    </h3>
+    <div class="iFrameDiv">
+      <i
+         class="fa fa-angle-down"
+         ng-show="!isSectionCollapsed"
+         ng-click="toggleSection()"
+         ></i>
+      <i class="fa fa-angle-up" ng-show="isSectionCollapsed" ng-click="toggleSection()"></i>
+    </div>
+  </div>
   <br>
-  <div class="">
+  <div class="" ng-show="!isSectionCollapsed">
     <div class="radioBtns">
       <form name="tripForm" >
         <div class="radioDiv">
@@ -465,7 +600,7 @@ h4{
           <div class="radioDivInner">
             <label ng-repeat="option in options track by $index">
               <label> 
-                <input type="radio" name="option" value="{{option.value}}" ng-model="$parent.selectedOption" ng-change="updateDropdownOptions(option.value)" required/>
+                <input id="option_0" type="radio" name="option" value="{{option.value}}" ng-model="$parent.selectedOption" ng-attr-id = "{{ 'option_' + $index }}" ng-change="updateDropdownOptions(option.value)" required/>
                 {{ option.label }}
               </label>
             </label>
@@ -473,12 +608,107 @@ h4{
 
         </div>
         <br>
+
+        <div class="line">
+
+          <div class="input-container">
+            <select
+                    class="input-box"
+                    id="travelregion"
+                    ng-model="c.selectedRegion"
+                    required
+                    >
+              <option  ng-repeat="region in regions" ng-attr-id="option_{{$index}}" value="{{ region.value }}" readonly selected="selected">{{ region.value }}</option>
+            </select>
+            <label class="input-label"
+                   >Travel region :</label
+              >
+          </div>
+
+          <!--
+          <b>Travel region : <span class="required"></span></b>
+          <select id="travelregion" ng-model="c.selectedRegion" required class="dropdown">
+            <option  ng-repeat="region in regions" ng-attr-id="option_{{$index}}" value="{{ region.value }}" readonly selected="selected">{{ region.value }}</option>
+          </select>
+-->
+
+          <div class="input-container">
+            <select
+                    class="input-box"
+                    id="travelnumbers"
+                    ng-change="generateFields()"
+                    ng-model="numberOfTravellers"
+                    required class="dropdown"
+                    required
+
+                    >
+
+
+              <option value="1" id="option1">1</option>
+              <option value="2" id="option2">2</option>
+              <option value="3" id="option3">3</option>
+              <option value="4"id="option4">4</option>
+
+            </select>
+            <label class="input-label"
+                   id="option_{{$index}}"
+                   >No. of travellers(Upto 4):</label
+              >
+          </div>
+
+
+        </div>
+
+
+        <!--
         <div>
           <label class="box wi-40" for="dropdown"><h5>Enter your travel region:</h5></label>
           <select id="dropdown" ng-model="selectedRegion" class="selectT" required>
             <option ng-repeat="region in regions" value="{{ region.value }}">{{ region.label }}</option>
           </select>  
         </div>
+        -->
+
+        <div class="line">
+
+
+          <div class="input-container">
+            <input
+                   type="date"
+                   class="input-box"
+                   id="startdatepicker"
+                   placeholder=""
+                   ng-model="start"
+                   min="{{minStartDate}}"
+                   max="{{maxEndDate}}"
+                   ng-change="calculateDuration()"
+                   ng-required="true"
+                   />
+            <label for="username" class="input-label"
+                   >Start Date:</label
+              >
+          </div>
+
+          <div class="input-container">
+            <input
+                   type="date"
+                   class="input-box"
+                   placeholder=""
+                   id="enddatepicker"
+                   ng-model="end"
+                   min="{{minStartofEndDate}}"
+                   max="{{maxEndDate}}"
+                   ng-change="calculateDuration()"
+                   ng-required="true"
+                   />
+            <label for="username" class="input-label"
+                   >End Date:</label
+              >
+          </div>
+
+        </div>
+
+        <!--
         <div>
           <label for="startdatepicker" class="wi-40"><h5>Start Date:</h5></label>
           <input type="date" id="startdatepicker" class="db" ng-model="start" min="{{minStartDate}}" max="{{maxEndDate}}" ng-change="calculateDuration()" required />
@@ -488,9 +718,12 @@ h4{
           <label for="enddatepicker" class="wi-40"><h5>End Date:</h5></label>
           <input type="date" id="enddatepicker" class="db" ng-model="end" min="{{minStartofEndDate}}" max="{{maxEndDate}}" ng-change="calculateDuration()" required />
         </div>
+-->
 
-        <div class="radioDiv" ng-if="daysDifference">
-          <label for="startdatepicker" class="wi-40"></label>
+
+
+        <div class="radioDiv daysDifference" ng-if="daysDifference">
+          <label for="startdatepicker" class="wi-60"></label>
           <p class="wi-40">Duration is {{ daysDifference }} Day(s)</p>
 
         </div>
@@ -498,11 +731,19 @@ h4{
 
 
 
+
         <!--<div ng-show="tripForm.startdatepicker.$error.dateRange">
           <p>Start date should be less than end date.</p>
         </div>-->
+
+        <div class="line">
+
+
+
+
+
+          <!--
         <label for="travellers" class="wi-40" >
-          <!--<span class="tooltiptext">You can add up to 4 people for a trip</span>-->
           <h5>No. of travellers(Upto 4):</h5>
         </label>
         <select id="trav" name="trav" ng-change="generateFields()" ng-model="numberOfTravellers" class="dob" required>
@@ -511,15 +752,34 @@ h4{
           <option value="3">3</option>
           <option value="4">4</option>
         </select>
+-->
 
 
 
+          <div class="input-container" ng-repeat="traveller in travellers track by $index">
+            <select
+                    class="input-box"
+                    id="selectAge{{$index}}"
+                    name="selectAge{{$index}}"
+                    ng-model="traveller.age" 
+                    ng-options="age for age in ages"
+                    required
+                    >
+            </select>
+            <label class="input-label"
+                   >Age of Person {{$index + 1}}:</label
+              >
+            <span class="space" ng-if="!$last"></span>
+          </div>
+        </div>
+        <!--
         <div ng-repeat="traveller in travellers track by $index">
           <label class="wi-40">Age of Person {{$index + 1}}:</label> 
           <select id="selectAge{{$index}}" name="selectAge{{$index}}" ng-model="traveller.age" 
                   ng-options="age for age in ages" class="age-dropdown"></select>
           <span class="space" ng-if="!$last"></span>
         </div>
+-->
 
 
 
@@ -537,7 +797,9 @@ h4{
         </label>
       </form>
     </div>
+
+
   </div>
-]]></template>
+</div>]]></template>
     </sp_widget>
 </record_update>
