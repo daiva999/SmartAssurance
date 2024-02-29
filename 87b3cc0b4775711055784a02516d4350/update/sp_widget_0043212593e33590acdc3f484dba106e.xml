@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[// client script
+api.controller = function($scope) {
+    // Fetch attachment details from sys_attachment table
+    function fetchAttachmentDetails(attachmentId) {
+        var gr = new GlideRecord('sys_attachment');
+        if (gr.get(attachmentId)) {
+            var fileName = gr.getValue('file_name');
+            var fileType = gr.getValue('content_type');
+            var fileSize = gr.getDisplayValue('size_bytes');
+            return { fileName: fileName, fileType: fileType, fileSize: fileSize };
+        }
+        return null;
+    }
+
+    // Initialize the widget with attachment details
+    function initWidget(attachmentId) {
+        var attachmentDetails = fetchAttachmentDetails(attachmentId);
+        if (attachmentDetails) {
+            $scope.attachmentInfo = 'File: ' + attachmentDetails.fileName + ' (' + attachmentDetails.fileSize + ')';
+            $scope.downloadAttachment = function() {
+                window.location.href = '/sys_attachment.do?sys_id=' + attachmentId;
+            };
+        } else {
+            $scope.attachmentInfo = 'Attachment not found.';
+        }
+    }
+
+    // Example usage: Initialize the widget with attachment ID
+    var attachmentId = 'YOUR_ATTACHMENT_SYS_ID_HERE';
+    initWidget(attachmentId);
+}
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.goBack {
+  position: relative;
+  width: 100px;
+  height: 40px; 
+}
+
+.goBack i {
+  display: inline-block;
+  transition: opacity 0.3s ease-out;
+}
+
+.goBack::before {
+  content: 'Go back';
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.goBack:hover i {
+  opacity: 0;
+}
+
+.goBack:hover::before {
+  display: inline-block;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+ 
+input[type=url], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+ 
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+ 
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+ 
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.head{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>new_one_clone</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>new one clone</name>
+        <option_schema>[{"displayValue":"Page","hint":"Redirect url after submit","name":"redirect_url","display_value_list":[],"section":"Presentation","label":"Redirect URL","type":"glide_list","value":"sp_page","ed":{"reference":"sp_page"}}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[// server script
+(function () {
+	try {
+		var gr = new GlideRecord('x_rptp_insureme_insurance_product_category');
+		var sp = new GlideRecord('sp_page');
+		data.displayName = '';
+
+		sp.addQuery('sys_id',options.redirec_url);
+		gr.addQuery("category_code", input.temp1);
+		gr.query();
+		sp.query();
+		
+		if(sp.hasNext()){
+			data.displayName = sp.sys_name;
+		}
+
+		if (gr.hasNext()) {
+			var errorMessage = "Category code already exists.";
+			gs.addErrorMessage("Category code already exists.");
+			data.errorMessage = errorMessage;
+			current.setAbortAction(true);
+			return errorMessage;
+		}
+
+		gr.initialize();
+		gr.setValue("category_code", input.temp1);
+		gr.addQuery("category_name", input.temp2);
+		gr.query();
+
+		if (gr.hasNext()) {
+			var errorMessage = "Category name already exists.";
+			gs.addErrorMessage("Category name already exists.");
+			data.errorMessage = errorMessage;
+			current.setAbortAction(true);
+			return errorMessage;
+		}
+
+		gr.initialize();
+		gr.setValue("category_code", input.temp1);
+		gr.setValue("category_name", input.temp2);
+		gr.setValue("short_description", input.temp3);
+		gr.setValue("isactive", true);
+
+		gr.insert();
+		var successMessage = "Record inserted successfully.";
+		gs.addInfoMessage(successMessage);
+		data.successMessage = successMessage;
+		return successMessage;
+	} catch (e) {
+		gs.error("An error occurred: " + e);
+		return "Error: " + e;
+	}
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>kumar.raja</sys_created_by>
+        <sys_created_on>2024-01-05 07:00:48</sys_created_on>
+        <sys_id>0043212593e33590acdc3f484dba106e</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>new one clone</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_0043212593e33590acdc3f484dba106e</sys_update_name>
+        <sys_updated_by>kumar.raja</sys_updated_by>
+        <sys_updated_on>2024-02-29 05:41:00</sys_updated_on>
+        <template><![CDATA[<div>
+    <h2>Attachment Details</h2>
+    <p id="attachmentInfo"></p>
+    <button id="downloadButton">Download</button>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>
