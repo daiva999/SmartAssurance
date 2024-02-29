@@ -1,0 +1,977 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($scope, spModal) {
+	var c = this;
+
+	$scope.fun = function() {
+		location.href = "/vfsp?id=vfs_get_page"
+	}
+
+	var razorpayResponse = JSON.parse(sessionStorage.getItem("razorpayResponse"));
+
+	if (razorpayResponse) {
+		if(razorpayResponse.status == "success"){
+			var opt = {
+				id: "",
+				title: "Transaction Details",
+				message: "<b>Payment_id: " +
+				razorpayResponse.payment_id +
+				"</b>" +
+				"<br>" +
+				"<b>Order_id: " +
+				razorpayResponse.order_id +
+				"</b>" +
+				"<br>" +
+				"<b>Amount: " +
+				"₹" +
+				razorpayResponse.amount +
+				"/-" +
+				"</b>",
+				buttons: [
+					{
+						label: "Close",
+						value: "cancel",
+						primary: true,
+					}
+				],
+			};
+			spModal.open(opt).then(function () {
+					sessionStorage.clear();
+			});
+		}
+
+
+		if(razorpayResponse.status == "failed"){
+			var opt = {
+				title: "Transaction Details",
+				message:
+				"<b>Description: " +
+				razorpayResponse.response.error.description +
+				"</b>" +
+				"<br>" +
+				"<b>Source: " +
+				razorpayResponse.response.error.source +
+				"</b>" +
+				"<br>" +
+				"<b>Amount: " +
+				"₹" +
+				razorpayResponse.amount +
+				"/-" +
+				"</b>",
+				buttons: [
+					{
+						label: "Close",
+						value: "cancel",
+						primary: true,
+					},
+				],
+			};
+
+			spModal.open(opt).then(function () {
+					sessionStorage.clear();
+			});
+		}
+	}
+
+
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>*{
+  font-family: "Helvetica"
+    overflow:hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+  position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+
+.style-0 {
+      background-color: rgb(248, 249, 250);
+      font-family: Inter, sans-serif;
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+    .style-1 {
+      width: 88%;
+      max-width: 1500px;
+      margin: 0px auto;
+      position: relative;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+    .style-2 {
+      display: flex;
+      text-decoration: none solid rgb(33, 37, 41);
+      margin-bottom: 0px;
+      padding-left: 0px;
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+      margin-top: 0px;
+    }
+
+    .style-3 {
+      border-bottom: 1.6px solid rgb(6, 52, 91);
+      list-style: outside none none;
+      margin-right: 15px;
+      padding: 10px 0px;
+      color: rgb(6, 52, 91);
+      position: relative;
+      margin: 0px 15px 0px 0px;
+      box-sizing: border-box;
+    }
+
+    .style-4 {
+      color: rgb(6, 52, 91);
+      text-decoration: none solid rgb(6, 52, 91);
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-5 {
+      list-style: outside none none;
+      margin-right: 15px;
+      padding: 10px 0px;
+      color: rgb(6, 52, 91);
+      position: relative;
+      margin: 0px 15px 0px 0px;
+      box-sizing: border-box;
+    }
+
+    .style-6 {
+      color: rgb(6, 52, 91);
+      text-decoration: none solid rgb(6, 52, 91);
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-7 {
+      padding: 10px 0px;
+      position: relative;
+      margin: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-8 {
+      width: 88%;
+      max-width: 1500px;
+      margin: 0px auto;
+      position: relative;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-9 {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-10 {
+      text-decoration: underline solid rgb(37, 48, 101);
+      color: rgb(37, 48, 101);
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-11 {
+      width: 170px;
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+      vertical-align: middle;
+    }
+
+    .style-12 {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+      position: relative;
+      display: block;
+    }
+
+    .style-13 {
+      margin: 0px;
+      padding: 10px;
+      float: right;
+      box-sizing: border-box;
+      cursor: pointer;
+      appearance: button;
+      text-transform: none;
+      font-family: Helvetica;
+      font-size: 16px;
+      line-height: 24px;
+      border-radius: 0px;
+      white-space: nowrap;
+      background-color: rgb(238, 238, 238);
+      border: 0.8px solid rgb(204, 204, 204);
+    }
+
+    .style-14 {
+      margin: 0px;
+      padding: 8px 0px;
+      box-sizing: border-box;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      padding-left: 0px;
+      position: absolute;
+      z-index: 1000;
+      display: none;
+      min-width: 160px;
+      font-size: 16px;
+      color: rgb(33, 37, 41);
+      text-align: left;
+      list-style: outside none none;
+      background-color: rgb(255, 255, 255);
+      border: 0.8px solid rgba(0, 0, 0, 0.15);
+      border-radius: 4px;
+      top: 100%;
+      left: 0px;
+    }
+
+    .style-15 {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-16 {
+      text-decoration: none solid rgb(51, 51, 51);
+      color: rgb(51, 51, 51);
+      margin: 0px;
+      padding: 10px;
+      box-sizing: border-box;
+      display: block;
+    }
+
+    .style-17 {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-18 {
+      text-decoration: none solid rgb(51, 51, 51);
+      color: rgb(51, 51, 51);
+      margin: 0px;
+      padding: 10px;
+      box-sizing: border-box;
+      display: block;
+    }
+    .style-19 {
+      border-bottom: 0.8px solid rgb(224, 229, 234);
+      border-top: 0.8px solid rgb(224, 229, 234);
+      padding: 0px;
+      font-family: Inter, sans-serif;
+      margin: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-20 {
+      width: 88%;
+      max-width: 1500px;
+      margin: 0px auto;
+      position: relative;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-21 {
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      display: flex;
+      padding: 0px;
+      position: relative;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      margin: 0px;
+      box-sizing: border-box;
+      align-items: center;
+    }
+
+    .style-22 {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-23 {
+      display: none;
+      margin: 0px;
+      padding: 4px 12px;
+      box-sizing: border-box;
+      cursor: pointer;
+      appearance: button;
+      text-transform: none;
+      font-family: Inter, sans-serif;
+      font-size: 20px;
+      line-height: 20px;
+      border-radius: 4px;
+      color: rgba(0, 0, 0, 0.55);
+      border-color: rgba(0, 0, 0, 0.1);
+      background-color: rgba(0, 0, 0, 0);
+      border: 0.8px solid rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.15s ease-in-out 0s;
+    }
+
+    .style-24 {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0,0,0,0.55)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M7 15h22M15 415h22M23 423h22'/%3e%3c/svg%3e");
+
+      display: inline-block;
+      width: 1.5em;
+      height: 30px;
+      vertical-align: middle;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      background-size: 100%;
+    }
+
+    .style-25 {
+      flex-basis: auto;
+      display: flex;
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+      flex-grow: 1;
+      align-items: center;
+    }
+
+    .style-26 {
+      flex-direction: row;
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      padding-left: 0px;
+      display: flex;
+      list-style: outside none none;
+    }
+
+    .style-27 {
+      position: relative;
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-28 {
+      padding-right: 8px;
+      padding-left: 0px;
+      text-decoration: none solid rgb(3, 27, 48);
+      color: rgb(3, 27, 48);
+      margin: 0px;
+      box-sizing: border-box;
+      display: block;
+      transition: color 0.15s ease-in-out 0s,
+        background-color 0.15s ease-in-out 0s, border-color 0.15s ease-in-out 0s;
+    }
+
+    .style-29 {
+      position: relative;
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-30 {
+      padding-right: 8px;
+      padding-left: 8px;
+      text-decoration: none solid rgb(3, 27, 48);
+      color: rgb(3, 27, 48);
+      margin: 0px;
+      box-sizing: border-box;
+      display: block;
+      transition: color 0.15s ease-in-out 0s,
+        background-color 0.15s ease-in-out 0s, border-color 0.15s ease-in-out 0s;
+    }
+    .style-31 {
+      background-image: url("https://dm0qx8t0i9gc9.cloudfront.net/watermarks/image/rDtN98Qoishumwih/white-on-white-paper-light-background-vector-website-template_G1WzLxvu_SB_PM.jpg");
+      background-position: 100% 50%;
+      height: auto;
+      background-repeat: no-repeat;
+      background-size: cover;
+      padding: 0px 0px 90px;
+      padding-top: 0px;
+      padding-bottom: 90px;
+      position: relative;
+      margin: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-32 {
+      max-width: 1320px;
+      margin: 0px 99.6px;
+      padding: 0px 12px;
+      box-sizing: border-box;
+      width: 100%;
+      padding-right: 12px;
+      padding-left: 12px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .style-33 {
+      margin: 0px -12px;
+      padding: 0px;
+      box-sizing: border-box;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 0px;
+      margin-right: -12px;
+      margin-left: -12px;
+      justify-content: space-between;
+    }
+
+    .style-34 {
+      flex: 0 0 auto;
+      width: 50%;
+      margin: 0px;
+      padding: 0px 12px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      max-width: 100%;
+      padding-right: 12px;
+      padding-left: 12px;
+      margin-top: 0px;
+    }
+
+    .style-35 {
+      display: flex;
+      min-height: 230px;
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-36 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-37 {
+      visibility: visible;
+      animation-name: fadeInUp;
+      animation-name: fadeInUp;
+      font-size: 31px;
+      line-height: 35.65px;
+      max-width: 500px;
+      font-family: Helvetica;
+      font-weight: 700;
+      color: rgb(37, 48, 101);
+      margin-bottom: 20px;
+      padding: 0px;
+      padding-top: 0px;
+      margin: 0px 0px 20px;
+      box-sizing: border-box;
+      margin-top: 0px;
+    }
+
+    .style-38 {
+      visibility: visible;
+      animation-delay: 0.2s;
+      animation-name: fadeInUp;
+      animation-delay: 0.2s;
+      animation-name: fadeInUp;
+      line-height: 23.97px;
+      font-size: 17px;
+      color: rgb(37, 48, 101);
+      margin-bottom: 10px;
+      margin: 0px 0px 10px;
+      padding: 0px;
+      box-sizing: border-box;
+      margin-top: 0px;
+    }
+
+    .style-39 {
+      flex: 0 0 auto;
+      width: 50%;
+      margin: 0px;
+      padding: 0px 12px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      max-width: 100%;
+      padding-right: 12px;
+      padding-left: 12px;
+      margin-top: 0px;
+    }
+
+    .style-40 {
+      text-align: right;
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-41 {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-42 {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-43 {
+      height: 300px;
+      width: auto;
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+      vertical-align: middle;
+      max-width: 100%;
+    }
+    .style-44 {
+      border: 0.8px solid rgb(234, 239, 241);
+      border-radius: 30px;
+      justify-content: space-around;
+      width: 100%;
+      padding: 20px 50px;
+      background-color: rgb(255, 255, 255);
+      margin: 0px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      max-width: 100%;
+      padding-right: 50px;
+      padding-left: 50px;
+      margin-top: 0px;
+    }
+
+    .style-45 {
+      max-width: 850px;
+      margin: 0px auto;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-46 {
+      justify-content: center;
+      margin: 0px -12px;
+      padding: 0px;
+      box-sizing: border-box;
+      --bs-gutter-x: 1.5rem;
+      --bs-gutter-y: 0;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 0px;
+      margin-right: -12px;
+      margin-left: -12px;
+    }
+
+    .style-47 {
+      visibility: visible;
+      animation-delay: 0.3s;
+      animation-name: fadeInUp;
+      animation-delay: 0.3s;
+      animation-name: fadeInUp;
+      margin: 0px;
+      padding: 0px 12px;
+      box-sizing: border-box;
+      flex: 1 0 0%;
+      flex-shrink: 0;
+      width: 100%;
+      max-width: 100%;
+      padding-right: 12px;
+      padding-left: 12px;
+      margin-top: 0px;
+    }
+
+    .style-48 {
+      color: rgb(37, 48, 101);
+      font-size: 14px;
+      font-family: Helvetica;
+      font-weight: 700;
+      margin-left: 20px;
+      margin: 0px 0px 8px 20px;
+      padding: 0px;
+      box-sizing: border-box;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .style-49 {
+      border-radius: 30px;
+      background-color: rgb(234, 239, 241);
+      color: rgb(96, 96, 96);
+      outline: rgb(96, 96, 96) none 0px;
+      box-shadow: none;
+      background-image: url("https://www.vfsglobal.com/en/images/home-page/arrow-down.svg");
+      margin: 0px 0px 16px;
+      padding: 8px 36px 8px 16px;
+      box-sizing: border-box;
+      overflow-wrap: normal;
+      text-transform: none;
+      font-family: Helvetica;
+      font-size: 20px;
+      line-height: 30px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      padding-left: 16px;
+      display: block;
+      width: 100%;
+      font-weight: 400;
+      background-repeat: no-repeat;
+      background-position: right 12px 50%;
+      background-size: 16px 12px;
+      transition: border-color 0.15s ease-in-out 0s,
+        box-shadow 0.15s ease-in-out 0s;
+      appearance: none;
+      margin-bottom: 16px;
+    }
+
+    .style-50 {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+.style-050 {
+      text-align: center;
+    }
+    .style-51 {
+      visibility: visible;
+      animation-delay: 0.4s;
+      animation-name: fadeInUp;
+      animation-delay: 0.4s;
+      animation-name: fadeInUp;
+      margin: 0px;
+      padding: 0px 12px;
+      box-sizing: border-box;
+      flex: 1 0 0%;
+      flex-shrink: 0;
+      width: 100%;
+      max-width: 100%;
+      padding-right: 12px;
+      padding-left: 12px;
+      margin-top: 0px;
+    }
+
+    .style-52 {
+      color: rgb(37, 48, 101);
+      font-size: 14px;
+      font-family: Helvetica;
+      font-weight: 700;
+      margin-left: 20px;
+      margin: 0px 0px 8px 20px;
+      padding: 0px;
+      box-sizing: border-box;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .style-53 {
+      border-radius: 30px;
+      background-color: rgb(234, 239, 241);
+      color: rgb(96, 96, 96);
+      outline: rgb(96, 96, 96) none 0px;
+      box-shadow: none;
+      background-image: url("https://www.vfsglobal.com/en/images/home-page/arrow-down.svg");
+      margin: 0px 0px 16px;
+      padding: 8px 36px 8px 16px;
+      box-sizing: border-box;
+      overflow-wrap: normal;
+      text-transform: none;
+      font-family: Helvetica;
+      font-size: 20px;
+      line-height: 30px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      padding-left: 16px;
+      display: block;
+      width: 100%;
+      font-weight: 400;
+      background-repeat: no-repeat;
+      background-position: right 12px 50%;
+      background-size: 16px 12px;
+      transition: border-color 0.15s ease-in-out 0s,
+        box-shadow 0.15s ease-in-out 0s;
+      appearance: none;
+      margin-bottom: 16px;
+    }
+
+    .style-56 {
+      font-size: 12px;
+      color: rgb(37, 48, 101);
+      visibility: visible;
+      animation-delay: 0.5s;
+      animation-name: fadeInUp;
+      color: rgb(37, 48, 101);
+      visibility: visible;
+      animation-delay: 0.5s;
+      animation-name: fadeInUp;
+      line-height: 16.92px;
+      max-width: 850px;
+      margin-right: auto;
+      margin-left: auto;
+      margin-bottom: 20px;
+      margin-top: 20px;
+      margin: 20px 184.2px;
+      padding: 0px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .style-57 {
+      font-size: 12px;
+      color: #253065;
+      color: rgb(37, 48, 101);
+      text-decoration: underline solid rgb(37, 48, 101);
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-58 {
+      font-size: 12px;
+      color: #253065;
+      color: rgb(37, 48, 101);
+      text-decoration: underline solid rgb(37, 48, 101);
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .style-59 {
+      padding: 9px 40px;
+      border-radius: 20px;
+      display: flex;
+      margin: auto;
+      margin-top: 20px;
+      font-size: 14px;
+      color: rgb(255, 255, 255);
+      text-decoration: none solid rgb(255, 255, 255);
+      border: 0.8px solid rgb(239, 106, 35);
+      
+      box-sizing: border-box;
+      text-transform: none;
+      line-height: 21px;
+      text-align: center;
+    }</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>vs_code_travel_insurance</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>VS code travel insurance</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>harshitha</sys_created_by>
+        <sys_created_on>2024-01-12 06:22:50</sys_created_on>
+        <sys_id>c4bd1db393673910acdc3f484dba1062</sys_id>
+        <sys_mod_count>36</sys_mod_count>
+        <sys_name>VS code travel insurance</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_c4bd1db393673910acdc3f484dba1062</sys_update_name>
+        <sys_updated_by>madhurya.jagadeesh</sys_updated_by>
+        <sys_updated_on>2024-02-29 05:56:40</sys_updated_on>
+        <template><![CDATA[
+<div>
+  <div class="style-0">
+    <div class="style-1">
+      <ul class="style-2">
+        <li class="style-3">
+          <a
+             href="https://www.vfsglobal.com/en/individuals/index.html"
+             class="style-4"
+             >For Individuals</a
+            >
+        </li>
+        <li class="style-5">
+          <a
+             href="https://www.vfsglobal.com/en/governments/index.html"
+             class="style-6"
+             >For Governments</a
+            >
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="style-7">
+    <div class="style-8">
+      <div class="style-9">
+        <a
+           href="https://www.vfsglobal.com/en/individuals/index.html"
+           class="style-10"
+           ><img
+                 src="https://th.bing.com/th/id/OIP.xN13E_l-9CVIb0thi76jNQAAAA?w=326&h=116&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                 alt="logo"
+                 class="style-11"
+                 /></a>
+        <button
+                class="style-13"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+          Select Language
+        </button>
+      </div>
+    </div>
+    <div class="style-12" onclick="toggleDropdown()">
+      <ul class="style-14" aria-labelledby="languageDropdown">
+        <li class="style-15">
+          <a
+             href="https://uttstudio.com/clients/vfs-global/vfs-travelinsurance"
+             class="style-16"
+             >English</a
+            >
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="style-19">
+    <div class="style-20">
+      <nav class="style-21">
+        <div class="style-22">
+          <button
+                  class="style-23"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarNav"
+                  aria-controls="navbarNav"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                  >
+            <span class="style-24"></span>
+          </button>
+          <div class="style-25">
+            <ul class="style-26">
+              <li class="style-27">
+                <a
+                   class="style-28"
+                   aria-current="page"
+                   href="https://www.vfsglobal.com/en/individuals/index.html"
+                   >Home</a
+                  >
+              </li>
+              <!----><a
+                        class="nav-link"
+                        href="https://www.vfsglobal.com/en/general/about.html?from_section=0"
+                        >About</a
+              >
+              <li class="style-29">
+                <a
+                   class="style-30"
+                   href="https://www.vfsglobal.com/en/individuals/travelagain-whats-new.html"
+                   >TravelAgain</a
+                  >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <section class="style-31">
+  <div class="style-32">
+    <div class="style-33">
+      <div class="style-34">
+        <div class="style-35">
+          <div class="style-36">
+            <h1 class="style-37">
+              Secure your overseas trip with Travel Medical Insurance
+            </h1>
+            <p class="style-38" data-wow-delay="0.2s">
+              Get your Travel Medical Insurance with COVID-19 coverage from
+              reputed global insurers for travel in the new normal.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="style-39">
+        <div class="style-40">
+          <picture class="style-41">
+            <source media="(min-width:650px)" srcset="" class="style-42" />
+       <!--     <img class="style-43" src="" alt="banner" /> -->
+          </picture>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="style-44">
+  <div class="style-45">
+    <div class="style-46">
+      <div class="style-47" data-wow-delay="0.3s">
+        <label for="formFile " class="style-48">Travelling from*</label>
+        <select class="style-49" aria-label="form-select-lg example">
+          <option selected="" value="india" class="style-50">India</option>
+
+        </select>
+      </div>
+      <div class="style-47" data-wow-delay="0.4s">
+        <label for="formFile" class="style-48">Travelling to*</label>
+        <select class="style-49" aria-label="form-select-lg example">
+          <option selected="" value="" class="style-50">Select country</option>
+          <option value="czech" class="style-50">Czech Republic</option>
+          <option value="denmark" class="style-50">Denmark</option>
+          <option value="france" class="style-50">France</option>
+          <option value="germany" class="style-50">Germany</option>
+          <option value="italy" class="style-50">Italy</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <p class="style-50 style-050" data-wow-delay="0.5s">
+    By clicking 'Get Now,' I agree to the
+    <a
+       class="style-58"
+       href="#"
+       data-bs-toggle="modal"
+       data-bs-target="#exampleModal"
+       >terms and conditions</a
+      >
+    &amp; understand that my
+    <a
+       class="style-58"
+       href="#"
+       data-bs-toggle="modal"
+       data-bs-target="#exampleModal1"
+       >personal data</a
+      >
+    may be shared with VFS Global insurance partners
+  </p>
+  <button type="button" ng-click="fun()" class="btn btn-warning style-59">
+    Get Now
+  </button>
+</div>
+</div>
+
+
+]]></template>
+    </sp_widget>
+</record_update>
