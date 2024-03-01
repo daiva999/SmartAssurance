@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_navigation_tab_map">
+    <sys_sg_navigation_tab_map action="INSERT_OR_UPDATE">
+        <navigation display_value="New navigation">4974d69293ec8e90acdc3f484dba10c8</navigation>
+        <navigation_tab display_value="Input Screen">98a3ca6747288ad055784a02516d43ad</navigation_tab>
+        <order/>
+        <sys_class_name>sys_sg_navigation_tab_map</sys_class_name>
+        <sys_created_by>karthik.udaykumar</sys_created_by>
+        <sys_created_on>2024-03-01 07:32:55</sys_created_on>
+        <sys_id>54a3ca6747288ad055784a02516d43b1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_sg_navigation_tab_map_54a3ca6747288ad055784a02516d43b1</sys_update_name>
+        <sys_updated_by>karthik.udaykumar</sys_updated_by>
+        <sys_updated_on>2024-03-01 07:32:55</sys_updated_on>
+    </sys_sg_navigation_tab_map>
+</record_update>

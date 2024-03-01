@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_parameter_screen">
+    <sys_sg_parameter_screen action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <advanced>true</advanced>
+        <available_offline>true</available_offline>
+        <cancel_label>Cancel</cancel_label>
+        <description>Input form for SA</description>
+        <dynamic_prefetch_count/>
+        <empty_state/>
+        <fetch_type>not_required</fetch_type>
+        <filter/>
+        <header_only_on_first_page>true</header_only_on_first_page>
+        <hide_filters>false</hide_filters>
+        <hide_screen_name>false</hide_screen_name>
+        <icon/>
+        <name>Test Input</name>
+        <next_label>Next</next_label>
+        <pagination_type>all</pagination_type>
+        <prev_label>Previous</prev_label>
+        <reset_after_submit>true</reset_after_submit>
+        <resume>true</resume>
+        <roles_override/>
+        <submit_label>Submit</submit_label>
+        <sys_class_name>sys_sg_parameter_screen</sys_class_name>
+        <sys_created_by>karthik.udaykumar</sys_created_by>
+        <sys_created_on>2024-03-01 07:15:15</sys_created_on>
+        <sys_id>619f312f47e48ad055784a02516d4390</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Test Input</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_sg_parameter_screen_619f312f47e48ad055784a02516d4390</sys_update_name>
+        <sys_updated_by>karthik.udaykumar</sys_updated_by>
+        <sys_updated_on>2024-03-01 07:36:11</sys_updated_on>
+        <type display_value="">string</type>
+        <view_config display_value="Header Card">e99f312f47e48ad055784a02516d438c</view_config>
+    </sys_sg_parameter_screen>
+    <sys_translated_text action="delete_multiple" query="documentkey=619f312f47e48ad055784a02516d4390"/>
+</record_update>
