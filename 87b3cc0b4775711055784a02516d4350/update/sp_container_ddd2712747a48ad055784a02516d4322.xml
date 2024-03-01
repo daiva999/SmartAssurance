@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container">
+    <sp_container action="INSERT_OR_UPDATE">
+        <background_color/>
+        <background_image/>
+        <background_style>default</background_style>
+        <bootstrap_alt>false</bootstrap_alt>
+        <class_name/>
+        <container_class_name/>
+        <name>Card theme page - Container 1</name>
+        <order>1</order>
+        <semantic_tag/>
+        <sp_page display_value="card_theme_page">0aa2712747a48ad055784a02516d43a3</sp_page>
+        <subheader>false</subheader>
+        <sys_class_name>sp_container</sys_class_name>
+        <sys_created_by>sachin_hm</sys_created_by>
+        <sys_created_on>2024-03-01 06:19:31</sys_created_on>
+        <sys_id>ddd2712747a48ad055784a02516d4322</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Card theme page - Container 1</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_container_ddd2712747a48ad055784a02516d4322</sys_update_name>
+        <sys_updated_by>sachin_hm</sys_updated_by>
+        <sys_updated_on>2024-03-01 06:19:31</sys_updated_on>
+        <title/>
+        <width>container</width>
+    </sp_container>
+</record_update>
