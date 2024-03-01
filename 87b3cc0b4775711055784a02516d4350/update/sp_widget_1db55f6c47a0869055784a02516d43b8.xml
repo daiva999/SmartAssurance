@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope, $http, $uibModal) {
+    var c = this;
+	
+	 c.data.userInput = {};
+
+    c.openModal = function() {
+        // Open the modal using the $uibModal service
+        c.modalInstance = $uibModal.open({
+            templateUrl: 'modalTemplate',  // Template for the modal content
+            scope: $scope  // Use the same scope as the controller
+        });			
+    };
+	
+	/*
+	c.submitAnswers = function() {
+        var responses = [];
+        
+        // Iterate over each variable and extract the response
+        for (var i = 0; i < $scope.data.variables.length; i++) {
+            var variable = $scope.data.variables[i];
+            var response = {
+							 index: index, 
+                question: variable.question,  // Question
+                answer: variable.answer       // User's response to the question
+            };
+            responses.push(response);  // Push the response object into the responses array
+        }
+
+        // Now you have an array of responses containing each question and its answer
+        // You can further process or send this data as needed
+        console.log(responses);
+
+        // Sending data to the server
+        // Example using $http.post:
+        /* $http.post('/api/submitAnswers', { responses: responses })
+            .then(function(response) {
+                alert('Answers submitted successfully');
+            })
+            .catch(function(error) {
+                console.error('Error submitting answers:', error);
+            }); */
+		/*
+		 c.server.get({
+        method: 'submitAnswers',  // Method name for server-side processing
+        responses: responses  // Data to be sent
+    }).then(function(res(function(){
+		
+		})ponse) {
+        // On success
+        alert('Answers submitted successfully');
+    }).catch(function(error) {
+        // On error
+        console.error('Error submitting answers:', error);
+    });
+    };
+*/
+	
+	
+	
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>rp</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>RP</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[/*
+(function() {
+    // Define the record producer name entered by the user
+    var recordProducerName = 'Insurance Product Questions';
+ 
+    // Query the sys_record_producer table to retrieve the sys_id based on the record producer name
+    var recordProducerGR = new GlideRecord('sc_cat_item_producer');
+    recordProducerGR.addQuery('name', recordProducerName);
+    recordProducerGR.query();
+ 
+    // Check if a record producer with the specified name exists
+    if (recordProducerGR.next()) {
+        // Retrieve the sys_id of the record producer
+        var recordProducerSysId = recordProducerGR.getUniqueValue();
+ 
+        // Now that you have the sys_id, you can proceed with your existing logic
+        // Use GlideRecord to query the item_option_new table for variables
+        var variables = [];
+        var itemOptionGR = new GlideRecord('item_option_new');
+        itemOptionGR.addQuery('cat_item', recordProducerSysId);
+        itemOptionGR.query();
+        while (itemOptionGR.next()) {
+            var variable = {
+                type: itemOptionGR.getValue('type'),
+                question: itemOptionGR.getValue('question_text'),
+							field:itemOptionGR.getValue('field'),
+							
+                answer:  '' // Placeholder for the answer
+                // Add other fields as needed
+							
+            };
+					
+					
+					
+            variables.push(variable);
+					/*
+					if (variable.answer === 'true') {
+        variable.answer = true;
+    } else if (variable.answer === 'false'){
+        variable.answer = false;
+    }
+		*/
+/*        }
+ 
+        // Pass the variables array to the widget template
+        data.variables = variables;
+			
+
+var answerRecord = new GlideRecord('x_rptp_insureme_insurance_questionnaire');
+        answerRecord.initialize(); // Initialize a new record
+
+        // Set the value for the answer field
+        answerRecord.setValue('answer', '');
+
+        
+
+        // Insert the record into the table
+        answerRecord.insert();
+			
+    } else {
+        gs.error('Record producer with name ' + recordProducerName + ' not found.');
+    }
+	
+	})();
+
+
+
+	/*
+	// Assume recordProducerData contains the data retrieved from the record producer
+var recordProducerData = {
+    variables: [
+        { id: 1, question: 'Question 1', answer: 'Value 1' },
+        { id: 2, question: 'Question 2', answer: 'Value 2' },
+		  	{ id: 3, question: 'Question 3', answer: 'Value 3' }
+        // Other variables...
+    ]
+};
+
+// Mapping between record producer variables and table fields
+var fieldMappings = {
+    1: 'field1', // Map variable with id 1 to field1 in the table
+    2: 'field2',
+	 3: 'field3'// Map variable with id 2 to field2 in the table
+    // Add more mappings as needed
+};
+
+// Insert data into the table
+var tableRecord = new GlideRecord('x_rptp_insureme_insurance_questionnaire');
+tableRecord.initialize(); // Initialize a new record
+
+// Map record producer variables to table fields and insert into the table
+recordProducerData.variables.forEach(function(variable) {
+    var field = fieldMappings[variable.id];
+    if (field) {
+        tableRecord.setValue(field, variable.answer);
+    }
+		
+});
+	
+
+// Insert the record into the table
+var newRecordSysId = tableRecord.insert();
+
+if (newRecordSysId) {
+    gs.info('Record inserted with Sys ID: ' + newRecordSysId);
+} else {
+    gs.error('Failed to insert the record.');
+}
+
+
+	
+	
+	if (input && input.method === "submitAnswers" && input.responses) {
+        // Process the user responses
+        var responses = JSON.parse(input.responses);
+
+        // Iterate through each response and perform necessary actions
+        responses.forEach(function(response, index) {
+            var fieldName = response.fieldName;
+            var answer = response.answer;
+
+            // Perform any further processing here, such as storing the responses in a table
+            // For example, you can use GlideRecord to insert the responses into a table
+            var gr = new GlideRecord('x_rptp_insureme_insurance_questionnaire');
+            gr.initialize(); // Initialize a new record
+            gr.setValue(fieldName, answer);
+            gr.insert();
+        });
+
+        // Respond back to the client-side with a success message
+        return 'User responses submitted successfully!';
+    } else {
+        // Handle the case where the input is not as expected
+        return 'Invalid input or method';
+    }
+		*/
+	
+	
+	/*
+	
+})();
+
+*/
+
+(function() {
+    // Define the record producer name entered by the user
+    var recordProducerName = 'Insurance Product Questions';
+
+    // Query the sys_record_producer table to retrieve the sys_id based on the record producer name
+    var recordProducerGR = new GlideRecord('sc_cat_item_producer');
+    recordProducerGR.addQuery('name', recordProducerName);
+    recordProducerGR.query();
+
+    // Check if a record producer with the specified name exists
+    if (recordProducerGR.next()) {
+        // Retrieve the sys_id of the record producer
+        var recordProducerSysId = recordProducerGR.getUniqueValue();
+
+        // Now that you have the sys_id, you can proceed with your existing logic
+        // Use GlideRecord to query the item_option_new table for variables
+        var variables = [];
+        var itemOptionGR = new GlideRecord('item_option_new');
+        itemOptionGR.addQuery('cat_item', recordProducerSysId);
+        itemOptionGR.query();
+        while (itemOptionGR.next()) {
+            var variable = {
+                type: itemOptionGR.getValue('type'),
+                question: itemOptionGR.getValue('question_text'),
+                field: itemOptionGR.getValue('field'),
+                answer: '' // Placeholder for the answer
+                // Add other fields as needed
+            };
+
+            variables.push(variable);
+        }
+
+        // Pass the variables array to the widget template
+        data.variables = variables;
+
+        // Fetch user responses and update the target table
+        // Assuming data.variables contains user responses and question details
+        data.variables.forEach(function(variable) {
+            var answerRecord = new GlideRecord('x_rptp_insureme_insurance_questionnaire');
+            answerRecord.initialize(); // Initialize a new record
+            answerRecord.setValue('column_label', variable.question); // Set the question as column_label
+            
+            // Set the value for the field dynamically based on the field name
+            if (variable.field) {
+                answerRecord.setValue(variable.field, variable.answer);
+            }
+            
+            answerRecord.insert(); // Insert the record into the table
+        });
+    } else {
+        gs.error('Record producer with name ' + recordProducerName + ' not found.');
+    }
+})();
+
+
+
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>harshitha</sys_created_by>
+        <sys_created_on>2024-02-21 05:49:45</sys_created_on>
+        <sys_id>1db55f6c47a0869055784a02516d43b8</sys_id>
+        <sys_mod_count>160</sys_mod_count>
+        <sys_name>RP</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_1db55f6c47a0869055784a02516d43b8</sys_update_name>
+        <sys_updated_by>harshitha</sys_updated_by>
+        <sys_updated_on>2024-03-01 10:05:11</sys_updated_on>
+        <template><![CDATA[<div class="panel-body">
+  <div class="form-group">
+    <button class="btn btn-primary" ng-click="c.openModal()">
+      Answer these questions
+    </button>
+  </div>
+</div>
+
+
+<!--<script type="text/ng-template" id="modalTemplate"> -->
+<div>
+  <form>
+    <!-- your widget template -->
+    <div ng-if="data.producerData">
+      <h3>{{ data.producerData.name }}</h3>
+      <!--    <p>{{ data.producerData.description }}</p> -->
+    </div>
+
+    <div ng-if="data.variables.length > 0">
+      <!--<h4>Variables:</h4> -->
+      <ul>
+        <li ng-repeat="variable in data.variables">
+          <strong>{{ variable.question }}</strong><br>
+          <div ng-if="variable.type === '1'">
+            <!-- Use a unique ng-model for each dropdown -->
+            <select ng-model="variable.answer" >
+              <option value="">Select an option</option>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+
+          <br>
+        </li>
+      </ul>
+      <button class="btn btn-primary" ng-click="c.submitAnswers()">Submit</button>
+    </div>
+  </form>
+  {{data.variables}}
+</div>
+
+
+
+<!--</script>-->
+
+
+
+
+]]></template>
+    </sp_widget>
+</record_update>
