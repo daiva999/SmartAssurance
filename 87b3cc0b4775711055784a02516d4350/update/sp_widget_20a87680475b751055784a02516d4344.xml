@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope, $element, $window, $location, $rootScope, $timeout, snAttachmentHandler, $http, spUtil, userPreferences, $filter, i18n, $uibModal, spAriaUtil) {
+	
+	var c = this;
+	c.submit = function(){
+		// alert("clicked");
+		c.data.temp1 = c.pn;
+		c.data.temp2 = c.pdes;
+		c.data.temp3 = c.pn.toLowerCase();
+		c.data.temp4 = c.pimg;
+		c.data.temp5 = 'travel';
+		c.data.temp6=c.sumInsured;
+		c.data.prod_prem = c.prod_prem;
+		
+	if (!c.data.temp1.trim()) 
+		{
+			return;
+		}
+		else {
+			// alert("else");
+			c.server.update().then(function (response) {
+				// alert("server");
+				if (response.errorMessage) {
+					c.errorMessage = response.errorMessage;
+					c.successMessage = null;
+				} else {
+					c.successMessage = response.successMessage;
+					c.errorMessage = null;
+
+					$timeout(function () {
+						location.href = "/ap?id=" + c.options.redirect_url;
+					}, 1500);
+				}
+			}).catch(function (error) {
+				c.successMessage = null;
+			});
+		}
+	}
+	
+	$scope.handleFileInput = function(){
+		alert();
+	}
+
+
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.goBack {
+  position: relative;
+  width: 100px;
+  height: 40px; 
+}
+
+.goBack i {
+  display: inline-block;
+  transition: opacity 0.3s ease-out;
+}
+
+.goBack::before {
+  content: 'Go back';
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.goBack:hover i {
+  opacity: 0;
+}
+
+.goBack:hover::before {
+  display: inline-block;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+ 
+input[type=url], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+ 
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+ 
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+
+.css-form input.ng-invalid.ng-touched {
+  border: 1px solid #FA787E;
+  padding: 5px;
+}
+
+.css-form input.ng-valid.ng-touched {
+  border: 1px solid #78FA89;
+  padding: 5px;
+}
+ 
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.flex{
+	display: flex;
+  justify-content :space-between;
+}
+.head{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+ 
+  
+}
+
+.required {
+    color: red;
+}
+</css>
+        <data_table>sp_instance_table</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>table</field_list>
+        <has_preview>false</has_preview>
+        <id>new_product</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>Create New Product</name>
+        <option_schema>[{"displayValue":"Page","name":"redirect_url","section":"Presentation","default_value":"product","label":"url","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function(){
+
+	data.cat = [];
+	data.insurerCode = [];
+	data.insurerCode.push({'insurerCode':"Future Easy"});
+	var catgr = new GlideRecord('x_rptp_insureme_insurance_product_category');
+	catgr.query();
+
+	data.list = ["category_name"];
+
+	while (catgr.next()) {
+		data.list.forEach(function(field) {
+			data.cat.push(catgr.getDisplayValue(field));
+		});
+	}
+
+
+	try {
+		// Get table name from widget input
+		data.table = $sp.getValue("table");
+
+
+		// Create GlideRecord for the specified table
+		var gr = new GlideRecord(data.table);
+
+
+		// Check if prod_name already exists
+		gr.addQuery("prod_name", input.temp1);
+		gr.query();
+		if (gr.next()) {
+			var errorMessage = "Product name already exists.";
+			gs.addErrorMessage(errorMessage);
+			data.errorMessage = errorMessage;
+			current.setAbortAction(true);
+			return errorMessage;
+		}
+
+
+		// Check if prod_code already exists
+		gr.initialize();
+		gr.addQuery("prod_name", input.temp1);
+		gr.query();
+		if (gr.next()) {
+			var errorMessages = "Product code already exists.";
+			gs.addErrorMessage(errorMessages);
+			data.errorMessage = errorMessages;
+			current.setAbortAction(true);
+			return errorMessages;
+		}
+
+
+		// Insert new record
+		gr.initialize();
+		gr.setValue("prod_name", input.temp1);
+		gr.setValue("prod_desc", input.temp2);
+		gr.setValue("prod_code", input.temp3);
+		gr.setValue("prod_image", input.temp4);
+		gr.setValue("category_code", input.temp5);
+		gr.setValue('insurer_name', 'Future Easy');
+		gr.setValue('insurer', 'future_easy');
+		gr.setValue("sum",parseInt(input.temp6));
+		gr.setValue("currency","USD");
+		gr.setValue("active", true);
+		var prdSysID = gr.insert();
+
+		
+		var minLimit= 1; // Outbound Limit
+		var minNum = Math.floor(Math.random() * minLimit); //Generates random number from 0-n
+		
+		var maxLimit= 70; // Outbound Limit
+		var maxNum = Math.floor(Math.random() * maxLimit); //Generates random number from 0-n
+		
+		var prdPrem = new GlideRecord('x_rptp_insureme_premium');
+		prdPrem.initialize();
+		
+		prdPrem.setValue('cost', input.prod_prem);
+		prdPrem.setValue('u_prod_type', prdSysID);
+		prdPrem.setValue('prod_code', input.temp3);
+		prdPrem.setValue('min_age', 1);
+		prdPrem.setValue('max_age', 70);
+		prdPrem.setValue('min_days', 1);
+		prdPrem.setValue('max_days', 180);
+		prdPrem.setValue('category_code', 'travel');
+		prdPrem.setValue('insurer_code', 'future_easy');
+		prdPrem.setValue('currency', 'INR');
+		prdPrem.insert();
+		
+		
+		
+		// Log success message
+		var successMessage = "Record inserted successfully.";
+		gs.addInfoMessage(successMessage);
+		data.successMessage = successMessage;
+		return successMessage;
+	} catch (e) {
+		// Log error details
+		gs.error("An error occurred: " + e);
+
+		// Log additional information for debugging
+		gs.error("Table Name: " + data.table);
+		gs.error("Input Data: " + JSON.stringify(input));
+
+		return "Error: " + e;
+	}
+
+
+
+
+	/*
+	data.cat=[];
+	var catgr=new GlideRecord('x_rptp_insureme_insurance_product_category');
+	catgr.query();
+
+	while (catgr.next()){
+		var j={};
+		var arr=catgr.category_code.toString();		
+		arr=arr.split('-');
+		c="";
+		arr.forEach(func2);
+		j.code=c;
+		data.cat.push(j);
+	}
+
+	function func2(element){
+		var b=element.toLowerCase();
+		b=b[0].toUpperCase()+b.substring(1);
+		c=c+" "+b;
+	}	
+	*/
+
+
+	/*
+	data.cat = [];
+data.list = ["category_code"];
+
+var catgr = new GlideRecord('x_rptp_insureme_insurance_product_category');
+catgr.query();
+
+while (catgr.next()) {
+  var obj = {};
+  data.list.forEach(function(field) {
+    obj[field] = catgr.getDisplayValue(field);
+  });
+
+  data.cat.push(obj);
+}
+*/
+
+
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-19 11:07:36</sys_created_on>
+        <sys_id>20a87680475b751055784a02516d4344</sys_id>
+        <sys_mod_count>333</sys_mod_count>
+        <sys_name>Create New Product</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_20a87680475b751055784a02516d4344</sys_update_name>
+        <sys_updated_by>chandan.parmar</sys_updated_by>
+        <sys_updated_on>2024-03-01 05:51:29</sys_updated_on>
+        <template><![CDATA[<div>
+  
+  <div admin-back-button class="bt"></div>
+    <div class = "head"> 
+      <h2>Please fill the New Product details here:</h2>
+      <img ng-src="https://th.bing.com/th?id=OIP.ha59T_qkxIapRr_WWUtGnQHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" style="width:300px"/>
+    </div>
+    <br />
+    <form novalidate class="css-form">
+  	
+    <b>Category Name: <span class="required"></span></b>
+    <select id="catName" ng-model="c.cName" required class="dropdown">
+        <option  ng-repeat="key in data.cat" ng-attr-id="option_{{$index}}" value="{{key}}" readonly selected="selected">{{key}}</option>
+    </select>
+    <b>Insurer Code: <span class="required"></span></b>
+   
+    <select id="insurereCode" ng-model="c.insurerCode" required class="dropdown">
+        <option  ng-repeat="key in data.insurerCode"  ng-attr-id="optn_{{$index}}"  value="{{key.insurerCode}" readonly selected="selected">{{key.insurerCode}}</option>
+    </select>
+    <br />
+    <b>Product Name: <span class="required">*</span></b>
+    <input id="prodName" type="text" name="cat_name" ng-model="c.pn" required  ng-pattern="/^[a-zA-Z\s]+$/"/>
+     <span style="color: {{errorInValue ? 'red' : 'transparent'}};" >{{errorInValue}}</span>
+    <br />
+    
+    <b>Product Description:</b>
+    <input id="prodDesc" type="text" name="sh_desc" ng-model="c.pdes" />
+    <br />
+    <b>Sum Insured</b>
+    <input id="prodSum" type="text" name="sum_insured" ng-model="c.sumInsured" ng-pattern="/^\d*\.?\d+$/" />
+    <br />
+  <b>Premium Amount</b>
+    <input id="prodPremium" type="text" name="prod_prem" ng-model="c.prod_prem" ng-pattern="/^\d*\.?\d+$/" />
+    <br />
+	<input ng-show="true" type="file" accept="image/jpeg,image/png,image/bmp,image/x-windows-bmp,image/gif,image/x-icon,image/svg+xml" (change)="handleFileInput($event.target.files)">
+ 
+
+        
+<!--
+
+	<input ng-show="true" type="file" accept="image/jpeg,image/png,image/bmp,image/x-windows-bmp,image/gif,image/x-icon,image/svg+xml" ng-file-select="attachFiles({files: $files})" ng-change="uploadNewProfilePicture()" />
+<input ng-show="false" type="file" accept="image/jpeg,image/png,image/bmp,image/x-windows-bmp,image/gif,image/x-icon,image/svg+xml" ng-file-select="attachFiles({files: $files})" />
+                <button ng-click="uploadNewProfilePicture($event)"
+                        type="button"
+                        class="btn btn-default send-message">${Upload Picture}</button> -->
+    <div class="hidden">
+      <b>Active:</b>
+      <input type="checkbox" name="isa" ng-model="c.pia" />
+    </div>
+    <br />
+    <input  id="submit_button" type="submit" value="Create Product" ng-click="c.submit()" />
+  </form> 
+</div>]]></template>
+    </sp_widget>
+</record_update>
