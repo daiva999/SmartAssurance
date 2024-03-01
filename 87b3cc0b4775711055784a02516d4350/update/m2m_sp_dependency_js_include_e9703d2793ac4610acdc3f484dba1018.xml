@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_dependency_js_include">
+    <m2m_sp_dependency_js_include action="INSERT_OR_UPDATE">
+        <order>100</order>
+        <sp_dependency display_value="Demooo22">4850f16793ac4610acdc3f484dba101b</sp_dependency>
+        <sp_js_include display_value="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js">f250356793ac4610acdc3f484dba107d</sp_js_include>
+        <sys_class_name>m2m_sp_dependency_js_include</sys_class_name>
+        <sys_created_by>Surya.Prathap</sys_created_by>
+        <sys_created_on>2024-03-01 06:09:10</sys_created_on>
+        <sys_id>e9703d2793ac4610acdc3f484dba1018</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Demooo22.https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>m2m_sp_dependency_js_include_e9703d2793ac4610acdc3f484dba1018</sys_update_name>
+        <sys_updated_by>Surya.Prathap</sys_updated_by>
+        <sys_updated_on>2024-03-01 06:09:10</sys_updated_on>
+    </m2m_sp_dependency_js_include>
+</record_update>

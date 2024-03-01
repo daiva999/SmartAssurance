@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_js_include">
+    <sp_js_include action="INSERT_OR_UPDATE">
+        <display_name>https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js</display_name>
+        <source>url</source>
+        <sys_class_name>sp_js_include</sys_class_name>
+        <sys_created_by>Surya.Prathap</sys_created_by>
+        <sys_created_on>2024-03-01 06:09:10</sys_created_on>
+        <sys_id>f250356793ac4610acdc3f484dba107d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_ui_script/>
+        <sys_update_name>sp_js_include_f250356793ac4610acdc3f484dba107d</sys_update_name>
+        <sys_updated_by>Surya.Prathap</sys_updated_by>
+        <sys_updated_on>2024-03-01 06:09:10</sys_updated_on>
+        <url>https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js</url>
+    </sp_js_include>
+</record_update>
