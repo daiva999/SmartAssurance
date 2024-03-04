@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope,$timeout,spUtil) {
+	var c = this;
+
+	c.submit = function (){
+
+		c.data.temp1 = c.fn;
+		c.data.temp2 = c.ln;
+		c.data.temp3 = c.email;
+		c.data.temp4 = c.uid;
+		c.data.temp6 = c.ia;
+		c.data.temp7 = c.role;
+
+
+
+
+
+/*
+		var firstName = c.data.temp1;
+		var lastName = c.data.temp2;
+
+		var alphabetRegex = /^[a-zA-Z]*$/;
+
+
+		if (!c.data.temp1.trim() || !c.data.temp2.trim() || !c.data.temp3.trim() || !c.data.temp4.trim()) {
+			return;
+		}
+		if ((!alphabetRegex.test(firstName) && firstName !== "") && (!alphabetRegex.test(lastName) && lastName !== "")) {
+			$scope.errFir = "Name must contain only alphabet characters.";
+			return;
+		}
+		else {
+			c.server.update().then(function (response) {
+				if (response.errorMessage) {
+					c.errorMessage = response.errorMessage;
+					c.successMessage = null;
+				} else {
+					c.successMessage = response.successMessage;
+					c.errorMessage = null;
+
+					$timeout(function () {
+						location.href = "/ap?id=" + c.options.redirect_url;
+					}, 5000);
+				}
+			}).catch(function (error) {
+				c.successMessage = null;
+			});
+
+		}*/
+		
+
+if (
+  !c.data.temp1.trim() ||
+  !c.data.temp2.trim() ||
+  !c.data.temp3.trim() ||
+  !c.data.temp4.trim()
+) {
+  return;
+}
+
+
+		
+c.server
+  .update()
+  .then(function (response) {
+    if (response.errorMessage) {
+      c.errorMessage = response.errorMessage;
+			spUtil.addTrivialMessage(errorMessage);
+						
+						 c.errorMessage = null;
+      c.successMessage = null;
+    } else {
+      c.successMessage = response.successMessage;
+			spUtil.addTrivialMessage(response.successMessage);
+      c.errorMessage = null;
+
+      $timeout(function () {
+        location.href = "/ap?id=" + c.options.redirect_url;
+      }, 6000);
+    }
+  })
+  .catch(function (error) {
+	 console.error("Error:", error);
+   c.errorMessage = error.data || "An error occurred.";             
+	 c.errorMessage = null;
+   c.successMessage = null;
+  });
+
+		
+		
+	}
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.goBack {
+  position: relative;
+  width: 100px;
+  height: 40px; 
+}
+
+.goBack i {
+  display: inline-block;
+  transition: opacity 0.3s ease-out;
+}
+
+.goBack::before {
+  content: 'Go back';
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.goBack:hover i {
+  opacity: 0;
+}
+
+.goBack:hover::before {
+  display: inline-block;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+
+input[type=email], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+ 
+input[type=url], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+ 
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+ 
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+ 
+
+
+
+.css-form input.ng-invalid.ng-touched {
+  border: 1px solid #FA787E;
+  padding: 5px;
+}
+
+.css-form input.ng-valid.ng-touched {
+  border: 1px solid #78FA89;
+  padding: 5px;
+}
+
+
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.head{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center; 
+}
+
+.required{
+	color:red;
+}
+.imageuser{
+  width:20%
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>new_user</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>Create New User</name>
+        <option_schema>[{"displayValue":"Page","name":"redirect_url","display_value_list":[],"section":"Presentation","default_value":"user","label":"url","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}},{"displayValue":"Table","name":"table_2","section":"Data","label":"Table 2","type":"reference","value":"sys_db_object","ed":{"reference":"sys_db_object"}}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function () {
+	try {
+		// Check if a user with the same email exists
+		var grEmail = new GlideRecord('sys_user');
+		grEmail.addQuery("email", input.temp3);
+		grEmail.query();
+
+		if (grEmail.next()) {
+			var errorMessage = "User with the same email already exists.";
+			gs.addErrorMessage(errorMessage);
+			data.errorMessage = errorMessage;
+			current.setAbortAction(true);
+			return errorMessage;
+		}
+
+		// Check if a user with the same user_name exists
+		var grUserName = new GlideRecord('sys_user');
+		grUserName.addQuery("user_name", input.temp4);
+		grUserName.query();
+
+		if (grUserName.next()) {
+			var errorMessages = "User ID already exists.";
+			gs.addErrorMessage(errorMessages);
+			data.errorMessage = errorMessages;
+			current.setAbortAction(true);
+			return errorMessages;
+		}
+
+		// Insert the new user record
+		var grInsert = new GlideRecord('sys_user');
+		grInsert.initialize();
+		grInsert.setValue("first_name", input.temp1);
+		grInsert.setValue("last_name", input.temp2);
+		grInsert.setValue("email", input.temp3);
+		grInsert.setValue("user_name", input.temp4);
+		grInsert.setValue("roles", input.temp7);
+		grInsert.setValue("active", true);
+		grInsert.insert();
+
+		/*	grInsert=new GlideRecord('sys_user');
+			grInsert.addQuery('user_name',input.temp4);
+			grInsert.query();
+			var sysID;
+			while(grInsert.next()){
+				sysID=grInsert.sys_id;
+			var grSysUserHasRole = new GlideRecord('sys_user_has_role');
+			var arr=input.temp7.split(',');
+			arr.forEach(function(element){
+    grSysUserHasRole.initialize();
+    grSysUserHasRole.setValue('user' ,sysID);
+    grSysUserHasRole.setValue('role',element.toLowerCase());
+    grSysUserHasRole.insert();
+			});
+			}*/
+		var successMessage = "Record inserted successfully.";
+		data.successMessage = successMessage;
+	} catch (e) {
+		console.log("An error occurred: " + e);
+	}
+
+
+	data.rol = [];
+	var roler = new GlideRecord('sys_user_role');
+	roler.query();
+
+	data.list = ["name"];
+
+	while (roler.next()) {
+		data.list.forEach(function(field) {
+			data.rol.push(roler.getDisplayValue(field));
+		});
+	}
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-19 11:08:09</sys_created_on>
+        <sys_id>79c8b680475b751055784a02516d4339</sys_id>
+        <sys_mod_count>237</sys_mod_count>
+        <sys_name>Create New User</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_79c8b680475b751055784a02516d4339</sys_update_name>
+        <sys_updated_by>chandan.parmar</sys_updated_by>
+        <sys_updated_on>2024-03-04 06:48:31</sys_updated_on>
+        <template><![CDATA[<div>
+
+  <div admin-back-button class="bt"></div>
+  <form novalidate class="css-form" >
+    <div class = "head"> 
+      
+      <h2>Please fill the New User details here:</h2>
+      <img ng-src="https://th.bing.com/th?id=OIP.isMiRzNuox6kx5IuWDJO3QHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" class="imageuser"/>
+      
+    </div>
+    <br />
+    
+   <b>First Name: <span class="required">*</span></b>
+    <input
+           id="f_name"
+           type="text"
+           ng-model="c.fn"
+           required
+           ng-pattern="/^[a-zA-Z]+$/"
+
+
+     />
+
+    <br />  
+    
+    
+
+
+    <b>Last Name: <span class="required">*</span></b>
+    <input
+           id="l_name"
+           type="text"
+           ng-model="c.ln"
+           required
+           ng-pattern="/^[a-zA-Z]+$/"
+
+     />
+    
+    <br />
+    
+    <b>Email: <span class="required">*</span></b>
+    <input
+           id="email_id"
+           type="email"
+           ng-model="c.email"
+           required
+           
+     />
+    
+    <br />
+    
+    <b>User ID: <span class="required">*</span></b>
+    <input
+           id="user_id"
+           type="text"
+           ng-model="c.uid"
+           required
+           ng-pattern="/^[0-9]+$/"
+
+           />
+   
+    <br />
+    
+    <b> Assign Role:</b>
+    <select ng-model="c.role" class="dropdown" size="5" multiple>
+
+      <option value="IMG" selected disabled hidden>Choose here...</option>
+      <option ng-repeat="key in data.rol" value="{{key}}" ng-attr-id="option_{{$index}}">{{key}}</option>
+    </select>
+
+    <b>Avatar:</b>
+    <input
+           type="file"
+           ng-model="c.uimg"
+           accept="image/png, image/jpeg, image/jpg"
+           />
+    <br />
+    <div class="hidden">
+      <b>Is Active:</b>
+      <input type="checkbox" ng-model="c.ia" />
+    </div>
+    <br />
+    <input id="submit_button" type="submit" value="Create User"  ng-click= "c.submit()" />
+    <br/>
+
+    <span class="required">*</span> <p>marked fields are mandatory</p>
+
+  </form>  
+</div>
+
+
+
+]]></template>
+    </sp_widget>
+</record_update>
