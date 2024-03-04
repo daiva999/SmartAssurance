@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($scope){
+	var c=this;	
+	$scope.arr=[]
+	c.data=[
+		{
+		'title': "1st Year Premium",
+		"img": "https://globalprimenews.com/wp-content/uploads/2020/03/IMG_20200326_143535-777x437.png",
+		"premiumValue": "1000/month"
+		},
+	{
+		'title': "1st Year Premium",
+		"img": "https://globalprimenews.com/wp-content/uploads/2020/03/IMG_20200326_143535-777x437.png",
+		"premiumValue": "1000/month"
+	},
+	{
+		'title': "1st Year Premium",
+		"img": "https://globalprimenews.com/wp-content/uploads/2020/03/IMG_20200326_143535-777x437.png",
+		"premiumValue": "1000/month"
+	}];
+	
+	c.numbers=[
+		{
+		"heading":"Premium from 2nd year",
+		"data":["1230/month","1233/month","1300/month"]
+		},
+		{
+		"heading":"Max Coverage Upto",
+		"data":["100 years","85 years","64 years"]
+		},
+		{
+		"heading":"Max Coverage Upto",
+		"data":["100 years","85 years","64 years"]
+		},
+		{
+		"heading":"Claim Settelement Ratio",
+		"data":["98%","95%","99%"]
+		},
+		{
+		"heading":"Claim Settelement Ratio",
+		"data":["98%","95%","99%"]
+		},
+		{
+		"heading":"Max Coverage Upto",
+		"data":["100 years","85 years","64 years"]
+		},
+		{
+		"heading":"Claim Settelement Ratio",
+		"data":["98%","95%","99%"]
+		},
+		{
+		"heading":"Claim Settelement Ratio",
+		"data":["98%","95%","99%"]
+		},
+		{
+		"heading":"Max Coverage Upto",
+		"data":["100 years","85 years","64 years"]
+		},
+		{
+		"heading":"Claim Settelement Ratio",
+		"data":["98%","95%","99%"]
+		}
+		
+		];
+
+	$scope.removeItem = function (index) {
+				if(c.data.length<2){
+			alert('atleast one plan should be there to compare')
+			return;
+		}
+	
+        if (index !== -1) {
+            c.data.splice(index, 1);
+
+            c.numbers.forEach(function (element) {
+                element.data.splice(index, 1);
+            });
+     
+            $scope.arr = [];
+            var remainingCards = 3 - c.data.length;
+            for (var i = 0; i < remainingCards; i++) {
+                $scope.arr.push(i);
+            }
+        }
+    };
+
+}
+
+
+
+
+
+
+
+
+
+
+	/*$scope.removeItem = function (index) {
+        if (index !== -1) {
+        c.data.splice(index,1);
+					c.numbers.forEach(function(element){
+					 element.data.splice(index,1);
+				})
+        }
+      };
+
+$scope.removeItem = function (index) {
+    if (index !== -1) {
+			alert(index)
+        // Remove the card
+        c.data.splice(index, 1);
+
+        // Remove the corresponding data from numbers array
+        c.numbers.forEach(function (element) {
+            element.data.splice(index, 1);
+        });
+
+        // Add a new empty card at the end
+        c.data.push({
+            'title': 'add plan',
+            
+        });
+
+        // Add placeholder data to numbers array for the new empty card
+        c.numbers.forEach(function (element) {
+            element.data.push('');
+        });
+    }
+};
+
+*/
+
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.scrollable-container {
+  overflow-y: auto; 
+  //height:500px;
+}
+
+.img {
+  width: auto; 
+  height: 60px;
+}
+
+.backArrow {
+  color: black;
+  font-size: 20px !important;
+}
+
+.header {
+  padding: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.card-container {
+  background-color: #F8F9FA;
+  display: flex;
+  justify-content: space-around;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.oprodCard {
+  width: 31%;
+  margin: 10px;
+  box-sizing: border-box;
+}
+
+.productCard {
+  background-color: white;
+  border: 2px solid #f0f0f0;
+  border-radius: 10px;
+  //padding: 10px;
+  text-align: center;
+  height: 180px;
+  box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2), 6px 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.data-row {
+  height: 60px;
+  width: 100%;
+  flex-direction: column;
+  border: 2px solid #f0f3f4;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.value {
+  font-size: smaller;
+  margin-bottom: 1;
+  text-align: center;
+  color: #9747FF
+}
+
+.button {
+  width: 120px;
+  text-align: center;
+  background-color: #9747FF;
+  border-radius: 5px;
+  color: white;
+  border: 2px solid #9747FF;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.rowDetailHeading {
+  background-color: #F8F9FA;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  border-bottom: 2px solid #f0f3f4;
+}
+
+.dataRowDetails {
+  color: #E1B23B;
+  text-align: center;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  display: flex;
+  color: black;
+  font-weight: bold;
+}
+
+.rowDetailElement {
+  border-left: 2px solid #f0f3f4;
+  width:33%;
+  padding: 8px;
+}
+
+.no-left-border {
+  border-left: none;
+}
+
+.compareText {
+  display: inline;
+  margin-left: 1%;
+  font-weight: bold;
+}
+
+.settingBtn {
+  margin-left: 70%;
+  font-size: 17px;
+  background-color: white;
+  border-width: 0px;
+}
+
+#buttonContainer {
+  font-size:20px;
+  display: flex;
+  justify-content: flex-end;
+ // margin-top: 5px;
+  
+}
+
+#buttonContainer button {
+  color:#989898;
+  margin-right: 5px;
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.plus{
+  width:350px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;     
+}
+
+.plus-button{
+  border: none;
+  background: none;
+  color:#9747FF;
+  border: 2px solid #9747FF;
+  border-radius: 50%;
+}
+
+.add-plan-button
+{
+  border: none;
+  background: none;
+  color:#9747FF;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>compare</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>compare</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	
+})();
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>nikita</sys_created_by>
+        <sys_created_on>2024-02-12 12:03:43</sys_created_on>
+        <sys_id>33f4167d93148250acdc3f484dba107b</sys_id>
+        <sys_mod_count>1027</sys_mod_count>
+        <sys_name>compare</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_33f4167d93148250acdc3f484dba107b</sys_update_name>
+        <sys_updated_by>nikita</sys_updated_by>
+        <sys_updated_on>2024-03-04 11:24:47</sys_updated_on>
+        <template><![CDATA[
+<div display="inline" class="header">
+    <a href="" class="backArrow">&#8592</a>
+    <h2 class="compareText">Compare the Selection</h2>
+    <button class="settingBtn">&#9881Settings</button>
+</div>
+
+<div class="card-container">
+    <div ng-repeat='(index, d) in c.data' class='oprodCard'>
+        <div class="productCard">
+            <div id='buttonContainer'>
+                <button ng-click="removeItem(index)">&times;</button>
+            </div>
+            <img class="img" ng-src='{{d.img}}' alt="{{d}}">
+            <p class='value'>{{d.title}}</p>
+            <button class='button'>{{d.premiumValue}}</button>
+        </div>
+    </div>
+
+    <div ng-repeat='(index, a) in arr' class='oprodCard'>
+        <div class="productCard plus">
+            <button class="plus-button" ng-click="plusButtonClicked(c.data.length + index)">+</button>
+            <button class="add-plan-button" ng-click="addPlan()">Add Plan</button>
+        </div>
+    </div>
+</div>
+
+<div class="scrollable-container">
+<div ng-repeat="number in c.numbers" class='overallRows1'>
+    <div class='data-row'>
+        <div class='rowDetailHeading'>
+            {{number.heading}}
+        </div>
+        <div class="dataRowDetails" ng-if="$first" style="color: #E1B23B;">
+            <div ng-repeat='(index, no) in number.data' class='rowDetailElement' ng-class="{'no-left-border': index == 0}">
+                {{no}}
+            </div>
+        </div>
+        <div class="dataRowDetails" ng-if="!$first">
+            <div ng-repeat='(index, no) in number.data' class='rowDetailElement' ng-class="{'no-left-border': index == 0}">
+                {{no}}
+            </div>
+        </div>
+    </div>
+</div>
+  </div>
+]]></template>
+    </sp_widget>
+</record_update>
