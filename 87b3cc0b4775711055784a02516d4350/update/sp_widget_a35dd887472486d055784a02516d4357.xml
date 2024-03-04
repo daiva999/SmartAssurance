@@ -2,91 +2,126 @@
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
         <client_script><![CDATA[api.controller = function ($scope) {
-    var c = this;
+	var c = this;
 	$scope.obj=[];
-	
-   var policy = sessionStorage.getItem('policy');
-    if (policy) {
-        policy = JSON.parse(policy);
-			$scope.policynumber = policy.policyNumber;
-    }
-//	alert(c.data.array);
-	c.server.get({"action":"create" , "value": $scope.policynumber}).then(function (res){
-	//		$scope.url1=res.data.url;
-			$scope.obj=res.data.array[0];
+	$scope.count=0;
+	$scope.value=false;
+
+
+	var policy = sessionStorage.getItem('policy');
+	if (policy) {
+		policy = JSON.parse(policy);
+		$scope.policynumber = policy.policyNumber;
+	}
+
+
+
+	c.server.get({"action":"create" , "value": $scope.policynumber , "value1":$scope.insurance}).then(function (res){
+		//		$scope.url1=res.data.url;
+		$scope.obj=res.data.array[0];
 		//		alert(JSON.stringify($scope.obj))
-		
+
 		$scope.obj1 = res.data.array1[0];
-	//	alert(JSON.stringify($scope.obj1));
+		//	alert(JSON.stringify($scope.obj1));
+		$scope.obj2 = res.data.array2[0];
+		//	alert(JSON.stringify(res.data.array2[0].success));
+
+
+		$scope.insurance =  res.data.array2[0].status;
+		if($scope.insurance =="Success")
+		{
+			$scope.insurance ="Success";
+			$scope.Color='green';
+			$scope.ButValue="Claimed";
+			$scope.value=true;
+		}
+		else{
+			$scope.Color='red';
+			$scope.ButValue="Claim Insurance";
+			$scope.insurance = "In Progress";
+		}
+
+
+		$scope.ClaimInsurance = function(){
+			$scope.insurance = "Success";
+			$scope.Color = "green";
+					$scope.ButValue="Claimed";
+
+			$scope.count+=1;
+			//	 	alert($scope.count);
+		}
 	});
-	
+
+
+
 };
 ]]></client_script>
         <controller_as>c</controller_as>
-        <css>body {
-  font-family: Arial, sans-serif;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+        <css>.bg-img {
+  /* Add your background image styles here */
 }
 
 .form-container {
-  max-width: 600px;
-  margin: 0 auto;
+  margin-top: 20px; /* Adjust as needed */
   padding: 20px;
-  border: 5px  #ccc;
-  border-radius: 5px;
+  /* Add a background color */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a shadow effect */
+}
+
+h1 {
+  margin-top: 0; /* Remove margin */
+  text-align: center; /* Center align the heading */
 }
 
 .section {
-  margin-bottom: 20px;
   padding: 20px;
-  border: 3px solid #ccc;
-  border-radius: 5px;
 }
 
-h2 {
-  margin-bottom: 10px;
-
+.policy-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
-.info1{
-  display: grid;
-  grid-template-columns: 150px 1fr;
-  gap: 10px;
-
-
-}
-
-
-.info1 div {
-  font-weight: bold;
-
-}
-
-.submit-button {
-  padding: 10px 20px;
+.policy-table th,
+.policy-table td {
+  padding: 10px;
+  text-align: center; /* Center align table content */
   border: none;
-  background-color: #e86020;
-  border-radius : 10px;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
+}
+
+.policy-table th {
+  font-size: 15px;
+}
+
+.pdf-link {
+  display: inline-block;
+  width: 200px;
+  margin: 20px auto;
   text-align: center;
-  margin-left:40%; 
-}
-.pdf-link {             
-  display: block;             
-  background-color: #3498db;  
-  color: #fff;           
-  padding: 10px;          
-  border-radius: 4px;        
-  text-decoration: none;    
 }
 
+.pdf-link img {
+  width: 100%; /* Adjust image width */
+  border-radius: 10px;
+}
 
+.but1 {
+  background-color: #e86020;
+  color: #fff;
+  padding: 10px 20px; /* Adjust padding */
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: block;
+  width: 150px;
+  margin: 20px auto;
+}
 
-
-
+.spacing {
+  padding:10px;
+}
 
 </css>
         <data_table>sp_instance</data_table>
@@ -109,26 +144,37 @@ h2 {
 	/* e.g., data.table = $sp.getValue('table'); */
 	data.array = [];
 	data.array1 = [];
+	data.array2 = [];
+	data.status=""
 	var url = "";
-
+	var status = "";
+	var sys=" ";
+ 
 	if(input && input.action == "create"){
 		//gs.addErrorMessage(input.value);
-		 gr1 = new GlideRecord('sys_attachment');
-		gr1.addEncodedQuery('file_nameLIKEPAY0001194');
-		gr1.query();
-		if (gr1.next()) {
-			var url1 = gs.getProperty('glide.servlet.uri') + gr1.getLink(false);
-			gs.addInfoMessage(url);
-			data.array1.push({
-				url : url1
-			});
-		}
-
-
+ 
+ 
+ 
 		var gr = new GlideRecord('x_rptp_insureme_payment_details');
 		gr.addQuery('number',input.value);
+		
+	
 		gr.query();
+	
+		
+			
+//		gs.addErrorMessage(sys);
 		if(gr.next()){
+			sys=gr.getValue("sys_id");
+			
+	//	gs.addErrorMessage(gr.getValue("sys_id"));
+			var Success = gr.getDisplayValue('claim_status');
+			data.array2.push({
+				status : Success
+			});
+ 
+			gr.claim_status = 2;
+			gr.update();
 			//	gs.addInfoMessage( gr.getValue('insurer_code'));
 			data.array.push({
 				productCode : gr.getValue('product_code'),
@@ -136,90 +182,91 @@ h2 {
 				premiumamount: gr.getValue('amount'),
 				Sum : gr.getValue('sum'),
 				name : gr.getValue('primary_user')
+ 
+ 
 			});
-
-			/*	data.Productcode=  gr.getValue('product_code');
-			data.insurerCode =gr.getValue('insurer_code');
-			data.premiumamount = gr.getValue('amount');
-			data.Sum =gr.getValue('sum');
-			data.name = gr.getValue('primary_user');
-
-			gs.addErrorMessage(data.Productcode);*/
+				gr1 = new GlideRecord('sys_attachment');
+		gr1.addQuery('table_sys_id',sys);
+		gr1.query();
+		//gs.addInfoMessage(sys)
+		if (gr1.next()) {
+//			gs.addInfoMessage("hii"+sys)
+	var url1 = gs.getProperty('glide.servlet.uri') + gr1.getLink(false);
+//gs.addInfoMessage(url1); // Use url1 instead of url
+data.array1.push({
+    url: url1
+			});
 		}
-		//	gs.addErrorMessage(JSON.stringify(data.array))
+		}
+		}
+	
+	
 
-	}
-
+ 
+ 
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>Surya.Prathap</sys_created_by>
         <sys_created_on>2024-02-28 10:49:25</sys_created_on>
         <sys_id>a35dd887472486d055784a02516d4357</sys_id>
-        <sys_mod_count>105</sys_mod_count>
+        <sys_mod_count>285</sys_mod_count>
         <sys_name>policy claim</sys_name>
         <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sp_widget_a35dd887472486d055784a02516d4357</sys_update_name>
-        <sys_updated_by>Ajmal.akram</sys_updated_by>
-        <sys_updated_on>2024-02-29 06:03:11</sys_updated_on>
-        <template><![CDATA[<div>
-  <div class="form-container">
+        <sys_updated_by>Surya.Prathap</sys_updated_by>
+        <sys_updated_on>2024-03-04 09:37:17</sys_updated_on>
+        <template><![CDATA[<body class = "bg-img">
+  <div class="form-container" >
     <section class="section">
       <h1>Your Policy Details</h1>
       <hr>
-      <div class="info">
-        <div>Policy Number</div>
-        <div>
-          <h4>
-            {{policynumber}}
+      <table class="policy-table">
+        <tr>
+          <th>SL. No</th>
+          <th>Policy Number</th>
+          <th>Product Code</th>
+          <th>Insurer Code</th>
+          <th>Premium Amount</th>
+          <th>Sum Insured</th>
+          <th>Applicant Name</th>
+          <th>Status</th>
+          <th>Claim Insurance</th>
+          <th></th>
+        </tr>
+        <tr class = "spacing">
+          <td>1</td>
+          <td>{{policynumber}}</td>
+          <td>{{obj.productCode}}</td>
+          <td>{{obj.insurerCode}}</td>
+          <td>{{obj.premiumamount}}</td>
+          <td>{{obj.Sum}}</td>
+          <td>{{obj.name}}</td>
+          <td><h4 style="color: {{Color}};">{{insurance}}</h4></td>
 
-          </h4>
-        </div>
-        <hr>
-        <div>Product Code</div>
-        <div>
-          <h4>{{obj.productCode}}</h4>
+          <td><a herf=""  ng-disabled="value" ng-click="ClaimInsurance()"><button class="but1">
+            {{ButValue}}</button></a>
+          </td>
+         <td>
+    <a href="{{obj1.url}}" class="pdf-link" target="_blank" download="document.pdf">
+        <button type="button" class="btn btn-link">
+            <span id="boot-icon" class="bi bi-download" style="    font-size: 50px;
+    -webkit-text-stroke-width: 4px;
+    color: black;"></span>
+        </button>
+    </a>
+</td>
 
-        </div>
-        <hr>
-        <div>Insurer Code</div>
-        <div>
-          <h4>{{obj.insurerCode}}</h4>
-        </div>
-        <hr>
-        <div>Premium Amount</div>
-        <div>
-          <h4>{{obj.premiumamount}}</h4>
-        </div>
-        <hr>
-
-        <div>Sum Insured </div>
-        <div>
-          <h4>{{obj.Sum}}</h4>
-        </div>
-        <hr>
-
-        <div>Applicant Name</div>
-        <div>
-          <h4>{{obj.name}}</h4>
-        </div>
-
-      </div>
-      <hr>
-      <div>
-        <a href={{obj1.url}} class="pdf-link" target="_blank" download="document.pdf" style = "background-color: #e86020;border-radius : 10px;color: #fff;cursor: pointer; text-align: center; ">Download Your Policy</a>
-        <a href="">
-          <button ng-click="Updates()"
-                  class="submit-button" style = "margin-top : 10px">Submit</button>
-        </a>
-      </div>
-
+        </tr>
+      
+      </table>
     </section>
   </div>
 
 
+</body>
 
 
 ]]></template>
