@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {
+  /* widget controller */
+  var c = this;
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>
+*{
+  font-family: "Helvetica";
+  color:black;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.main{
+  padding-top:100px;
+ // padding-bottom:300px;
+}
+
+.text {
+  text-align: center;
+  padding: 40px;
+}
+
+.cardd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  padding: 20px;
+}
+
+
+img {
+  height: 180px;
+  width: 250px;
+  margin-bottom: 20px;
+}
+
+.cat {
+  color: blue;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>rp_1</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>Rp_1</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>harshitha</sys_created_by>
+        <sys_created_on>2024-03-04 05:04:27</sys_created_on>
+        <sys_id>094eb8e04734061055784a02516d4355</sys_id>
+        <sys_mod_count>22</sys_mod_count>
+        <sys_name>Rp_1</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_094eb8e04734061055784a02516d4355</sys_update_name>
+        <sys_updated_by>harshitha</sys_updated_by>
+        <sys_updated_on>2024-03-04 09:23:39</sys_updated_on>
+        <template><![CDATA[
+
+<!--
+<div class="main">
+
+
+<img src="https://th.bing.com/th/id/R.5b2b65c390263761e8089fe42c617512?rik=Krk%2bsJW%2baIUIWw&riu=http%3a%2f%2fimages5.fanpop.com%2fimage%2fphotos%2f28000000%2frandomised-random-28065165-1024-819.jpg&ehk=5EwtKjhNaCpv2WoxrGQ6hQfUGbEnlkAb3g5OZSIKIhc%3d&risl=&pid=ImgRaw&r=0" onclick="openRecordProducer('9826123193548250acdc3f484dba1075')">
+
+
+<img src="https://th.bing.com/th/id/R.5b2b65c390263761e8089fe42c617512?rik=Krk%2bsJW%2baIUIWw&riu=http%3a%2f%2fimages5.fanpop.com%2fimage%2fphotos%2f28000000%2frandomised-random-28065165-1024-819.jpg&ehk=5EwtKjhNaCpv2WoxrGQ6hQfUGbEnlkAb3g5OZSIKIhc%3d&risl=&pid=ImgRaw&r=0" onclick="openRecordProducer('9826123193548250acdc3f484dba1075')">
+
+
+<img src="image3.jpg" onclick="openRecordProducer('9826123193548250acdc3f484dba1075')">
+
+<script>
+  function openRecordProducer(sysId) {
+    window.open('/dp?id=sc_cat_item&sys_id=' + sysId, '_blank');
+  }
+</script>
+  
+ <!-- <img src="https://th.bing.com/th?id=OIP.rvSWtRd_oPRTwDoTCmkP5gHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2">
+  <widget id="9826123193548250acdc3f484dba1075"></widget> 
+</div> 
+-->
+
+
+ <div class="main">
+    <div class="text">
+      <h1>Choose from the below <strong class="cat">Category</strong></h1>
+      <p>Get control of all your insurance needs anytime, anywhere</p>
+    </div>
+
+    <div class="cardd">
+      <div>
+      <img src="https://jooinn.com/images/father-and-son-7.jpg" onclick="openRecordProducer('9826123193548250acdc3f484dba1075')"><br>
+<p><strong>Term Life Insurance</strong><p>
+      </div>  
+    
+      <div>
+      <img src="https://th.bing.com/th/id/OIP.vca-x8VYvOhTMLvFcMBkGAHaGL?rs=1&pid=ImgDetMain" onclick="openRecordProducer('9826123193548250acdc3f484dba1075')">
+      <p><strong>Car Insurance</strong><p>
+      </div>
+
+      <div>
+      <img src="https://th.bing.com/th/id/OIP._rwlJkCACQNev8mkWjBddwHaFj?rs=1&pid=ImgDetMain" onclick="openRecordProducer('9826123193548250acdc3f484dba1075')">
+      <p><strong>Stock Insurance</strong><p>
+      </div>
+      
+      <div>
+       <img src="https://images.hdqwalls.com/wallpapers/travel-hd.jpg" onclick="openRecordProducer('9826123193548250acdc3f484dba1075')">
+       <p><strong>Travel Insurance</strong><p>
+      </div>
+      
+      
+      <div>
+      <img src="https://wallpapercave.com/wp/wp7113919.jpg" onclick="openRecordProducer('9826123193548250acdc3f484dba1075')">
+      <p><strong>House Insurance</strong><p>
+        </div>
+
+         
+     
+       
+      </div>
+    </div>
+  </div>
+<script>
+  function openRecordProducer(sysId) {
+    window.open('https://ven06798.service-now.com/dp?id=sc_cat_item&sys_id=' + sysId, '_blank');
+    //window.open('https://ven06798.service-now.com/now/nav/ui/classic/params/target/com.glideapp.servicecatalog_cat_item_view.do%3Fv%3D1%26sysparm_id%3D9826123193548250acdc3f484dba1075');
+    //https://your_instance.service-now.com/sp?id=sc_cat_item&sys_id=9826123193548250acdc3f484dba1075"
+  }
+</script>
+</div>
+
+]]></template>
+    </sp_widget>
+</record_update>
