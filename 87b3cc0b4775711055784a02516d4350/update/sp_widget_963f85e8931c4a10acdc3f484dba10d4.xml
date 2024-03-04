@@ -422,20 +422,20 @@ select {&#13;
         <sys_created_by>Surya.Prathap</sys_created_by>
         <sys_created_on>2024-02-08 09:46:28</sys_created_on>
         <sys_id>963f85e8931c4a10acdc3f484dba10d4</sys_id>
-        <sys_mod_count>265</sys_mod_count>
+        <sys_mod_count>275</sys_mod_count>
         <sys_name>book a appoinment</sys_name>
         <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sp_widget_963f85e8931c4a10acdc3f484dba10d4</sys_update_name>
         <sys_updated_by>Surya.Prathap</sys_updated_by>
-        <sys_updated_on>2024-02-28 07:09:47</sys_updated_on>
+        <sys_updated_on>2024-03-04 05:25:18</sys_updated_on>
         <template><![CDATA[<div>
   <h1>Book an Appointment</h1>
   <p>
     First choose the type of appointment you would like, followed by your
     preferred date. You will then be able to select from all the time slots
-    currently available on that day.
+   currently available on that day.
   </p>
 </div>
 <div class="container">
@@ -504,7 +504,7 @@ select {&#13;
           <td style="padding: 10px">
             <button
               ng-click="toggleButton('Firstslot')"
-              ng-style="{'background-color': Firstslot ? 'green' : '', 'color': Firstslot ? 'white' : ''}"
+              ng-style="{'background-color': Firstslot ? '#e86020' : '', 'color': Firstslot ? 'white' : '', 'border-radius': '10px'}"
             >
               {{ Firstslot ? 'Selected' : 'Select' }}
             </button>
@@ -515,8 +515,8 @@ select {&#13;
           <td style="padding: 10px">
             <button
               ng-click="toggleButton('Secondslot')"
-              ng-style="{'background-color': Secondslot ? 'green' : '', 'color': Secondslot ? 'white' : ''}"
-            >
+             ng-style="{'background-color': Secondslot ? '#e86020' : '', 'color': Secondslot ? 'white' : '', 'border-radius': '10px'}"
+>
               {{ Secondslot ? 'Selected' : 'Select' }}
             </button>
           </td>
@@ -531,7 +531,7 @@ select {&#13;
           class="go-back-button"
           style="
             margin-right: 10px;
-            background-color: green;
+            background-color: e86020;
             border-radius: 10px;
           "
         >
@@ -541,7 +541,7 @@ select {&#13;
         <!-- "Submit" button with border radius -->
         <button
           class="submit-button"
-          style="background-color: green; border-radius: 10px"
+          style="background-color: e86020; border-radius: 10px"
           ng-click="Updates()"
         >
           Submit
