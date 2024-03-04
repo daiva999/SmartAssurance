@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>harshitha</sys_created_by>
+        <sys_created_on>2024-03-04 10:17:54</sys_created_on>
+        <sys_id>ae26cea8473c061055784a02516d4366</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_rptp_insureme_insurance_sub_categories.x_rptp_insureme.insurance_sub_categories_user</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_security_acl display_value="x_rptp_insureme_insurance_sub_categories">e226cea8473c061055784a02516d4361</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_ae26cea8473c061055784a02516d4366</sys_update_name>
+        <sys_updated_by>harshitha</sys_updated_by>
+        <sys_updated_on>2024-03-04 10:17:54</sys_updated_on>
+        <sys_user_role display_value="x_rptp_insureme.insurance_sub_categories_user" name="x_rptp_insureme.insurance_sub_categories_user">1a26ce68473c061055784a02516d436a</sys_user_role>
+    </sys_security_acl_role>
+</record_update>
