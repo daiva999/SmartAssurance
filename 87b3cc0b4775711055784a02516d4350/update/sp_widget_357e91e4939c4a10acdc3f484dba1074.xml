@@ -2,261 +2,235 @@
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
         <client_script><![CDATA[api.controller = function($scope, $window) {
-	/* widget controller */
-	var c = this;	
-	c.sum=0;
-	$scope.travelFrom = "India";
-c.element = [];
-c.prices = [];
-
-	c.user = $scope.data.user;
-
-	var obj = sessionStorage.getItem(c.user);
-	var job = JSON.parse(obj);
-	var Key = c.data.userId;
-	var session = sessionStorage.getItem(Key);
-	$scope.pay = JSON.parse(session);
-	if (job) {
-		$scope.firstName = job.firstName;
-		$scope.lastName = job.lastName;
-		$scope.dob = job.dob.substring(0, 10);
-		$scope.Contact = job.Contact;
-		$scope.Passport = job.Passport.substring(0, 10);
-		$scope.Passports = job.Passports;
-		$scope.Email = job.email;
-	}
-	var a = {
-		"first": job.firstName,
-		"last" : job.lastName,
-	}
-	var name = "aj";
-	sessionStorage.setItem(name , JSON.stringify((a)));
-	var sessionKey = 'abc';
-	var sessionDetails = sessionStorage.getItem(sessionKey);
-	var jobj = JSON.parse(sessionDetails);
-
-	if (jobj) {
-		$scope.visaCentre = jobj.visaCentre;
-		$scope.appointmentCategory = jobj.appointmentCategory;
-		$scope.subCategory = jobj.subCategory;
-	}
-	//var ab = document.getElementById('terms');
-	//var ab1 = document.getElementById('terms1');
-
-
-
-
-	if ($scope.pay) {
-		$scope.amount = $scope.pay.amount;
-		$scope.travelRegion = $scope.pay.userdetails.travelRegion;
-		$scope.prodCode = $scope.pay.prodName;
-		$scope.insurer = $scope.pay.insurerName;
-		$scope.persons = $scope.pay.userdetails.numberOfPersons;
-	}
-//	var key = "Services";
-$scope.Services = sessionStorage.getItem("Services");
-$scope.services = JSON.parse($scope.Services); // Parse the string back to an object
-$scope.services.forEach(function(ele){
-
-for (var key in ele) {
    
-    c.sum += ele[key];
-    
-    
-    var elements = key.split('_').join(' ');
-    
-    // Push modified key and corresponding price to arrays
-    c.element.push(elements);
-    c.prices.push(ele[key]);
-}
+    var c = this;
+    c.sum = 0;
+    $scope.travelFrom = "India";
+    c.element = [];
+    c.prices = [];
 
+    c.user = $scope.data.user;
 
-											
-	
-});
-	
-// Access the "Premium_Lounges" property
-	var arr=[];
-	
-/*$scope.key1=	$scope.services[0];
-	for (var i = 0; i < $scope.services.length; i++) {
-    alert($scope.services[i]);
-}*/
-	
-$scope.getKeys = function(obj) {
-	console.log(Object.keys(obj));
-	return Object.keys(obj).filter(function(k) {
-		return k !== "$$hashKey";
-	});
-	
-}
-	if($scope.pay ){
-		$scope.sum1=c.sum+$scope.amount + 1000;
-	}
-	else{
-			$scope.sum1 = c.sum+ 1000;
-	}
- 
-	
-	
-	var session1 = JSON.parse(sessionStorage.getItem('appointmentTime'));
-	if(session1){
-		$scope.date = session1.date;
-		$scope.time = session1.time;
-		
-	}
-	
+    var obj = sessionStorage.getItem(c.user);
+    var job = JSON.parse(obj);
+    var Key = c.data.userId;
+    var session = sessionStorage.getItem(Key);
+    $scope.pay = JSON.parse(session);
+    if (job) {
+        $scope.firstName = job.firstName;
+        $scope.lastName = job.lastName;
+        $scope.dob = job.dob.substring(0, 10);
+        $scope.Contact = job.Contact;
+        $scope.Passport = job.Passport.substring(0, 10);
+        $scope.Passports = job.Passports;
+        $scope.Email = job.email;
+    }
+    var a = {
+        "first": job.firstName,
+        "last": job.lastName,
+    }
+    var name = "aj";
+    sessionStorage.setItem(name, JSON.stringify((a)));
+    var sessionKey = 'abc';
+    var sessionDetails = sessionStorage.getItem(sessionKey);
+    var jobj = JSON.parse(sessionDetails);
 
-	
-
-
-	//alert(array);
-	$scope.Updates = function() {   
-		var ob = {
-			"firstName": job.firstName,
-			"lastName" : job.lastName,
-			"dob": job.dob.substring(0, 10),
-			"Contact": job.Contact,
-			"Passport": job.Passport.substring(0, 10),
-			"Passports":  job.Passports,
-			"Email" : job.email,
-			"PremiumAmount":$scope.pay.premiumAmount
-		};
-
-		var ab = {
-			"visaCentre" : jobj.visaCentre,
-			"appointmentCategory" : jobj.appointmentCategory,
-			"subCategory" : jobj.subCategory,
-			"time": session1.date,
-			"date": session1.time
-			
-		};
-		$scope.server.get({"action": "storingData1", "data": ob , "data1" :ab}).then(function(response) {
-		});
+    if (jobj) {
+        $scope.visaCentre = jobj.visaCentre;
+        $scope.appointmentCategory = jobj.appointmentCategory;
+        $scope.subCategory = jobj.subCategory;
+    }
+   
 
 
 
 
+    if ($scope.pay) {
+        $scope.amount = $scope.pay.amount;
+        $scope.travelRegion = $scope.pay.userdetails.travelRegion;
+        $scope.prodCode = $scope.pay.prodName;
+        $scope.insurer = $scope.pay.insurerName;
+        $scope.persons = $scope.pay.userdetails.numberOfPersons;
+    }
+  
+    $scope.Services = sessionStorage.getItem("Services");
+    $scope.services = JSON.parse($scope.Services); 
+    $scope.services.forEach(function(ele) {
+
+        for (var key in ele) {
+
+            c.sum += ele[key];
+
+
+            var elements = key.split('_').join(' ');
+
+            c.element.push(elements);
+            c.prices.push(ele[key]);
+        }
 
 
 
 
-		/*	$window.sessionStorage.clear(c.user);
-			$window.sessionStorage.clear("abc");
-			$window.sessionStorage.clear(Key);
-			*/
+    });
+    var arr = [];
 
 
 
-	};
+    $scope.getKeys = function(obj) {
+       
+        return Object.keys(obj).filter(function(k) {
+            return k !== "$$hashKey";
+        });
+
+    };
+    if ($scope.pay) {
+        $scope.sum1 = c.sum + $scope.amount + 1000;
+    } else {
+        $scope.sum1 = c.sum + 1000;
+    }
+    var session1 = JSON.parse(sessionStorage.getItem('appointmentTime'));
+    if (session1) {
+        $scope.date = session1.date;
+        $scope.time = session1.time;
+
+    }
+
+    $scope.Updates = function() {
+        var ob = {
+            "firstName": job.firstName,
+            "lastName": job.lastName,
+            "dob": job.dob.substring(0, 10),
+            "Contact": job.Contact,
+            "Passport": job.Passport.substring(0, 10),
+            "Passports": job.Passports,
+            "Email": job.email,
+            "PremiumAmount": $scope.pay.premiumAmount
+        };
+
+        var ab = {
+            "visaCentre": jobj.visaCentre,
+            "appointmentCategory": jobj.appointmentCategory,
+            "subCategory": jobj.subCategory,
+            "time": session1.date,
+            "date": session1.time
+
+        };
+        $scope.server.get({
+            "action": "storingData1",
+            "data": ob,
+            "data1": ab
+        }).then(function(response) {});
+
+
+    };
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css>body {
-  font-family: Arial, sans-serif;
-   border: 1px solid #ccc;
-  border-radius: 5px;
-}
- 
-.form-container {
-  max-width: 600px;
-  margin: 0 auto;
-   padding: 20px;
-  border: 5px solid #ccc;
-  border-radius: 5px;
-}
- 
-.section {
-  margin-bottom: 20px;
-  padding: 20px;
-  border: 3px solid #ccc;
-  border-radius: 5px;
-}
- 
-h2 {
-  margin-bottom: 10px;
- 
-}
- 
-.info1{
-  display: grid;
-  grid-template-columns: 150px 1fr;
-  gap: 10px;
- 
-  
-}
- 
- 
-.info1 div {
-  font-weight: bold;
- 
-}
- 
-.submit-button {
-  padding: 10px 20px;
-  border: none;
-  background-color: #1bae16;
-  border-radius : 10px;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-}
- 
-input[type="checkbox"] {
-  margin-right: 5px;
-}
- 
-.btn.btn-danger {
-  margin-left: 140px;
-}
-.section {
-  border: 1px solid #ddd; 
-  padding: 20px;
-}
-.table {
-  display: flex;
-  flex-direction: column;
-   padding:0px;
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-
-  padding:20px;
-}
-
-.row.heading {
-  font-weight: bold;
-   padding:20px;
-  padding: 0px;
-}
-
-.row &gt; div {
-  flex: 1;
-  width:100%;
-  text-align: center;
-  padding: 5px;
-  border: none; 
-}
- .line {
-      display: inline-flex;
-      justify-content: space-between;
-      align-items: center;
-    background-color: #d3d3d3;
-      color: black; 
-      padding: 10px;
-   width:100%;
-    }
-
-    .line div {
-      flex: 1;
-      text-align: center;
-    }
-
-    .line .inr {
-      text-align: right;
-    }
-
+        <css>body {&#13;
+  font-family: Arial, sans-serif;&#13;
+   border: 1px solid #ccc;&#13;
+  border-radius: 5px;&#13;
+}&#13;
+ &#13;
+.form-container {&#13;
+  max-width: 600px;&#13;
+  margin: 0 auto;&#13;
+   padding: 20px;&#13;
+  border: 5px solid #ccc;&#13;
+  border-radius: 5px;&#13;
+}&#13;
+ &#13;
+.section {&#13;
+  margin-bottom: 20px;&#13;
+  padding: 20px;&#13;
+  border: 3px solid #ccc;&#13;
+  border-radius: 5px;&#13;
+}&#13;
+ &#13;
+h2 {&#13;
+  margin-bottom: 10px;&#13;
+ &#13;
+}&#13;
+ &#13;
+.info1{&#13;
+  display: grid;&#13;
+  grid-template-columns: 150px 1fr;&#13;
+  gap: 10px;&#13;
+ &#13;
+  &#13;
+}&#13;
+ &#13;
+ &#13;
+.info1 div {&#13;
+  font-weight: bold;&#13;
+ &#13;
+}&#13;
+ &#13;
+.submit-button {&#13;
+  padding: 10px 20px;&#13;
+  border: none;&#13;
+  background-color: #e86020;&#13;
+  border-radius : 10px;&#13;
+  color: #fff;&#13;
+  font-size: 16px;&#13;
+  cursor: pointer;&#13;
+}&#13;
+ &#13;
+input[type="checkbox"] {&#13;
+  margin-right: 5px;&#13;
+}&#13;
+ &#13;
+.btn.btn-danger {&#13;
+  margin-left: 140px;&#13;
+}&#13;
+.section {&#13;
+  border: 1px solid #ddd; &#13;
+  padding: 20px;&#13;
+}&#13;
+.table {&#13;
+  display: flex;&#13;
+  flex-direction: column;&#13;
+   padding:0px;&#13;
+}&#13;
+&#13;
+.row {&#13;
+  display: flex;&#13;
+  justify-content: space-between;&#13;
+&#13;
+  padding:20px;&#13;
+}&#13;
+&#13;
+.row.heading {&#13;
+  font-weight: bold;&#13;
+   padding:20px;&#13;
+  padding: 0px;&#13;
+}&#13;
+&#13;
+.row &gt; div {&#13;
+  flex: 1;&#13;
+  width:100%;&#13;
+  text-align: center;&#13;
+  padding: 5px;&#13;
+  border: none; &#13;
+}&#13;
+ .line {&#13;
+      display: inline-flex;&#13;
+      justify-content: space-between;&#13;
+      align-items: center;&#13;
+    background-color: #d3d3d3;&#13;
+      color: black; &#13;
+      padding: 10px;&#13;
+   width:100%;&#13;
+    }&#13;
+&#13;
+    .line div {&#13;
+      flex: 1;&#13;
+      text-align: center;&#13;
+    }&#13;
+&#13;
+    .line .inr {&#13;
+      text-align: right;&#13;
+    }&#13;
+&#13;
 </css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -285,6 +259,7 @@ input[type="checkbox"] {
 		var gr = new GlideRecord('x_rptp_insureme_appointment_details');
 		gr.query();
 		if (gr) {
+			gr.initialize();
 
 			gr.applicant_name= input.data.firstName +' '+ input.data.lastName;
 			gr.d_o_b= input.data.dob;
@@ -313,14 +288,14 @@ input[type="checkbox"] {
         <sys_created_by>Surya.Prathap</sys_created_by>
         <sys_created_on>2024-02-08 10:53:04</sys_created_on>
         <sys_id>357e91e4939c4a10acdc3f484dba1074</sys_id>
-        <sys_mod_count>810</sys_mod_count>
+        <sys_mod_count>813</sys_mod_count>
         <sys_name>review</sys_name>
         <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sp_widget_357e91e4939c4a10acdc3f484dba1074</sys_update_name>
-        <sys_updated_by>Ajmal.akram</sys_updated_by>
-        <sys_updated_on>2024-02-27 10:09:26</sys_updated_on>
+        <sys_updated_by>Surya.Prathap</sys_updated_by>
+        <sys_updated_on>2024-03-04 06:33:05</sys_updated_on>
         <template><![CDATA[<div>
   <div class="form-container">
     <section class="section">
