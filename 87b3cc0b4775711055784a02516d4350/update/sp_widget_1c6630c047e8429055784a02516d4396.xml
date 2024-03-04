@@ -114,8 +114,8 @@ $scope.five = function() {
 
 
 	$scope.Updates = function() {
-		alert("Submit function called");
-		alert( 	JSON.stringify($scope.servicesArray));
+		
+		//alert( 	JSON.stringify($scope.servicesArray));
 
 
 		function removeDuplicatesAndRemoveEven(arr) {
@@ -235,7 +235,7 @@ table {
     }
       
      .my-button {
-   background-color: white;
+   background-color: #e86020;
   color: black;
   border: 2px solid #04AA6D;
      width: 100%;
@@ -245,7 +245,30 @@ table {
       font-size: 16px;
       text-decoration: none;
     }
-      
+.button-container {
+  display: flex;
+}
+
+.go-back-button,
+.submit-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.go-back-button {
+  margin-right: 10px;
+   background-color: #e86020;
+}
+
+.submit-button {
+  margin-left: 10px;
+   background-color: #e86020;
+}
+  
 
       
       
@@ -277,14 +300,14 @@ table {
         <sys_created_by>Surya.Prathap</sys_created_by>
         <sys_created_on>2024-02-19 04:57:07</sys_created_on>
         <sys_id>1c6630c047e8429055784a02516d4396</sys_id>
-        <sys_mod_count>242</sys_mod_count>
+        <sys_mod_count>267</sys_mod_count>
         <sys_name>Services</sys_name>
         <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sp_widget_1c6630c047e8429055784a02516d4396</sys_update_name>
-        <sys_updated_by>Ajmal.akram</sys_updated_by>
-        <sys_updated_on>2024-02-20 12:28:13</sys_updated_on>
+        <sys_updated_by>Surya.Prathap</sys_updated_by>
+        <sys_updated_on>2024-03-04 06:55:31</sys_updated_on>
         <template><![CDATA[<div>
 	<section>
 		<h1>Services</h1>
@@ -570,11 +593,36 @@ table {
 				</tbody>
 			</table>
 		</section>
-    <div style = "margin-left : 700px" class="d-grid gap-2 d-md-flex justify-content-md-end">
-  <button class="btn btn-success me-md-2" type="button">Back</button>
-      <a href="https://ven06798.service-now.com/vfsp?id=review">
-  <button type="button" class="btn btn-success" ng-click = "Updates()" >Submit</button>
-      </a></div>
+
+     <div
+        class="button-container ny-3"
+        style="padding: 10px; margin-top: 20px; margin-left: 40px"
+      >
+        <!-- "Go Back" button with border radius -->
+        <button
+          class="go-back-button"
+          style="
+            margin-right: 10px;
+            background-color: #e86020;
+            border-radius: 10px;
+                 color: white;
+          "
+        >
+          Go Back
+        </button>
+
+        <!-- "Submit" button with border radius -->
+        <a href="https://ven06798.service-now.com/vfsp?id=review">
+        <button
+          class="submit-button"
+          style="background-color: #e86020; border-radius: 10px;color: white;"
+          ng-click="Updates()"
+        >
+          Submit
+          
+        </button>
+       </a>
+      </div>
 	</section>
 
 	<footer>
