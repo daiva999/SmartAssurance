@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_page action="INSERT_OR_UPDATE">
+<category>general</category>
+<client_script><![CDATA[// function getUrl() {
+// 	var currentURL = window.location.href;
+// 	var urlParams = new URLSearchParams(currentURL.split('?')[1]);
+// 	var productId = urlParams.get("product_id");
+
+
+// 	var ga = new GlideAjax('productDetails');
+// 	ga.addParam('sysparm_name', 'getProductDetails');
+// 	ga.addParam('product_id', productId);
+// 	ga.getXMLAnswer(function (response) {
+// 		var product = response;
+// 		var productDet= JSON.parse(product);
+// 		var productNameDiv = document.querySelector('.productName');
+// 		productNameDiv.textContent = 'PRODUCT NAME: '+productDet['productName'];
+// 	});
+
+
+// }
+// getUrl();
+
+
+
+
+
+var productIdCounter = 0,selectedProducts=[];
+function createProduct(productName, productLogoSrc, monthlyFeeCharge, annualFeeCharge, featureData, discountAmount) {
+	var products = document.getElementById("products");
+	var product = document.createElement("div");
+	product.classList.add("product");
+	products.appendChild(product);
+
+	var productLogoDiv = document.createElement("div");
+	productLogoDiv.classList.add("productLogoDiv");
+	var productLogo = document.createElement("img");
+	productLogo.src = productLogoSrc;
+	productLogoDiv.appendChild(productLogo);
+	product.appendChild(productLogoDiv);
+
+	var hrDiv = document.createElement("div");
+	hrDiv.classList.add("hrDiv");
+	product.appendChild(hrDiv);
+
+	var productDet = document.createElement("div");
+	productDet.classList.add("productDet");
+
+	var productTitle = document.createElement("div");
+	productTitle.classList.add("productTitle");
+	productTitle.textContent = productName;
+	productDet.appendChild(productTitle);
+
+	var features = document.createElement("div");
+	features.id = "features";
+	features.classList.add("features");
+
+	for (var i = 0; i < featureData.length; i++) {
+		var featureText = featureData[i];
+		var featureElement = document.createElement("div");
+		featureElement.classList.add("feature");
+		featureElement.textContent = featureText;
+		features.appendChild(featureElement);
+	}
+
+	productDet.appendChild(features);
+
+	var compareContainer = document.createElement("div");
+	compareContainer.classList.add("compareContainer");
+
+	var label = document.createElement("label");
+	label.classList.add("custom-radio");
+
+	var radioInput = document.createElement("input");
+	radioInput.type = "radio";
+	radioInput.name = "customRadio" + productIdCounter;
+	radioInput.id = "customRadio" + productIdCounter;
+	label.appendChild(radioInput);
+
+	var compareSvg = document.createElement("div");
+	var svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+	svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+	svgElement.setAttribute("fill", "none");
+	svgElement.setAttribute("viewBox", "0 0 24 24");
+	svgElement.setAttribute("stroke-width", "3");
+	svgElement.setAttribute("stroke", "currentColor");
+	var pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+	pathElement.setAttribute("stroke-linecap", "round");
+	pathElement.setAttribute("stroke-linejoin", "round");
+	pathElement.setAttribute("d", "M5 13l4 4L19 7");
+	svgElement.appendChild(pathElement);
+	compareSvg.appendChild(svgElement);
+	compareSvg.classList.add("compareSvg");
+
+	label.appendChild(compareSvg);
+
+	var compareText = document.createElement("span");
+	compareText.textContent = "Add to compare";
+
+	compareContainer.appendChild(label);
+	compareContainer.appendChild(compareText);
+
+	productDet.appendChild(compareContainer);
+
+	product.appendChild(productDet);
+
+	var annualFee = document.createElement("div");
+	annualFee.classList.add("annualFee");
+	annualFee.textContent = annualFeeCharge;
+
+	var monthlyFee = document.createElement("button");
+	monthlyFee.classList.add("btn");
+	monthlyFee.textContent = monthlyFeeCharge;
+
+	var discount = document.createElement("div");
+	discount.id = "discount";
+	discount.classList.add("discount");
+
+	var discountSpan = document.createElement("span");
+	discountSpan.textContent = discountAmount + "% OFF";
+
+	discount.appendChild(discountSpan);
+
+	var fee = document.createElement("div");
+	fee.classList.add("fee");
+	fee.appendChild(monthlyFee);
+	fee.appendChild(annualFee);
+
+	var discountButton = document.createElement("div");
+	discountButton.classList.add("discountButton");
+	discountButton.appendChild(discount);
+	discountButton.appendChild(fee);
+
+	product.appendChild(discountButton);
+
+	var customRadio = document.getElementById("customRadio" + productIdCounter);
+	var customRadioParent = label;
+
+            customRadio.addEventListener("click", function() {
+                if (selectedProducts.length < 2) {
+                    if (customRadioParent.classList.contains("selected")) {
+                        customRadioParent.classList.remove("selected");
+                        var index = selectedProducts.indexOf(productName);
+                        if (index !== -1) {
+                            selectedProducts.splice(index, 1);
+                        }
+                        
+            
+                    } else {
+                        customRadioParent.classList.add("selected");
+                        selectedProducts.push(productName);
+                    }
+                } else {
+                    if (customRadioParent.classList.contains("selected")) {
+                        customRadioParent.classList.remove("selected");
+                        var index = selectedProducts.indexOf(productName);
+                        if (index !== -1) {
+                            selectedProducts.splice(index, 1);
+                        }
+                    } else {
+                        alert("You can only select up to two products for comparison.");
+                    }
+                }
+                updateSelectedProducts();
+            });
+
+            productIdCounter++;
+        }
+
+        function updateSelectedProducts() {
+            var productsSelectedContainer = document.getElementById("productsSelectedContainer");
+            productsSelectedContainer.innerHTML = "";
+
+            for (var i = 0; i < selectedProducts.length; i++) {
+                var productSelected = document.createElement("div");
+                productSelected.id = "productSelected";
+                productSelected.classList.add("productSelected");
+				var img=document.createElement("img");
+				img.src=getProductImage(selectedProducts[i]);
+				var selectedProductTitleSpan= document.createElement("span");
+				selectedProductTitleSpan.textContent=selectedProducts[i];
+				productSelected.appendChild(img);
+				productSelected.appendChild(selectedProductTitleSpan);
+                productsSelectedContainer.appendChild(productSelected);
+            }
+
+            var productsSelected = document.getElementById("productsSelected");
+            if (selectedProducts.length > 0) {
+                productsSelected.classList.add("productsSelected");
+				if(selectedProducts.length===2){
+					var compareButton=document.createElement("button");
+					compareButton.textContent="Compare";
+					compareButton.classList.add("compareButton");
+					productsSelectedContainer.appendChild(compareButton);
+				}
+            } else {
+                productsSelected.classList.remove("productsSelected");
+            }
+        }
+
+        function getProductImage(productName) {
+            var imageMap = {
+                "Care Supreme Direct": "/lic_logo.png",
+                "Max Saver 2.0": "/aditya_birla_health.png",
+                "Max Saver 3.0": "/aditya_birla_health.png",
+                "Max Saver 4.0": "/aditya_birla_health.png",
+                "Max Saver 5.0": "/aditya_birla_health.png",
+            };
+            return imageMap[productName] || "";
+        }
+
+        var featureData = [
+            "No Room Rent Limit",
+            "₹10.5 lakh Renewal Bonus",
+            "Ultimate Restoration of cover",
+        ];
+
+        createProduct("Care Supreme Direct", "lic_logo.png", "₹1,591/month", "₹19,591 annually", featureData, "20");
+        createProduct("Max Saver 2.0", "/aditya_birla_health.png", "₹5000/month", "₹60,000 annually", featureData, "50");
+        createProduct("Max Saver 3.0", "/aditya_birla_health.png", "₹5000/month", "₹60,000 annually", featureData, "50");
+        createProduct("Max Saver 4.0", "/aditya_birla_health.png", "₹5000/month", "₹60,000 annually", featureData, "50");
+        createProduct("Max Saver 5.0", "/aditya_birla_health.png", "₹5000/month", "₹60,000 annually", featureData, "50");]]></client_script>
+<description>Product page for InsureMe</description>
+<direct>true</direct>
+<endpoint>x_rptp_insureme_product.do</endpoint>
+<html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<!-- <h1><div class="productName"></div></h1> -->
+
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		.products {
+			width: 100vw;
+			min-height: 100vh;
+			background: #c9c9c9;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 20px;
+			padding-bottom: 150px;
+		}
+
+		.product {
+			width: 900px;
+			height: 170px;
+			background: #fff;
+			border-radius: 10px;
+			box-shadow: 0 0 5px grey;
+			display: flex;
+			padding: 10px 0 10px 10px;
+			overflow: hidden;
+		}
+
+		.product img {
+			margin-top:5px;
+			width: 100px;
+			height: 70px;
+		}
+
+		.hrDiv{
+			margin:0 20px;
+			width:1px;
+			background:#dfe1e6;
+		}
+
+		.productTitle {
+			font-family: sans-serif;
+			color: #686868;
+			margin-top:5px;
+			margin-bottom: 10px;
+			font-weight:600;
+			font-size:16px;
+		}
+
+		#discount {
+			transform: rotate(40deg);
+			float: right;
+			width: 250px;
+			height: 40px;
+			background: #8aca6c;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			box-shadow: 0 5px 5px rgb(175, 175, 175);
+			margin-right: -70px;
+		}
+
+		.productDet {
+			width: 550px;
+		}
+
+		.productLogoDiv {
+			display: flex;
+			justify-content: center;
+		}
+
+		#discount span {
+			color: #fff;
+			font-family: sans-serif;
+			width: 100px;
+			padding-left: 50px;
+		}
+
+		#features {
+			display: flex;
+			flex-wrap: wrap;
+			margin-left: -5px;
+			margin-bottom:10px;
+		}
+
+		.feature {
+			border: 1px solid #dfe1e6;
+			padding: 5px 10px;
+			color: #505f79;
+			margin: 5px;
+			border-radius: 5px;
+			font-size: 14px;
+		}
+
+		.discountButton {
+			width: 300px;
+		}
+
+		.btn {
+			background: #2673e7;
+			padding: 10px 40px;
+			border-radius: 5px;
+			border: none;
+			color: #fff;
+			margin-top: 50px;
+			font-size: 16px;
+		}
+
+		.fee {
+			display: flex;
+			flex-direction: column;
+			width: 200px;
+			align-items: center;
+		}
+
+		.annualFee {
+			margin-top: 5px;
+			font-size: 14px;
+			color: #3e3e3e;
+		}
+
+		.custom-radio {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 20px;
+			height: 20px;
+			border: 1px solid #979797;
+			border-radius: 50%;
+			cursor: pointer;
+		}
+
+		.compareSvg {
+			display: flex;
+			color: white;
+			width: 16px;
+		}
+
+		.custom-radio input {
+			display: none;
+		}
+
+		.selected {
+			background-color: #36b37e;
+		}
+
+		.compareContainer {
+			display: flex;
+			align-items: center;
+		}
+
+		.compareContainer span {
+			margin-left: 5px;
+			color: #253858;
+			font-family: poppins;
+		}
+
+		.productsSelected {
+			position: fixed;
+			height: 120px;
+			bottom: 0;
+			width: 100vw;
+			background: #fff;
+			z-index: 1;
+			border-radius: 30px 30px 0 0;
+			box-shadow: 0 -5px 5px #959595;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		#productsSelectedContainer {
+			width: 100%
+			height: 100px;
+			padding: 0 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 30px;
+		}
+
+		#productSelected {
+			border: 1px solid #b1b1b1;
+			border-radius: 10px;
+			display: flex;
+			align-items: center;
+			padding: 10px;
+		}
+
+		#productSelected img {
+			height: 40px;
+		}
+
+		#productSelected span {
+			font-weight: 600;
+			font-family: sans-serif;
+			color: #686868;
+			margin-left: 10px;
+		}
+		.compareButton{
+			background: #2673e7;
+			padding: 10px 40px;
+			border-radius: 5px;
+			border: none;
+			color: #fff;
+			font-size: 16px;
+		}
+	</style>
+	<div class="products" id="products">
+		<div id="productsSelected">
+			<div id="productsSelectedContainer">
+			</div>
+		</div>
+	</div>
+</j:jelly>]]></html>
+<name>product</name>
+<processing_script/>
+<sys_class_name>sys_ui_page</sys_class_name>
+<sys_created_by>kumar.shanu</sys_created_by>
+<sys_created_on>2023-10-25 12:04:59</sys_created_on>
+<sys_id>c5363bd2470a351055784a02516d43b7</sys_id>
+<sys_mod_count>3</sys_mod_count>
+<sys_name>product</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sys_ui_page_c5363bd2470a351055784a02516d43b7</sys_update_name>
+<sys_updated_by>srijan.gupta</sys_updated_by>
+<sys_updated_on>2023-10-28 07:21:11</sys_updated_on>
+</sys_ui_page>
+</record_update>

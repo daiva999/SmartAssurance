@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_page action="INSERT_OR_UPDATE">
+<category>general</category>
+<client_script><![CDATA[var dialog = new GlideDialogWindow("ff");
+dialog.setPreference('url', 'https://ven06798.service-now.com/nav_to.do?uri=sp_widget.do?sys_id=38a3a159530201101865ddeeff7b1263');
+dialog.render();
+
+var go = new GlideOverlay({
+    title: 'Action Widget',
+    iframe: 'https://ven06798.service-now.com/nav_to.do?uri=sp_widget.do?sys_id=38a3a159530201101865ddeeff7b1263',
+    closeOnEscape : true,
+    showClose : true,
+    height : "90%",
+    width : "90%"
+});
+go.center();
+go.render();
+
+
+
+]]></client_script>
+<description/>
+<direct>false</direct>
+<endpoint>x_rptp_insureme_.do</endpoint>
+<html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<div id="ff">
+	<h1>Hello</h1>
+	<iframe id="action-widget" ></iframe>
+	</div>
+</j:jelly>]]></html>
+<name/>
+<processing_script><![CDATA[var gdw = GlideDialogWindow.get();
+var url = gdw.getPreference('https://ven06798.service-now.com/nav_to.do?uri=sp_widget.do?sys_id=38a3a159530201101865ddeeff7b1263');
+document.getElementById('action-widget').src = url;]]></processing_script>
+<sys_class_name>sys_ui_page</sys_class_name>
+<sys_created_by>srijan.gupta</sys_created_by>
+<sys_created_on>2023-10-26 07:25:45</sys_created_on>
+<sys_id>edef3fae4746751055784a02516d4373</sys_id>
+<sys_mod_count>7</sys_mod_count>
+<sys_name/>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sys_ui_page_edef3fae4746751055784a02516d4373</sys_update_name>
+<sys_updated_by>srijan.gupta</sys_updated_by>
+<sys_updated_on>2023-10-26 07:56:41</sys_updated_on>
+</sys_ui_page>
+</record_update>

@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_page action="INSERT_OR_UPDATE">
+<category>general</category>
+<client_script><![CDATA[        function getProductList() {
+			getMemberDetails();
+            window.location.href =
+                "https://ven06798.service-now.com/x_rptp_insureme_productdisplaycopy.do";
+        }
+
+        var familyContainer = document.querySelector(".white-container");
+
+        function addFamilyMember(memberType) {
+            var familyDiv = document.createElement("div");
+            familyDiv.className = "family-container";
+            familyDiv.id = memberType;
+            familyDiv.innerHTML =
+                '<div class="relation">' +
+                memberType +
+                "</div>" +
+                '<div class="data">' +
+                '<div class="inputType">Name</div>' +
+                '<input type="text" placeholder="Enter name" class="inputData">' +
+                '<div class="inputType">Age</div>' +
+                '<input type="number" placeholder="Enter age" class="inputData">' +
+                "</div>";
+            familyContainer.appendChild(familyDiv);
+        }
+
+        function removeFamilyMember(memberType) {
+            var familyDiv = document.getElementById(memberType);
+            if (familyDiv) {
+                familyContainer.removeChild(familyDiv);
+            }
+        }
+
+        var memberCount = {
+            Self: 0,
+            Spouse: 0,
+            Father: 0,
+            Mother: 0,
+            Son: 0,
+            Daughter: 0,
+            Grandfather: 0,
+            GrandMother: 0,
+            "Father-in-law": 0,
+            "Mother-in-law": 0,
+        };
+
+        function createMember(memberDetails) {
+			if(memberDetails.title!=='Self'){
+				var memberContainer = document.createElement("div");
+				memberContainer.classList.add("member");
+				var decrementButton = document.createElement("div");
+				decrementButton.classList.add("cntButton", "decrement", "displayNone");
+				decrementButton.textContent = "-";
+				if (memberDetails.cntbtn) {
+					memberContainer.appendChild(decrementButton);
+				}
+				var memberTypeContainer = document.createElement("div");
+				memberTypeContainer.classList.add("memberType");
+				memberContainer.appendChild(memberTypeContainer);
+				var image = document.createElement("img");
+				image.src = memberDetails.logo;
+				memberTypeContainer.appendChild(image);
+				var memberTitle = document.createElement("div");
+				memberTitle.classList.add("memberTitle");
+				memberTitle.textContent = memberDetails.title;
+				memberTypeContainer.appendChild(memberTitle);
+				var incrementButton = document.createElement("div");
+				incrementButton.classList.add("cntButton", "increment", "displayNone");
+				incrementButton.textContent = "+";
+				if (memberDetails.cntbtn) {
+					memberContainer.appendChild(incrementButton);
+				}
+				memberContainer.onclick = function() {
+					if (memberCount[memberDetails.title] < 2) {
+						if (memberDetails.cntbtn && memberCount.Son + parseInt(memberCount.Daughter) < 4) {
+							var decrementButton = memberContainer.querySelector(".decrement");
+							var incrementButton = memberContainer.querySelector(".increment");
+							if (decrementButton.classList.contains("displayNone")) {
+								memberCount[memberDetails.title]++;
+								addFamilyMember(memberDetails.title);
+								memberContainer.classList.add("memberSelected");
+								decrementButton.classList.remove("displayNone");
+								incrementButton.classList.remove("displayNone");
+								memberTypeContainer.style.marginLeft = "0";
+								decrementButton.style.borderColor = "#2b5b5f";
+								incrementButton.style.borderColor = "#2b5b5f";
+							} else {
+								memberContainer.classList.remove("memberSelected");
+								decrementButton.classList.add("displayNone");
+								incrementButton.classList.add("displayNone");
+								memberTypeContainer.style.marginLeft = "23.5px";
+								memberCount[memberDetails.title]--;
+								removeFamilyMember(memberDetails.title);
+							}
+						} else if (memberCount.Son + parseInt(memberCount.Daughter) < 4 || memberDetails.title !== "Son" && memberDetails.title                                  !== "Daughter") {
+							memberContainer.classList.toggle("memberSelected");
+							if (memberCount[memberDetails.title]) {
+								removeFamilyMember(memberDetails.title);
+								memberCount[memberDetails.title]--;
+							} else {
+								addFamilyMember(memberDetails.title);
+								memberCount[memberDetails.title]++;
+							}
+
+						}
+					}
+	// 					if (memberCount.Self + memberCount.Spouse + memberCount.Father + memberCount.Mother + memberCount.Son + memberCount.Daughter + memberCount.Grandfather + memberCount.GrandMother + memberCount["Father-in-law"] + memberCount["Mother-in-law"] > 0) {
+	//                     noMembers.className = "displayNone";
+	//                 } else {
+	//                     noMembers.className = "noMembers";
+	//                 }
+				};
+				var options = document.getElementById("options");
+				options.appendChild(memberContainer);
+				decrementButton.onclick = function() {
+					memberCount[memberDetails.title]--;
+					removeFamilyMember(memberDetails.title);
+					if (memberCount[memberDetails.title] === 0) {
+						memberContainer.classList.remove("memberSelected");
+						decrementButton.classList.add("displayNone");
+						incrementButton.classList.add("displayNone");
+						memberTypeContainer.style.marginLeft = "23.5px";
+					} else if (memberCount[memberDetails.title] > 1) {
+						memberTitle.textContent = memberCount[memberDetails.title] + " " + memberDetails.title;
+					} else {
+						memberTitle.textContent = memberDetails.title;
+					}
+					event.stopPropagation();
+				};
+				incrementButton.onclick = function() {
+					if (memberCount.Son + parseInt(memberCount.Daughter) < 4) {
+						memberCount[memberDetails.title]++;
+						addFamilyMember(memberDetails.title);
+						if (memberCount[memberDetails.title] > 1) {
+							memberTitle.textContent = memberCount[memberDetails.title] + " " + memberDetails.title + "s";
+						}
+					}
+					event.stopPropagation();
+				};
+			}
+			else{
+				var selfNameDiv=document.getElementById("selfName");
+				selfNameDiv.value=localStorage.getItem("userName");
+				
+				var selfAgeDiv=document.getElementById("selfAge");
+				selfAgeDiv.value=localStorage.getItem("userAge");
+			}
+        }
+
+        var members = [{
+                logo: "./self_avatar.png",
+                title: "Self",
+                cntbtn: false
+            },
+            {
+                logo: "./wife_avatar.png",
+                title: "Spouse",
+                cntbtn: false
+            },
+            {
+                logo: "./son_avatar.png",
+                title: "Son",
+                cntbtn: true
+            },
+            {
+                logo: "./daughter_avatar.png",
+                title: "Daughter",
+                cntbtn: true
+            },
+            {
+                logo: "./father_avatar.png",
+                title: "Father",
+                cntbtn: false
+            },
+            {
+                logo: "./mother_avatar.png",
+                title: "Mother",
+                cntbtn: false
+            },
+        ];
+        var additionalMembers = [{
+                logo: "./grandfather_avatar.png",
+                title: "Grandfather",
+                cntbtn: false
+            },
+            {
+                logo: "./grandmother_avatar.png",
+                title: "GrandMother",
+                cntbtn: false
+            },
+            {
+                logo: "./father-in-law_avatar.png",
+                title: "Father-in-law",
+                cntbtn: false
+            },
+            {
+                logo: "./mother-in-law_avatar.png",
+                title: "Mother-in-law",
+                cntbtn: false
+            },
+        ];
+
+        function createOptionDiv() {
+            for (var i = 0; i < members.length; i++)
+                createMember(members[i]);
+            var showMoreMembers = document.createElement("div");
+            showMoreMembers.textContent = "Show More Members";
+            showMoreMembers.className = "showMoreMembers";
+            options.appendChild(showMoreMembers);
+            showMoreMembers.onclick = function() {
+                showMoreMembers.classList.add("displayNone");
+                for (var i = 0; i < additionalMembers.length; i++)
+                    createMember(additionalMembers[i]);
+            };
+        }
+        createOptionDiv();
+
+
+
+
+
+function getMemberDetails() {
+    var familyContainers = document.querySelectorAll(".family-container");
+    var memberDetails = [];
+
+    for (var i = 0; i < familyContainers.length; i++) {
+        var container = familyContainers[i];
+        var relation = container.querySelector(".relation").textContent;
+        var nameInput = container.querySelector('input[type="text"]');
+        var ageInput = container.querySelector('input[type="number"]');
+
+        if (nameInput.value && ageInput.value) {
+            memberDetails.push({
+                relation: relation,
+                name: nameInput.value,
+                age: parseInt(ageInput.value),
+            });
+        }
+    }
+	var ga = new GlideAjax('membersAPIs');
+	ga.addParam('sysparm_name', 'postMembers');
+	ga.addParam('json', JSON.stringify(memberDetails));
+	ga.getXML(function (response) {
+        var answer = response.responseXML.documentElement.getAttribute('answer');
+    });
+}]]></client_script>
+<description/>
+<direct>false</direct>
+<endpoint>x_rptp_insureme_memberdetailscopy.do</endpoint>
+<html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<style>
+		* {
+            font-family: 'Inter',sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #f4f5f7;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .breadcrum {
+            position: absolute;
+            margin-top: 90px;
+            margin-left: 3.3%;
+            font-style: normal;
+            font-weight: 400;
+			display:flex;
+			justify-content:space-between;
+			width:93.5vw;
+        }
+		.breadcrumbContent{
+			color:black;
+            text-decoration: none;
+		}
+		
+		.breadcrumbContent:hover{
+			color:#253858;
+            text-decoration: none;
+		}
+
+        .product-container {
+            position: absolute;
+            top: 140px;
+            display: flex;
+            width: 100vw;
+            justify-content: space-evenly;
+        }
+
+        .white-container {
+            background: white;
+            border-radius: 10px;
+            width: 68vw;
+            height: 75vh;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            overflow: auto;
+            box-shadow: 0 0 10px rgb(215, 215, 215);
+            padding: 20px;
+        }
+
+        .family-container {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 20px;
+            width: 250px;
+            height: 200px;
+            border: 2px solid #767676;
+            align-items: center;
+            border-radius: 10px;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        .relation {
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0fdff;
+            color: #2b5b5f;
+            font-weight: 600;
+            border-bottom: 2px solid #767676;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .options {
+            height: 75vh;
+            border-radius: 10px;
+            padding: 20px;
+            width: 22vw;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            overflow-y: auto;
+            box-shadow: 0 0 10px rgb(215, 215, 215);
+        }
+
+        .inputType {
+            position: relative;
+            font-size: 14px;
+            margin-bottom: -10px;
+            background: #fff;
+            z-index: 10;
+            width: 45px;
+            margin-left: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .inputData {
+            border-radius: 5px;
+            padding: 10px 10px;
+            outline: none;
+            border: 1px solid black;
+            margin-bottom: 10px;
+        }
+
+        .member {
+            background: #fff;
+            display: flex;
+            align-items: center;
+            border: 2px solid #767676;
+            width: 205px;
+            height: 60px;
+            border-radius: 10px;
+            color: #253858;
+            cursor: pointer;
+            padding: 6px 0;
+        }
+
+        .memberSelected {
+            font-weight: 600;
+            background: #f0fdff;
+            color: #2b5b5f;
+            border: 2px solid #2b5b5f;
+        }
+
+        .cntButton {
+            border: 2px solid #767676;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border-radius: 5px;
+        }
+
+        .decrement {
+            transform: translateX(-55%);
+        }
+
+        .increment {
+            transform: translateX(70%);
+            float: right;
+        }
+
+        .memberType {
+            margin-left: 23.5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .memberTitle {
+            width: 105px;
+        }
+
+        .member img {
+            width: 48px;
+        }
+
+        .displayNone {
+            display: none;
+        }
+
+        .showMoreMembers {
+            font-weight: 600;
+            color: #2b5b5f;
+            cursor: pointer;
+            font-size: 14px;
+            border-bottom: 1px solid #2b5b5f;
+        }
+
+        .noMembers {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 50%;
+            gap: 40px;
+        }
+
+        .noMembersTitle {
+            font-size: 28px;
+            font-weight: 600;
+            opacity: 70%;
+        }
+
+        .selectMembersTitle{
+            font-weight: 600;
+            color: #2b5b5f;
+            cursor: pointer;
+            font-size: 16px;
+			margin-bottom:10px
+        }
+		
+		.nextButton{
+			background:#59c157;
+			color:#fff;
+			padding:10px 30px;
+			font-weight:600;
+			border-radius:8px;
+			cursor:pointer;
+		}
+		
+		.nextButton:hover{
+			background:#39d236;
+		}
+    </style>
+	<div class="body">
+		<g:macro_invoke macro="RPTHeader" />
+		<div class="breadcrum">
+			<div>
+				Services/<a href="https://ven06798.service-now.com/x_rptp_insureme_category.do" class="breadcrumbContent">Category</a>/Health Insurance/<b>MemberDetails</b>
+			</div>
+			<div class="nextButton" onclick="getProductList()">Next</div>
+		</div>
+		<div class="product-container">
+			<div class="options" id="options">
+				<div class="selectMembersTitle">Select members you want to insure</div>
+				<div class="member memberSelected">
+					<div class="memberType">
+						<img src="./self_avatar.png"/>
+						<div class="memberTitle">Self</div>
+					</div>
+				</div>
+			</div>
+			<div class="white-container">
+				<div class="family-container" id="memberType">
+					<div class="relation">Self</div>
+					<div class="data">
+						<div class="inputType">Name</div>
+						<input type="text" placeholder="Enter name" class="inputData" id="selfName"/>
+						<div class="inputType">Age</div>
+						<input type="number" placeholder="Enter age" class="inputData" id="selfAge"/>
+					</div>
+				</div>
+<!-- 				<div class="noMembers" id="noMembers">
+					<img src="./no_members_avatar.png" alt="no members"/>
+					<div class="noMembersTitle">No member selected</div>
+				</div> -->
+			</div>
+		</div>
+		<g:macro_invoke macro="RPTBot" />
+	</div>
+</j:jelly>]]></html>
+<name>memberdetailscopy</name>
+<processing_script/>
+<sys_class_name>sys_ui_page</sys_class_name>
+<sys_created_by>kumar.shanu</sys_created_by>
+<sys_created_on>2023-11-01 16:21:19</sys_created_on>
+<sys_id>e314f47c47523d1055784a02516d4371</sys_id>
+<sys_mod_count>84</sys_mod_count>
+<sys_name>memberdetailscopy</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sys_ui_page_e314f47c47523d1055784a02516d4371</sys_update_name>
+<sys_updated_by>kumar.shanu</sys_updated_by>
+<sys_updated_on>2023-11-07 06:09:30</sys_updated_on>
+</sys_ui_page>
+</record_update>

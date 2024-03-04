@@ -1,0 +1,980 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_page action="INSERT_OR_UPDATE">
+<category>general</category>
+<client_script><![CDATA[ var currentURL = window.location.href;
+ var urlParams = currentURL.split('?')[1];
+ var productId = urlParams.split('=')[1];
+ var ga = new GlideAjax('getProductDetailsById');
+ ga.addParam('sysparm_name', 'getProductDetails');
+ ga.addParam('productId', productId);
+ ga.getXMLAnswer(function(response) {
+     response = JSON.parse(response);
+
+     function convertToIndianRupees(amount) {
+         return amount.toLocaleString('en-IN', {
+             style: 'currency',
+             currency: 'INR',
+             minimumFractionDigits: 0
+         });
+     }
+
+     var packages = [{
+         id: 1,
+         packageLogo: response[0].imageiurl,
+         packageName: "Cancer Secure",
+         cover: ["₹10L", "₹15L", "₹20L", "₹25L"],
+         members: ["All", "Self", "Spouse"],
+         amount: 1386,
+         deductible: "Deductible: ₹5L"
+     }, {
+         id: 2,
+         packageLogo: "./_rptp_insureme.canarabank.png",
+         packageName: "Critical Illness - 20 critical illnesses covered",
+         cover: ["₹5L", "₹10L", "₹15L", "₹20L", "₹25L"],
+         members: ["Self"],
+         amount: 730
+
+     }, {
+         id: 3,
+         packageLogo: "./lic_logo.png",
+         packageName: "Super Mediclaim - Cancer Indemnity",
+         cover: ["₹10L", "₹25L", "₹50", "₹1Cr", "₹2Cr"],
+         members: ["All", "Self", "Spouse"],
+         amount: 5350,
+         deductible: "Deductible: ₹7L"
+     }, {
+         id: 4,
+         packageLogo: "./lic_logo.png",
+         packageName: "Critical Illness - 50 critical illnesses covered",
+         cover: ["₹5L", "₹10L", "₹15L", "₹20L", "₹25L"],
+         members: ["Self"],
+         amount: 1031
+     }];
+
+
+
+     var productTitle = document.getElementById("productTitle");
+     productTitle.textContent = response[0].name;
+     var productLogoImage = document.getElementById("productLogoImage");
+     productLogoImage.src = response[0].imageiurl;
+     console.log(response[0].imageiurl);
+
+
+     function getSelectedPolicy() {
+         var radioOptions = document.getElementsByName("policy");
+         var selectedValue = "";
+
+         for (var i = 0; i < radioOptions.length; i++) {
+             if (radioOptions[i].checked) {
+                 selectedValue = radioOptions[i].value;
+                 // console.log(selectedValue);
+                 break;
+             }
+         }
+         return selectedValue;
+     }
+
+     function setBaseAmount() {
+         var selectedValue = getSelectedPolicy();
+
+         var baseAmount = document.getElementById("baseAmount");
+         baseAmount.textContent = "";
+         var basePremium = document.createElement("div");
+         basePremium.textContent = "Base Premium - " + selectedValue.split('@')[0];
+         var baseAmountValue = document.createElement("div");
+         baseAmountValue.classList.add("baseAmountValue");
+         baseAmountValue.textContent = convertToIndianRupees(selectedValue.split('@')[1]);
+         baseAmountForTotal = selectedValue.split('@')[1];
+         baseAmountForTotal = parseInt(baseAmountForTotal.replace(/₹|,/g, ""));
+         baseAmount.appendChild(basePremium);
+         baseAmount.appendChild(baseAmountValue);
+         totalAmountValue.textContent = convertToIndianRupees(baseAmountForTotal);
+         finalAmount = baseAmountForTotal;
+     }
+
+     function noPackageSelectedFunction() {
+         if (selectedPackages.length === 0) {
+             var noPackageSelected = document.createElement("div");
+             noPackageSelected.classList.add("noPackageSelected");
+             var noPackageSelectedTitle = document.createElement("div");
+             var viewPackages = document.createElement("div");
+             viewPackages.classList.add("viewPackages");
+             noPackageSelectedTitle.textContent = "No add-ons selected";
+             viewPackages.textContent = "View Add Ons";
+             noPackageSelected.appendChild(noPackageSelectedTitle);
+             noPackageSelected.appendChild(viewPackages);
+             selectedAddOns.appendChild(noPackageSelected);
+         }
+     }
+
+     var selectElement = document.getElementById("coverSelected");
+     var radioInputs = document.querySelectorAll('input[name="policy"]');
+     var policyValueElements = Array.from(document.querySelectorAll('strong[id^="policyValue"]'));
+     var saveElements = Array.from(document.querySelectorAll('.save[id^="save"]'));
+
+     selectElement.addEventListener("change", function() {
+         var selectedCoverAmount = selectElement.value;
+         for (var index = 0; index < radioInputs.length; index++) {
+             var input = radioInputs[index];
+             var inputValue = input.value.split("@")[0];
+             var updatedValue = policyAmounts[inputValue + "@₹" + selectedCoverAmount + " Lakh"];
+             input.value = inputValue + "@" + convertToIndianRupees(updatedValue);
+             policyValueElements[index].textContent = convertToIndianRupees(updatedValue);
+             if (index > 0) {
+                 saveElements[index].textContent = "Save " + convertToIndianRupees(calculateSaveAmount(inputValue, selectedCoverAmount));
+             }
+         }
+
+         setBaseAmount();
+         selectedAddOns.textContent = "";
+         finalAmount = baseAmountForTotal;
+         for (var i = 0; i < selectedPackages.length; i++) {
+             var selectedPackage = document.createElement("div");
+             var selectedPackageName = document.createElement("div");
+             var selectedPackageAmount = document.createElement("div");
+             selectedPackageAmount.classList.add("selectedPackageAmount");
+             selectedPackageName.textContent = selectedPackages[i].package;
+             selectedPackageAmount.textContent = convertToIndianRupees(selectedPackages[i].amount);
+             selectedPackage.classList.add("selectedPackage");
+             selectedPackage.appendChild(selectedPackageName);
+             selectedPackage.appendChild(selectedPackageAmount);
+             selectedAddOns.appendChild(selectedPackage);
+             finalAmount = finalAmount + selectedPackages[i].amount;
+         }
+         totalAmountValue.textContent = convertToIndianRupees(finalAmount);
+         noPackageSelectedFunction();
+     });
+
+     function calculateSaveAmount(policyValue, coverAmount) {
+         var currentPolicy = policyValue + "@₹" + coverAmount + " Lakh";
+         var oneYearPolicy = "1Year@₹" + coverAmount + " Lakh";
+         return policyAmounts[oneYearPolicy] * parseInt(policyValue.split('Y')[0]) - policyAmounts[currentPolicy];
+     }
+
+     var baseAmountForTotal, finalAmount, totalAmountValue = document.getElementById("totalAmountValue");
+
+     function selectRadio(policyRadio) {
+         var radioInput = policyRadio.querySelector('input[type="radio"]');
+         if (radioInput) {
+             radioInput.checked = true;
+         }
+
+         setBaseAmount();
+     }
+
+     selectRadio(document.querySelector('.policyRadio'));
+
+     var selectedPackages = [];
+
+     function addPackage(package, amount) {
+
+         var selectedAddOns = document.getElementById("selectedAddOns");
+         var noPackageSelected = document.querySelector(".noPackageSelected");
+
+         if (noPackageSelected) {
+             selectedAddOns.removeChild(noPackageSelected);
+         }
+
+         var packageIndex = -1;
+         for (var i = 0; i < selectedPackages.length; i++) {
+             if (selectedPackages[i].package === package) {
+                 packageIndex = i;
+                 break;
+             }
+         }
+
+         if (packageIndex === -1) {
+             selectedPackages.push({
+                 package: package,
+                 amount: amount
+             });
+             var selectedPackage = document.createElement("div");
+             var selectedPackageName = document.createElement("div");
+             var selectedPackageAmount = document.createElement("div");
+             selectedPackageAmount.classList.add("selectedPackageAmount");
+             selectedPackageName.textContent = package;
+             selectedPackageAmount.textContent = convertToIndianRupees(amount);
+             finalAmount = finalAmount + amount;
+             totalAmountValue.textContent = convertToIndianRupees(finalAmount);
+             selectedPackage.classList.add("selectedPackage");
+             selectedPackage.appendChild(selectedPackageName);
+             selectedPackage.appendChild(selectedPackageAmount);
+             selectedAddOns.appendChild(selectedPackage);
+         } else {
+             selectedPackages.splice(packageIndex, 1);
+             selectedAddOns.textContent = "";
+             finalAmount = baseAmountForTotal;
+             for (var i = 0; i < selectedPackages.length; i++) {
+                 var selectedPackage = document.createElement("div");
+                 var selectedPackageName = document.createElement("div");
+                 var selectedPackageAmount = document.createElement("div");
+                 selectedPackageAmount.classList.add("selectedPackageAmount");
+                 selectedPackageName.textContent = selectedPackages[i].package;
+                 selectedPackageAmount.textContent = convertToIndianRupees(selectedPackages[i].amount);
+                 selectedPackage.classList.add("selectedPackage");
+                 selectedPackage.appendChild(selectedPackageName);
+                 selectedPackage.appendChild(selectedPackageAmount);
+                 selectedAddOns.appendChild(selectedPackage);
+                 finalAmount = finalAmount + selectedPackages[i].amount;
+             }
+             totalAmountValue.textContent = convertToIndianRupees(finalAmount);
+         }
+         noPackageSelectedFunction();
+     }
+
+     function createPackage(pkg) {
+         console.log(pkg);
+         var packageDiv = document.createElement("div");
+         packageDiv.className = "package";
+         var packageItemsDiv = document.createElement("div");
+         packageItemsDiv.className = "packageItems";
+         var productLogoDiv = document.createElement("div");
+         productLogoDiv.className = "porductLogo";
+         var productLogoImage = document.createElement("img");
+         productLogoImage.src = pkg.packageLogo;
+         productLogoImage.alt = "package logo";
+         var packageTitleDiv = document.createElement("div");
+         packageTitleDiv.className = "packageTitle";
+         packageTitleDiv.textContent = pkg.packageName;
+         var coverAmountSelectDiv = document.createElement("div");
+         coverAmountSelectDiv.className = "packageSelectElement";
+         var coverAmountSelect = document.createElement("select");
+         coverAmountSelectTitle = document.createElement("div");
+         coverAmountSelectTitle.className = "selectTitle";
+         coverAmountSelectTitle.textContent = "Cover Amount";
+         for (var i = 0; i < pkg.cover.length; i++) {
+             var option = document.createElement("option");
+             option.value = pkg.cover[i];
+             option.textContent = pkg.cover[i];
+             coverAmountSelect.appendChild(option);
+         }
+         var membersSelectDiv = document.createElement("div");
+         membersSelectDiv.className = "packageSelectElement";
+         var membersSelect = document.createElement("select");
+         var membersSelectTitle = document.createElement("div");
+         membersSelectTitle.className = "selectTitle";
+         membersSelectTitle.textContent = "Members";
+         for (var i = 0; i < pkg.members.length; i++) {
+             var option = document.createElement("option");
+             option.value = pkg.members[i];
+             option.textContent = pkg.members[i];
+             membersSelect.appendChild(option);
+         }
+         var additionalAmountDiv = document.createElement("div");
+         additionalAmountDiv.className = "additionalAmount";
+         additionalAmountDiv.textContent = "+ " + convertToIndianRupees(pkg.amount);
+         additionalAmountDiv.onclick = function() {
+             if (additionalAmountDiv.className === 'selectedAdditionalAmount') {
+                 additionalAmountDiv.className = "additionalAmount";
+             } else {
+                 additionalAmountDiv.className = "selectedAdditionalAmount";
+             }
+             addPackage(pkg.packageName, pkg.amount);
+         };
+         var packageSeparatorDiv = document.createElement("div");
+         packageSeparatorDiv.className = "packageSeparator";
+         var conditionDiv = document.createElement("div");
+         conditionDiv.className = "condition";
+         conditionDiv.textContent = pkg.deductible;
+         productLogoDiv.appendChild(productLogoImage);
+         coverAmountSelectDiv.appendChild(coverAmountSelect);
+         coverAmountSelectDiv.appendChild(coverAmountSelectTitle);
+         membersSelectDiv.appendChild(membersSelect);
+         membersSelectDiv.appendChild(membersSelectTitle);
+
+         packageItemsDiv.appendChild(productLogoDiv);
+         packageItemsDiv.appendChild(packageTitleDiv);
+         packageItemsDiv.appendChild(coverAmountSelectDiv);
+         packageItemsDiv.appendChild(membersSelectDiv);
+         packageItemsDiv.appendChild(additionalAmountDiv);
+
+         packageDiv.appendChild(packageItemsDiv);
+         if (pkg.deductible) {
+             packageDiv.appendChild(packageSeparatorDiv);
+             packageDiv.appendChild(conditionDiv);
+         }
+         var packages = document.getElementById("packages");
+         packages.appendChild(packageDiv);
+     }
+
+     var policyAmounts = {
+         '1Year@₹5 Lakh': 19085,
+         '1Year@₹10 Lakh': 29085,
+         '1Year@₹15 Lakh': 39085,
+         '1Year@₹20 Lakh': 49085,
+         '2Year@₹5 Lakh': 36739,
+         '2Year@₹10 Lakh': 56739,
+         '2Year@₹15 Lakh': 76739,
+         '2Year@₹20 Lakh': 96739,
+         '3Year@₹5 Lakh': 53917,
+         '3Year@₹10 Lakh': 73917,
+         '3Year@₹15 Lakh': 93917,
+         '3Year@₹20 Lakh': 113917
+     };
+     for (var i = 0; i < packages.length; i++) {
+         createPackage(packages[i]);
+     }
+
+     document.getElementById("generatePdfButton").addEventListener("click", generatePdf);
+
+     function generatePdf() {
+         console.log("inside")
+         var pdfContent = document.createElement("div");
+         var planDetails = document.createElement("div");
+         var pdfLogo = document.createElement("div");
+         var lineSeparatorInPdf = document.createElement("div");
+         lineSeparatorInPdf.className = "lineSeparatorInPdf";
+         pdfLogo.className = "pdfLogo";
+         var pdfImg = document.createElement("img");
+         pdfImg.className = "pdfImg"
+
+
+         //     pdfImg.src = "./lic_logo.png";
+         pdfImg.src = response[0].imageiurl;
+         pdfLogo.appendChild(pdfImg)
+         planDetails.className = "planDetails"
+         planDetails.textContent = "Plan Details";
+         pdfContent.className = "pdfContent";
+         var table = document.createElement("table");
+
+         var selectedValue = getSelectedPolicy();
+         var selectedCoverAmount = selectElement.value;
+         var tableData = [{
+                 key: "Insurance Name",
+                 value:  response[0].name
+             },{
+                 key: "Cover Amount",
+                 value: "₹" + selectedCoverAmount + " Lakh"
+             },
+             {
+                 key: "Age",
+                 value: "Entry Age- Min Adult: 18 years<br>Entry Age- Max Adult: 65 years<br>Exit Age Adult: Lifelong*"
+             },
+             {
+                 key: "Pre-policy Medical Check-up",
+                 value: "NO, Good health declaration basis"
+             },
+             {
+                 key: "Membership",
+                 value: "Registered customers of Pharmeasy"
+             },
+             {
+                 key: "Policy Tenure",
+                 value: selectedValue.split('@')[0]
+             },
+             {
+                 key: "Base Premium",
+                 value: convertToIndianRupees(baseAmountForTotal)
+             }
+         ];
+         for (var i = 0; i < tableData.length; i++) {
+             var row = document.createElement("tr");
+             var keyCell = document.createElement("td");
+             var valueCell = document.createElement("td");
+
+             keyCell.className = "key";
+             keyCell.textContent = tableData[i].key;
+             valueCell.innerHTML = tableData[i].value;
+
+             row.appendChild(keyCell);
+             row.appendChild(valueCell);
+             table.appendChild(row);
+         }
+         var summary = document.getElementById("rightContainer")
+         var sum = summary.cloneNode(true);
+         sum.className = "summary";
+
+         var downloadButtonInCloned = sum.querySelector("#generatePdfButton");
+         if (downloadButtonInCloned) {
+             downloadButtonInCloned.remove();
+         }
+         var stripeInCloned = sum.querySelector("#stripe");
+         if (stripeInCloned) {
+             stripeInCloned.remove();
+         }
+
+         pdfContent.appendChild(planDetails);
+         pdfContent.appendChild(table);
+         pdfContent.appendChild(pdfLogo);
+         pdfContent.appendChild(lineSeparatorInPdf);
+         pdfContent.appendChild(sum);
+         html2pdf()
+             .from(pdfContent)
+             .set({
+                 margin: 0,
+                 filename: 'Insurance Details.pdf',
+                 image: {
+                     type: 'jpeg',
+                     quality: 0.98
+                 },
+                 html2canvas: {
+                     scale: 2
+                 },
+                 jsPDF: {
+                     unit: 'mm',
+                     format: 'a4',
+                     orientation: 'portrait'
+                 }
+             })
+             .save();
+     }
+ });]]></client_script>
+<description/>
+<direct>false</direct>
+<endpoint>x_rptp_insureme_productdetails.do</endpoint>
+<html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Inter',sans-serif;
+        }
+
+        .body {
+            width: 99vw;
+            min-height: 100vh;
+            background: #f4f5f7;
+			position:absolute;
+			top:0;
+			left:0;
+        }
+		.breadcrum {
+			position: absolute;
+			font-size: 14px;
+			font-style: normal;
+			font-weight: 400;
+			margin-top: 100px;
+			margin-left: 3%;
+		}
+
+        .container {
+            position: absolute;
+            top: 140px;
+            display: flex;
+            gap: 4rem;
+			width:100%;
+			padding:0;
+			background:#f4f5f7;
+        }
+
+        .leftContainer {
+            width: 65vw;
+            background: #fff;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgb(215, 215, 215);
+        }
+
+        .rightContainer {
+            box-shadow: 0 0 10px rgb(215, 215, 215);
+            border-radius: 10px;
+            width: 25vw;
+            padding: 16px;
+            height: max-content;
+            background: #fff;
+			position: sticky;
+			top: 10px;
+        }
+
+        .productHeading {
+            display: flex;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-bottom: 16px;
+            gap: 10px;
+        }
+
+        .productHeading img {
+            height: 75px;
+            padding: 10px;
+        }
+
+        .productTitle {
+            font-size: 20px;
+            font-weight: 600;
+            color: #253858;
+        }
+
+        .headingSeparator {
+            height: 1px;
+            width: 102%;
+            margin-left: -1%;
+            background: #DFE1E6;
+        }
+
+        .porductLogo {
+            border: 1px solid #DFE1E6;
+            border-radius: 5px;
+        }
+
+        .selectDetails select {
+            width: 170px;
+            padding: 10px;
+            border-radius: 5px;
+            height: 40px;
+            font-size: 16px;
+        }
+
+        .selectDetails {
+            display: flex;
+            margin: 10px 0;
+            justify-content: space-around;
+        }
+
+        .coverageAmountTitle {
+            font-weight: 600;
+            color: #253858;
+            margin-bottom: 5px;
+        }
+
+        .radioInputs {
+            display: flex;
+            gap: 55px;
+        }
+
+        .policyRadio {
+            border: 1px solid #767676;
+            border-radius: 5px;
+            padding: 10px;
+            width: 170px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .policyAmount {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .save {
+            color: #00a3bf;
+            width: 130px;
+            height: 26px;
+            background: #f2fdff;
+            border-radius: 50px;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .selectPackage {
+            margin-left: 40px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .addOns {
+            padding: 10px;
+            background: #a6eb85;
+            border-radius: 10px 10px 0 0;
+            font-weight: 800;
+        }
+
+        .additionalBenefits {
+            padding: 10px;
+            background: #aaaca9;
+            border-radius: 10px 10px 0 0;
+            font-weight: 800;
+        }
+
+        .packages {
+            border: 1px solid #DFE1E6;
+            min-height: 300px;
+            border-radius: 10px;
+        }
+
+        .package {
+            border: 1px solid #DFE1E6;
+            margin: 10px;
+            border-radius: 10px;
+        }
+
+        .packageItems {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 15px;
+        }
+
+        .packages select {
+            width: 150px;
+            padding: 10px;
+            border-radius: 5px;
+            height: 40px;
+        }
+
+        .package img {
+            height: 55px;
+            padding: 5px;
+        }
+
+        .packageTitle {
+            font-size: 16px;
+            font-weight: 600;
+            color: #253858;
+            width: 200px;
+        }
+
+        .packageSelectElement {
+            display: flex;
+        }
+
+        .selectTitle {
+            position: relative;
+            font-size: 11px;
+            background: #fff;
+            left: -145px;
+            height: 13px;
+            transform: translateY(-50%);
+            padding: 0 5px;
+        }
+
+        .packageSeparator {
+            height: 1px;
+            width: 98%;
+            margin-left: 1%;
+            background: #DFE1E6;
+        }
+
+        .additionalAmount {
+            color: red;
+            border: 1px solid red;
+            border-radius: 5px;
+            padding: 10px;
+            width: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .condition {
+            margin: 10px 20px;
+            font-size: 12px;
+        }
+
+        .summaryTitle {
+            font-size: 20px;
+            font-weight: 900;
+            color: #253858;
+        }
+
+        .summaryDetails {
+            padding: 20px;
+        }
+
+        .selectedPackageHeading {
+            font-size: 15px;
+            font-weight: 600;
+            color: #253858;
+            padding: 10px 0;
+        }
+
+        .noPackageSelected {
+            border: 1px dashed #767676;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .viewPackages {
+            color: #36b37e;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .stripe {
+            display: flex;
+            align-items: center;
+        }
+
+        .leftCircle {
+            background: #f4f5f7;
+            height: 50px;
+            width: 50px;
+            border-radius: 50px;
+            margin-left: -41px;
+        }
+
+        .dottedLine {
+            width: 100%;
+            height: 1px;
+            border: none;
+            background: repeating-linear-gradient(90deg, #767676, #767676 10px, transparent 10px, transparent 20px);
+        }
+
+        .rightCircle {
+            background: #f4f5f7;
+            height: 50px;
+            width: 50px;
+            border-radius: 50px;
+            margin-right: -41px;
+        }
+
+        .totalAmount {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .downloadButton {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .downloadPDF {
+            border: none;
+            outline: none;
+            background: #2673e7;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: 600;
+            color: #fff;
+			cursor:pointer;
+        }
+
+        .baseAmount {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .baseAmountValue {
+            font-weight: 600;
+        }
+
+        .displayNone {
+            display: none;
+        }
+
+        .selectedPackage {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            margin-bottom: 10px;
+            margin-left: 5px;
+        }
+
+        .selectedPackageAmount {
+            font-weight: 600;
+        }
+
+        .selectedAdditionalAmount {
+            color: #36b37e;
+            border: 1px solid #36b37e;
+            border-radius: 5px;
+            padding: 10px;
+            width: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+		.breadcrumbContent{
+			color:black;
+            text-decoration: none;
+		}
+		
+		.breadcrumbContent:hover{
+			color:#253858;
+            text-decoration: none;
+		}
+			
+		
+
+        .row {
+            width: 1000px;
+        }
+
+        .key {
+            width: 250px;
+            font-weight: 600;
+        }
+
+        td {
+            width: 300px;
+            border: 1px solid black;
+            text-align: left;
+            padding: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-left: 70px;
+        }
+
+        .pdfContent {
+            width: 190mm;
+            height: 276mm;
+            border-top: 4px solid #215968;
+            margin-left: 10mm;
+            margin-top: 10mm;
+            text-align: center;
+        }
+
+        .planDetails {
+            font-size: 32px;
+            margin: 10px;
+            font-weight: 600;
+            color: #215968;
+        }
+
+        .pdfLogo {
+            position: absolute;
+            top: 5mm;
+            left: 5mm;
+            background: #fff;
+        }
+
+        .pdfImg {
+            width: 100px;
+            padding: 0 10px;
+        }
+
+        .summary {
+            margin-left: 30px;
+        }
+        .lineSeparatorInPdf{
+            height: 2px;
+            background: #215968;
+            margin:30px 0 50px 0;
+        }
+    </style>
+	<div class="body">
+		 <g:macro_invoke macro="RPTHeader" />
+		    <p class="breadcrum">
+				Services/<a href="https://ven06798.service-now.com/x_rptp_insureme_category.do" class="breadcrumbContent">Category</a>/Health Insurance/<a href="https://ven06798.service-now.com/x_rptp_insureme_productdisplaycopy.do" class="breadcrumbContent">Product</a>/<b>Insurance Details</b>
+    </p>
+    <div class="container">
+        <div class="leftContainer">
+            <div class="productHeading">
+                <div class="porductLogo">
+                    <img src="" alt="" id="productLogoImage"/>
+                </div>
+                <div class="productTitle" id="productTitle">
+<!--                     Care Supreme Direct -->
+                </div>
+            </div>
+
+            <div class="headingSeparator"></div>
+            <div class="selectDetails">
+                <div class="coverageAmount">
+                    <div class="coverageAmountTitle">
+                        Cover Amount
+                    </div>
+                    <select id="coverSelected">
+                        <option value="5">₹5 Lakh</option>
+                        <option value="10">₹10 Lakh</option>
+                        <option value="15">₹15 Lakh</option>
+                        <option value="20">₹20 Lakh</option>
+                    </select>
+                </div>
+                <div class="coverageAmount">
+                    <div class="coverageAmountTitle">
+                        Policy Period
+                    </div>
+                    <div class="radioInputs" id="radioInputs">
+                        <div class="policyAmount">
+                            <div class="policyRadio" onclick="selectRadio(this)">
+                                <input type="radio" name="policy" value="1Year@₹19,085" checked="true"/> 1Year @
+                                <strong id="policyValue1">₹19,085</strong>
+                                <!-- <div id="save1"></div> -->
+                            </div>
+                            <div class="save displayNone" id="save1"></div>
+                        </div>
+                        <div class="policyAmount">
+                            <div class="policyRadio" onclick="selectRadio(this)">
+                                <input type="radio" name="policy" value="2Year@₹36,739"/> 2Year @
+                                <strong id="policyValue2">₹36,739</strong>
+                            </div>
+                            <div class="save" id="save2">Save ₹1,431</div>
+                        </div>
+                        <div class="policyAmount">
+                            <div class="policyRadio" onclick="selectRadio(this)">
+                                <input type="radio" name="policy" value="3Year@₹53,917"/> 3Year @
+                                <strong id="policyValue3">₹53,917</strong>
+                            </div>
+                            <div class="save" id="save3">Save ₹3,338</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="selectPackage">
+                <div class="addOns">Add Ons</div>
+                <!-- <div class="additionalBenefits">Aditional Benefits</div> -->
+            </div>
+            <div class="packages" id="packages"></div>
+        </div>
+        <div class="rightContainer" id="rightContainer">
+            <div class="summaryTitle">
+                Summary
+            </div>
+            <div class="summaryDetails">
+                <div class="baseAmount" id="baseAmount">
+                    <!-- <div>Base Premium - 1 year</div>
+                    <div class="baseAmountValue">₹7,377</div> -->
+                </div>
+                <div class="selectedPackageHeading">Select Add-Ons</div>
+                <div id="selectedAddOns">
+                    <div class="noPackageSelected">
+                        <div>No add-ons selected</div>
+                        <div class="viewPackages">View Add Ons</div>
+                    </div>
+                </div>
+                <!-- <div class="selectedPackageHeading">
+                    Additional Benefits
+                </div> -->
+                <!-- <div class="noPackageSelected" id="selectedBenefits">
+                    <div>No benefits selected</div>
+                    <div class="viewPackages">View Benefits</div>
+                </div> -->
+            </div>
+            <div class="stripe"  id="stripe">
+                <div class="leftCircle"></div>
+                <div class="dottedLine"></div>
+                <div class="rightCircle"></div>
+            </div>
+            <div class="totalAmount">
+                <div class="totalAmountTitle">Total Amount</div>
+                <div class="totalAmountValue" id="totalAmountValue"></div>
+            </div>
+            <div class="downloadButton">
+				<div class="downloadPDF" id="generatePdfButton">Download Quotation</div>
+            </div>
+        </div>
+		<g:macro_invoke macro="RPTBot" />
+    </div>
+		
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.1/html2pdf.bundle.min.js"></script>
+		
+	</div>
+	 <g:macro_invoke macro="RPTFooter" />
+</j:jelly>]]></html>
+<name>productdetails</name>
+<processing_script/>
+<sys_class_name>sys_ui_page</sys_class_name>
+<sys_created_by>kumar.shanu</sys_created_by>
+<sys_created_on>2023-10-29 18:37:56</sys_created_on>
+<sys_id>0a6fa5b74702791055784a02516d43bb</sys_id>
+<sys_mod_count>102</sys_mod_count>
+<sys_name>productdetails</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sys_ui_page_0a6fa5b74702791055784a02516d43bb</sys_update_name>
+<sys_updated_by>kumar.shanu</sys_updated_by>
+<sys_updated_on>2023-11-07 12:14:44</sys_updated_on>
+</sys_ui_page>
+</record_update>

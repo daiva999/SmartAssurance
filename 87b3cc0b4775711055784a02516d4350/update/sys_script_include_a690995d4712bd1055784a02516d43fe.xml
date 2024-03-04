@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_script_include action="INSERT_OR_UPDATE">
+<access>package_private</access>
+<active>true</active>
+<api_name>x_rptp_insureme.getProductDetailsById</api_name>
+<caller_access/>
+<client_callable>true</client_callable>
+<description/>
+<name>getProductDetailsById</name>
+<script><![CDATA[var getProductDetailsById = Class.create();
+getProductDetailsById.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	
+	getProductDetails:function(){
+		try{
+			var allRecords = new GlideRecord("x_rptp_insureme_productdetailsrpt");
+			var productId = this.getParameter('productId');
+			allRecords.addQuery('sys_id',productId);
+			allRecords.query();
+			var membersList=[];
+            while (allRecords.next()) {
+                var data = {};
+                data.name = allRecords.getValue('name');
+                        data.monthlyperm= allRecords.getValue('monthlyperm'),
+                        data.offer= allRecords.getValue('offer'),
+                        data.imageiurl= allRecords.getValue('imageiurl'),
+                        data.features= allRecords.getValue('features'),
+                        data.anuallyprem= allRecords.getValue('anuallyprem'),
+                        data.policyamount= allRecords.getValue('policyamount'),
+                        data.policyduration= allRecords.getValue('policyduration'),
+                        data.coverageamount= allRecords.getValue('coverageamount'),
+                membersList.push(data);
+            }
+			return JSON.stringify(membersList);
+// 			return productId;
+		}catch(err){
+			return err.toString();
+		}
+	},
+	
+    type: 'getProductDetailsById'
+});]]></script>
+<sys_class_name>sys_script_include</sys_class_name>
+<sys_created_by>kumar.shanu</sys_created_by>
+<sys_created_on>2023-11-03 07:42:54</sys_created_on>
+<sys_id>a690995d4712bd1055784a02516d43fe</sys_id>
+<sys_mod_count>4</sys_mod_count>
+<sys_name>getProductDetailsById</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy>read</sys_policy>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sys_script_include_a690995d4712bd1055784a02516d43fe</sys_update_name>
+<sys_updated_by>kumar.shanu</sys_updated_by>
+<sys_updated_on>2023-11-03 08:04:30</sys_updated_on>
+</sys_script_include>
+</record_update>

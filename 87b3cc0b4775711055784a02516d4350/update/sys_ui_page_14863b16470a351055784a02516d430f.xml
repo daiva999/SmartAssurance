@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_page action="INSERT_OR_UPDATE">
+<category>general</category>
+<client_script><![CDATA[function redirectToProductPage(product_sys_id){
+	var url= 'https://dev61432.service-now.com/product.do?product_id='+product_sys_id;
+	console.log(url);
+	window.location.href = url;
+}]]></client_script>
+<description>Categojry page for insureMe</description>
+<direct>false</direct>
+<endpoint>x_rptp_insureme_categorypage.do</endpoint>
+<html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<g2:evaluate>
+		var products=new GlideRecord('u_product');
+		products.query();
+		products;
+	</g2:evaluate>
+	<div class="breadcrumbSection">
+		<div class="breadcrumb"><a
+				href="https://dev61432.service-now.com/now/nav/ui/classic/params/target/ui_page.do%3Fsys_id%3D23b2bec89706f11030707076f053aff6"
+				class="qwerty"> Services</a> / Insurance</div>
+		<a
+			href="https://dev61432.service-now.com/now/nav/ui/classic/params/target/ui_page.do%3Fsys_id%3Dfc66e6cc97c2f11030707076f053afb9">
+			<div class="userProfile"></div>
+		</a>
+	</div>
+	<div class="mainProductContainer">
+		<j2:while test="$[products.next()]">
+			<div class="productContainer" onclick="redirectToProductPage('$[products.sys_id]')">
+				<div class="productOffer">
+					20% OFF
+				</div>
+				<div class="prductLogo"></div>
+				<div name='product_name' class="productName">$[products.u_product_name]</div>
+				<div class="bankOffering">
+					<div class="bank">Bajaj</div>
+					<div class="bank">HDFC</div>
+					<div class="bank">ICICI</div>
+				</div>
+			</div>
+		</j2:while>
+	</div>
+	    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+      />
+    </svg>
+	<style>
+		.qwerty {
+			color: black;
+			text-decoration: none;
+		}
+
+		.breadcrumbSection {
+			display: flex;
+			justify-content: space-between;
+			padding: 20px 70px 0 70px;
+		}
+
+		.breadcrumb {
+			padding: 0;
+			margin: 0;
+		}
+
+		.userProfile {
+			width: 20px;
+			height: 20px;
+			background: black;
+		}
+
+		.mainProductContainer {
+			display: flex;
+			gap: 50px;
+			padding: 30px 70px;
+			flex-wrap: wrap;
+		}
+
+		.productContainer {
+			width: 150px;
+			height: 200px;
+			border-radius: 10px;
+			border: 2px solid black;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 25px;
+		}
+
+		.productOffer {
+			border-radius: 10px 10px 0 0;
+			background: #8ACA6C;
+			height: 25px;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 12px;
+			font-weight:500;
+			color: white;
+		}
+
+		.prductLogo {
+			height: 20px;
+			width: 20px;
+			background: black;
+		}
+
+		.productName {
+			font-size: 14px;
+			font-weight: 600;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		.bankOffering {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 5px;
+			justify-content: center;
+		}
+
+		.bank {
+			background: #92AEB7;
+			border-radius: 10px;
+			color: white;
+			font-size: 11px;
+			font-weight: 400;
+			padding: 5px 10px;
+		}
+	</style>
+</j:jelly>]]></html>
+<name>categorypage</name>
+<processing_script/>
+<sys_class_name>sys_ui_page</sys_class_name>
+<sys_created_by>kumar.shanu</sys_created_by>
+<sys_created_on>2023-10-25 12:06:32</sys_created_on>
+<sys_id>14863b16470a351055784a02516d430f</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_name>categorypage</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sys_ui_page_14863b16470a351055784a02516d430f</sys_update_name>
+<sys_updated_by>kumar.shanu</sys_updated_by>
+<sys_updated_on>2023-10-25 12:06:32</sys_updated_on>
+</sys_ui_page>
+</record_update>

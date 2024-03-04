@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_script_include action="INSERT_OR_UPDATE">
+<access>package_private</access>
+<active>false</active>
+<api_name>x_rptp_insureme.customer_scriptinclude</api_name>
+<caller_access/>
+<client_callable>true</client_callable>
+<description/>
+<name>customer_scriptinclude</name>
+<script><![CDATA[var customer_scriptinclude = Class.create();
+
+customer_scriptinclude.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+    getDetails: function() {
+        try {
+            var r = new sn_ws.RESTMessageV2('x_rptp_insureme.test3', 'Default GET');
+            var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+            i = JSON.parse(responseBody);
+        } catch (ex) {
+            var message = ex.message;
+            gs.addErrorMessage(message);
+        }
+        gr = new GlideRecord('x_rptp_insureme_customer');
+        gs.info("Started running for user");
+        var arr = i.message;
+        arr.forEach(fun1);
+
+        function fun1(element) {
+            gr.newRecord();
+            gr.setValue('userid', element.userId);
+            gr.setValue('email', element.email);
+            gr.setValue('registeredat', element.registeredAt);
+            gr.setValue('birthdate', element.birthdate);
+            gr.setValue('username', element.username);
+            gr.setValue('password', element.password);
+            gr.setValue('avatar', element.avatar);
+			// gr.insert();
+            //var att = new GlideRecord("sys_attachment");
+			// var a = att.addQuery("file_name",element.avatar);
+			// //att.addQuery("sys_id",element.sys_id);
+			// gs.info("The value od a "+a);
+			//att.query();
+			//while(att.next()){
+			//gr.profile_image = att.file_name;
+		    //}
+			
+            gr.insert();
+            var profileImageUrl = element.avatar;
+            gs.info("profile image url" + profileImageUrl);
+            var request = new sn_ws.RESTMessageV2();
+            request.setHttpMethod('get');
+            request.setEndpoint(profileImageUrl);
+
+
+            request.saveResponseBodyAsAttachment('x_rptp_insureme_customer', gr.sys_id, "photo.png");
+            gs.info("sys id of the record" + gr.sys_id);
+            gs.info("started for image upload");
+            try {
+                var responseFromImageUrl = request.execute();
+                gs.info("Response from imageUrl " + responseFromImageUrl);
+                var httpResponseStatus = responseFromImageUrl.getStatusCode();
+                var httpResponseContentType = responseFromImageUrl.getHeader('Content-Type');
+                gs.info("http response status_code: " + httpResponseStatus);
+                gs.info("http response content-type: " + httpResponseContentType);
+                var newAttachmentSysId = responseFromImageUrl.getResponseAttachmentSysid();
+                var grAttach = new GlideRecord('sys_attachment');
+                if (grAttach.get(newAttachmentSysId)) {
+                    // Note: we're using the scoped version of GlideSysAttachment 
+                    // for this example. 
+                    var gsa = new GlideSysAttachment();
+                    var content = gsa.getContent(grAttach);
+					content.insert();
+
+                }
+            } catch (error) {
+                gs.error("Error in fetching url", error);
+            }
+            gr.close();
+
+        }
+    },
+    type: 'customer_scriptinclude'
+
+});]]></script>
+<sys_class_name>sys_script_include</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2023-12-27 05:43:42</sys_created_on>
+<sys_id>dabaf6e247d7315055784a02516d438e</sys_id>
+<sys_mod_count>31</sys_mod_count>
+<sys_name>customer_scriptinclude</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy>read</sys_policy>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sys_script_include_dabaf6e247d7315055784a02516d438e</sys_update_name>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2024-01-02 09:24:40</sys_updated_on>
+</sys_script_include>
+</record_update>

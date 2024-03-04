@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sys_script_include action="INSERT_OR_UPDATE">
-        <access>public</access>
-        <active>false</active>
-        <api_name>x_rptp_insureme.log_msg</api_name>
-        <caller_access/>
-        <client_callable>false</client_callable>
-        <description/>
-        <name>log_msg</name>
-        <script><![CDATA[var log_msg = Class.create();
+<access>public</access>
+<active>false</active>
+<api_name>x_rptp_insureme.log_msg</api_name>
+<caller_access/>
+<client_callable>false</client_callable>
+<description/>
+<name>log_msg</name>
+<script><![CDATA[var log_msg = Class.create();
 log_msg.prototype = {
     initialize: function() {},
 
@@ -36,17 +36,17 @@ log_msg.prototype = {
 
     type: 'log_msg'
 };]]></script>
-        <sys_class_name>sys_script_include</sys_class_name>
-        <sys_created_by>rushith</sys_created_by>
-        <sys_created_on>2024-02-19 07:34:30</sys_created_on>
-        <sys_id>e45a914493600290acdc3f484dba10c4</sys_id>
-        <sys_mod_count>14</sys_mod_count>
-        <sys_name>log_msg</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy>read</sys_policy>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sys_script_include_e45a914493600290acdc3f484dba10c4</sys_update_name>
-        <sys_updated_by>rushith</sys_updated_by>
-        <sys_updated_on>2024-02-20 10:08:33</sys_updated_on>
-    </sys_script_include>
+<sys_class_name>sys_script_include</sys_class_name>
+<sys_created_by>rushith</sys_created_by>
+<sys_created_on>2024-02-19 07:34:30</sys_created_on>
+<sys_id>e45a914493600290acdc3f484dba10c4</sys_id>
+<sys_mod_count>14</sys_mod_count>
+<sys_name>log_msg</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy>read</sys_policy>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sys_script_include_e45a914493600290acdc3f484dba10c4</sys_update_name>
+<sys_updated_by>rushith</sys_updated_by>
+<sys_updated_on>2024-02-20 10:08:33</sys_updated_on>
+</sys_script_include>
 </record_update>

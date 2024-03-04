@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_script_include action="INSERT_OR_UPDATE">
+<access>package_private</access>
+<active>true</active>
+<api_name>x_rptp_insureme.FetchData</api_name>
+<caller_access/>
+<client_callable>true</client_callable>
+<description>To get the data from the api and store it in the tables</description>
+<name>FetchData</name>
+<script><![CDATA[var FetchData = Class.create();
+FetchData.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+    getDetails: function() {
+        try {
+            var i;
+            var z;
+            var gr = new GlideRecord('x_rptp_insureme_tokens');
+            gr.query();
+            while (gr.next()) {
+                z = "Bearer " + gr.token;
+            }
+
+            var r = new sn_ws.RESTMessageV2('x_rptp_insureme.Fetch Data From api', 'Default GET');
+            r.setStringParameterNoEscape('key2', 'productDetails');
+            r.setStringParameterNoEscape('key1', 'shop');
+            r.setRequestHeader("Authorization", z);
+
+            var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+            i = JSON.parse(responseBody);
+
+            //Productt
+			var qrr = new GlideRecord('x_rptp_insureme_productt');
+			qrr.addQuery('prodcode', i.data.productCode);
+			qrr.query();
+			if (qrr.next()) {
+    			qrr.setValue('externalUniqueId', i.data.productCode);
+            	qrr.setValue('prod_id', i.data.id);
+            	qrr.setValue('prodname', i.data.name);
+            	qrr.setValue('version', i.data.version);
+            	qrr.setValue('metainfo', i.data.metaInfo);
+            	qrr.setValue('externaluniqueid', i.data.externalUniqueId);
+         	   	qrr.setValue('landingurl', i.data.landingUrl);
+         	   	qrr.setValue('prodcode', i.data.productCode);
+				qrr.update();
+			}
+			else{
+            gr = new GlideRecord('x_rptp_insureme_productt');
+            gr.newRecord();
+            gr.setValue('externalUniqueId', i.data.productCode);
+            gr.setValue('prod_id', i.data.id);
+            gr.setValue('prodname', i.data.name);
+            gr.setValue('version', i.data.version);
+            gr.setValue('metainfo', i.data.metaInfo);
+            gr.setValue('externaluniqueid', i.data.externalUniqueId);
+            gr.setValue('landingurl', i.data.landingUrl);
+            gr.setValue('prodcode', i.data.productCode);
+            gr.insert();
+            //gr.close();
+			}
+
+            //brands
+            gr = new GlideRecord('x_rptp_insureme_brand');
+            var b = i.data.brand;
+            b.forEach(fun1);
+
+            // // businessCategory
+            gr = new GlideRecord('x_rptp_insureme_businesscategory');
+			if(i.data.businessCategory){
+			var qrr = new GlideRecord('x_rptp_insureme_businesscategory');
+			qrr.addQuery('id', i.data.businessCategory.id);
+			qrr.query();
+			if (qrr.next()) {
+				 qrr.setValue('id', i.data.businessCategory.id);
+            qrr.setValue('name', i.data.businessCategory.name);
+            qrr.setValue('version', i.data.businessCategory.version);
+			qrr.update();
+			}
+			else{
+				gr.newRecord();
+            gr.setValue('id', i.data.businessCategory.id);
+            gr.setValue('name', i.data.businessCategory.name);
+            gr.setValue('version', i.data.businessCategory.version);
+            gr.insert();
+			}
+			}
+			// else{
+			// 	gr.newRecord();
+			// 	gr.insert();
+			// }
+            // // //gr.close();
+
+            // // //businessSubCategory
+
+            gr = new GlideRecord('x_rptp_insureme_businesssubcategory');
+			if(i.data.businessSubCategory){
+			
+			var qrr = new GlideRecord('x_rptp_insureme_businesscategory');
+			qrr.addQuery('id', i.data.businessCategory.id);
+			qrr.query();
+			if (qrr.next()) {
+			}
+				else{
+				gr.newRecord();
+            gr.setValue('bus_subcat_id', i.data.businessSubCategory.id);
+            gr.setValue('name', i.data.businessSubCategory.name);
+            gr.setValue('version', i.data.businessSubCategory.version);
+            gr.setValue('bus_cat_id', i.data.businessSubCategory.businessCategory.id);
+            gr.insert();
+				}
+			}
+			// else{
+			// 	gr.newRecord();
+			// 	gr.insert();
+			// }
+            // // // gr.close();
+
+
+            // //productType
+			gr = new GlideRecord('x_rptp_insureme_producttype');
+			if(i.data.productType){	
+				var qrr = new GlideRecord('x_rptp_insureme_producttype');
+			qrr.addQuery('id', i.data.businessCategory.id);
+			qrr.query();
+			if (qrr.next()) {
+				 qrr.newRecord();
+            qrr.setValue('id', i.data.productType.id);
+            qrr.setValue('name', i.data.productType.name);
+            qrr.setValue('version', i.data.productType.version);
+			qrr.update();
+			}	
+			else{
+            gr.newRecord();
+            gr.setValue('id', i.data.productType.id);
+            gr.setValue('name', i.data.productType.name);
+            gr.setValue('version', i.data.productType.version);
+            //gr.setValue('business_sub_cat',i.data.productType.businessSubCategory.id);
+            gr.insert();
+			}
+			}
+            
+			// else{
+			// 	gr.newRecord();
+			// 	gr.insert();
+			// }
+            // // // gr.close();
+
+            // // //productSubType
+            gr = new GlideRecord('x_rptp_insureme_productsubtype');
+            if (i.data.productSubType) {
+			var qrr = new GlideRecord('x_rptp_insureme_businesscategory');
+			qrr.addQuery('id', i.data.productSubType.marketStatus);//check for unique field and set the query
+			qrr.query();
+			if (qrr.next()) {
+				qrr.setValue('marketstatus', i.data.productSubType.marketStatus);
+                qrr.setValue('integrated', i.data.productSubType.isIntegrated);
+                qrr.setValue('isposp', i.data.productSubType.isPosp);
+                qrr.setValue('isenabled', i.data.productSubType.isEnabled);
+                qrr.setValue('createddate', i.data.productSubType.createdDate);
+                qrr.setValue('lastmodifiedate', i.data.productSubType.lastModifiedDate);
+				qrr.update();
+			}
+			else{
+				gr.newRecord();
+                gr.setValue('marketstatus', i.data.productSubType.marketStatus);
+                gr.setValue('integrated', i.data.productSubType.isIntegrated);
+                gr.setValue('isposp', i.data.productSubType.isPosp);
+                gr.setValue('isenabled', i.data.productSubType.isEnabled);
+                gr.setValue('createddate', i.data.productSubType.createdDate);
+                gr.setValue('lastmodifiedate', i.data.productSubType.lastModifiedDate);
+                gr.insert();
+			}
+            }
+			// else{
+			// 	gr.newRecord();
+			// 	gr.insert();
+			// }
+
+            // // // gr.close();
+
+
+
+            // //varient
+            gr = new GlideRecord('x_rptp_insureme_variants');
+            var a = i.data.variants;
+            //alert(a);
+            a.forEach(fun);
+
+
+            //gr.close();
+        }
+        //gr.close();
+        catch (ex) {
+            var message = ex.message;
+            gs.addErrorMessage(message);
+        }
+
+        function fun(element) {
+			var qrr = new GlideRecord('x_rptp_insureme_variants');
+			qrr.addQuery('variantcode', element.variantCode);
+			qrr.query();
+			if(qrr.next()){
+				if (element.id) {
+                qrr.setValue('var_id', element.id);
+            }
+            qrr.setValue('metainfo', element.metaInfo);
+            qrr.setValue('variantcode', element.variantCode);
+            qrr.setValue('benefits', JSON.stringify(element.otherProperties.benefits));
+            qrr.setValue('limitations', JSON.stringify(element.otherProperties.limitations));
+            qrr.setValue('coupons', JSON.stringify(element.otherProperties.coupons));
+			qrr.update();
+			}
+			else{
+				 gr.newRecord();
+            if (element.id) {
+                gr.setValue('var_id', element.id);
+            }
+            gr.setValue('metainfo', element.metaInfo);
+            gr.setValue('variantcode', element.variantCode);
+            gr.setValue('benefits', JSON.stringify(element.otherProperties.benefits));
+            gr.setValue('limitations', JSON.stringify(element.otherProperties.limitations));
+            gr.setValue('coupons', JSON.stringify(element.otherProperties.coupons));
+            // gr.setValue('u_collateral',o);
+            //    gr.setValue('prod_id', element.product.id);
+            gr.insert();
+			}
+           
+        }
+
+        function fun1(element) {
+			var qrr = new GlideRecord('x_rptp_insureme_brand');
+			qrr.addQuery('code', element.code);
+			qrr.query();
+			if(qrr.next()){
+				 qrr.setValue('brandid', element.id);
+            qrr.setValue('name', element.name);
+            qrr.setValue('version', element.version);
+            qrr.setValue('code', element.code);
+            qrr.setValue('mailid', element.mailId);
+            qrr.setValue('phone', element.phone);
+            qrr.setValue('logourl', element.logoUrl);
+            qrr.setValue('metainfo', element.metaInfo);
+            qrr.setValue('termsandconditions', element.termsAndConditions);
+            qrr.setValue('claimform', element.claimForm);
+			qrr.update();
+			}
+			else{
+            gr.newRecord();
+            gr.setValue('brandid', element.id);
+            gr.setValue('name', element.name);
+            gr.setValue('version', element.version);
+            gr.setValue('code', element.code);
+            gr.setValue('mailid', element.mailId);
+            gr.setValue('phone', element.phone);
+            gr.setValue('logourl', element.logoUrl);
+            gr.setValue('metainfo', element.metaInfo);
+            gr.setValue('termsandconditions', element.termsAndConditions);
+            gr.setValue('claimform', element.claimForm);
+            gr.insert();
+			}
+        }
+        //Productt
+        // gr = new GlideRecord('x_rptp_insureme_productt');
+        // gr.newRecord();
+        // gr.setValue('externalUniqueId', i.data.productCode);
+        // gr.setValue('prod_id', i.data.id);
+        // gr.setValue('prodname', i.data.name);
+        // gr.setValue('version', i.data.version);
+        // gr.setValue('metainfo', i.data.metaInfo);
+        // gr.setValue('externaluniqueid', i.data.externalUniqueId);
+        // gr.setValue('landingurl', i.data.landingUrl);
+        // gr.setValue('prodcode', i.data.productCode);
+        // gr.insert();
+        // gr.close();
+
+        // //brand
+        // gr = new GlideRecord('x_rptp_insureme_brand');
+        // var b = i.data.brand;
+        // b.forEach(fun1);
+
+
+        // gr.close();
+
+
+
+
+    },
+
+    type: 'FetchData'
+});]]></script>
+<sys_class_name>sys_script_include</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2023-12-27 06:49:20</sys_created_on>
+<sys_id>b524c7ee47d7315055784a02516d4381</sys_id>
+<sys_mod_count>44</sys_mod_count>
+<sys_name>FetchData</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy>read</sys_policy>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sys_script_include_b524c7ee47d7315055784a02516d4381</sys_update_name>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2023-12-28 06:22:11</sys_updated_on>
+</sys_script_include>
+</record_update>

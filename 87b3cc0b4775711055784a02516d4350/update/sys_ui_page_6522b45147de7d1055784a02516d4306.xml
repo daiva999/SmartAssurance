@@ -1,0 +1,1535 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_page action="INSERT_OR_UPDATE">
+<category>general</category>
+<client_script><![CDATA[        var productIdCounter = 0,
+            selectedProducts = [];
+
+		function convertToIndianRupees(amount) {
+			return amount.toLocaleString('en-IN', {
+				style: 'currency',
+				currency: 'INR',
+				minimumFractionDigits: 0
+			});
+		}
+
+        function createProduct(product_List) {
+            productId = product_List.productId;
+            productName = product_List.name;
+            productLogoSrc = product_List.imageiurl;
+            monthlyFeeCharge = convertToIndianRupees(parseInt(product_List.monthlyperm)) + " /month";
+            annualFeeCharge = convertToIndianRupees(parseInt(product_List.anuallyprem)) + " annually";
+            features = product_List.features.split(",");
+            featureData = features;
+            discountAmount = product_List.offer;
+
+            var products = document.getElementById("products");
+            var product = document.createElement("div");
+
+            product.classList.add("product");
+            products.appendChild(product);
+
+            var productLogoDiv = document.createElement("div");
+            productLogoDiv.classList.add("productLogoDiv");
+            var productLogo = document.createElement("img");
+            productLogo.src = productLogoSrc;
+            productLogoDiv.appendChild(productLogo);
+            product.appendChild(productLogoDiv);
+
+            var hrDiv = document.createElement("div");
+            hrDiv.classList.add("hrDiv");
+            product.appendChild(hrDiv);
+
+            var productDet = document.createElement("div");
+            productDet.classList.add("productDet");
+
+            var productTitle = document.createElement("div");
+            productTitle.classList.add("productTitle");
+            productTitle.textContent = productName;
+            productDet.appendChild(productTitle);
+
+            var features = document.createElement("div");
+            features.id = "features";
+            features.classList.add("features");
+
+            for (var i = 0; i < featureData.length; i++) {
+                var featureText = featureData[i];
+                var featureElement = document.createElement("div");
+                featureElement.classList.add("feature");
+                featureElement.textContent = featureText;
+                features.appendChild(featureElement);
+            }
+
+            productDet.appendChild(features);
+
+            var compareContainer = document.createElement("div");
+            compareContainer.classList.add("compareContainer");
+
+            var label = document.createElement("label");
+            label.classList.add("custom-radio");
+
+            var radioInput = document.createElement("input");
+            radioInput.type = "radio";
+            radioInput.name = "customRadio" + productIdCounter;
+            radioInput.id = "customRadio" + productIdCounter;
+            label.appendChild(radioInput);
+
+            var compareSvg = document.createElement("div");
+            var svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+            svgElement.setAttribute("fill", "none");
+            svgElement.setAttribute("viewBox", "0 0 24 24");
+            svgElement.setAttribute("stroke-width", "3");
+            svgElement.setAttribute("stroke", "currentColor");
+            var pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            pathElement.setAttribute("stroke-linecap", "round");
+            pathElement.setAttribute("stroke-linejoin", "round");
+            pathElement.setAttribute("d", "M5 13l4 4L19 7");
+            svgElement.appendChild(pathElement);
+            compareSvg.appendChild(svgElement);
+            compareSvg.classList.add("compareSvg");
+
+            label.appendChild(compareSvg);
+
+            var compareText = document.createElement("span");
+            compareText.textContent = "Add to compare";
+
+            compareContainer.appendChild(label);
+            compareContainer.appendChild(compareText);
+
+            productDet.appendChild(compareContainer);
+
+            product.appendChild(productDet);
+
+            var annualFee = document.createElement("div");
+            annualFee.classList.add("annualFee");
+            annualFee.textContent = annualFeeCharge;
+
+            var monthlyFee = document.createElement("div");
+            monthlyFee.classList.add("viewDetailsButton");
+            monthlyFee.textContent = convertToIndianRupees(monthlyFeeCharge);
+
+            monthlyFee.addEventListener('click', function () {
+                window.location.href = "https://ven06798.service-now.com/x_rptp_insureme_productdetails.do?product="+product_List.productId;
+            });
+
+            if (discountAmount != 0) {
+                var discount = document.createElement("div");
+                discount.id = "discount";
+                discount.classList.add("discount");
+
+                var discountSpan = document.createElement("span");
+                discountSpan.textContent = discountAmount + "% OFF";
+                discount.appendChild(discountSpan);
+            }
+
+
+            var fee = document.createElement("div");
+            fee.classList.add("fee");
+            fee.appendChild(monthlyFee);
+            fee.appendChild(annualFee);
+
+            if (discountAmount != 0) {
+                var discountButton = document.createElement("div");
+                discountButton.classList.add("discountButton");
+                discountButton.appendChild(discount);
+                discountButton.appendChild(fee);
+                product.appendChild(discountButton);
+            } else {
+                var discountButton = document.createElement("div");
+                discountButton.classList.add("discountButton");
+                discountButton.appendChild(fee);
+                product.appendChild(discountButton);
+            }
+
+
+            var customRadio = document.getElementById("customRadio" + productIdCounter);
+            var customRadioParent = label;
+
+            customRadio.addEventListener("click", function () {
+                if (selectedProducts.length < 2) {
+                    if (customRadioParent.classList.contains("selected")) {
+                        customRadioParent.classList.remove("selected");
+                        var index = selectedProducts.indexOf(product_List);
+                        if (index !== -1) {
+                            selectedProducts.splice(index, 1);
+                        }
+
+
+                    } else {
+                        customRadioParent.classList.add("selected");
+                        selectedProducts.push(product_List);
+                    }
+                } else {
+                    if (customRadioParent.classList.contains("selected")) {
+                        customRadioParent.classList.remove("selected");
+                        var index = selectedProducts.indexOf(product_List);
+                        if (index !== -1) {
+                            selectedProducts.splice(index, 1);
+                        }
+                    } else {
+                        alert("You can only select up to two products for comparison.");
+                    }
+                }
+                updateSelectedProducts();
+            });
+
+            productIdCounter++;
+
+        }
+
+        function updateSelectedProducts() {
+            var productsSelectedContainer = document.getElementById("productsSelectedContainer");
+            productsSelectedContainer.innerHTML = "";
+            for (var i = 0; i < selectedProducts.length; i++) {
+                var productSelected = document.createElement("div");
+                productSelected.id = "productSelected";
+                productSelected.classList.add("productSelected");
+                var img = document.createElement("img");
+                img.src = selectedProducts[i].imageiurl;
+                var selectedProductTitleSpan = document.createElement("span");
+                selectedProductTitleSpan.textContent = selectedProducts[i].name;
+                productSelected.appendChild(img);
+                productSelected.appendChild(selectedProductTitleSpan);
+                productsSelectedContainer.appendChild(productSelected);
+            }
+
+            var productsSelected = document.getElementById("productsSelected");
+            if (selectedProducts.length > 0) {
+                productsSelected.classList.add("productsSelected");
+                if (selectedProducts.length === 2) {
+                    var compareButton = document.createElement("div");
+                    compareButton.textContent = "Compare";
+                    compareButton.classList.add("compareButton");
+                    productsSelectedContainer.appendChild(compareButton);
+                    compareButton.addEventListener('click', function () {
+                        var product1 = selectedProducts[0].productId;
+                        var product2 = selectedProducts[1].productId;
+                        var nextPageUrl = "https://ven06798.service-now.com/x_rptp_insureme_comparepage.do?product1=" + product1 + "&product2=" + product2;
+                        window.location.href = nextPageUrl;
+                    });
+                }
+            } else {
+                productsSelected.classList.remove("productsSelected");
+            }
+        }
+
+
+
+        var isFilterOpen = false;
+
+        function filters() {
+            var filter_conditions_container = document.getElementById("filter_conditions_container");
+            isFilterOpen = !isFilterOpen;
+            if (isFilterOpen) {
+                filter_conditions_container.classList.add("open_filter");
+            } else {
+                filter_conditions_container.classList.remove("open_filter");
+            }
+        }
+
+        function controlFromInput(fromSlider, fromInput, toInput, controlSlider) {
+            var from = parseInt(fromInput.value, 10);
+            var to = parseInt(toInput.value, 10);
+            fillSlider(fromInput, toInput, '#C6C6C6', '#2673e7', controlSlider);
+            if (from > to) {
+                fromSlider.value = to;
+                fromInput.value = to;
+            } else {
+                fromSlider.value = from;
+            }
+        }
+
+        function controlToInput(toSlider, fromInput, toInput, controlSlider) {
+            var from = parseInt(fromInput.value, 10);
+            var to = parseInt(toInput.value, 10);
+            fillSlider(fromInput, toInput, '#C6C6C6', '#2673e7', controlSlider);
+            setToggleAccessible(toInput);
+            if (from <= to) {
+                toSlider.value = to;
+                toInput.value = to;
+            } else {
+                toInput.value = from;
+            }
+        }
+
+        function controlFromSlider(fromSlider, toSlider, fromInput) {
+            var from = parseInt(fromSlider.value, 10);
+            var to = parseInt(toSlider.value, 10);
+            fillSlider(fromSlider, toSlider, '#C6C6C6', '#2673e7', toSlider);
+            if (from > to) {
+                fromSlider.value = to;
+                fromInput.value = to;
+            } else {
+                fromInput.value = from;
+            }
+        }
+
+        function controlToSlider(fromSlider, toSlider, toInput) {
+            var from = parseInt(fromSlider.value, 10);
+            var to = parseInt(toSlider.value, 10);
+            fillSlider(fromSlider, toSlider, '#C6C6C6', '#2673e7', toSlider);
+            setToggleAccessible(toSlider);
+            if (from <= to) {
+                toSlider.value = to;
+                toInput.value = to;
+            } else {
+                toInput.value = from;
+                toSlider.value = from;
+            }
+        }
+
+        function fillSlider(from, to, sliderColor, rangeColor, controlSlider) {
+            var rangeDistance = to.max - to.min;
+            var fromPosition = from.value - to.min;
+            var toPosition = to.value - to.min;
+            controlSlider.style.background = 'linear-gradient(' +
+                'to right, ' +
+                sliderColor + ' 0%, ' +
+                sliderColor + ' ' + (fromPosition / rangeDistance) * 100 + '%, ' +
+                rangeColor + ' ' + ((fromPosition / rangeDistance) * 100) + '%, ' +
+                rangeColor + ' ' + (toPosition / rangeDistance) * 100 + '%, ' +
+                sliderColor + ' ' + (toPosition / rangeDistance) * 100 + '%, ' +
+                sliderColor + ' 100%)';
+        }
+
+        function setToggleAccessible(currentTarget) {
+            var toSlider = document.querySelector('#toSlider');
+            if (Number(currentTarget.value) <= 0) {
+                toSlider.style.zIndex = 2;
+            } else {
+                toSlider.style.zIndex = 0;
+            }
+        }
+        var fromSlider = document.querySelector('#fromSlider');
+        var toSlider = document.querySelector('#toSlider');
+        var fromInput = document.querySelector('#fromInput');
+        var toInput = document.querySelector('#toInput');
+
+        setToggleAccessible(toSlider);
+
+
+        fromInput.oninput = function () {
+            controlFromInput(fromSlider, fromInput, toInput, toSlider);
+        };
+        toInput.oninput = function () {
+            controlToInput(toSlider, fromInput, toInput, toSlider);
+        };
+        fromSlider.oninput = function () {
+            controlFromSlider(fromSlider, toSlider, fromInput);
+        };
+        toSlider.oninput = function () {
+            controlToSlider(fromSlider, toSlider, toInput);
+        };
+
+
+//         var product_List = [{
+//             name: "Care Supreme Direct 1",
+//             imageiurl: "/lic logo.jpg",
+//             monthlyperm: "₹1,591",
+//             anuallyprem: "₹19,591",
+//             offer: "20",
+//             features: "qwertyuiop,asdfghjkl hyuio,qwsserdft sedcfgygbhuj,fdiha dfighdf pdigh ,dugha9 odfhsg p"
+//         },
+//         {
+//             name: "Care Supreme Direct 2",
+//             imageiurl: "/lic logo.jpg",
+//             monthlyperm: "₹1,591",
+//             anuallyprem: "₹19,591",
+//             offer: "20",
+//             features: "qwertyuiop,asdfghjkl hyuio,qwsserdft sedcfgygbhuj"
+//         },
+//         {
+//             name: "Care Supreme Direct 3",
+//             imageiurl: "/aditya birla health.jpg",
+//             monthlyperm: "₹1,591",
+//             anuallyprem: "₹19,591",
+//             offer: "20",
+//             features: "qwertyuiop,asdfghjkl hyuio,qwsserdft sedcfgygbhuj"
+//         },
+//         {
+//             name: "Care Supreme Direct 4",
+//             imageiurl: "/lic logo.jpg",
+//             monthlyperm: "₹1,591",
+//             anuallyprem: "₹19,591",
+//             offer: "20",
+//             features: "qwertyuiop,asdfghjkl hyuio,qwsserdft sedcfgygbhuj"
+//         },
+//         {
+//             name: "Care Supreme Direct 5",
+//             imageiurl: "/lic logo.jpg",
+//             monthlyperm: "₹1,591",
+//             anuallyprem: "₹19,591",
+//             offer: "20",
+//             features: "qwertyuiop,asdfghjkl hyuio,qwsserdft sedcfgygbhuj"
+//         },
+
+//         ];
+
+//         for (var i = 0; i < product_List.length; i++) {
+//             // console.log(product_List[i]);
+
+//             createProduct(product_List[i]);
+//             // max_monthlyperm = Math.max(product_List[i].monthlyperm, max_monthlyperm);
+//             // min_monthlyperm = Math.min(product_List[i].monthlyperm, min_monthlyperm)
+//         }
+
+
+
+
+        var ga = new GlideAjax('productRPTBank');
+        ga.addParam('sysparm_name', 'getProducts');
+        ga.getXMLAnswer(function (response) {
+            var product = response;
+            var productDet = JSON.parse(response);
+
+        var product_List = productDet;
+        // var product_List = [{
+        //     name: "Care Supreme Direct 1",
+        //     imageiurl: "/lic logo.jpg",
+        //     monthlyperm: "₹1,591",
+        //     anuallyprem: "₹19,591 annually",
+        //     offer: "20",
+        //     features: "qwertyuiop,asdfghjkl hyuio,qwsserdft sedcfgygbhuj"
+        // },
+        // {
+        //     name: "Care Supreme Direct 2",
+        //     imageiurl: "/lic logo.jpg",
+        //     monthlyperm: "₹1,591/month",
+        //     anuallyprem: "₹19,591 annually",
+        //     offer: "20",
+        //     features: "qwertyuiop,asdfghjkl hyuio,qwsserdft sedcfgygbhuj"
+        // },
+        // {
+        //     name: "Care Supreme Direct 3",
+        //     imageiurl: "/lic logo.jpg",
+        //     monthlyperm: "₹1,591/month",
+        //     anuallyprem: "₹19,591 annually",
+        //     offer: "20",
+        //     features: "qwertyuiop,asdfghjkl hyuio,qwsserdft sedcfgygbhuj"
+        // },
+        // {
+        //     name: "Care Supreme Direct 4",
+        //     imageiurl: "/lic logo.jpg",
+        //     monthlyperm: "₹1,591/month",
+        //     anuallyprem: "₹19,591 annually",
+        //     offer: "20",
+        //     features: "qwertyuiop,asdfghjkl hyuio,qwsserdft sedcfgygbhuj"
+        // },
+        // {
+        //     name: "Care Supreme Direct 5",
+        //     imageiurl: "/lic logo.jpg",
+        //     monthlyperm: "₹1,591/month",
+        //     anuallyprem: "₹19,591 annually",
+        //     offer: "20",
+        //     features: "qwertyuiop,asdfghjkl hyuio,qwsserdft sedcfgygbhuj"
+        // },
+
+        // ];
+        var max_monthlyperm = 0;
+        var min_monthlyperm = Number.MAX_VALUE;
+        for (var i = 0; i < product_List.length; i++) {
+
+            createProduct(product_List[i]);
+            max_monthlyperm = Math.max(product_List[i].monthlyperm, max_monthlyperm);
+            min_monthlyperm = Math.min(product_List[i].monthlyperm, min_monthlyperm);
+        }
+        var toSlider = document.getElementById("toSlider");
+        var toInput = document.getElementById("toInput");
+        var fromSlider = document.getElementById("fromSlider");
+        var fromInput = document.getElementById("fromInput");
+
+
+        fromInput.setAttribute("min", min_monthlyperm);
+        fromInput.setAttribute("max", max_monthlyperm);
+        fromSlider.setAttribute("min", min_monthlyperm);
+        fromSlider.setAttribute("max", max_monthlyperm);
+        toInput.setAttribute("min", min_monthlyperm);
+        toInput.setAttribute("max", max_monthlyperm);
+        toSlider.setAttribute("min", min_monthlyperm);
+        toSlider.setAttribute("max", max_monthlyperm);
+        fromInput.setAttribute("value", min_monthlyperm);
+        fromSlider.setAttribute("value", min_monthlyperm);
+
+        toInput.setAttribute("value", max_monthlyperm);
+        toSlider.setAttribute("value", max_monthlyperm);
+	var search_button = document.getElementById('search_btn');
+	search_button.addEventListener('click', searchProductList);
+	var resetButton = document.getElementById('apply_filter_btn2');
+	resetButton.addEventListener('click', resetFilters);
+	function resetFilters(){
+		console.log('Working');
+		fromInput.value = min_monthlyperm;
+fromSlider.value = min_monthlyperm;
+toInput.value = max_monthlyperm;
+toSlider.value = max_monthlyperm;
+		        fillSlider(fromSlider, toSlider, '#C6C6C6', '#2673e7', toSlider);
+
+		searchProductList();
+	}
+    function searchProduct(queryString) {
+        var filteredProducts = productDet.filter(function(product) {
+            return product.name.toLowerCase().includes(queryString.toLowerCase());
+        });
+		var minPrice = parseInt(fromSlider.value);
+		var maxPrice = parseInt(toSlider.value);
+		filteredProducts = filteredProducts.filter(function (product) {
+                return product.monthlyperm >= minPrice && product.monthlyperm <= maxPrice;
+            });
+        return filteredProducts;
+    }
+    var searchInput = document.getElementById('search_input');
+
+    function searchProductList() {
+        product_List = searchProduct(searchInput.value);
+        var productsContainer = document.getElementById('products');
+        productsContainer.innerHTML = '';
+        for (var i = 0; i < product_List.length; i++) {
+            createProduct(product_List[i]);
+        }
+    }
+
+        var apply_filter = document.getElementById('apply_filter_btn');
+        apply_filter.addEventListener('click', searchProductList);
+
+
+        fillSlider(fromSlider, toSlider, '#C6C6C6', '#2673e7', toSlider);
+
+        });
+
+		var memberDetails;
+
+        var scrollableContent = document.getElementById("scrollable-content");
+
+        function listMemberDetails(member) {
+            var memberDetailsDiv = document.createElement("div");
+            memberDetailsDiv.className = "memberDetails";
+
+            var nameDiv = document.createElement("div");
+
+            var sonNameDiv = document.createElement("div");
+            sonNameDiv.className = "inputLabel";
+            if (member.relation === 'Self')
+                sonNameDiv.textContent = "Your Name";
+            else
+                sonNameDiv.textContent = member.relation + "'s Name";
+
+            var sonNameInput = document.createElement("input");
+            sonNameInput.type = "text";
+            sonNameInput.className = "name";
+			sonNameInput.disabled="true";
+			sonNameInput.setAttribute("data-relation", member.relation);
+            sonNameInput.value = member.name;
+            nameDiv.appendChild(sonNameDiv);
+            nameDiv.appendChild(sonNameInput);
+            memberDetailsDiv.appendChild(nameDiv);
+
+            var ageDiv = document.createElement("div");
+            var ageDivLabel = document.createElement("div");
+            ageDivLabel.className = "inputLabel";
+            ageDivLabel.textContent = "Age";
+            var ageInput = document.createElement("input");
+            ageInput.type = "number";
+            ageInput.className = "age";
+            ageInput.value = member.age;
+			ageInput.disabled="true";
+            ageDiv.appendChild(ageDivLabel);
+            ageDiv.appendChild(ageInput);
+            memberDetailsDiv.appendChild(ageDiv);
+            scrollableContent.appendChild(memberDetailsDiv);
+        }
+
+
+
+	var ga = new GlideAjax('membersAPIs');
+	ga.addParam('sysparm_name', 'getMembers');
+	ga.getXML(function (response) {
+        var answer = response.responseXML.documentElement.getAttribute('answer');
+		answer=JSON.parse(answer);
+        for (var i = 0; i < answer.length; i++){
+            listMemberDetails(answer[i]);
+		}
+    });
+
+var memberDetails = [];
+
+function applyChangesToMemberDetails() {
+    var editDetails = document.getElementById("editDetails");
+    var nameInputs = document.querySelectorAll(".name");
+    var ageInputs = document.querySelectorAll(".age");
+
+    if (editDetails.textContent === "Edit Details") {
+        editDetails.textContent = "Apply Changes";
+
+        nameInputs.forEach(function (input) {
+            input.removeAttribute("disabled");
+        });
+        ageInputs.forEach(function (input) {
+            input.removeAttribute("disabled");
+        });
+    } else {
+        editDetails.textContent = "Edit Details";
+        memberDetails = [];
+        for (var i = 0; i < nameInputs.length; i++) {
+            var relation = nameInputs[i].getAttribute("data-relation");
+            var name = nameInputs[i].value;
+            var age = ageInputs[i].value;
+            var memberDetail = { relation:relation, name:name, age:age };
+            memberDetails.push(memberDetail);
+            nameInputs[i].disabled = true;
+            ageInputs[i].disabled = true;
+        }
+		
+		var ga = new GlideAjax('membersAPIs');
+		ga.addParam('sysparm_name', 'postMembers');
+		ga.addParam('json', JSON.stringify(memberDetails));
+		ga.getXML(function (response) {
+			var answer = response.responseXML.documentElement.getAttribute('answer');
+		});
+    }
+}
+
+// function createTopSellingProducts(){
+// 	// Create the main container div with the "item" class
+// 	var itemDiv = document.createElement('div');
+// 	itemDiv.className = 'item';
+
+// 	// Create the "topSellingProduct" div
+// 	var topSellingProductDiv = document.createElement('div');
+// 	topSellingProductDiv.className = 'topSellingProduct';
+
+// 	// Create the image element
+// 	var img = document.createElement('img');
+// 	img.src = 'lic_logo.png';
+// 	img.alt = 'top selling product logo';
+// 	img.className = 'topSellingProductLogo';
+
+// 	// Create the "topSellingProductSeparator" div
+// 	var separatorDiv = document.createElement('div');
+// 	separatorDiv.className = 'topSellingProductSeparator';
+
+// 	// Create the "topSellingProductDet" div
+// 	var detDiv = document.createElement('div');
+// 	detDiv.className = 'topSellingProductDet';
+
+// 	// Create the "productTitle" div
+// 	var productTitleDiv = document.createElement('div');
+// 	productTitleDiv.className = 'productTitle';
+// 	productTitleDiv.textContent = 'LIC Jeevan Arogya';
+
+// 	// Create the "topSellingProductFeatures" div
+// 	var featuresDiv = document.createElement('div');
+// 	featuresDiv.className = 'topSellingProductFeatures';
+
+// 	// Create feature divs and add text content
+// 	var feature1Div = document.createElement('div');
+// 	feature1Div.className = 'feature';
+// 	feature1Div.textContent = 'Ambulance Cover';
+
+// 	var feature2Div = document.createElement('div');
+// 	feature2Div.className = 'feature';
+// 	feature2Div.textContent = 'Pre/Post-Hospitalization Coverage';
+
+// 	var feature3Div = document.createElement('div');
+// 	feature3Div.className = 'feature';
+// 	feature3Div.textContent = 'Critical Illness Coverage';
+
+// 	// Create feature divs for "Save" and "Coverage Amount"
+// 	var saveFeatureDiv = document.createElement('div');
+// 	saveFeatureDiv.className = 'topSellingProductFeature';
+
+// 	var saveKeyDiv = document.createElement('div');
+// 	saveKeyDiv.className = 'featureKey';
+// 	saveKeyDiv.textContent = 'Save:';
+
+// 	var saveValueDiv = document.createElement('div');
+// 	saveValueDiv.className = 'featureValue';
+// 	saveValueDiv.textContent = 'upto 20%';
+
+// 	var coverageFeatureDiv = document.createElement('div');
+// 	coverageFeatureDiv.className = 'topSellingProductFeature';
+
+// 	var coverageKeyDiv = document.createElement('div');
+// 	coverageKeyDiv.className = 'featureKey';
+// 	coverageKeyDiv.textContent = 'Coverage Amount:';
+
+// 	var coverageValueDiv = document.createElement('div');
+// 	coverageValueDiv.className = 'featureValue';
+// 	coverageValueDiv.textContent = 'upto ₹20Lac';
+
+// 	// Create the "topSellingProductButton" div
+// 	var buttonDiv = document.createElement('div');
+// 	buttonDiv.className = 'topSellingProductButton';
+// 	buttonDiv.textContent = 'View Details';
+
+// 	// Append the elements to build the structure
+// 	saveFeatureDiv.appendChild(saveKeyDiv);
+// 	saveFeatureDiv.appendChild(saveValueDiv);
+
+// 	coverageFeatureDiv.appendChild(coverageKeyDiv);
+// 	coverageFeatureDiv.appendChild(coverageValueDiv);
+
+// 	featuresDiv.appendChild(feature1Div);
+// 	featuresDiv.appendChild(feature2Div);
+// 	featuresDiv.appendChild(feature3Div);
+// 	featuresDiv.appendChild(saveFeatureDiv);
+// 	featuresDiv.appendChild(coverageFeatureDiv);
+
+// 	detDiv.appendChild(productTitleDiv);
+// 	detDiv.appendChild(featuresDiv);
+
+// 	topSellingProductDiv.appendChild(img);
+// 	topSellingProductDiv.appendChild(separatorDiv);
+// 	topSellingProductDiv.appendChild(detDiv);
+// 	topSellingProductDiv.appendChild(buttonDiv);
+
+// 	itemDiv.appendChild(topSellingProductDiv);
+// }
+
+// var topSellingProducts=[
+// 	{
+// 		id:"37dc1a6247d6f11055784a02516d43cf",
+// 		name:"Bajaj HLI",
+// 		features:"Death Benefit,Pre/Post-Hospitalization Coverage",
+// 		save:'upto 7%',
+// 		coverage:"upto ₹50Lac",
+// 		logo:"bajaj.png"
+// 	},{
+// 		id:"8372d00c93d63910acdc3f484dba1032",
+// 		name:"Optima plus HDFC",
+// 		features:"Ambulance Cover,Room Rent Waiver,Domiciliary Treatment,Pre/Post-Hospitalization Coverage",
+// 		save:'upto 10%',
+// 		coverage:"upto ₹45Lac",
+// 		logo:"x_rptp_insureme.hdfc.png"
+// 	},{
+// 		id:"9ad81e6e4796f11055784a02516d4359",
+// 		name:"Tata AIA Life Insurance",
+// 		features:"Coverage for Hospitalization Expenses,Preventive Care,Access to a Network of Healthcare Providers",
+// 		save:'upto 18%',
+// 		coverage:"upto ₹80Lac",
+// 		logo:"tata.png"
+// 	},
+// ]
+// for(var i=0;i<topSellingProducts.length;i++){
+// 	createTopSellingProducts(topSellingProducts[i]);
+// }]]></client_script>
+<description/>
+<direct>false</direct>
+<endpoint>x_rptp_insureme_productdisplaycopy.do</endpoint>
+<html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+	  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<style>
+		
+		* {
+            padding: 0;
+            margin: 0;
+			font-family: 'Inter', sans-serif;
+        }
+
+        .body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 99vw;
+            min-height: 100vh;
+            background-color: #F4F5F7;
+        }
+
+        .breadcrum {
+            position: absolute;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            margin-top: 100px;
+            margin-left: 4.03%;
+        }
+		
+		
+		.breadcrumbContent{
+			color:black;
+            text-decoration: none;
+		}
+		
+		.breadcrumbContent:hover{
+			color:#253858;
+            text-decoration: none;
+		}
+
+        .product-container {
+            position: absolute;
+            top: 140px;
+            display: flex;
+            width: 100%;
+            justify-content: space-evenly;
+            padding-bottom: 140px;
+            background-color: #F4F5F7;
+        }
+
+        .form-container {
+            height: max-content;
+            border-radius: 10px;
+            padding: 20px;
+            width: 25vw;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            overflow-y: auto;
+            box-shadow: 0 0 10px rgb(215, 215, 215);
+            position:sticky;
+            top: 10px;
+        }
+
+        .btn-member-details {
+            font-weight: 600;
+            color: #2b5b5f;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-apply-changes {
+		
+            font-weight: 600;
+            color: #2b5b5f;
+            cursor: pointer;
+            font-size: 14px;
+            border-bottom: 1px solid #2b5b5f;
+        }
+
+        .product-list {
+            background: white;
+            border-radius: 10px;
+            width: 65vw;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 10px rgb(215, 215, 215);
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .icon-row {
+            width: 100%;
+            height: 8%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .icon-row-halves-right {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+		svg:not(:root) {
+			cursor: pointer;
+		}
+
+        .icon-row-halves-left {
+            display: flex;
+			gap:10px;
+			align-items:center;
+			cursor: pointer;
+        }
+		
+		.filter-text1 {
+            height: 20px;
+
+        }
+
+        .filter-text2 {
+            height: 26px;
+			border-radius: 10px;
+			padding: 15px;
+		    border: 1px solid #a0a2a7;
+        }
+
+        .icons-left {
+            height: 20px;
+            width: 20px;
+        }
+
+        .icons-right {
+            height: 34px;
+			width: 20px;
+			margin-left: 5px;
+        }
+
+        .products {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .product {
+            width: 99%;
+			min-height:150px;
+            border-radius: 10px;
+            background: #fff;
+            border: 1px solid #dfe1e6;
+            display: flex;
+            padding: 10px 0 10px 10px;
+        }
+
+        .product img {
+            margin-top: 5px;
+            width: 150px;
+            height: 70%;
+        }
+
+        .hrDiv {
+            margin: 0 20px;
+            width: 1px;
+            background: #dfe1e6;
+        }
+
+        .productTitle {
+            color: #686868;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        #discount {
+            transform: rotate(40deg);
+            float: right;
+            width: 250px;
+            height: 40px;
+            background: #8aca6c;
+            display: flex;
+            justify-content: center;
+			padding-left:25px;
+            align-items: center;
+            box-shadow: 0 5px 5px rgb(175, 175, 175);
+            margin-right: -50px;
+        }
+
+
+        .productDet {
+            width: 50%;
+        }
+
+        .productLogoDiv {
+            display: flex;
+            justify-content: center;
+        }
+
+        #discount span {
+            color: #fff;
+            width: 50%;
+            padding-left: 50px;
+        }
+
+        #features {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: -5px;
+            margin-bottom: 10px;
+        }
+
+        .feature {
+            border: 1px solid #dfe1e6;
+            padding: 5px 10px;
+            color: #505f79;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        .discountButton {
+            width: 50%;
+            overflow: hidden;
+            margin-top: -10px;
+        }
+
+        .viewDetailsButton {
+            background: #2673e7;
+            padding: 10px 40px;
+            border-radius: 5px;
+            border: none;
+            color: #fff;
+            margin-top: 60px;
+            font-size: 16px;
+        }
+
+        .fee {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+        }
+
+        .annualFee {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #3e3e3e;
+        }
+
+        .custom-radio {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #979797;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .compareSvg {
+            display: flex;
+            color: white;
+            width: 16px;
+        }
+
+        .custom-radio input {
+            display: none;
+        }
+
+        .selected {
+            background-color: #36b37e;
+        }
+
+        .compareContainer {
+            display: flex;
+            align-items: center;
+        }
+
+        .compareContainer span {
+            margin-left: 5px;
+            color: #253858;
+        }
+
+        .productsSelected {
+            position: fixed;
+            height: 120px;
+            bottom: 0;
+            width: 99vw;
+            background: #fff;
+            z-index: 1;
+            border-radius: 30px 30px 0 0;
+            box-shadow: 0 -5px 5px #959595;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #productsSelectedContainer {
+            width: 900px;
+            height: 100px;
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        #productSelected {
+            border: 1px solid #b1b1b1;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
+
+        #productSelected img {
+            height: 40px;
+        }
+
+        #productSelected span {
+            font-weight: 600;
+            color: #686868;
+            margin-left: 10px;
+        }
+
+        .compareButton {
+            background: #2673e7;
+            padding: 10px 40px;
+            border-radius: 5px;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+			cursor:pointer;
+        }
+
+        #filter_conditions_container {
+            display: none;
+        }
+
+        .open_filter {
+            padding: 17px;
+            display: flex !important;
+            width: 30%;
+            float: left;
+            height: 60%;
+            background: white;
+            z-index: 1;
+            border-radius: 20px;
+            position: fixed;
+            margin-top: 30px;
+            box-shadow: 5px 5px 5px rgb(175, 175, 175);
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .filter_options {
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        .demo {
+            padding: 25px;
+        }
+
+        .range_container {
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+            margin: 10%;
+        }
+
+        .sliders_control {
+            position: relative;
+            min-height: 20px;
+        }
+
+        .form_control {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #635a5a;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            pointer-events: all;
+            width: 24px;
+            height: 24px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 0 1px #C6C6C6;
+            cursor: pointer;
+        }
+
+        input[type=range]::-moz-range-thumb {
+            -webkit-appearance: none;
+            pointer-events: all;
+            width: 24px;
+            height: 24px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 0 1px #C6C6C6;
+            cursor: pointer;
+        }
+		#apply_filter_btn{
+			    width: 40%;
+				height: 100%;
+				color: white;
+				margin-bottom: 5.75%;
+				margin-left: 6%;
+				border-radius: 8px;
+				border: 1px solid #59C157;
+				background: #59C157;
+				box-shadow: 0px 4px 13px 3px rgba(34, 34, 34, 0.15);
+				font-size: 15px;
+				font-style: normal;
+				font-weight: 400;
+				display: flex;
+				align-content: center;
+				justify-content: center;
+				margin-top: 5.75%;
+				flex-wrap: wrap;
+		}
+		#apply_filter_btn2{
+				width: 40%;
+				height: 100%;
+				color: white;
+				margin-bottom: 5.75%;
+				margin-left: 6%;
+				border-radius: 8px;
+				border: 1px solid #2673e7;
+				background: #2673e7;
+				box-shadow: 0px 4px 13px 3px rgba(34, 34, 34, 0.15);
+				font-size: 15px;
+				font-style: normal;
+				font-weight: 400;
+				display: flex;
+				align-content: center;
+				justify-content: center;
+				margin-top: 5.75%;
+				flex-wrap: wrap;
+		
+		}
+
+        input[type=range]::-webkit-slider-thumb:hover {
+            background: #f7f7f7;
+        }
+
+        input[type=range]::-webkit-slider-thumb:active {
+            box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+            -webkit-box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+        }
+
+        .form_control_container__time__input{
+            color: #8a8383;
+            width: 50px;
+            height: 30px;
+            font-size: 14px;
+            border: none;
+        }
+
+        .form_control_container__time__input::-webkit-inner-spin-button,
+        .form_control_container__time__input::-webkit-outer-spin-button {
+            opacity: 1;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 2px;
+            width: 100%;
+            position: absolute;
+            background-color: #C6C6C6;
+            pointer-events: none;
+        }
+
+        #fromSlider {
+            height: 0;
+            z-index: 1;
+        }
+
+        .pageSizeWhenComparing {
+            height: 97%;
+        }
+
+        .memberDetails {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .name {
+            border-radius: 5px;
+            padding: 10px 10px;
+            outline: none;
+            border: 1px solid #767676;
+            margin-bottom: 10px;
+        }
+
+        .age {
+            width: 55px;
+            border-radius: 5px;
+            padding: 10px;
+            outline: none;
+            border: 1px solid #767676;
+            margin-bottom: 10px;
+        }
+
+        .inputLabel {
+            position: relative;
+            background: #fff;
+            min-width: 10px;
+            margin-left: 3px;
+            width: max-content;
+            padding: 0 3px;
+            transform: translateY(50%);
+            font-size: 14px;
+        }
+		.filter-btns{
+			display:flex;
+			flex-direction: row;
+			height: 30px;
+		}
+		
+<!-- 		input:disabled {
+			background:#000;
+		} -->
+		
+		.msie9 input[type="text"]:disabled, .msie9 SELECT:disabled, .msie10 input[type="text"]:disabled, .msie10 SELECT:disabled, .msie11 input[type="text"]:disabled, .msie11 SELECT:disabled, .windows.chrome input[type="text"]:disabled, .windows.chrome SELECT:disabled{
+		background:#fff;
+		}
+		
+		.custom-carousel {
+			  width: 99%;
+			  height: 130px;
+			  border: 1px solid #dfe1e6;
+			border-radius:10px;
+		box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+			background:#dcdcdc24;
+		}
+		
+		.topSellingProductsTitle{
+			text-align:center;
+            font-weight: 600;
+            color: #2b5b5f;
+            cursor: pointer;
+            font-size: 16px;
+			margin-bottom:10px;
+		}
+		
+		.carousel-control.right{
+			background-image:none;
+		}
+		
+		.topSellingProductLogo{
+			width:130px;
+			height:100px;
+			padding:0 10px;
+		}
+		
+		.topSellingProduct{
+			margin-top:-10px;
+			height:150px;
+			display:flex;
+			align-items:center;
+		}
+		
+		.topSellingProductButton{
+            background: #2673e7;
+            padding: 10px 40px;
+            border-radius: 5px;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+			cursor:pointer;
+		}
+		
+		.topSellingProductSeparator{
+			width:1px;
+			height:110px;
+			background:#dfe1e6;
+			margin-right:10px;
+		}
+		
+		.topSellingProductDet{
+			width:60%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		.topSellingProductFeatures{
+			display:flex;
+			flex-wrap:wrap;
+			justify-content:center;
+		}
+		
+		.topSellingProductFeature{
+			width:50%;
+			text-align:center;
+			color:#686868;
+			margin-top:5px;
+		}
+		
+		.featureKey{
+			display:inline;
+			font-size:14px;
+		}
+		
+		.featureValue{
+			display:inline;
+			color:green;
+			font-weight:600;
+			margin-left:5px;
+		}
+		
+		.topSellingFeature{
+			font-weight:600;
+            border: 1px solid #dfe1e6;
+            padding: 5px 10px;
+            color: #505f79;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+		}
+		
+    </style>
+	<div class="body">
+		<g:macro_invoke macro="RPTHeader" />
+		<g:macro_invoke macro="RPTBot" />
+	    <p class="breadcrum">
+        Services/<a href="https://ven06798.service-now.com/x_rptp_insureme_category.do" class="breadcrumbContent">Category</a>/Health Insurance/<b>Products</b>
+    </p>
+    <div class="product-container">
+        <div class="form-container">
+            <div class="btn-member-details">Member Details</div>
+            <div class="scrollable-content" id="scrollable-content"></div>
+            <div class="btn-apply-changes" id="editDetails" onclick="applyChangesToMemberDetails()">Edit Details</div>
+        </div>
+        <div class="product-list">
+                <div class="icon-row">
+                    <div class="icon-row-halves-left" onClick="filters()">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 icons-left">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 01-.659 1.591l-5.432 5.432a2.25 2.25 0 00-.659 1.591v2.927a2.25 2.25 0 01-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 00-.659-1.591L3.659 7.409A2.25 2.25 0 013 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0112 3z" />
+</svg>
+						<div class="filter-text">Filter</div>
+                    </div>
+                    <div class="icon-row-halves-right">
+						
+						<input type="input" id="search_input" class="filter-text2" placeholder="search"/>
+						<svg xmlns="http://www.w3.org/2000/svg" id="search_btn" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 icons-right">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+</svg>
+
+                    </div>
+                <div id="filter_conditions_container">
+                    <div class="filter_options">Price Per Month</div>
+                    <div class="range_container">
+                        <div class="sliders_control">
+                            <input id="fromSlider" type="range" />
+                            <input id="toSlider" type="range" />
+                        </div>
+                        <div class="form_control">
+                            <div class="form_control_container">
+                                <div class="form_control_container__time">Min</div>
+                                <input class="form_control_container__time__input" type="number" id="fromInput" />
+                            </div>
+                            <div class="form_control_container">
+                                <div class="form_control_container__time">Max</div>
+                                <input class="form_control_container__time__input" type="number" id="toInput" />
+                            </div>
+                        </div>
+                    </div>
+					<div class="filter-btns">
+						<div id="apply_filter_btn"> Apply Changes</div>
+						<div id="apply_filter_btn2"> Reset</div>
+					</div>
+                </div>
+            </div>
+            <div class="products" id="products">
+				<div class="">
+				<div class="topSellingProductsTitle"><u>Top Selling Products</u></div>
+				  <div id="myCarousel" class="carousel slide custom-carousel" data-ride="carousel">        
+					<div class="carousel-inner">
+						<div class="item active">
+							<div class="topSellingProduct">
+								<img src="lic_logo.png" alt="top selling product logo" class="topSellingProductLogo"/>
+								<div class="topSellingProductSeparator"></div>
+								<div class="topSellingProductDet">
+									<div class="productTitle">LIC Jeevan Arogya</div>
+									<div class="topSellingProductFeatures">
+										<div class="topSellingFeature">Ambulance Cover</div>
+										<div class="topSellingFeature">Pre/Post-Hospitalization Coverage</div>
+										<div class="topSellingFeature">Critical Illness Coverage</div>
+										<div class="topSellingProductFeature">
+											<div class="featureKey">Save:</div>
+											<div class="featureValue">upto 20%</div>
+										</div>						 				
+										<div class="topSellingProductFeature">
+											<div class="featureKey">Coverage Amount:</div>
+											<div class="featureValue"> upto ₹1Cr</div>
+										</div>
+									</div>
+								</div>
+								<div class="topSellingProductButton"  onclick="window.location.href = 'https://ven06798.service-now.com/x_rptp_insureme_productdetails.do?product=514114c893d63910acdc3f484dba10dd'">View Details</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="topSellingProduct">
+								<img src="bajaj.png" alt="top selling product logo" class="topSellingProductLogo"/>
+								<div class="topSellingProductSeparator"></div>
+								<div class="topSellingProductDet">
+									<div class="productTitle">Bajaj HLI</div>
+									<div class="topSellingProductFeatures">
+										<div class="feature">Death Benefit</div>
+										<div class="feature">Pre/Post-Hospitalization Coverage</div>
+										<div class="topSellingProductFeature">
+											<div class="featureKey">Save:</div>
+											<div class="featureValue">upto 7%</div>
+										</div>						 				
+										<div class="topSellingProductFeature">
+											<div class="featureKey">Coverage Amount:</div>
+											<div class="featureValue"> upto ₹50Lac</div>
+										</div>
+									</div>
+								</div>
+								<div class="topSellingProductButton"  onclick="window.location.href = 'https://ven06798.service-now.com/x_rptp_insureme_productdetails.do?product=37dc1a6247d6f11055784a02516d43cf'">View Details</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="topSellingProduct">
+								<img src="x_rptp_insureme.hdfc.png" alt="top selling product logo" class="topSellingProductLogo"/>
+								<div class="topSellingProductSeparator"></div>
+								<div class="topSellingProductDet">
+									<div class="productTitle">Optima plus HDFC</div>
+									<div class="topSellingProductFeatures">
+										<div class="feature">Ambulance Cover</div>
+										<div class="feature">Room Rent Waiver</div>
+										<div class="feature">Domiciliary Treatment</div>
+										<div class="topSellingProductFeature">
+											<div class="featureKey">Save:</div>
+											<div class="featureValue">upto 10%</div>
+										</div>						 				
+										<div class="topSellingProductFeature">
+											<div class="featureKey">Coverage Amount:</div>
+											<div class="featureValue"> upto ₹45Lac</div>
+										</div>
+									</div>
+								</div>
+								<div class="topSellingProductButton"  onclick="window.location.href = 'https://ven06798.service-now.com/x_rptp_insureme_productdetails.do?product=8372d00c93d63910acdc3f484dba1032'">View Details</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="topSellingProduct">
+								<img src="tata.png" alt="top selling product logo" class="topSellingProductLogo"/>
+								<div class="topSellingProductSeparator"></div>
+								<div class="topSellingProductDet">
+									<div class="productTitle">Tata AIA Life Insurance</div>
+									<div class="topSellingProductFeatures">
+										<div class="feature">Coverage for Hospitalization Expenses</div>
+										<div class="feature">Preventive Care</div>
+										<div class="topSellingProductFeature">
+											<div class="featureKey">Save:</div>
+											<div class="featureValue">upto 18%</div>
+										</div>						 				
+										<div class="topSellingProductFeature">
+											<div class="featureKey">Coverage Amount:</div>
+											<div class="featureValue"> upto ₹80Lac</div>
+										</div>
+									</div>
+								</div>
+								<div class="topSellingProductButton"  onclick="window.location.href = 'https://ven06798.service-now.com/x_rptp_insureme_productdetails.do?product=9ad81e6e4796f11055784a02516d4359'">View Details</div>
+							</div>
+						</div>
+					</div>
+					<a class="carousel-control" href="#myCarousel" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="right carousel-control" href="#myCarousel" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				  </div>
+				</div>
+			</div>
+        </div>
+    </div>
+    <div id="productsSelected">
+        <div id="productsSelectedContainer"></div>
+    </div>
+	</div>
+</j:jelly>]]></html>
+<name>productdisplaycopy</name>
+<processing_script/>
+<sys_class_name>sys_ui_page</sys_class_name>
+<sys_created_by>kumar.shanu</sys_created_by>
+<sys_created_on>2023-11-03 06:00:19</sys_created_on>
+<sys_id>6522b45147de7d1055784a02516d4306</sys_id>
+<sys_mod_count>217</sys_mod_count>
+<sys_name>productdisplaycopy</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sys_ui_page_6522b45147de7d1055784a02516d4306</sys_update_name>
+<sys_updated_by>kumar.shanu</sys_updated_by>
+<sys_updated_on>2023-11-07 11:29:43</sys_updated_on>
+</sys_ui_page>
+</record_update>
