@@ -43,6 +43,10 @@
 
 
 		$scope.ClaimInsurance = function(){
+			 var policyAmount = prompt("Please enter the amount you would like to claim", "");
+			c.server.get({"method" :"claim", "Value" : policyAmount, "value2" : $scope.policynumber }).then(function(res){
+				
+			});
 			$scope.insurance = "Success";
 			$scope.Color = "green";
 					$scope.ButValue="Claimed";
@@ -149,30 +153,33 @@ h1 {
 	var url = "";
 	var status = "";
 	var sys=" ";
- 
+	
+	
+
+
+
+
+	
+	
+	
+	
+
 	if(input && input.action == "create"){
-		//gs.addErrorMessage(input.value);
- 
- 
- 
+//	gs.addInfoMessage(input.value)
+
 		var gr = new GlideRecord('x_rptp_insureme_payment_details');
 		gr.addQuery('number',input.value);
-		
-	
 		gr.query();
-	
-		
-			
-//		gs.addErrorMessage(sys);
+
 		if(gr.next()){
 			sys=gr.getValue("sys_id");
-			
-	//	gs.addErrorMessage(gr.getValue("sys_id"));
+
+			//	gs.addErrorMessage(gr.getValue("sys_id"));
 			var Success = gr.getDisplayValue('claim_status');
 			data.array2.push({
 				status : Success
 			});
- 
+
 			gr.claim_status = 2;
 			gr.update();
 			//	gs.addInfoMessage( gr.getValue('insurer_code'));
@@ -182,44 +189,69 @@ h1 {
 				premiumamount: gr.getValue('amount'),
 				Sum : gr.getValue('sum'),
 				name : gr.getValue('primary_user')
- 
- 
-			});
-				gr1 = new GlideRecord('sys_attachment');
-		gr1.addQuery('table_sys_id',sys);
-		gr1.query();
-		//gs.addInfoMessage(sys)
-		if (gr1.next()) {
-//			gs.addInfoMessage("hii"+sys)
-	var url1 = gs.getProperty('glide.servlet.uri') + gr1.getLink(false);
-//gs.addInfoMessage(url1); // Use url1 instead of url
-data.array1.push({
-    url: url1
-			});
-		}
-		}
-		}
-	
-	
 
- 
- 
+
+			});
+				if (input && input.method == "claim") {
+    
+    var claim = new GlideRecord('x_rptp_insureme_claim_table');
+    claim.query();
+	gs.addInfoMessage(input.value2);
+	
+	gs.addErrorMessage(JSON.stringify(data.array))
+     
+    if (claim.next()) {
+
+            claim.initialize(); 
+            claim.status = 2;
+          //  claim.sum_insured =dsa ;
+         //   claim.amount_claim = dsa;
+         //   claim.insert(); 
+    } else {
+      //  claim.amount_claim = input.Value;
+       // claim.update(); 
+    }
+}
+			
+			gr1 = new GlideRecord('sys_attachment');
+			gr1.addQuery('table_sys_id',sys);
+			gr1.query();
+			//gs.addInfoMessage(sys)
+			if (gr1.next()) {
+				//			gs.addInfoMessage("hii"+sys)
+				var url1 = gs.getProperty('glide.servlet.uri') + gr1.getLink(false);
+				//gs.addInfoMessage(url1); // Use url1 instead of url
+				data.array1.push({
+					url: url1
+				});
+			}
+			
+	//		gs.addErrorMessage(gr.getValue('sum'));
+			
+		
+			
+		}
+		
+	}
+
+
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>Surya.Prathap</sys_created_by>
         <sys_created_on>2024-02-28 10:49:25</sys_created_on>
         <sys_id>a35dd887472486d055784a02516d4357</sys_id>
-        <sys_mod_count>285</sys_mod_count>
+        <sys_mod_count>337</sys_mod_count>
         <sys_name>policy claim</sys_name>
         <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sp_widget_a35dd887472486d055784a02516d4357</sys_update_name>
-        <sys_updated_by>Surya.Prathap</sys_updated_by>
-        <sys_updated_on>2024-03-04 09:37:17</sys_updated_on>
+        <sys_updated_by>Ajmal.akram</sys_updated_by>
+        <sys_updated_on>2024-03-05 10:06:01</sys_updated_on>
         <template><![CDATA[<body class = "bg-img">
   <div class="form-container" >
+
     <section class="section">
       <h1>Your Policy Details</h1>
       <hr>
