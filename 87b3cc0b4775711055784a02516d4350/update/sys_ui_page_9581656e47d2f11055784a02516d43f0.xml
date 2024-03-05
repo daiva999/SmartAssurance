@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[function navigateToLogin() {
+    window.location.href = "https://ven06799.service-now.com/ui_page.do?sys_id=a773231647c6351055784a02516d4365";
+}
+function navigateToPageNotFound() {
+    window.location.href = "https://ven06799.service-now.com/x_rptp_insureme_404page.do";
+}]]></client_script>
+        <description/>
+        <direct>true</direct>
+        <endpoint>x_rptp_insureme_welcomePage.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	
+<html lang="en">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+    }
+
+    body {
+        background-image: url('/background3.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    img {
+        margin-top: 5%;
+        width: 100%;
+        height: auto;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        bottom: 30%;
+        width: 100%;
+     }
+
+    .button {
+        width: auto;
+        border-radius: 10px;
+        background-color: #58db5d;
+		font-weight:600;
+        border: none;
+        color: rgb(0, 0, 0);
+        padding: 16px 32px;
+        text-decoration: none;
+        margin: 4px 35px;
+        cursor: pointer;
+        transition-duration: 0.4s;
+        box-shadow: grey;
+    }
+</style>
+
+<body>
+    <div class="body-container">
+		<img class="images"></img>
+        <img src="rptlogo.png" alt="RPTLogo"></img>
+    </div>
+    <div class="button-container">
+        <div id="assistedBtn" class="button" onclick="navigateToLogin()">Assisted</div>
+        <div id="selfServiceBtn" class="button" onclick="navigateToPageNotFound()">Self Service</div>
+    </div>
+</body>
+
+</html>
+</j:jelly>]]></html>
+        <name>welcomePage</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>abhishek.jaiswal</sys_created_by>
+        <sys_created_on>2023-11-07 06:32:28</sys_created_on>
+        <sys_id>9581656e47d2f11055784a02516d43f0</sys_id>
+        <sys_mod_count>18</sys_mod_count>
+        <sys_name>welcomePage</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_ui_page_9581656e47d2f11055784a02516d43f0</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-05 04:43:29</sys_updated_on>
+    </sys_ui_page>
+</record_update>
