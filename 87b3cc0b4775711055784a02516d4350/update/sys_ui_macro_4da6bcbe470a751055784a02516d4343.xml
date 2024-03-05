@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description>header for InsureMe</description>
+        <media_type/>
+        <name>RPTHeader</name>
+        <scoped_name/>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>pooja.jayaram</sys_created_by>
+        <sys_created_on>2023-10-26 11:26:01</sys_created_on>
+        <sys_id>4da6bcbe470a751055784a02516d4343</sys_id>
+        <sys_mod_count>96</sys_mod_count>
+        <sys_name>RPTHeader</sys_name>
+        <sys_package display_value="Global" source="global">global</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_ui_macro_4da6bcbe470a751055784a02516d4343</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-05 07:26:17</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			var userName=localStorage.getItem('userName');
+			const dataDisplay = document.getElementById("heading3");
+			var userInfo="Welcome "+userName ;
+			dataDisplay.textContent = userInfo;
+			var insuranceButton = document.getElementById('heading1');
+			insuranceButton.addEventListener('click', function () {
+				window.location.href = "https://ven06799.service-now.com/ui_page.do?sys_id=bb5434f293ce3510acdc3f484dba1098";
+			});
+			var insuranceButton2 = document.getElementById('heading2');
+			insuranceButton2.addEventListener('click', function () {
+				window.location.href = "https://ven06799.service-now.com/ui_page.do?sys_id=6d49bc1547de7d1055784a02516d4318";
+			});
+		});
+	</script>
+	<style>
+		.logo-image{
+			height: 100%;
+			padding-left:1.5rem;
+		}
+		.header-container{
+			display: flex;
+			width:99vw;
+            height: 5rem;
+			align-items:center;
+			background-color:white;
+		    position: absolute;
+			justify-content:space-between;
+		}
+		.heading{
+			cursor:pointer;
+			font-size: 1em;
+		}
+		.heading:hover{
+			font-weight:600;
+		}
+		.headingContent{
+			width:25%;
+			display:flex;
+			justify-content:space-around;
+		}
+	</style>
+	<div class="header-container">
+		<img class="logo-image" src="x_rptp_insureme.smartsmart.png" />
+		<div class="headingContent">
+			<div id="heading1" class="heading" >Insurance</div>
+			<div id="heading2" class="heading">Resourses</div>
+			<div id="heading3" class=""></div>
+		</div>
+	</div>
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>

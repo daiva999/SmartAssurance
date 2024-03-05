@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[function goBack() {
+    window.history.back();
+}
+]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_rptp_insureme_resourcespage.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+
+<html>
+<style>
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+     
+}
+
+header {
+    background-color: #44b98f;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+	width:100%;
+    height:15%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 2%;
+	color: white;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+    font-size: 18px; 
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 30px;
+    padding: 20px; 
+    background-color: #dad8d8; 
+    border-radius: 10px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+	
+}
+
+footer {
+    background-color: #44b98f;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+	width:100%;
+    height:10%;
+}
+
+button {
+    background-color: #44b98f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #338d72; 
+}
+
+
+</style>
+<head>
+    <title>Insurance Resources</title>
+    
+</head>
+<body>
+    <header>
+        <h1>Insurance Resources</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#articles">Articles</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+		<button onclick="goBack()">Back</button> <br> </br>
+        <section id="home">
+            <h2>Welcome to Our Insurance Resources</h2>
+            <p>We provide you with valuable information and resources to help you make informed decisions about your insurance needs.</p>
+        </section>
+
+        <section id="articles">
+            <h2>Articles</h2>
+            <ul>
+                <li>
+                    <h3>Understanding Your Insurance Policy</h3>
+                    <p>Learn about the different aspects of your insurance policy and what it covers.</p>
+                </li>
+                <li>
+                    <h3>Types of Insurance</h3>
+                    <p>Explore the various types of insurance available, such as life, health, and auto insurance.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="faq">
+            <h2>Frequently Asked Questions</h2>
+            <ul>
+                <li>
+                    <h3>How to File a Claim</h3>
+                    <p>Find out the steps to follow when filing an insurance claim.</p>
+                </li>
+                <li>
+                    <h3>Choosing the Right Insurance Plan</h3>
+                    <p>Get guidance on selecting the insurance plan that best suits your needs.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or need further assistance, please feel free to contact us:</p>
+            <address>
+                Email: <a href="mailto:info@rpt.com">info@rpt.com</a><br>
+                Phone: <a href="tel:+1234567890">123-456-7890</a>
+				</br>
+			</address>
+        </section>
+    </main>
+    <footer>
+        <p> 2024 Right Prompt Bank. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+</j:jelly>]]></html>
+        <name>resourcespage</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>pooja.jayaram</sys_created_by>
+        <sys_created_on>2023-11-03 06:03:19</sys_created_on>
+        <sys_id>6d49bc1547de7d1055784a02516d4318</sys_id>
+        <sys_mod_count>24</sys_mod_count>
+        <sys_name>resourcespage</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_ui_page_6d49bc1547de7d1055784a02516d4318</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-05 07:11:29</sys_updated_on>
+    </sys_ui_page>
+</record_update>
