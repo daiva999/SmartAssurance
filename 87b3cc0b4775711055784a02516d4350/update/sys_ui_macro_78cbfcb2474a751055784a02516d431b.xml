@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description>Footer for InsuranceMe</description>
+        <media_type/>
+        <name>RPTFooter</name>
+        <scoped_name/>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>pooja.jayaram</sys_created_by>
+        <sys_created_on>2023-10-26 11:46:44</sys_created_on>
+        <sys_id>78cbfcb2474a751055784a02516d431b</sys_id>
+        <sys_mod_count>23</sys_mod_count>
+        <sys_name>RPTFooter</sys_name>
+        <sys_package display_value="Global" source="global">global</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_ui_macro_78cbfcb2474a751055784a02516d431b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-05 07:26:33</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+<style>
+	footer {
+            height: 64px;
+            background-color: #28666e;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        } 
+		</style>
+	
+	<footer>
+        <p>@ 2024 Right Prompt</p>
+    </footer>
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>
