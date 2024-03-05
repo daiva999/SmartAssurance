@@ -308,6 +308,7 @@ option {
 .line {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  column-gap: 20px;
 }
 
 .topSection {
@@ -334,9 +335,6 @@ option {
   width: 50%;
 }
 
-.daysDifference {
-  margin-bottom: 10px;
-}
 
 h4 {
   font-style: bold;
@@ -428,6 +426,9 @@ h4 {
   .whole {
     height: auto;
   }
+  .line {
+    column-gap: 10px;
+  }
 }
 
 @media only screen and (min-width: 401px) and (max-width: 460px) {
@@ -441,7 +442,7 @@ h4 {
 }
 
 @media only screen and (min-width: 461px) and (max-width: 767px) {
-.whole {
+  .whole {
     height: auto;
   }
   .iFrameDiv {
@@ -450,9 +451,10 @@ h4 {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-.whole {
+  .whole {
     height: auto;
   }
+
 }
 </css>
         <data_table>sp_instance</data_table>
@@ -486,14 +488,14 @@ h4 {
         <sys_created_by>kumar.raja</sys_created_by>
         <sys_created_on>2024-02-08 12:04:31</sys_created_on>
         <sys_id>6cdeada093108a10acdc3f484dba10b8</sys_id>
-        <sys_mod_count>665</sys_mod_count>
+        <sys_mod_count>682</sys_mod_count>
         <sys_name>VFS  Form</sys_name>
         <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sp_widget_6cdeada093108a10acdc3f484dba10b8</sys_update_name>
         <sys_updated_by>chiranjit.behera</sys_updated_by>
-        <sys_updated_on>2024-03-04 10:02:52</sys_updated_on>
+        <sys_updated_on>2024-03-05 07:11:28</sys_updated_on>
         <template><![CDATA[<div class="whole">
   <div class="topSection">
     <h3 class="head">Help us plan your trip, fill out these details!!</h3>
@@ -506,13 +508,13 @@ h4 {
   <div ng-show="!isSectionCollapsed" class="tripForm">
     <form>
       <div class="line">
-        <div style="margin-bottom: 15px;">
+        <div>
           <label>Choose Trip: <span style="color: red">*</span></label>
           <select style="width: 100%;" id="option_0" ng-model="selectedOption" ng-change="updateDropdownOptions()" required>
             <option ng-repeat="option in options" id="choose_trip_{{$index}}" ng-value="option.value">{{ option.label }}</option>
           </select>
         </div>
-        <div style="margin-bottom: 15px;">
+        <div>
           <label>Travel region: <span style="color: red">*</span></label>
           <select style="width: 100%;" id="travelregion" ng-model="selectedRegion" required>
             <option ng-repeat="region in regions" id="{{region.value}}_{{$index}}" ng-value="region.value">{{ region.label }}</option>
@@ -520,28 +522,28 @@ h4 {
         </div>
       </div>
       <div class="line">
-        <div style="margin-bottom: 15px;">
+        <div>
           <label>Start Date: <span style="color: red">*</span></label>
           <input type="date" style="width: 100%;" id="startdatepicker" ng-model="start" min="{{minStartDate}}" max="{{maxEndDate}}" ng-change="calculateDuration()" required />
         </div>
-        <div style="margin-bottom: 15px;">
+        <div>
           <label>End Date: <span style="color: red">*</span></label>
           <input type="date" style="width: 100%;" id="enddatepicker" ng-model="end" min="{{minStartofEndDate}}" max="{{maxEndDate}}" ng-change="calculateDuration()" required />
         </div>
       </div>
-      <div class="radioDiv daysDifference" ng-if="daysDifference">
+      <div class="radioDiv" ng-if="daysDifference">
         <label for="startdatepicker" class="wi-60"></label>
         <p class="wi-40">Duration is {{ daysDifference }} Day(s)</p>
       </div>
-      <div style="margin-bottom: 15px;">
-        <label class="wi-40"><h5>Are you/these Indian passport holder(s)?</h5></label>
-        <label>
+      <div>
+        <label class="wi-60"><h5>Are you/these Indian passport holder(s)?</h5></label>
+        <label style="margin-left: 15px">
           <input type="radio" name="yes" value="yes" ng-model="isIndianPassportHolder" checked />
-          <span style="margin-left: 10px">Yes</span>
+          <span>Yes</span>
         </label>
         <label>
           <input type="radio" name="yes" ng-model="isIndianPassportHolder" value="no" />
-          <span style="margin-left: 10px">No</span>
+          <span>No</span>
         </label>
       </div>
       <div class="line">
