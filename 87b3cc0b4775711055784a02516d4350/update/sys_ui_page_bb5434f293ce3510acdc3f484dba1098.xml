@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[var closeBot = false;
+
+function openChatBot() {
+    var chatbotContainer = document.getElementById("chatbot-container");
+    if (!closeBot) {
+        chatbotContainer.style.display = "block";
+        closeBot = !closeBot;
+    } else {
+        closeBot = !closeBot;
+        chatbotContainer.style.display = "none";
+    }
+
+}
+
+// function loadCategoryData() {
+    try {
+// 					var loadingGif = document.getElementById("loadingGif");
+// 					loadingGif.style.display = "block";
+                    var ga = new GlideAjax('categoryRPBank');
+                    ga.addParam('sysparm_name', "listOfCategory");
+                    ga.getXMLAnswer(function(answer) {
+						// loadingGif.style.display = "none";
+                        var response = JSON.parse(answer);
+                        response.forEach(function(item) {
+                            var InsuranceType = item.InsuranceType;
+                            var imageSrc = item.imageSrc;
+                            var discount = item.discount;
+                        });
+                        var articlesData = response;
+
+                        var articlesContainer = document.querySelector(".articles");
+                        var articleTemplate = document.getElementById("article-template");
+
+                        articlesData.forEach(function(articleData) {
+                            var newArticle = articleTemplate.cloneNode(true);
+                            newArticle.removeAttribute("id");
+                            newArticle.style.display = "block";
+                            if (articleData.discount === "0") {
+                                newArticle.querySelector(".discount-strip").remove();
+                            } else {
+                                newArticle.querySelector(".discount-strip").textContent = articleData.discount;
+                            }
+
+                            newArticle.querySelector("img").src = articleData.imageSrc;
+                            var insuranceTypeElement = newArticle.querySelector("h2");
+							insuranceTypeElement.textContent = articleData.InsuranceType;
+							insuranceTypeElement.addEventListener('click', function() {
+								var categoryId = articleData.categoryId;
+								window.location.href = "https://ven06799.service-now.com/x_rptp_insureme_memberdetailscopy.do?categoryId=" + categoryId;
+							});
+							
+                            var tagsContainer = newArticle.querySelector(".tags");
+                            var tagElements = tagsContainer.querySelectorAll("i, span");
+                            articleData.tags.forEach(function(tag, index) {
+                                if (index < 3) {
+                                    var tagElement = document.createElement("span");
+                                    tagElement.textContent = tag;
+									tagElement.onclick = function() {
+										localStorage.setItem("tagId",tag);
+										window.location.href="https://ven06799.service-now.com/ui_page.do?sys_id=b4e6fdae4716f11055784a02516d43f6";
+									}
+                                    tagsContainer.appendChild(tagElement);
+                                } else if (index === 3) {
+                                    var remainingTags = articleData.tags.length - 3;
+                                    var remainingTagsElement = document.createElement("span");
+                                    var stringData = "+" + remainingTags;
+                                    remainingTagsElement.textContent = stringData;
+                                    tagsContainer.appendChild(remainingTagsElement);
+
+                                }
+                            });
+
+//                             newArticle.addEventListener('click', function() {
+//                                 var categoryId = articleData.categoryId;
+//                                 window.location.href = "https://ven06798.service-now.com/x_rptp_insureme_memberdetailscopy.do?categoryId=" + categoryId;
+//                             });
+                            articlesContainer.appendChild(newArticle);
+                        });
+                    });
+    } catch (err) {
+        alert("Got the error while loading the data" + err);
+    }
+// }
+
+function getDetailsOfPage(event) {
+    var card = event.target;
+    var titleElement = card.querySelector('h2');
+}]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_rptp_insureme_category.do</endpoint>
+        <html><![CDATA[<html lang="en">
+<head>
+    <style>
+        * { 
+            font-family: 'Inter', sans-serif;
+			margin:0;
+			padding:0;
+        }
+		.body{
+			position:absolute;
+			top:0;
+			left:0;
+			background-color: #F4F5F7;
+			width:98vw;
+			height:100vh;
+		
+		}
+        article {
+            --img-scale: 1.001;
+            --InsuranceType-color: black;
+            --link-icon-translate: -20px;
+            --link-icon-opacity: 0;
+            position: relative;
+            border-radius: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+<!--             background: #fff; -->
+		background-color: #FFF;
+            transform-origin: center;
+            width: 20vw;
+            height: auto;
+            transition: all 0.4s ease-in-out;
+            margin-top: 4vh;
+            margin-bottom: 4vh;
+            overflow: hidden;
+        }
+
+        article a::after {
+            position: absolute;
+            inset-block: 0;
+            inset-inline: 0;
+            cursor: pointer;
+            content: "";
+        }
+
+        article h2 {
+            margin: -7px 0 18px 0;
+            font-size: 1.9rem;
+            letter-spacing: 0.06em;
+            color: var(--InsuranceType-color);
+            transition: color 0.3s ease-out;
+        }
+
+        figure {
+            margin: 0;
+            padding: 0;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+        }
+
+        article img {
+		width: 84px;
+            height: 84px;
+            transform-origin: center;
+            transform: scale(var(--img-scale));
+            transition: transform 0.4s ease-in-out;
+            display: block;
+            margin: 8vh auto 1vh auto;
+        }
+
+        .article-body {
+            padding: 0px 10px 10px 10px;
+        }
+
+        article a {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: #28666e;
+        }
+
+        article a:focus {
+            outline: 1px dotted #28666e;
+        }
+
+        article a .icon {
+            min-width: 25px;
+            width: 25px;
+            height: 24px;
+            margin-left: 2px;
+            transform: translateX(var(--link-icon-translate));
+            opacity: var(--link-icon-opacity);
+            transition: all 0.3s;
+        }
+
+        article:has(:hover, :focus) {
+            --img-scale: 1.1;
+            --InsuranceType-color: #28666e;
+            --link-icon-translate: 0;
+            --link-icon-opacity: 1;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+        }
+
+        .articles {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+
+        }
+
+        .discount-strip {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            border-radius: 16px 16px 0 0;
+            width: 100%;
+            height: 25px;
+            background-color: #56d456;
+            color: #000;
+			font-weight:600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+		    justify-content: center;
+            gap: 8px;
+		cursor:pointer;
+        }
+
+        .tags span {
+            background-color: #3e6896;
+            padding: 5px 15px;
+            border-radius: 180px;
+            height: auto;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            overflow: hidden;
+			color:#fff;
+        }
+		.tags span:hover {
+			background-color: #4a80b5; 
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+		}
+
+        .tags i {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 8px;
+            background: #ddd;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #333;
+            margin: 4px 0;
+        }
+		.tags i:hover {
+			background: #ccc; 
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
+		}
+
+        h1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        h2 {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+			cursor:pointer;
+        }
+
+        .container {
+            margin-top: 10vh;
+		width:100%;
+        }
+
+		.breadcrumbContent{
+			color:black;
+            text-decoration: none;
+		}
+		
+		.breadcrumbContent:hover{
+			color:#253858;
+            text-decoration: none;
+		}
+		.breadcrum {
+			position: absolute;
+			font-size: 14px;
+			font-style: normal;
+			font-weight: 400;
+			margin-top: 80px;
+			margin-left: 4%;
+		}
+		.chatbot-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1; 
+        }
+
+        .chatbot-icon img {
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+        }
+
+        .chatbot-container {
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+            width: auto;
+            height: 500px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			display:none;
+            z-index: 1;
+			overflow:hidden;
+			border-radius:10px;
+        }
+		iframe{
+			width:auto;
+			height:100%;
+		}
+		.displayNone{
+			display:none;
+		}
+    </style>
+</head>
+
+	
+<body >
+	<g:macro_invoke macro="RPTHeader" />
+	 <p class="breadcrum">
+				Services/<a href="https://ven06799.service-now.com/ui_page.do?sys_id=bb5434f293ce3510acdc3f484dba1098" class="breadcrumbContent"><b>Category</b></a>
+    </p>
+    <div class="container">
+        <div class="card-container" id="card-container" onclick="getDetailsOfPage(event)">
+            <section class="articles">
+                <article id="article-template" style="display: none;">
+                    <div class="article-wrapper">
+                        <figure>
+                            <div class="discount-strip"></div>
+                            <img src="" alt="" />
+                        </figure>
+                        <div class="article-body">
+                            <h2></h2>
+                            <p></p>
+                            <div class="tags"></div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+			<div class="chatbot-container" id="chatbot-container">
+				<iframe src="https://ven06799.service-now.com/$sn-va-web-client-app.do"></iframe>
+			</div>
+			<div class="chatbot-icon" id="chatbot-icon">
+				<img src="chatbotimg.png" alt="Chatbot" id="chatbot-icon"  onclick="openChatBot()"/>
+			</div>
+<!-- 				<g:macro_invoke macro="RPTBot" /> -->
+        </div>
+    </div>
+	<g:macro_invoke macro="RPTFooter" />
+	</body>
+</html>]]></html>
+        <name>category</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>abhishek.jaiswal</sys_created_by>
+        <sys_created_on>2023-10-26 11:19:08</sys_created_on>
+        <sys_id>bb5434f293ce3510acdc3f484dba1098</sys_id>
+        <sys_mod_count>198</sys_mod_count>
+        <sys_name>category</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_ui_page_bb5434f293ce3510acdc3f484dba1098</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-05 06:01:48</sys_updated_on>
+    </sys_ui_page>
+</record_update>
