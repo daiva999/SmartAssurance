@@ -141,6 +141,8 @@
 			if(userdetails.duration>0){
 				dataToPass = prodCode;
 				redirectURL = "/vfsp?id=test_payment";
+				// redirectURL = "/vfsp?id=payment_popup";
+				
 				storeSessionDetails(dataToPass, premiumAmount);
 				window.location.href = redirectURL;
 			}
@@ -212,13 +214,13 @@
 ]]></client_script>
         <controller_as>c</controller_as>
         <css>#productCardMainContainer{
-	height:65vh;
+  height:65vh;
   overflow:scroll;
   overflow-x:hidden;
 }
 //styling the scroll bar
 ::-webkit-scrollbar {
-display:none;
+  display:none;
 }
 /* Track */
 ::-webkit-scrollbar-track {
@@ -236,53 +238,56 @@ display:none;
 }
 
 /* #productCardMainContainer::-webkit-scrollbar {
-    display: none;
+display: none;
 }
 #productCardMainContainer {
-  -ms-overflow-style: none;
-  scrollbar-width: none;  
+-ms-overflow-style: none;
+scrollbar-width: none;  
 }*/
 #recommendation {
-    position: relative;
-  	width: fit-content;
-    border: none; /* Remove the border */
-    background: #caded8;
-    color: #03A678;
-    box-sizing: border-box;
-    display: flex;
-    align-items: flex-start;
-    padding: 5px; /* Increase padding for spacing */
-    font-weight:600;
-    border-radius: 20px; /* Apply border radius for curved corners */
-    font-size: 12px;
-   border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 0px; /* Set to 0 for a flat bottom border */
-    border-bottom-right-radius: 0px;
+  position: relative;
+  width: fit-content;
+  border: none; /* Remove the border */
+  background: #9747FF;
+  color: white;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  padding: 5px; /* Increase padding for spacing */
+  font-weight:600;
+  border-radius: 20px; /* Apply border radius for curved corners */
+  font-size: 12px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 0px; /* Set to 0 for a flat bottom border */
+  border-bottom-right-radius: 0px;
   //margin-left:2rem;
 }
 
 #productCardContainer{
   font-family: "Helvetica";
-	height: fit-content;
+  height: fit-content;
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
   border-top: 1px solid #f0f3f4; 
   border-left: 1px solid #f0f3f4; 
-	//border:0.4px solid #3D8BF2;
+  //border:0.4px solid #3D8BF2;
   border-radius:0.5rem;
   //box-shadow: 0 0 2px 2px #737a87;
   margin: 0 0 1.5rem 0;
   padding: 1rem 1.5rem;
   background:#FFF;
-  
+  width: 550px;
+
 }
 #productCardimageContainer img{
   margin-left:1rem;
-	height: 100px;
+  height: 100px;
   width:100px;
 }
 #benefitValue{
-	text-align:center;
+  color:#121212;
+  font-weight:bold;
+  text-align:center;
   font-weight:bold;
 }
 #productTitleAndBenefits&gt; p{
@@ -291,7 +296,7 @@ display:none;
   padding-top:0;
   font-size:1.5rem;
   font-weight:750;
-  color:#03A678;
+  color:#9747FF;
 }
 
 #productCardimageContainer{
@@ -301,37 +306,39 @@ display:none;
 }
 #productCardRow1{
   width:100%;
-	display:flex;
+  display:flex;
   justify-content:space-between;
 }
 #productTitleAndBenefits{
-	margin:0 1rem 0.5rem 1rem;
+  margin:0 1rem 0.5rem 1rem;
   width:65%;
 }
 #productCardPriceBar{
-	min-width:20%;
+  min-width:20%;
   //height:7.5rem;
   display:flex;
   flex-direction:column;
 }
 #productCardPriceBar p{
-	//margin-right:20px;
+  //margin-right:20px;
   font-size:1.7rem;
   font-weight:750;
-  color:red;
+  color:#121212;
   //margin-top:10px;
   text-align:center;
+  //margin-top: 13px;
 }
 #productCardPriceBarButton{
-	min-width:3.5rem;
+  min-width:3.5rem;
   padding:0.25rem;;
   text-align:center;
-  background-color:#6eb8b1;
+  background-color:#9747FF;
   color:white;
   font-size: 1.5rem;
   font-weight:500;
   border:none;
   border-radius:0.5rem;
+  margin-top: 25px;
 }
 
 #benefits{
@@ -339,31 +346,44 @@ display:none;
   margin-left:auto;
   margin-right:auto;
   display: flex;
+  font-weight: bold;
   //justify-content:space-between;
   gap:1rem 0.3rem;
   flex-wrap: wrap;
 }
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 equal-width columns */
-    gap: 5px; /* Gap between grid items */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal-width columns */
+  gap: 5px; /* Gap between grid items */
 }
 .grid-item {
-    padding: 5px; /* Adjust padding for each grid item */
-    //background-color: #f0f0f0; /* Background color for grid items */
-    border-radius: 5px; /* Border radius for grid items */
+  padding: 5px; /* Adjust padding for each grid item */
+  //background-color: #f0f0f0; /* Background color for grid items */
+  border-radius: 5px; /* Border radius for grid items */
 }
 button.grid-item {
-    text-align: center;
-    background-color: #ffffff; /* Background color for the button */
-    border: 1px solid #999999; /* Border color for the button */
+  text-align: center;
+  background-color: #ffffff; /* Background color for the button */
+  border: 1px solid #999999; /* Border color for the button */
+}
+.benefits {
+  padding: 5px; /* Adjust padding for each grid item */
+  //background-color: #f0f0f0; /* Background color for grid items */
+  border-radius: 5px; /* Border radius for grid items */
+}
+button.benefits {
+  text-align: center;
+  background-color: #ffffff; /* Background color for the button */
+  border: 1px solid #999999; /* Border color for the button */
 }
 .pill {
   font-size:10px;
   //min-width:50px;
   display: block;
   text-align: center;
-// border:1.5px solid lightgrey;
+  color:#B3B3B3;
+  font-weight:bold;
+  // border:1.5px solid lightgrey;
   //padding: 8px;
   //background:yellow;
   //margin: 4px;
@@ -375,31 +395,31 @@ button.grid-item {
   //background:yellow;
   margin-left:auto;
   margin-right:auto;
-   /* Allow items to wrap to the next line */
-	display:flex;
+  /* Allow items to wrap to the next line */
+  display:flex;
   gap: 2.5rem;
 }
 #benefitItems {
-    position: relative;
-   // display: inline-block;
-  }
+  position: relative;
+  // display: inline-block;
+}
 .benefittooltip {
-  	width:fit-content;
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    padding: 5px;
-    border-radius: 5px;
-    z-index: 1;
-  }
+  width:fit-content;
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 1;
+}
 /*
-  #benefitItems:hover .benefittooltip {
-    display: block;
-  }
+#benefitItems:hover .benefittooltip {
+display: block;
+}
 */
 #detailsPageRedirectButton{
-	background:none;
+  background:none;
   border:none;
   text-decoration:underline;
   color:#4287f5;
@@ -408,7 +428,7 @@ button.grid-item {
   font-size:10px;
 }
 #termsAndConditions{
-	background:none;
+  background:none;
   border:none;
   text-decoration:underline;
   color:#4287f5;
@@ -416,37 +436,45 @@ button.grid-item {
   font-size:1rem;
 }
 #premiumDetails{
-	display:flex;
+  display:flex;
   flex-direction:column;
 }
 #premium{
-  text-align:center;
-  font-weight:500;
-	font-size:1rem;
-  color:#65ba9b;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #BBBBBB;
+  font-weight: bold; 
+
 }
 .sumAssured, .premiumValue{
   margin-bottom:0px;
 }
 #premiumTitle{
-	font-size: 1rem;
-  color:#65ba9b; 
+  font-size: 1.3rem;
+  color: #BBBBBB;
+  font-weight: bold; 
+}
+
+.sumAssured{
+  color: black;
+  font-weight: bold;
 }
 
 .card-image img{
   width:120px;
   height:120px;
 }
- 
+
 #productsSelected{
   display: inline-flex;
 }
- 
- 
+
+
 .selected-item{
   text-transform:capitalize;
 }
- 
+
 .compareButton{
   visibility:hidden;
 }
@@ -461,10 +489,55 @@ button.grid-item {
   border: none;
   border-radius: 0.5rem;
 }
- 
- 
+
+
+.form-check{
+  display: flex;
+  align-items: center; 
+  width: max-content;
+}
+
+.form-check-input {
+  appearance: none; /* Remove default appearance */
+  -webkit-appearance: none; /* For Safari/Chrome */
+  -moz-appearance: none; /* For Firefox */
+  width: 18px; /* Adjust width as needed */
+  height: 18px; /* Adjust height as needed */
+  border: 2px solid #ccc; /* Border color */
+  border-radius: 3px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: relative; 
+  margin-right: 10px;
+}
+
+.form-check-input:checked {
+  background-color: #9747FF;
+}
+
+.form-check-input::after {
+  content: "\2713"; /* Unicode for check mark */
+  font-size: 16px;
+  color: white; /* Color of the tick mark */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease;
+}
+
+.form-check-input:checked::after {
+  opacity: 1;
+}
+.form-check-label {
+  margin-top: 20px;
+}
+
+
+
 .productsSelectedContainer{
- 
+
   width: 900px;
   height: 100px;
   padding: 0 10px;
@@ -476,16 +549,206 @@ button.grid-item {
 
 //for image of recommendation
 #people::before {
-    content: "\1F465";
-    font-size: 12px;
- 
+  content: "\1F465";
+  font-size: 12px;
+
 }
 
 #star::before{
   content: "\2605";
-    font-size: 12px;
+  font-size: 12px;
 }
 
+
+
+/* Mobile Responsive Styles */
+@media only screen and (max-width: 600px) {
+
+  #recommendation {
+    display: flex;
+    align-items: flex-start;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-item:nth-child(n+3) {
+    display: none;
+  }
+  #productCardMainContainer {
+    height: auto;
+    overflow: visible;
+  }
+
+  #productCardimageContainer img{
+    margin-left:1rem;
+    height: 70px;
+    width:70px;
+  }
+
+  #productCardContainer {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto 1rem auto;
+    padding: 1rem;
+  }
+
+  #productTitleAndBenefits {
+    width: 100%;
+    margin: 0;
+    margin-left: 10px;
+  }
+
+  #productCardPriceBar {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+
+  #productCardPriceBarButton {
+    min-width: 40%;
+    margin-top: 0;
+  }
+
+  .form-check{
+    display: flex;
+    align-items: center; 
+    width: max-content;
+  }
+
+  .form-check-input {
+    width: 14px; /* Adjust width as needed */
+    height: 14px; /* Adjust height as needed */
+    border: 1px solid #ccc; /* Border color */
+  }
+
+  .form-check-input::after {
+    font-size: 12px;
+  }
+
+  .form-check-label{
+    font-size:10px;
+    margin-left: -5px;
+  }
+
+  #productTitleAndBenefits&gt; p{
+    font-size:1.3rem;
+  }
+
+  #premiumTitle{
+    font-size: 1.2rem;
+    color: #BBBBBB;
+    font-weight: bold; 
+  }
+
+  .sumAssured{
+    color: black;
+    font-weight: bold;
+  }
+
+}
+
+
+@media only screen and (min-width: 601px) and (max-width: 1200px) {
+
+  #recommendation {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  #productCardMainContainer {
+    height: auto;
+    overflow: visible;
+  }
+
+  #productCardimageContainer img{
+    margin-left:1rem;
+    height: 100px;
+    width:100px;
+  }
+
+  #productCardContainer {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto 1rem auto;
+    padding: 1rem;
+  }
+
+  #productTitleAndBenefits {
+    width: 100%;
+    margin: 0;
+    margin-left: 10px;
+  }
+
+  #productCardPriceBar {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+
+  #productCardPriceBarButton {
+    min-width: 40%;
+    margin-top: 0;
+  }
+
+  .form-check{
+    display: flex;
+    align-items: center; 
+    width: max-content;
+    margin-top: -20px;
+  }
+
+  .form-check-input {
+    width: 14px; /* Adjust width as needed */
+    height: 14px; /* Adjust height as needed */
+    border: 1px solid #ccc; /* Border color */
+  }
+
+  .form-check-input::after {
+    font-size: 12px;
+  }
+
+  .form-check-label{
+    font-size:10px;
+    margin-left: -5px;
+  }
+
+  #productTitleAndBenefits&gt; p{
+    font-size:1.3rem;
+    text-align: center;
+  }
+
+  #premiumTitle{
+    font-size: 1.2rem;
+    color: #BBBBBB;
+    font-weight: bold; 
+  }
+
+  .sumAssured{
+    color: black;
+    font-weight: bold;
+  }
+
+  #productCardRow1{
+    width:100%;
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+  }
+
+  .check{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+
+}
 </css>
         <data_table>sp_instance_table</data_table>
         <demo_data/>
@@ -723,14 +986,14 @@ button.grid-item {
         <sys_created_by>kumar.raja</sys_created_by>
         <sys_created_on>2024-01-22 09:29:05</sys_created_on>
         <sys_id>03f7a987937f3910acdc3f484dba1081</sys_id>
-        <sys_mod_count>997</sys_mod_count>
+        <sys_mod_count>1081</sys_mod_count>
         <sys_name>Product Cards</sys_name>
         <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sp_widget_03f7a987937f3910acdc3f484dba1081</sys_update_name>
         <sys_updated_by>sachin_hm</sys_updated_by>
-        <sys_updated_on>2024-02-29 09:55:40</sys_updated_on>
+        <sys_updated_on>2024-03-05 08:57:10</sys_updated_on>
         <template><![CDATA[<div id="productCardMainContainer">
 
   <div ng-repeat="record in tableDetails" >
@@ -751,7 +1014,7 @@ button.grid-item {
       </div>
       <div id="productCardContainer">
         <div id="productCardRow1">
-          <div>
+          <div class="check">
             <div id="productCardimageContainer">
               <img src={{record.image}} />
             </div>
@@ -781,7 +1044,7 @@ button.grid-item {
                   </div>
                 </div>
                 <button id="detailsPageRedirectButton"
-                        ng-click="redirectToProductPage(record.productCode,record.insurer)" class="grid-item"
+                        ng-click="redirectToProductPage(record.productCode,record.insurer)" class="benefits"
                         style="border: none; outline: none;">
                   View All Benefits
                 </button>
