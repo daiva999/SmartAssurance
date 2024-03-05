@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($scope) {
+	/* widget controller */
+	var c = this;
+	$scope.callModal=function (category){
+		alert(category);
+	}
+	// form client scripting
+	
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.cardContainer{
+  	margin-top:2rem;
+  	display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 4 columns */
+    grid-gap: 20px; 
+}
+.card{
+  	height: 23rem;
+    width: 35.0625rem;
+    box-shadow: 0.1875rem 0.1875rem 0.5rem rgba(0, 0, 0, .2);
+    border-top: 0.0625rem solid #f0f3f4;
+    border-left: 0.0625rem solid #f0f3f4;
+    padding-bottom: 1.25rem;
+    padding-right: 1.25rem;
+    padding-left: 1.0625rem;
+    border-radius: 0.625rem;
+    background-color: white;
+ 		 position: relative;
+  	padding-top:20px;
+}
+figure {
+    display: flex;
+    justify-content: center;
+}
+.categoryImage{
+	width: 100px;
+  height:100px
+}
+
+
+
+.tags {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.tag {
+  display: inline-block;
+  border-radius: 5px;
+  background-color: #9747FF;
+  padding: 5px 15px;
+  border-radius: 180px;
+  height: auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  overflow: hidden;
+  color: #fff;
+}
+
+.tag:active,.tag:focus,.tag:hover{
+  background-color: #1F8476 !important;
+}
+
+.categoryName{
+	font-size:22px;
+  text-align:center;
+  color:blue;
+  cursor:pointer
+
+}
+
+// form styling
+
+
+
+
+
+
+
+
+
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>productcategories</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>Product Categories</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	data.example = $sp.getWidget('vfs_pop_up_form', {});
+	data.categArray=[];
+	var categories=new GlideRecord('x_rptp_insureme_product_categories');
+	categories.query();
+	while(categories.next()){
+		data.categArray.push({
+			category:categories.getValue('category_name'),
+			image_url:categories.getValue('image_url'),
+			offers: categories.getValue('offers'),
+			tags: categories.getValue('tags').split(',')
+		})
+	}
+
+	function reStructureData(data, categoryName, newIndex) {
+		var currentIndex = -1;
+		for (var i = 0; i < data.length; i++) {
+			if (data[i].category === categoryName) {
+				currentIndex = i;
+				break;
+			}
+		}
+		if (currentIndex !== -1) {
+			var categoryObject = data.splice(currentIndex, 1)[0];
+			data.splice(newIndex, 0, categoryObject);
+		}
+		return data;
+	}
+	
+	reStructureData(data.categArray,"Travel Insurance",0);
+	
+	
+
+	//gs.addErrorMessage(JSON.stringify(data.categArray))
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>kumar.raja</sys_created_by>
+        <sys_created_on>2024-03-05 05:53:25</sys_created_on>
+        <sys_id>25035e3047b8861055784a02516d43b2</sys_id>
+        <sys_mod_count>95</sys_mod_count>
+        <sys_name>Product Categories</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_25035e3047b8861055784a02516d43b2</sys_update_name>
+        <sys_updated_by>kumar.raja</sys_updated_by>
+        <sys_updated_on>2024-03-05 10:04:17</sys_updated_on>
+        <template><![CDATA[<div>
+	<div class="container">
+		<div class="cardContainer" id="card-container">
+			<div class='card' ng-repeat="card in data.categArray">
+				<div class="article-wrapper">
+					<figure>
+						<!--  <div class="discount-strip" ng-if="card.offers">{{ card.offers }}</div>-->
+						<img class="categoryImage" src="{{ card.image_url }}" alt="" />
+					</figure>
+					<h2 class='categoryName' data-toggle="modal" ng-click='callModal(card.category)'>{{ card.category }}
+					</h2>
+					<div class='tags'>
+						<div ng-repeat="tag in card.tags">
+							<div class='tag'>
+								{{ tag }}
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="exampleModalLongTitle">Help us plan your trip, fill out these details!
+					</h3>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="line">
+						<div style="margin-bottom: 15px;">
+							<label>Choose Trip: <span style="color: red">*</span></label>
+							<select style="width: 100%;" id="option_0" ng-model="selectedOption"
+								ng-change="updateDropdownOptions()" required>
+								<option ng-repeat="option in options" id="choose_trip_{{$index}}"
+									ng-value="option.value">{{ option.label }}</option>
+							</select>
+						</div>
+						<div style="margin-bottom: 15px;">
+							<label>Travel region: <span style="color: red">*</span></label>
+							<select style="width: 100%;" id="travelregion" ng-model="selectedRegion" required>
+								<option ng-repeat="region in regions" id="{{region.value}}_{{$index}}"
+									ng-value="region.value">{{ region.label }}</option>
+							</select>
+						</div>
+					</div>
+					<div class="line">
+						<div style="margin-bottom: 15px;">
+							<label>Start Date: <span style="color: red">*</span></label>
+							<input type="date" style="width: 100%;" id="startdatepicker" ng-model="start"
+								min="{{minStartDate}}" max="{{maxEndDate}}" ng-change="calculateDuration()" required />
+						</div>
+						<div style="margin-bottom: 15px;">
+							<label>End Date: <span style="color: red">*</span></label>
+							<input type="date" style="width: 100%;" id="enddatepicker" ng-model="end"
+								min="{{minStartofEndDate}}" max="{{maxEndDate}}" ng-change="calculateDuration()"
+								required />
+						</div>
+					</div>
+					<div class="radioDiv daysDifference" ng-if="daysDifference">
+						<label for="startdatepicker" class="wi-60"></label>
+						<p class="wi-40">Duration is {{ daysDifference }} Day(s)</p>
+					</div>
+					<div style="margin-bottom: 15px;">
+						<label class="wi-40">
+							<h5>Are you/these Indian passport holder(s)?</h5>
+						</label>
+						<label>
+							<input type="radio" name="yes" value="yes" ng-model="isIndianPassportHolder" checked />
+							<span>Yes</span>
+						</label>
+						<label>
+							<input type="radio" name="yes" ng-model="isIndianPassportHolder" value="no" />
+							<span>No</span>
+						</label>
+					</div>
+					<div class="line">
+						<div>
+							<label>No. of travellers (Up to 4): <span style="color: red">*</span></label>
+							<select id="travelnumbers" style="width: 100%;" ng-change="generateFields()"
+								ng-model="numberOfTravellers" required>
+								<option value="1" id="option1">1</option>
+								<option value="2" id="option2">2</option>
+								<option value="3" id="option3">3</option>
+								<option value="4" id="option4">4</option>
+							</select>
+						</div>
+						<div ng-repeat="traveller in travellers track by $index">
+							<label>Age of Person {{$index + 1}}: <span style="color: red">*</span></label>
+							<select style="width: 100%;" id="selectAge{{$index}}" name="selectAge{{$index}}"
+								ng-model="traveller.age" ng-options="age for age in ages" required></select>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button ng-click="handleButtonClick()" type="button" class="btn btn-primary">Continue</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>]]></template>
+    </sp_widget>
+</record_update>
