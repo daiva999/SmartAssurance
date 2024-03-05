@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[function getDetailsFromParams() {
+    var currentURL = window.location.href;
+    var urlParams = new URLSearchParams(currentURL.split('?')[1]);
+    var products_List = (currentURL.split('?')[1]).split('&');
+    var productIds = [];
+
+    products_List.forEach(function(item) {
+        productIds.push(item.split('=')[1]);
+    });
+
+    var ga = new GlideAjax('comparisonInsureMe');
+    ga.addParam('sysparm_name', 'getDataFromProductDetails');
+    ga.addParam('product_id', productIds);
+    ga.getXMLAnswer(function(response) {
+        var productDet = JSON.parse(response);
+
+
+        var table = document.querySelector('.comparison-table');
+
+
+        function findKeysByValue(obj, targetValue) {
+            for (var key in obj) {
+                if (obj.hasOwnProperty(key) && obj[key] === targetValue) {
+                    return key;
+                }
+            }
+        }
+
+        function createRow(key, productA, productB) {
+            var row = document.createElement('div');
+            row.classList.add('row');
+
+            var keyCell = document.createElement('div');
+            keyCell.classList.add('key');
+            keyCell.textContent = key;
+
+            var productACell = document.createElement('div');
+            productACell.classList.add('product-a');
+            if (productA === '') {
+                var compareSvg = document.createElement("div");
+                var svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+                svgElement.setAttribute("fill", "none");
+                svgElement.setAttribute("viewBox", "0 0 24 24");
+                svgElement.setAttribute("stroke-width", "3");
+                svgElement.setAttribute("stroke", "currentColor");
+                svgElement.classList.add("wrong");
+                var pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                pathElement.setAttribute("stroke-linecap", "round");
+                pathElement.setAttribute("stroke-linejoin", "round");
+                pathElement.setAttribute("d", 'M6 18L18 6M6 6l12 12');
+                svgElement.appendChild(pathElement);
+                compareSvg.appendChild(svgElement);
+                productACell.appendChild(compareSvg);
+
+            } else {
+                productACell.textContent = productA;
+            }
+
+            var productBCell = document.createElement('div');
+            productBCell.classList.add('product-b');
+            if (productB === '') {
+                var compareSvg = document.createElement("div");
+                var svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+                svgElement.setAttribute("fill", "none");
+                svgElement.setAttribute("viewBox", "0 0 24 24");
+                svgElement.setAttribute("stroke-width", "3");
+                svgElement.setAttribute("stroke", "currentColor");
+                svgElement.classList.add("wrong")
+                var pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                pathElement.setAttribute("stroke-linecap", "round");
+                pathElement.setAttribute("stroke-linejoin", "round");
+                pathElement.setAttribute("d", 'M6 18L18 6M6 6l12 12');
+                svgElement.appendChild(pathElement);
+                compareSvg.appendChild(svgElement);
+                productBCell.appendChild(compareSvg);
+            } else {
+                productBCell.textContent = productB;
+            }
+
+            row.appendChild(keyCell);
+            row.appendChild(productACell);
+            row.appendChild(productBCell);
+
+            return row;
+        }
+
+        var rowData = [{
+            title: "Features Offers",
+            productA: productDet[0].features != null ?  productDet[0].features : '',
+            productB: productDet[1].features != null ?  productDet[1].features : '',
+        }, {
+            title: "Annual Premium",
+            productA: productDet[0].anuallyprem != null ? '₹' + productDet[0].anuallyprem : '',
+            productB: productDet[1].anuallyprem != null ? '₹' + productDet[1].anuallyprem : ''
+        }, {
+            title: "Policy Amount",
+            productA: productDet[0].policyamount != null ? productDet[0].policyamount : '',
+            productB: productDet[1].policyamount != null ? productDet[1].policyamount : '',
+        }, {
+            title: "Policy Duration",
+            productA: productDet[0].policyduration != null ? productDet[0].policyduration + ' months' : '',
+            productB: productDet[1].policyduration != null ? productDet[1].policyduration + ' months' : '',
+        }];
+
+
+        //         var rowData = [{
+        //                 title: 'Renewal Bonus',
+        //                 productA: '₹10.5 lakh per year and upto maximum of ₹49 lakh. No reduction in case of claim',
+        //                 productB: '₹10 lakh per year and upto a maximum of ₹30 lakh for every claim free year. Even if you make a claim, balance sum insured will be carried forward'
+        //             },
+        //             {
+        //                 title: 'Free health checkup',
+        //                 productA: 'Available as an optional cover. Once every year for all Insured',
+        //                 productB: 'Once every year. Free health checkup every year for all insured members in the designated diagnostic centres (₹500 for every 1 lakh Sum Insured)'
+        //             },
+        //             {
+        //                 title: 'Maternity cover',
+        //                 productA: 'Discount of up to ₹25,000 on maternity with no waiting period. This is a part of care health discount connect program on selected cities and hospitals only under value added services. This benefit is not available on monthly mode payments (Refer maternity network list for T&C)',
+        //                 productB: ''
+        //             },
+        //             {
+        //                 title: 'Hospitalization at home',
+        //                 productA: '',
+        //                 productB: 'Covered upto ₹1 Cr'
+        //             }
+        //         ];
+
+        for (var i = 0; i < rowData.length; i++) {
+            var row = createRow(rowData[i].title, rowData[i].productA, rowData[i].productB);
+            table.appendChild(row);
+        }
+
+        var header = document.createElement('div');
+        header.classList.add('row');
+
+        var tableHeading = document.createElement('div');
+        tableHeading.classList.add('tableHeading');
+        tableHeading.textContent = 'Features';
+
+        var productAHeader = document.createElement('div');
+        productAHeader.classList.add('product-a');
+        var productALogo = document.createElement('div');
+        productALogo.classList.add('productLogo');
+        var productAImage = document.createElement('img');
+        productAImage.src =productDet[0].imageiurl;
+        productAImage.alt = 'lic logo';
+        var productATitle = document.createElement('div');
+        productATitle.classList.add('productTitle');
+        productATitle.textContent = productDet[0].name;
+        var productABtn = document.createElement('button');
+        productABtn.classList.add('btn');
+        productABtn.textContent = 'View Details';
+		productABtn.onclick=function(){
+			window.location.href ="https://ven06799.service-now.com/x_rptp_insureme_productdetails.do?product="+productDet[0].sys_id;
+		};
+
+        var productBHeader = document.createElement('div');
+        productBHeader.classList.add('product-b');
+        var productBLogo = document.createElement('div');
+        productBLogo.classList.add('productLogo');
+        var productBImage = document.createElement('img');
+        productBImage.src = productDet[1].imageiurl;
+        productBImage.alt = 'lic logo';
+        var productBTitle = document.createElement('div');
+        productBTitle.classList.add('productTitle');
+        productBTitle.textContent = productDet[1].name;
+        var productBBtn = document.createElement('button');
+        productBBtn.classList.add('btn');
+        productBBtn.textContent = 'View Details';
+		productBBtn.onclick=function(){
+			window.location.href ="https://ven06799.service-now.com/x_rptp_insureme_productdetails.do?product="+productDet[1].sys_id;
+		};
+
+        productALogo.appendChild(productAImage);
+        productAHeader.appendChild(productALogo);
+        productAHeader.appendChild(productATitle);
+        productAHeader.appendChild(productABtn);
+
+        productBLogo.appendChild(productBImage);
+        productBHeader.appendChild(productBLogo);
+        productBHeader.appendChild(productBTitle);
+        productBHeader.appendChild(productBBtn);
+
+        header.appendChild(tableHeading);
+        header.appendChild(productAHeader);
+        header.appendChild(productBHeader);
+
+        table.prepend(header);
+    });
+
+
+}
+getDetailsFromParams();]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_rptp_insureme_comparepage.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<style>
+		
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter',sans-serif;
+        }
+		.body{
+			position:absolute;
+			top:0;
+			left:0;
+		}
+
+        .comparisionPage {
+            background: #f4f5f7;
+            width: 99vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+			padding-top:40px;
+			
+        }
+
+        .title {
+            margin: 85px 0 15px 0;
+            font-size: 24px;
+            font-weight: 600;
+			color:#253858;
+        }
+
+        .comparison-table {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ccc;
+            width: 60%;
+            margin: 0 auto;
+            border-radius: 10px;
+            background: #f5f5f5;
+            box-shadow: 0px 0px 10px rgb(172, 172, 172);
+            color: #253858;
+			padding: 0 10px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 10px;
+        }
+
+		
+        .row:nth-child(even) {
+            background: #dfdfdf;
+        } 
+
+        .key {
+            flex-basis: 30%;
+            font-weight: bold;
+            padding: 5px 0;
+        }
+
+        .product-a,
+        .product-b {
+            flex-basis: 35%;
+            padding: 5px 10px;
+        }
+
+        .key,
+        .product-a {
+            border-right: 1px solid #d0d0d0;
+        }
+
+        img {
+            height: 50px;
+        }
+
+        .productTitle {
+            font-size: 18px;
+            font-weight: 600;
+            color: #686868;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            background: #2673e7;
+            padding: 10px 60px;
+            border-radius: 8px;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .productLogo {
+            background: #fff;
+            height: 60px;
+            width: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            border: 1px solid #dfe1e6;
+        }
+
+        .tableHeading {
+            font-size: 24px;
+            border-right: 1px solid #d0d0d0;
+            font-weight: 600;
+            color: #686868;
+            flex-basis: 30%;
+        }
+
+        .wrong {
+            color: rgb(135, 0, 0);
+            width: 30px;
+            height: 30px;
+        }
+		
+		.breadcrum {
+			position: absolute;
+			font-size: 14px;
+			font-style: normal;
+			font-weight: 400;
+			margin-top: 100px;
+			margin-left: 3%;
+		}
+		
+		.breadcrumbContent{
+			color:black;
+            text-decoration: none;
+		}
+		
+		.breadcrumbContent:hover{
+			color:#253858;
+            text-decoration: none;
+		}
+    </style>
+	<div class="body">
+		 <g:macro_invoke macro="RPTHeader" />
+		 
+				    <p class="breadcrum">
+				Services/<a href="https://ven06799.service-now.com/x_rptp_insureme_category.do" class="breadcrumbContent">Category</a>/Health Insurance/<a href="https://ven06798.service-now.com/now/nav/ui/classic/params/target/x_rptp_insureme_productdisplaycopy.do" class="breadcrumbContent">Product</a>/<b>Comparison Page</b>
+    </p>
+    <div class="comparisionPage">
+        <div class="title">Comparison Summary</div>
+        <div class="comparison-table">
+        </div>
+    </div>
+		
+		<g:macro_invoke macro="RPTBot" />
+		 <g:macro_invoke macro="RPTFooter" />
+	</div>
+</j:jelly>]]></html>
+        <name>comparepage</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>kumar.shanu</sys_created_by>
+        <sys_created_on>2023-10-25 12:36:38</sys_created_on>
+        <sys_id>e35d7b5a470a351055784a02516d4342</sys_id>
+        <sys_mod_count>94</sys_mod_count>
+        <sys_name>comparepage</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_ui_page_e35d7b5a470a351055784a02516d4342</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-05 06:35:50</sys_updated_on>
+    </sys_ui_page>
+</record_update>

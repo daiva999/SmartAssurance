@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_script_include action="INSERT_OR_UPDATE">
+<access>package_private</access>
+<active>true</active>
+<api_name>x_rptp_insureme.comparisonInsureMe</api_name>
+<caller_access/>
+<client_callable>true</client_callable>
+<description/>
+<name>comparisonInsureMe</name>
+<script><![CDATA[var comparisonInsureMe = Class.create();
+comparisonInsureMe.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+
+    getDataFromProductDetails: function() {
+        try {
+            var productIds = this.getParameter("product_id");
+            var productIdList = productIds.split(',');
+            var getProducts = new GlideRecord('x_rptp_insureme_productdetailsrpt');
+            getProducts.query();
+            var listOfProductDetails = [];
+            while (getProducts.next()) {
+// 				var data = {};
+                if (productIdList.indexOf(getProducts.getValue('sys_id')) !== -1) {
+                    listOfProductDetails.push({
+						sys_id: getProducts.getValue('sys_id'),
+                        name: getProducts.getValue('name'),
+                        monthlyperm: getProducts.getValue('monthlyperm'),
+                        offer: getProducts.getValue('offer'),
+                        imageiurl: getProducts.getValue('imageiurl'),
+                        features: getProducts.getValue('features'),
+                        anuallyprem: getProducts.getValue('anuallyprem'),
+                        policyamount: getProducts.getValue('policyamount'),
+                        policyduration: getProducts.getValue('policyduration'),
+                        coverageamount: getProducts.getValue('coverageamount'),
+                    });
+                }
+            }
+            if (productIds) {
+                return JSON.stringify(listOfProductDetails);
+            }
+        } catch (err) {
+            return err.toString();
+        }
+    },
+    type: 'comparisonInsureMe'
+});]]></script>
+<sys_class_name>sys_script_include</sys_class_name>
+<sys_created_by>abhishek.jaiswal</sys_created_by>
+<sys_created_on>2023-10-31 06:55:50</sys_created_on>
+<sys_id>62e8a154479ab91055784a02516d43a9</sys_id>
+<sys_mod_count>16</sys_mod_count>
+<sys_name>comparisonInsureMe</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy>read</sys_policy>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sys_script_include_62e8a154479ab91055784a02516d43a9</sys_update_name>
+<sys_updated_by>kumar.shanu</sys_updated_by>
+<sys_updated_on>2023-11-03 10:12:07</sys_updated_on>
+</sys_script_include>
+</record_update>
