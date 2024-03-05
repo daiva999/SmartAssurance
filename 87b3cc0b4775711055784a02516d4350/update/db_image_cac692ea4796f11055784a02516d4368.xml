@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <db_image action="INSERT_OR_UPDATE">
+<active>true</active>
+<category/>
+<format>png</format>
+<height>225</height>
+<image>98e6d2ea4796f11055784a02516d43c9</image>
+<name>kotak.png</name>
+<size_bytes>4941</size_bytes>
+<sys_class_name>db_image</sys_class_name>
+<sys_created_by>abhishek.jaiswal</sys_created_by>
+<sys_created_on>2023-11-07 10:01:40</sys_created_on>
+<sys_id>cac692ea4796f11055784a02516d4368</sys_id>
+<sys_mod_count>2</sys_mod_count>
+<sys_name>kotak.png</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>db_image_cac692ea4796f11055784a02516d4368</sys_update_name>
+<sys_updated_by>abhishek.jaiswal</sys_updated_by>
+<sys_updated_on>2023-11-07 10:01:49</sys_updated_on>
+<thumbnail/>
+<width>225</width>
+</db_image>
+</record_update>

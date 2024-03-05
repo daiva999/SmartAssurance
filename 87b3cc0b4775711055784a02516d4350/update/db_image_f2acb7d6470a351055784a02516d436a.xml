@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <db_image action="INSERT_OR_UPDATE">
+<active>true</active>
+<category/>
+<format>JPEG</format>
+<height>234</height>
+<image>dddc3f5a470a351055784a02516d4349</image>
+<name>aditya_birla_health.png</name>
+<size_bytes>12618</size_bytes>
+<sys_class_name>db_image</sys_class_name>
+<sys_created_by>kumar.shanu</sys_created_by>
+<sys_created_on>2023-10-25 12:32:57</sys_created_on>
+<sys_id>f2acb7d6470a351055784a02516d436a</sys_id>
+<sys_mod_count>3</sys_mod_count>
+<sys_name>aditya_birla_health.png</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>db_image_f2acb7d6470a351055784a02516d436a</sys_update_name>
+<sys_updated_by>kumar.shanu</sys_updated_by>
+<sys_updated_on>2023-10-25 12:33:23</sys_updated_on>
+<thumbnail/>
+<width>288</width>
+</db_image>
+</record_update>

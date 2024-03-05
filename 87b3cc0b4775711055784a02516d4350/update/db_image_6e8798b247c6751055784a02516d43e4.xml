@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <db_image action="INSERT_OR_UPDATE">
+<active>true</active>
+<category/>
+<format>png</format>
+<height>307</height>
+<image>8918d4b247c6751055784a02516d4342</image>
+<name>car_insurance.png</name>
+<size_bytes>71771</size_bytes>
+<sys_class_name>db_image</sys_class_name>
+<sys_created_by>kumar.shanu</sys_created_by>
+<sys_created_on>2023-10-26 09:10:28</sys_created_on>
+<sys_id>6e8798b247c6751055784a02516d43e4</sys_id>
+<sys_mod_count>2</sys_mod_count>
+<sys_name>car_insurance.png</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>db_image_6e8798b247c6751055784a02516d43e4</sys_update_name>
+<sys_updated_by>kumar.shanu</sys_updated_by>
+<sys_updated_on>2023-10-26 09:10:37</sys_updated_on>
+<thumbnail/>
+<width>276</width>
+</db_image>
+</record_update>
