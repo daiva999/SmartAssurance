@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
     <sys_ui_page action="INSERT_OR_UPDATE">
-<category>general</category>
-<client_script><![CDATA[function redirectToProductPage(product_sys_id){
+        <category>general</category>
+        <client_script><![CDATA[function redirectToProductPage(product_sys_id){
 	var url= 'https://dev61432.service-now.com/product.do?product_id='+product_sys_id;
 	console.log(url);
 	window.location.href = url;
 }]]></client_script>
-<description>Categojry page for insureMe</description>
-<direct>false</direct>
-<endpoint>x_rptp_insureme_categorypage.do</endpoint>
-<html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+        <description>Categojry page for insureMe</description>
+        <direct>false</direct>
+        <endpoint>x_rptp_insureme_categorypage.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 	<g2:evaluate>
 		var products=new GlideRecord('u_product');
@@ -56,21 +56,7 @@
       />
     </svg>
 	<style>
-		.qwerty {
-			color: black;
-			text-decoration: none;
-		}
-
-		.breadcrumbSection {
-			display: flex;
-			justify-content: space-between;
-			padding: 20px 70px 0 70px;
-		}
-
-		.breadcrumb {
-			padding: 0;
-			margin: 0;
-		}
+		
 
 		.userProfile {
 			width: 20px;
@@ -85,7 +71,21 @@
 			flex-wrap: wrap;
 		}
 
-		.productContainer {
+		.productC.qwerty {
+			color: black;
+			text-decoration: none;
+		}
+
+		.breadcrumbSection {
+			display: flex;
+			justify-content: space-between;
+			padding: 20px 70px 0 70px;
+		}
+
+		.breadcrumb {
+			padding: 0;
+			margin: 0;
+		}ontainer {
 			width: 150px;
 			height: 200px;
 			border-radius: 10px;
@@ -138,19 +138,19 @@
 		}
 	</style>
 </j:jelly>]]></html>
-<name>categorypage</name>
-<processing_script/>
-<sys_class_name>sys_ui_page</sys_class_name>
-<sys_created_by>kumar.shanu</sys_created_by>
-<sys_created_on>2023-10-25 12:06:32</sys_created_on>
-<sys_id>14863b16470a351055784a02516d430f</sys_id>
-<sys_mod_count>0</sys_mod_count>
-<sys_name>categorypage</sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sys_ui_page_14863b16470a351055784a02516d430f</sys_update_name>
-<sys_updated_by>kumar.shanu</sys_updated_by>
-<sys_updated_on>2023-10-25 12:06:32</sys_updated_on>
-</sys_ui_page>
+        <name>categorypage</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>kumar.shanu</sys_created_by>
+        <sys_created_on>2023-10-25 12:06:32</sys_created_on>
+        <sys_id>14863b16470a351055784a02516d430f</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>categorypage</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_ui_page_14863b16470a351055784a02516d430f</sys_update_name>
+        <sys_updated_by>kumar.raja</sys_updated_by>
+        <sys_updated_on>2024-03-05 06:14:18</sys_updated_on>
+    </sys_ui_page>
 </record_update>
