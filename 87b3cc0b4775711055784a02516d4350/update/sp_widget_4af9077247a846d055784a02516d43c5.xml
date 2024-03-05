@@ -1,145 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller=function($scope) {
+        <client_script><![CDATA[api.controller = function($scope) {
 
-	/* widget controller */
+    /* widget controller */
 
-	var c = this;
-	$scope.send="SEND OTP"
-	$scope.alert=""
-	$scope.otp ="";
+    var c = this;
+	$scope.ans="";
+    $scope.send = "SEND OTP";
+    $scope.alert = "";
+    $scope.otp = "";
+	$scope.obj = [];
+	$scope.ans = false ;
+	
+var obj1 = {
+    "policyNumber": $scope.policyNumber
+};
 
-	$scope.generateOTP = function () {
+c.server.get({
+    "value1": obj1
+}).then(function(response) {
+    $scope.obj = response.data.final[0].getdata;
+    alert($scope.obj);
+});
+	
 
-		$scope.otp = Math.floor(100000 + Math.random() * 900000);
-		$scope.value='true';
-		$scope.value3='true';
+    $scope.generateOTP = function() {
 
-
-		var obj={
-			"appNumber":$scope.applicationNumber,
-			"policyNumber":$scope.policyNumber,
-			"email":$scope.email,
-			"otp" : $scope.otp
-		}
-
-		c.server.get({"action":"createRecord","value":obj}).then(function(response){
-
-		})
-		setTimeout(function resendopt(){
-			$scope.value1 = "true"
+        $scope.otp = Math.floor(100000 + Math.random() * 900000);
+        $scope.value = 'true';
+        $scope.value3 = 'true';
 
 
-		},1000);
-		$scope.otpvalue="true"
+        var obj = {
+            "appNumber": $scope.applicationNumber,
+            "email": $scope.email,
+            "otp": $scope.otp
+        };
 
-	};
-	$scope.validate=function(num){
+        c.server.get({
+            "action": "createRecord",
+            "value": obj
+        }).then(function(response) {
+					$scope.obj= response.data.arr[0].status;
+				
+		//				alert(JSON.strigify($scope.obj));
 
-		if($scope.otp==num){
-			$scope.value2="true"
-			$scope.otpDiv="true";
-			$scope.alert="";
-			var obj = {
-				"appNumber": $scope.applicationNumber,
-				"policyNumber": $scope.policyNumber,
-				"email": $scope.email,
-				"otp": $scope.otp
-			};
+        });
+        setTimeout(function resendopt() {
+            $scope.value1 = "true";
 
-			sessionStorage.setItem("policy", JSON.stringify(obj));
 
-		}
-		else
-		{
-			$scope.alert="Enter the Correct OTP!!";
-		}
+        }, 20000);
+        $scope.otpvalue = "true";
 
-	}
+    };
+    $scope.validate = function(num) {
+				alert(JSON.stringify($scope.obj));
+			
+			
+
+        if ($scope.otp == num) {
+            $scope.value2 = "true";
+            $scope.otpDiv = "true";
+            $scope.alert = "";
+            var obj = {
+                "appNumber": $scope.applicationNumber,
+                "policyNumber": $scope.policyNumber,
+                "email": $scope.email,
+                "otp": $scope.otp
+            };
+
+            sessionStorage.setItem("policy", JSON.stringify(obj));
+
+        } else {
+            $scope.alert = "Enter the Correct OTP!!";
+        }
+
+    };
+
 
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css>  body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
+        <css>body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
 
-        .form-container {
-            background-color: #fff;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 50%;
-        }
+.form-container {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 50%;
+}
 
-        .form-group {
-          margin-top : 15px;
-            margin-bottom: 15px;
-        }
+.form-group {
+  margin-top : 15px;
+  margin-bottom: 15px;
+}
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
 
-        input {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
-        button {
-            background-color: #e86020;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-        }
+button {
+  background-color: #e86020;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
 
-        button.resend-btn {
-            background-color: #e86020;
-          font-size : 12.1px;
-        }
+button.resend-btn {
+  background-color: #e86020;
+  font-size : 12.1px;
+}
 
 
-        #validationCheckbox {
-            display: none; /* Hide the actual checkbox */
-        }
+#validationCheckbox {
+  display: none; /* Hide the actual checkbox */
+}
 
-       h4 {
-            display: inline-block;
-     
-            color: #4caf50;
-            padding: 10px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-       .error-message {
-    color: #ff0000; /* Red color for error messages */
-    font-size: 24px;
-    margin-top: 5px;
-    display: block; /* Ensure it displays as a block element */
-    text-align: left; /* Align the error message to the left */
+h4 {
+  display: inline-block;
+
+  color: #4caf50;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.error-message {
+  color: #ff0000; /* Red color for error messages */
+  font-size: 24px;
+  margin-top: 5px;
+  display: block; /* Ensure it displays as a block element */
+  text-align: left; /* Align the error message to the left */
 }
 
 *{
-      MARGIN: auto;
+  MARGIN: auto;
 }
 
 
-       </css>
+</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -156,54 +178,89 @@
         <public>true</public>
         <roles/>
         <script><![CDATA[(function() {
-  /* populate the 'data' object */
-  /* e.g., data.table = $sp.getValue('table'); */
-  data.arr = [];
+    // populate the 'data' object
+    // e.g., data.table = $sp.getValue('table');
+    data.arr = [];
+	
+	data.policynumber = [];
+	
+	
+	data.final = [];
+	
+	
+	var status = "";	
+	
+var StoredData = new GlideRecord('x_rptp_insureme_payment_details');
+StoredData.query();
+while (StoredData.next()) {
+    data.policynumber.push({
+        Data: StoredData.getValue('number')
+    });
+}
 
-  if (input && input.action == "createRecord") {
-    var otpGr = new GlideRecord('x_rptp_insureme_otptable');
-    otpGr.addQuery("policy_number", input.value.policyNumber);
-    otpGr.addQuery("application_number", input.value.appNumber);
-    otpGr.query();
 
-    if (!otpGr.next()) {
-      otpGr.newRecord();
-      var gr1 = new GlideRecord('x_rptp_insureme_payment_details');
-      gr1.addQuery('number', input.value.policyNumber);
-      gr1.query();
+var Result = JSON.stringify(data.policynumber);
+var parsedResult = JSON.parse(Result);
 
-      if (gr1.next()) {
-        otpGr.policy_number = input.value.policyNumber;
-        otpGr.application_number = input.value.appNumber;
-        otpGr.email = input.value.email;
-        otpGr.otp = input.value.otp;
-        otpGr.insert();
-      }
-		/*	else{
-				gs.addErrorMessage("Enter the correct policy number");
-			}
-			*/
-    } else {
-      otpGr.email = input.value.email;
-      otpGr.otp = input.value.otp;
-      otpGr.update();
+
+parsedResult.forEach(function (element) {
+    if ( input && element.Data === input.value1.policyNumber) {
+        data.final.push({
+            getdata: input.value1.policyNumber
+        });
     }
-  }
+});
+
+	
+
+    if (input && input.action === "createRecord") {
+        var otpGr = new GlideRecord('x_rptp_insureme_otptable');
+        otpGr.addQuery("policy_number", input.value.policyNumber);
+        otpGr.query();
+
+        if (!otpGr.next()) {
+            otpGr.newRecord();
+            var gr1 = new GlideRecord('x_rptp_insureme_payment_details');
+            gr1.addQuery('number', input.value.policyNumber);
+            gr1.query();
+
+            if (!gr1.hasNext()) {
+                data.arr.push({
+									status : "Enter the valid Policy Number"
+								});
+            } else {
+                if (gr1.next()) {
+                    otpGr.policy_number = input.value.policyNumber;
+                    otpGr.application_number = input.value.appNumber;
+                    otpGr.email = input.value.email;
+                    otpGr.otp = input.value.otp;
+                    otpGr.insert();
+                } else {
+                    otpGr.email = input.value.email;
+                    otpGr.otp = input.value.otp;
+                    otpGr.update();
+                }
+            }
+			
+        }
+    }
+		
 })();
+
 ]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>Surya.Prathap</sys_created_by>
         <sys_created_on>2024-02-28 04:45:04</sys_created_on>
         <sys_id>4af9077247a846d055784a02516d43c5</sys_id>
-        <sys_mod_count>189</sys_mod_count>
+        <sys_mod_count>264</sys_mod_count>
         <sys_name>policy form </sys_name>
         <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sp_widget_4af9077247a846d055784a02516d43c5</sys_update_name>
         <sys_updated_by>Ajmal.akram</sys_updated_by>
-        <sys_updated_on>2024-02-28 11:34:57</sys_updated_on>
+        <sys_updated_on>2024-03-05 04:42:24</sys_updated_on>
         <template><![CDATA[<div class="form-container">
   <div>
     <h1>Claim Your Insurance</h1>
@@ -212,55 +269,89 @@
   <form>
     <div class="form-group">
       <label for="applicationNumber">Application Number:</label>
-      <input type="text" id="applicationNumber" ng-model="applicationNumber" placeholder = "Enter your Application Number"required>
-    </div>
-
-    <div class="form-group">
-      <label for="policyNumber">Policy Number:</label>
-      <input type="text" id="policyNumber" ng-model="policyNumber" placeholder = "Enter your Policy Number" required>
-    </div>
-
-
-    <div class="form-group">
-      <label for="email">Email ID:</label>
-      <input type="email" id="email" ng-model="email"  placeholder = "Enter your Email Id" required>
+      <input type="text" id="applicationNumber"
+             ng-model="applicationNumber"
+             placeholder = "Enter your Application Number"required>
       
 
     </div>
-    <div class="form-group" ng-hide="otpDiv"  >
-     
 
-
-        <label for="otp" >OTP Verification:</label>
-        <input type="text"  ng-show="otpvalue" id="otp" ng-model="otp1"  style = "width : 120px" >
-
-
-        <button ng-click="generateOTP()"
-                ng-hide="value"
-                ng-disabled="!(email && policyNumber && applicationNumber)"
-                class="resend-btn"
-                style="display:inline-block; width: 70px; height: 40px; padding: 5px; margin-bottom: 10px;">
-          {{ send }}
-        </button>
-
-        <button ng-click="validate(otp1)"  ng-show="value3"  class="resend-btn" style="display:inline-block;  width : 70px ; height : 40px ; padding :5px; margin-bottom : 10px; " >Validate</button>
-        <button ng-click="generateOTP()" ng-show="value1" class="resend-btn" style="display:inline-block;  width : 70px ; height : 40px ; padding :5px; margin-bottom : 10px; " >Resend Otp</button>
+   <div class="form-group">
+    <label for="policyNumber">Policy Number:</label>
+    <input type="text" id="policyNumber" ng-model="policyNumber" placeholder="Enter your Policy Number" required>
     
+    <!-- Display error message if enterData is false -->
+    <span  ng-if = "!obj" style="color: red;">Enter the Valid Policy Number</span>
+
+</div>
+   
+    <div class="form-group">
+      <label for="email">Email ID:</label>
+      <input type="email" id="email"
+             ng-model="email" 
+             placeholder = "Enter your Email Id" required>
+
+
     </div>
-<span class="error-message">{{ alert }}</span>
+    <div class="form-group" ng-hide="otpDiv"  >
+
+
+
+      <label for="otp" >OTP Verification:</label>
+      <input type="text"  
+             ng-show="otpvalue" 
+             id="otp" 
+             ng-model="otp1"  
+             style = "width : 120px" >
+
+      <button ng-click="generateOTP()"
+              ng-hide="value"
+              ng-disabled="!(email && policyNumber && applicationNumber)"
+              class="resend-btn"
+              style="display:inline-block;
+                     width: 70px;
+                     height: 40px;
+                     padding: 5px; 
+                     margin-bottom: 10px;">
+        {{ send }}
+      </button>
+
+      <button ng-click="validate(otp1)" 
+              ng-show="value3"  
+              class="resend-btn" 
+              style="display:inline-block;
+                     width : 70px ; height : 40px ; 
+                     padding :5px;
+                     margin-bottom : 10px; " >
+        Validate</button>
+      <button ng-click="generateOTP()"  
+              ng-show="value3"
+              ng-disabled="!value1"
+              class="resend-btn" 
+              style="display:inline-block; 
+                     width : 70px ; 
+                     height : 40px ; 
+                     padding :5px; 
+                     margin-bottom : 10px; " >
+        Resend Otp</button>
+
+    </div>
+    <span class="error-message">{{ alert }}</span>
     <div ng-show="otpDiv">
       <!-- Checkbox and its associated label -->
-    <h4>
-      OTP Validation Successfull!!
+      <h4>
+        OTP Validation Successfull!!
       </h4>
     </div>
   </form>
 
   {{otp}}
+  {{data.status}}
+  
   <a href = "https://ven06798.service-now.com/vfsp?id=policy_claim">
-     <button ng-show="value2" type="submit">Submit</button>
+    <button ng-show="value2" type="submit">Submit</button>
   </a>
- 
+
 </div>
 ]]></template>
     </sp_widget>
