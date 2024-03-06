@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller = function($scope,$window, $uibModal) {
+<category>custom</category>
+<client_script><![CDATA[api.controller = function($scope,$window, $uibModal) {
 	var c = this;
 
 	// set of questions
@@ -63,8 +63,8 @@ if (!allQuestionsAnswered) {
 	};
 };
 ]]></client_script>
-        <controller_as>c</controller_as>
-        <css>button{
+<controller_as>c</controller_as>
+<css>button{
   background: none;
   border:none;
 }
@@ -75,20 +75,20 @@ img{
   height:200px;
   width:250px;
 }</css>
-        <data_table>sp_instance</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list/>
-        <has_preview>true</has_preview>
-        <id>insurance__questionnaire</id>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
-        <name>Insurance  Questionnaire</name>
-        <option_schema/>
-        <public>false</public>
-        <roles/>
-        <script><![CDATA[(function() {
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>true</has_preview>
+<id>insurance__questionnaire</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+<name>Insurance  Questionnaire</name>
+<option_schema/>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function() {
 
 	if (input && input.method == "questionAsked") {
 		// Checks if there is input data and if the method is "questionAsked".
@@ -142,20 +142,20 @@ img{
 })();
 
 ]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>harshitha</sys_created_by>
-        <sys_created_on>2024-02-13 06:03:35</sys_created_on>
-        <sys_id>162cca46935cc250acdc3f484dba1068</sys_id>
-        <sys_mod_count>185</sys_mod_count>
-        <sys_name>Insurance  Questionnaire</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_162cca46935cc250acdc3f484dba1068</sys_update_name>
-        <sys_updated_by>harshitha</sys_updated_by>
-        <sys_updated_on>2024-02-26 09:20:37</sys_updated_on>
-        <template><![CDATA[<div>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>harshitha</sys_created_by>
+<sys_created_on>2024-02-13 06:03:35</sys_created_on>
+<sys_id>162cca46935cc250acdc3f484dba1068</sys_id>
+<sys_mod_count>185</sys_mod_count>
+<sys_name>Insurance  Questionnaire</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_162cca46935cc250acdc3f484dba1068</sys_update_name>
+<sys_updated_by>harshitha</sys_updated_by>
+<sys_updated_on>2024-02-26 09:20:37</sys_updated_on>
+<template><![CDATA[<div>
   
   {{data.fields}}
   <div class="panel-body">
@@ -189,5 +189,5 @@ img{
 
 </script>
 <!-- End popup modal -->]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

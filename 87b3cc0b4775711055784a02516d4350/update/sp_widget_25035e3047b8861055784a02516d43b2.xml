@@ -1,17 +1,245 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller=function($scope) {
+<category>custom</category>
+<client_script><![CDATA[api.controller=function($scope) {
 	/* widget controller */
 	var c = this;
 	$scope.callModal=function (category){
-		alert(category);
+		if(category=="Travel Insurance"){
+			var h2Element = document.querySelector('.categoryName');
+			h2Element.setAttribute('data-target', '#exampleModalLong');
+
+		}
 	}
 	// form client scripting
-	
+
+	var schengen=JSON.parse(sessionStorage.getItem('schengen'));
+	//alert(JSON.stringify(schengen))
+	if(schengen && schengen.tourtype && schengen.place){
+		$scope.selectedRegion=schengen.place;
+		sessionStorage.removeItem('schengen');
+	}
+
+	$scope.travellers = [];
+
+	var dateFill= JSON.parse(sessionStorage.getItem(c.data.username));
+	$scope.daysDifference = 0;
+
+	// Calculate today's date to set as min date for start date
+	var today = new Date();
+	$scope.minStartDate = today.toISOString().split('T')[0];
+
+	// Create a new Date object based on minStartDate and add one day to it
+	var minStartDateObj = new Date($scope.minStartDate);
+	minStartDateObj.setDate(minStartDateObj.getDate() + 1);
+
+	// Set minStartofEndDate to the updated date
+	$scope.minStartofEndDate = minStartDateObj.toISOString().split('T')[0];
+
+	$scope.maxEndDate = ''; // By default, no maximum end date
+
+	$scope.calculateDuration = function() {
+		if ($scope.start && $scope.end) {
+			var startDate = new Date($scope.start);
+			var endDate = new Date($scope.end);
+
+			if (endDate < startDate) {
+				// If end date is before start date, set max end date to start date
+				$scope.maxEndDate = $scope.start;
+			} else {
+				// If end date is valid, reset max end date
+				$scope.maxEndDate = '';
+			}
+
+			var differenceInTime = endDate.getTime() - startDate.getTime();
+			var dayDiff = Math.round(differenceInTime / (1000 * 3600 * 24));
+			if(dayDiff>0){
+				$scope.daysDifference=dayDiff;
+			}
+		}
+	};
+	$scope.$watch('start', function(newDate, oldDate) {
+		if (newDate) {
+			var selectedDate = new Date(newDate);
+			selectedDate.setDate(selectedDate.getDate() + 1);
+			$scope.minStartofEndDate = selectedDate.toISOString().split('T')[0];
+		}
+	});
+
+
+	$scope.options = [
+		{ label: 'Single Trip', value: 'single' },
+		{ label: 'Multi Trip', value: 'multi' },
+		{ label: 'Annual Trip', value: 'annual' },
+		{ label: 'Student Trip', value: 'student' }
+	];
+
+	$scope.updateDropdownOptions = function () {
+		$scope.regions = [];
+		switch ($scope.selectedOption) {
+			case 'single':
+				$scope.regions = [
+					{ label: 'Asia', value: 'asia' },
+					{ label: 'Schengen', value: 'schengen' },
+					{ label: 'America', value: 'america' },
+					{ label: 'Others', value: 'others' }
+				];
+				break;
+			case 'multi':
+				$scope.regions = [
+					{ label: 'Worldwide', value: 'worldwide' }
+				];
+				break;
+			case 'annual':
+			case 'student':
+				$scope.regions = [
+					{ label: 'Excluding USA & Canada', value: 'excluding_usa_&_canada' },
+					{ label: 'Including USA & Canada', value: 'including_usa_&_canada' }
+				];
+				break;
+			default:
+				break;
+		}
+	};
+
+	$scope.selectedOption = 'single';
+	$scope.updateDropdownOptions();
+	$scope.selectedRegion = 'schengen';
+	$scope.isIndianPassportHolder='yes'
+	$scope.generateFields = function () {
+		var size=$scope.travellers.length;
+		var newSelectedValue=$scope.numberOfTravellers;
+		if(newSelectedValue>=size){
+			var diff=newSelectedValue-size;
+			for (var i = 0; i < diff; i++) {
+				$scope.travellers.push({
+					age: ''
+				});
+			}
+		}
+		else{
+			diff=size-newSelectedValue;
+			for(i=0;i<diff;i++){
+				$scope.travellers.pop();
+			}
+		}
+
+		/*
+		$scope.travellers.forEach(function(traveller, index) {
+			for(var key in traveller) {
+				if(traveller.hasOwnProperty(key)) {
+					var scopeKey = "travellers[" + index + "]." + key;
+					$scope.$watch(scopeKey, function(newValues, oldValues) {
+						if (!angular.equals(newValues, oldValues)) {
+							$scope.storeSessionDetails();
+						}
+					});
+				}
+			}
+		});
+		*/
+	}
+
+	$scope.ages = [];
+	for (var i = 1; i <= 70; i++) {
+		$scope.ages.push(i);
+	}
+
+
+	$scope.storeSessionDetails = function () {
+
+		// Check if any required field is empty
+		var travelData = {
+			"type":"travel",
+			"tripType": $scope.selectedOption,
+			"travelRegion": $scope.selectedRegion,
+			"startDate": $scope.start,
+			"endDate": $scope.end,
+			"duration": $scope.daysDifference,
+			"numberOfPersons": $scope.numberOfTravellers,
+			"indianPassportHolder": $scope.isIndianPassportHolder,
+			"travellerAges": $scope.travellers
+		};
+
+		sessionStorage.setItem(c.data.userId, JSON.stringify(travelData));
+	}
+	var sessionDetails=JSON.parse(sessionStorage.getItem(c.data.userId));
+	var details=sessionDetails;	
+	if (details != null) {
+		$scope.selectedOption = details.tripType;
+		$scope.updateDropdownOptions(details.tripType);
+		$scope.selectedRegion = details.travelRegion;
+		$scope.start = new Date(details.startDate);
+		$scope.end = new Date(details.endDate);
+		$scope.daysDifference=details.duration;
+		$scope.numberOfTravellers = details.numberOfPersons;
+		$scope.generateFields();
+		$scope.isIndianPassportHolder = details.indianPassportHolder;
+
+		if (details.travellerAges && details.travellerAges.length > 0) {
+			if ($scope.numberOfTravellers == details.travellerAges.length) {
+				for (i = 0; i < $scope.numberOfTravellers; i++) {
+					if ($scope.ages.indexOf(details.travellerAges[i].age) !== -1) {
+						$scope.travellers[i].age = details.travellerAges[i].age;
+					} else {
+						console.log("Age for traveller " + (i+1) + " is not within available options.");
+					}
+				}
+			} else {
+				console.log("Number of travellers doesn't match the stored data.");
+			}
+		}
+		$scope.storeSessionDetails();
+
+	}
+
+	$scope.validateTravellerAge=function(){
+		var validationResult=true;
+		$scope.travellers.forEach(function(traveller){
+			if(traveller.age== null || traveller.age==''){
+				validationResult=false;
+			}
+		})
+		return validationResult;
+	}
+	$scope.handleButtonClick = function() {
+		var isFilled = true;
+
+		if($scope.selectedOption &&
+			 $scope.selectedRegion &&
+			 $scope.start &&
+			 $scope.end &&
+			 $scope.numberOfTravellers &&
+			 $scope.validateTravellerAge()
+			){
+			//alert($scope.validateTravellerAge())
+			$scope.storeSessionDetails();
+			window.location.href = "/vfsp?id=card_theme_page";				
+		}
+		else{
+			alert('Please Fill all required details')
+		}
+	};
+	if(dateFill && dateFill.dob && sessionDetails==null ){
+		var dob = new Date(dateFill.dob);
+		var currentDate = new Date();
+		var timeDiff = currentDate.getTime() - dob.getTime();
+		var ageInMilliseconds = new Date(timeDiff);
+		var ageInYears = Math.abs(ageInMilliseconds.getUTCFullYear() - 1970);
+		$scope.numberOfTravellers = "1";
+		//alert($scope.numberOfTravellers);
+		$scope.generateFields();
+		$scope.travellers[0].age = ageInYears;
+
+		//alert(JSON.stringify($scope.travellers));
+	}
+
+
+
+
 };]]></client_script>
-        <controller_as>c</controller_as>
-        <css>.cardContainer{
+<controller_as>c</controller_as>
+<css>.cardContainer{
   	margin-top:2rem;
   	display: grid;
     grid-template-columns: repeat(3, 1fr); /* 4 columns */
@@ -83,7 +311,193 @@ figure {
 // form styling
 
 
+* {
+  font-family: 'Helvetica';
+}
 
+.tripForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="date"],
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.invalid {
+  display: none;
+}
+
+input[type="date"] {
+  color: rgb(0, 0, 0);
+}
+
+input[type="date"]:visited {
+  color: black;
+}
+
+.selectT {
+  height: 40px;
+}
+
+.box {
+  box-sizing: border-box;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  line-height: 19.2px;
+  margin-bottom: 10px;
+}
+
+option {
+  color: rgb(0, 0, 0);
+}
+
+.whole {
+  box-sizing: border-box;
+  padding: 35px 15px 0 15px;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding-left: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  padding-bottom: 5px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: 0 5%;
+  margin-bottom: 40px;
+  height: 75vh;
+}
+
+.iFrameDiv {
+  display: none;
+}
+
+.iFrameDiv i {
+  font-size: 18px;
+}
+
+.line {
+  display: grid;
+  gap:30px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.topSection {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.radioDiv {
+  display: flex;
+}
+
+.radioDivInner {
+  display: grid;
+  grid-template-rows: 30px 30px;
+  grid-template-columns: 130px 130px;
+}
+
+.wi-40 {
+  width: 40%;
+  margin-left: 10px;
+}
+
+.wi-60 {
+  width: 50%;
+}
+
+.daysDifference {
+  margin-bottom: 10px;
+}
+
+h4 {
+  font-style: bold;
+  color: rgb(0, 0, 0);
+}
+
+.head {
+  box-sizing: border-box;
+  font-size: 16px;
+  color: rgb(102, 102, 102);
+  margin-bottom: 17px;
+  margin-top: 0px;
+  font-weight: 600;
+  text-align: center;
+  font-style: bold;
+  font-style: italic;
+  color: rgb(0, 0, 0);
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  opacity: 1;
+  font-size: 14px;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 80%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.continue {
+  display: flex;
+  justify-content: center;
+}
+
+.invisible-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.id {
+  text-align: center;
+}
+
+.age-dropdown {
+  height: 2.5em;
+  overflow-y: auto;
+  width: 47%;
+}
+
+.space {
+  margin-bottom: 5px;
+}
 
 
 
@@ -91,24 +505,25 @@ figure {
 
 
 </css>
-        <data_table>sp_instance</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list/>
-        <has_preview>true</has_preview>
-        <id>productcategories</id>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>true</has_preview>
+<id>productcategories</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-        <name>Product Categories</name>
-        <option_schema/>
-        <public>true</public>
-        <roles/>
-        <script><![CDATA[(function() {
+<name>Product Categories</name>
+<option_schema/>
+<public>true</public>
+<roles/>
+<script><![CDATA[(function() {
 	data.example = $sp.getWidget('vfs_pop_up_form', {});
 	data.categArray=[];
+	data.userId=gs.getUserID();
 	var categories=new GlideRecord('x_rptp_insureme_product_categories');
 	categories.query();
 	while(categories.next()){
@@ -141,20 +556,20 @@ figure {
 
 	//gs.addErrorMessage(JSON.stringify(data.categArray))
 })();]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>kumar.raja</sys_created_by>
-        <sys_created_on>2024-03-05 05:53:25</sys_created_on>
-        <sys_id>25035e3047b8861055784a02516d43b2</sys_id>
-        <sys_mod_count>95</sys_mod_count>
-        <sys_name>Product Categories</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_25035e3047b8861055784a02516d43b2</sys_update_name>
-        <sys_updated_by>kumar.raja</sys_updated_by>
-        <sys_updated_on>2024-03-05 10:04:17</sys_updated_on>
-        <template><![CDATA[<div>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>kumar.raja</sys_created_by>
+<sys_created_on>2024-03-05 05:53:25</sys_created_on>
+<sys_id>25035e3047b8861055784a02516d43b2</sys_id>
+<sys_mod_count>117</sys_mod_count>
+<sys_name>Product Categories</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_25035e3047b8861055784a02516d43b2</sys_update_name>
+<sys_updated_by>kumar.raja</sys_updated_by>
+<sys_updated_on>2024-03-05 11:37:28</sys_updated_on>
+<template><![CDATA[<div>
 	<div class="container">
 		<div class="cardContainer" id="card-container">
 			<div class='card' ng-repeat="card in data.categArray">
@@ -172,7 +587,6 @@ figure {
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -262,5 +676,5 @@ figure {
 	</div>
 
 </div>]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

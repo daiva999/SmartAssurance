@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller=function($scope, spUtil) {
+<category>custom</category>
+<client_script><![CDATA[api.controller=function($scope, spUtil) {
 	/* widget controller */
 	var c = this;
 	var sessionId = $scope.data.userId;
@@ -197,8 +197,8 @@ $scope.closePDF = function() {
 
 
 ]]></client_script>
-        <controller_as>c</controller_as>
-        <css>*{
+<controller_as>c</controller_as>
+<css>*{
   font-family: "Helvetica";
   overflow:hidden;
   margin: 0;
@@ -551,20 +551,20 @@ hr{
 
 
 </css>
-        <data_table>sp_instance</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list/>
-        <has_preview>true</has_preview>
-        <id>vfs__product_plan_benefits</id>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
-        <name>VFS Product Plan Benefits</name>
-        <option_schema/>
-        <public>false</public>
-        <roles/>
-        <script><![CDATA[(function () {
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>true</has_preview>
+<id>vfs__product_plan_benefits</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+<name>VFS Product Plan Benefits</name>
+<option_schema/>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function () {
 
     data.userId = gs.getUserID();
     function findPremium(prodCode, duration, age) {
@@ -708,20 +708,20 @@ hr{
         }
     }) ();
 ]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>harshitha</sys_created_by>
-        <sys_created_on>2024-01-19 09:12:22</sys_created_on>
-        <sys_id>eb978a4e93337510acdc3f484dba1026</sys_id>
-        <sys_mod_count>1238</sys_mod_count>
-        <sys_name>VFS Product Plan Benefits</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_eb978a4e93337510acdc3f484dba1026</sys_update_name>
-        <sys_updated_by>chiranjit.behera</sys_updated_by>
-        <sys_updated_on>2024-03-01 12:37:56</sys_updated_on>
-        <template><![CDATA[<div ng-repeat="record in overallData">
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>harshitha</sys_created_by>
+<sys_created_on>2024-01-19 09:12:22</sys_created_on>
+<sys_id>eb978a4e93337510acdc3f484dba1026</sys_id>
+<sys_mod_count>1238</sys_mod_count>
+<sys_name>VFS Product Plan Benefits</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_eb978a4e93337510acdc3f484dba1026</sys_update_name>
+<sys_updated_by>chiranjit.behera</sys_updated_by>
+<sys_updated_on>2024-03-01 12:37:56</sys_updated_on>
+<template><![CDATA[<div ng-repeat="record in overallData">
 
   <div class="container">
     <div class="row">
@@ -802,5 +802,5 @@ hr{
       </div>
     </div>
   </div>]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

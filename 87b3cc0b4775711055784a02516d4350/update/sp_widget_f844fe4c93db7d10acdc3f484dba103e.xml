@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sp_widget action="INSERT_OR_UPDATE">
+<category>custom</category>
+<client_script><![CDATA[api.controller=function($scope) {
+	/* widget controller */
+	var c = this;
+
+	$scope.createForm = function(){
+		alert("Form generation Page");
+	}
+	$scope.openReport = function (){
+		location.href = "/$pa_dashboard.do?sysparm_dashboard=6e9bc14c93ecce50acdc3f484dba1068";
+	}
+
+	//for loading the category from the table
+	c.server.get().then(function(){
+		var jsonCategoryList=c.data.cat;
+		$scope.categoryValue={
+			key:'all'
+		}
+		$scope.dropDownList=[];
+		var categoryListArray=[];
+		if(categoryListArray!=null){
+			var obj={	
+				code:"all",
+				name:"All"
+							}
+			$scope.dropDownList.push(obj);
+		}
+		categoryListArray=JSON.parse(JSON.stringify(jsonCategoryList));
+		categoryListArray.forEach(function(element){
+			//	alert(JSON.stringify(element));
+			var obj={
+				code:element.code,
+				name:element.name
+			}
+			$scope.dropDownList.push(obj);
+		});
+
+	});
+	//loading dropdown ends
+
+
+	$scope.fetchCategory=function(){
+		var obj={
+			action:"fetchCategories"
+		}
+		c.server.get(obj);	
+	}
+
+
+	//client script for fetch button
+
+	//Functionality for onclick of fetch button
+	$scope.fetchProd=function(){
+		var obj={
+			value:$scope.categoryValue.key,		//Storing the value of the selected category from the drop down list in json obj formate and sending it to the server side to fetch the data of that category
+			action:"fetchProduct"							//for authorization in server side
+		}													//obj
+
+		$('.light-grey').css({
+			'visibility': 'visible',
+		})
+		var leftMargin_greenBar= 0;
+		var fetchCompleted=false;
+		move(leftMargin_greenBar);							//calling the loading bar function
+		c.server.get(obj).then(function(response){
+			if(response.data.load){
+				fetchCompleted=true;
+				$('.modal').modal('hide');			//closing the modal when the loading is done
+				$('.light-grey').css({
+					'visibility': 'hidden',
+				});	
+
+			}
+
+		});	//calling the server side code by passing the arguments for authentication
+		//Process your response
+
+		function move() {
+
+			var elem = document.getElementById("myBar");   
+			var width = 15;
+			elem.style.width=width+"%";
+			var time=30;
+			var id = setInterval(frame,time);	
+			function frame (){
+
+				if(leftMargin_greenBar===85){
+					leftMargin_greenBar=0
+				}															//if
+				if (fetchCompleted) {
+					clearInterval(id);
+				} 															//if
+				else { 
+					leftMargin_greenBar++;
+					var valueOfLeftMargin=leftMargin_greenBar+'%';
+					$('.green').css({
+						'margin-left': valueOfLeftMargin,
+					})
+					// elem.style.margin-left = x; 
+				}															//else		
+			}																					//frame()
+		}																	//move()			
+		//c.server.update();				//reloading the server side code
+	}																		//fetch()
+
+	//client script for fetch button ends
+
+};
+
+
+
+
+			/* var elem = document.getElementById("myBar");   
+  var width = 1;
+	var time=10;
+	if($scope.value1.key==="all")						//response time for one category is 1.7-3s
+		time=25;
+
+  var id = setInterval(frame,time);	
+		function frame (){
+		if(width===100){
+    $('.modal').modal('hide');			//closing the modal when the loading is done
+		$('.w3-light-grey').css({
+        'visibility': 'hidden',
+    });	
+		}															//if
+    if (width >= 100) {
+			clearInterval(id);
+    } 															//if
+			else {
+      width++; 	
+      elem.style.width = width + '%'; 
+    }															//else		
+		}	*/	
+
+
+]]></client_script>
+<controller_as>c</controller_as>
+<css>h1{
+  text-align: center;
+  font-weight:1000
+}
+
+.fetch_category{
+  display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: .1rem solid transparent;
+    white-space: nowrap;
+    padding: .6rem 1.2rem;
+    font-size: 1.4rem;
+    line-height: 1.42857;
+    border-radius: .4rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  	color: #fff;
+    background-color: #428bca;
+    border-color: #357ebd;
+}
+
+
+  
+.grid {
+  /*
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  */
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+// css  for fetch button
+
+//giving the styles to button and grid contents
+.btn{
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: .1rem solid transparent;
+    white-space: nowrap;
+    padding: .6rem 1.2rem;
+    font-size: 1.4rem;
+    line-height: 1.42857;
+    border-radius: .4rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+.button {
+    color: white;
+}
+.btn {
+    line-height: 1.42857143;
+}
+.btn-secondary {
+    color: #fff;
+    background-color: #428bca;
+    border-color: #357ebd;
+}
+.inGrid {												
+  background: #3a3f51;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 400px;
+  height: 150px;
+  text-align: center;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+h2{
+  color: white;
+}
+.close{
+  color: white;
+}
+
+//for displaying the loading bar from grey to green
+.light-grey{color:#000!important;background-color:#f1f1f1!important;visibility: hidden}
+.green{color:#fff!important;background-color:#4CAF50!important}
+
+
+//styles for modal header,footer,body and contents
+.modal-header{
+   background-color: #3a3f51;
+  	color:white;
+}
+.modal-body{
+  background-color: #3a3f51;
+  color:white;
+}
+
+.dropdown{
+  background-color: #3a3f51;
+  color:white;
+}
+.modal-footer{
+  background-color: #3a3f51;
+  color:white;
+}
+
+//css for fetch button ends</css>
+<data_table>sp_instance_table</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list>table</field_list>
+<has_preview>true</has_preview>
+<id>admin_home</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+<name>Admin Home</name>
+<option_schema>[{"displayValue":"Table","hint":"The table where the access tokens can be fetched from","name":"select_the_token_table","section":"Data","default_value":"x_rptp_insureme_tokens","label":"Select the token Table","type":"reference","value":"sys_db_object","ed":{"reference":"sys_db_object"}},{"displayValue":"Table","hint":"Select the Category Table","name":"select_the_category_table","section":"Data","default_value":"x_rptp_insureme_insurance_product_category","label":"Select the Category Table","type":"reference","value":"sys_db_object","ed":{"reference":"sys_db_object"}},{"displayValue":"Table","hint":"Select the Product Table","name":"select_the_product_table","section":"Data","default_value":"x_rptp_insureme_insurance_product","label":"Select the Product Table","type":"reference","value":"sys_db_object","ed":{"reference":"sys_db_object"}}]</option_schema>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function() {	
+	data.table = $sp.getValue('table');
+	var user = gs.getUserID();
+	var grUser = new GlideRecord(data.table);
+
+	if (grUser.get(user)) {
+		data.firstName = grUser.getValue("first_name");
+	}
+	data.load=false;
+
+	/*
+	var aggCat = new GlideAggregate('x_rptp_insureme_insurance_product_category');
+
+	aggCat.addAggregate('COUNT');
+	aggCat.query();
+
+	while(aggCat.next()){		
+		data.catMsg =  aggCat.getAggregate('COUNT') ;
+	}
+
+	var aggProd = new GlideAggregate('x_rptp_insureme_insurance_products');
+
+	aggProd.addAggregate('COUNT');
+	aggProd.query();
+
+	while(aggProd.next()){		
+		data.prodMsg =  aggProd.getAggregate('COUNT') ; 
+	}
+
+
+
+	var aggUser = new GlideAggregate('sys_user');
+
+	aggUser.addAggregate('COUNT');
+	aggUser.query();
+
+	while(aggUser.next()){		
+		data.userMsg =  aggUser.getAggregate('COUNT') ;
+	}
+
+	*/
+
+	//server script for fetch button
+	
+	function getTable(SysID){
+		var tab=new GlideRecord('sys_db_object');
+		tab.addQuery('sys_id',SysID);
+	tab.query();
+		if(tab.next())
+	return tab.name;
+	}
+	
+	
+data.categoryTableName=getTable(options.select_the_category_table)+'';
+data.tokenTableName=getTable(options.select_the_token_table)+'';
+data.productTableName=getTable(options.select_the_product_table)+'';
+	
+	data.cat=[];
+	data.load=false;
+	
+	var grCategory = new GlideRecord(data.categoryTableName);		//getting all the category which is present in the category table
+	grCategory.query();
+
+	while (grCategory.next()){
+		var object={};
+		//gs.addInfoMessage(gr.category_code.toString())
+		object.code=grCategory.category_code.toString();
+		var arr=object.code.split('-');
+		var resultString="";
+		arr.forEach(function(arrayElement){
+			
+			var lowerCaseValue=arrayElement.toLowerCase();
+			if(lowerCaseValue){
+				lowerCaseValue=lowerCaseValue[0].toUpperCase()+lowerCaseValue.substring(1);
+				resultString=resultString+" "+lowerCaseValue;
+			}
+
+		});
+		object.name=resultString;
+		data.cat.push(object);
+	}																//while
+	function func2(element){
+		var stringLowerCase=element.toLowerCase();
+		stringLowerCase=stringLowerCase[0].toUpperCase()+stringLowerCase.substring(1);
+		resultString=resultString+" "+stringLowerCase;
+	}														//fun2
+
+
+
+	if(input && input.action=="fetchProduct"){
+		var insureProdObj= new x_rptp_insureme.InsureProd();																//to invoke the script include and telling to fetch the category which is selected from the dropdown
+		
+		var updatedRecords=insureProdObj.getDetails(input.value,data.productTableName,data.tokenTableName);
+		if(updatedRecords){
+			data.load=true;
+		}
+
+		if(updatedRecords[0]===0){
+			gs.addInfoMessage("No new Products are available");
+		}																					//if
+		else{
+			if(input.value!="all")
+				gs.addInfoMessage(Number(updatedRecords[0])+" new products of category "+input.value+" were added");
+			else
+				gs.addInfoMessage(Number(updatedRecords[0])+" products were added")
+		}																	//else
+
+	}																					//if
+
+	if(input && input.action=="fetchCategories"){
+		gs.addInfoMessage("No api to fetch categories");
+	}
+
+
+
+	//server script for fetch button ends
+
+})();
+
+
+
+]]></script>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2023-12-19 10:48:58</sys_created_on>
+<sys_id>f844fe4c93db7d10acdc3f484dba103e</sys_id>
+<sys_mod_count>453</sys_mod_count>
+<sys_name>Admin Home</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_f844fe4c93db7d10acdc3f484dba103e</sys_update_name>
+<sys_updated_by>kumar.raja</sys_updated_by>
+<sys_updated_on>2024-02-21 13:17:09</sys_updated_on>
+<template><![CDATA[<div>
+  <b><h1>Hello {{data.firstName}}, find your requirement here.</h1></b>
+
+  <!--<marquee><h4>
+    Number of existing categories: {{data.catMsg}} || Number of existing
+    products: {{data.prodMsg}} || Number of existing users: {{data.userMsg}}
+    </h4></marquee>-->
+
+
+
+  <div class="grid">
+    <div class="inGrid">
+      
+      <h2>Category</h2>
+      
+     		 <button  
+              id="myButton"
+              class="fetch_category"
+              name= "karthik"
+              ng-click="fetchCategory()">    <!--Using button to fetch the new category from the api-->
+       		 Fetch
+     		 </button>
+   
+      		<admin-button
+                    location="create_new_cat"
+                    label="Create Category"
+                    id="createCat"
+                    ></admin-button>
+      
+      		<admin-button 
+                    id="veiwCat" 
+                    location="category"
+                    label="View Categories"
+                    ></admin-button>
+    </div>
+    
+    
+    <div class="inGrid">
+
+      <h2>Product</h2>
+
+      <!--HTML code for fetch button-->
+      <!-- For fetching the data from the api and storing in the able-->
+      	<button 
+                id="fetch_product"
+                class="btn btn-primary"
+                data-toggle="modal" 
+                data-target="#product_model" >    <!--Using modal for selecting the category to be fetched-->
+        	Fetch
+        </button>
+
+
+     	 <!--Modal code -->
+     			 <div class="modal" id ="product_model" tabindex="-1" role="dialog" >
+       			 <div class="modal-dialog" role="document">
+          		<div class="modal-content">
+           		 <div class="modal-header">
+             		 <h5 class="modal-title">Select the category to fetch</h5>
+              		<button id="close" type="button" class="close" data-dismiss="modal" aria-label="Close">				<!--we are displayig the class named model when the button is clicked-->
+               		 <span aria-hidden="true">&times;</span>
+              		</button>
+            	</div>
+            <div class="modal-body">
+              
+              <lable>Category</lable>
+
+              
+              <select ng-model="categoryValue.key" required class="dropdown">
+                <option ng-selected="{{key.code == categoryValue.key}}" ng-repeat="key in dropDownList" value="{{key.code}}">{{key.name}}</option>	
+    					</select>
+            </div>
+            <div class="modal-footer">
+              <button id="fetch1"  type="button" class="btn btn-primary" ng-click="fetchProd()" >Fetch</button>			<!--calling the fetch function which is written in client side from html template -->
+              <button id="close1"  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <br>
+              <br>
+              <div class="light-grey">
+                <div id="myBar" class="green" style="height:10px;width:0"></div>												<!--for displaying the loading bar on clicking on fetch button-->
+              </div> 
+            </div>
+          </div>
+        </div>
+      </div> 
+      <!--Modal ends-->
+      <!--fetch button code ends-->
+
+      		<admin-button
+                    location="create_new_prod"
+                    label="Create Product"
+                    id="createProd"
+                    ></admin-button>
+      
+     		  <admin-button
+                        id="viewProd" 
+                        location="product" 
+                        label="View Product"
+                        ></admin-button>
+
+     </div>
+    
+    
+    <div class="inGrid">
+      
+      <h2>User</h2>
+      
+       <admin-button
+                    location="create_new_user"
+                    label="Create User"
+                    id="createUser1"
+                    ></admin-button>
+       <admin-button 
+                     id="veiwUser1" 
+                     location="user" 
+                     label="View Users"
+                     ></admin-button>
+    </div>
+    
+    
+    <!--<div class="inGrid">
+      
+      <h2>Form</h2>
+      
+         <admin-button
+                    location="dynamic_fomrs"
+                    label="Form Generator"
+                    id="formGen"
+                    ></admin-button>
+     
+    </div>
+-->
+    
+    
+    <div class="inGrid">
+      <h2>Report</h2>
+         <button class="btn btn-primary" ng-click="openReport()">
+       	 View Reports
+     		 </button>
+    </div>
+    
+    
+    
+  </div>
+
+</div>
+]]></template>
+</sp_widget>
+</record_update>

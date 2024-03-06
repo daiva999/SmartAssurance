@@ -1,0 +1,1675 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sp_widget action="INSERT_OR_UPDATE">
+<category>custom</category>
+<client_script><![CDATA[api.controller = function ($scope, spUtil, spModal) {
+	var c = this;
+
+	$scope.redirect = function () {
+		window.history.back();
+	};
+
+	$scope.users = Array.apply(null, Array(4)).map(function () {
+		return {
+			name: "",
+			dob: "",
+			age: "",
+			email: "",
+			phone: "",
+			panNumber: "",
+			nominee: "",
+			relationship: "",
+			passport: "",
+			gender: "",
+		};
+	});
+
+	$scope.amount = "";
+	$scope.productImg = $scope.data.productImg;
+
+
+	$scope.calculateAge = function () {
+		for (var i = 0; i < $scope.users.length; i++) {
+			if ($scope.users[i].dob) {
+				var dob = new Date($scope.users[i].dob);
+				var today = new Date();
+
+				if (!isNaN(dob.getTime()) && dob <= today) {
+					// Ensure dob is not after today's date
+					var age = today.getFullYear() - dob.getFullYear();
+
+					if (
+						today.getMonth() < dob.getMonth() ||
+						(today.getMonth() === dob.getMonth() &&
+						 today.getDate() < dob.getDate())
+					) {
+						age--;
+					}
+					if (age >= 1 && age <= 70) {
+						$scope.users[i].age = age;
+					} else if (age > 70) {
+						// alert("Age should not be greater than 70.");
+						$scope.users[i].age = age;
+					} else {
+						$scope.users[i].age = "0";
+					}
+				} else {
+					alert("Please enter a valid date before today.");
+					$scope.users[i].age = "";
+					$scope.users[i].dob = "";
+				}
+			} else {
+				$scope.users[i].age = "";
+			}
+		}
+
+		$scope.updatePremiumDetails();
+	};
+
+	$scope.formatPan = function () {
+		for (var i = 0; i < $scope.users.length; i++) {
+			$scope.users[i].panNumber = $scope.users[i].panNumber.toUpperCase();
+			if ($scope.users[i].panNumber.length > 5) {
+				var firstPart = $scope.users[i].panNumber.substring(0, 5);
+				var numericPart = $scope.users[i].panNumber
+				.substring(5, 9)
+				.replace(/\D/g, "");
+				var lastCharacter = $scope.users[i].panNumber
+				.substring(9, 10)
+				.replace(/[^a-zA-Z]/g, "");
+
+				$scope.users[i].panNumber = firstPart + numericPart + lastCharacter;
+			}
+		}
+	};
+
+	// passport validation
+	$scope.validatePassport = function () {
+		for (var i = 0; i < $scope.users.length; i++) {
+			$scope.users[i].passport = $scope.users[i].passport.toUpperCase();
+
+			if ($scope.users[i].passport.length > 1) {
+				var charPart = $scope.users[i].passport.substring(0, 1);
+				var numericPart = $scope.users[i].passport
+				.substring(1, 8)
+				.replace(/\D/g, "");
+
+				$scope.users[i].passport = charPart + numericPart;
+			}
+		}
+	};
+
+	$scope.isPersonHidden = [true];
+
+	$scope.togglePerson = function ($index) {
+		$scope.isPersonHidden[$index] = !$scope.isPersonHidden[$index];
+	};
+
+	$scope.showDummyData = false;
+	// $scope.containerHeight = "50vh";
+
+	$scope.toggleDummyData = function () {
+		$scope.showDummyData = !$scope.showDummyData;
+
+		// $scope.containerHeight = $scope.showDummyData ? "60vh" : "50vh";
+	};
+
+	// check if form is filled or not
+	$scope.isFormValid = function () {
+		/*
+		if ($scope.amount <= 0) {
+        return false;
+    }
+		*/
+		return $scope.users.every(function (user, index) {
+			if (index < $scope.numberOfPersons) {
+				return [
+					"name",
+					"email",
+					"dob",
+					"gender",
+					"phone",
+					"passport",
+					"nominee",
+					"relationship",
+				].every(function (property) {
+					return user[property];
+				});
+			} else {
+				return true;
+			}
+		});
+	};
+
+	var prod_code, insurer_code, startDate, endDate, options;
+
+	var nameFromSession,
+			dobFromSession,
+			phoneFromSession,
+			passportFromSession,
+			emailFromSession,
+			genderFromSession;
+
+	// $scope.sessionDetails = "";
+
+	$scope.sessionKey = $scope.data.user;
+
+	$scope.sessionDetails = JSON.parse(sessionStorage.getItem($scope.sessionKey));
+
+	if ($scope.sessionDetails) {
+		if ($scope.sessionDetails.newSessionData) {
+			$scope.sessionDetails.userArray = $scope.users;
+
+			for(var i=0; i<$scope.sessionDetails.userArray.length; i++){
+				$scope.users[i].nominee = $scope.sessionDetails.userArray[i].nominee;
+				$scope.users[i].relationship = $scope.sessionDetails.userArray[i].relationship;
+			}
+
+			prod_code = $scope.sessionDetails.prodCode;
+			$scope.prod = prod_code.replace(/_/g, " ");
+			$scope.travelRegion =
+				$scope.sessionDetails.userdetails.travelRegion.replace(/_/g, " ");
+			insurer_code = $scope.sessionDetails.insurer;
+			$scope.insurer = insurer_code.replace(/_/g, " ");
+
+			nameFromSession =
+				$scope.sessionDetails.newSessionData.firstName +
+				" " +
+				$scope.sessionDetails.newSessionData.lastName;
+			dobFromSession = $scope.sessionDetails.newSessionData.dob;
+			phoneFromSession = $scope.sessionDetails.newSessionData.Contact;
+			passportFromSession = $scope.sessionDetails.newSessionData.Passports;
+			emailFromSession = $scope.sessionDetails.newSessionData.email;
+			genderFromSession = $scope.sessionDetails.newSessionData.gender;
+
+			$scope.duration = $scope.sessionDetails.userdetails.duration;
+			$scope.numberOfPersons =
+				$scope.sessionDetails.userdetails.numberOfPersons;
+
+			for (var j = 0; j < $scope.numberOfPersons; j++) {
+				$scope.users[j].age =
+					$scope.sessionDetails.userdetails.travellerAges[j].age;
+				spUtil.addInfoMessage($scope.users[j].age);
+			}
+
+			startDate = new Date($scope.sessionDetails.userdetails.startDate);
+			endDate = new Date($scope.sessionDetails.userdetails.endDate);
+
+			options = { day: "numeric", month: "short", year: "numeric" };
+
+			$scope.formattedStartDate = new Intl.DateTimeFormat(
+				"en-US",
+				options
+			).format(startDate);
+			$scope.formattedEndDate = new Intl.DateTimeFormat(
+				"en-US",
+				options
+			).format(endDate);
+
+			$scope.updatePremiumDetails = function () {
+				var getPremiumDetailsObj = {
+					getDetails: true,
+					details: $scope.sessionDetails,
+					numberOfPersons: $scope.numberOfPersons,
+				};
+
+				for (var i = 0; i < $scope.numberOfPersons; i++) {
+					getPremiumDetailsObj["age" + (i + 1)] = $scope.users[i].age;
+				}
+
+				$scope.server
+					.get(getPremiumDetailsObj)
+					.then(function (res) {
+					// console.log("Server Response:", res.data);
+					$scope.sessionDetails.amount = res.data.cost;
+					$scope.sessionDetails.prodName = res.data.prodName;
+					$scope.sessionDetails.insurerName = res.data.insurerName;
+
+					$scope.amount = res.data.cost;
+					$scope.costs = res.data.costs;
+					$scope.sum = res.data.sum;
+					$scope.prodName = res.data.prodName;
+					$scope.insurerName = res.data.insurerName;
+				})
+					.catch(function (error) {
+					// console.error("Server Request Error:", error);
+				});
+			};
+
+			$scope.updatePremiumDetails();
+		} else {
+			if ($scope.sessionDetails) {
+				prod_code = $scope.sessionDetails.prodCode;
+				$scope.prod = prod_code.replace(/_/g, " ");
+				$scope.travelRegion =
+					$scope.sessionDetails.userdetails.travelRegion.replace(/_/g, " ");
+				insurer_code = $scope.sessionDetails.insurer;
+				$scope.insurer = insurer_code.replace(/_/g, " ");
+
+				$scope.duration = $scope.sessionDetails.userdetails.duration;
+				$scope.numberOfPersons =
+					$scope.sessionDetails.userdetails.numberOfPersons;
+
+				for (var l = 0; l < $scope.numberOfPersons; l++) {
+					$scope.users[l].age =
+						$scope.sessionDetails.userdetails.travellerAges[l].age;
+					spUtil.addInfoMessage($scope.users[l].age);
+				}
+
+				startDate = new Date($scope.sessionDetails.userdetails.startDate);
+				endDate = new Date($scope.sessionDetails.userdetails.endDate);
+
+				options = { day: "numeric", month: "short", year: "numeric" };
+
+				$scope.formattedStartDate = new Intl.DateTimeFormat(
+					"en-US",
+					options
+				).format(startDate);
+				$scope.formattedEndDate = new Intl.DateTimeFormat(
+					"en-US",
+					options
+				).format(endDate);
+
+				$scope.updatePremiumDetails = function () {
+					var getPremiumDetailsObj = {
+						getDetails: true,
+						details: $scope.sessionDetails,
+						numberOfPersons: $scope.numberOfPersons,
+					};
+
+					for (var i = 0; i < $scope.numberOfPersons; i++) {
+						getPremiumDetailsObj["age" + (i + 1)] = $scope.users[i].age;
+					}
+
+					$scope.server
+						.get(getPremiumDetailsObj)
+						.then(function (res) {
+						// console.log("Server Response:", res.data);
+						$scope.amount = res.data.cost;
+						$scope.costs = res.data.costs;
+						$scope.sum = res.data.sum;
+						$scope.prodName = res.data.prodName;
+						$scope.insurerName = res.data.insurerName;
+					})
+						.catch(function (error) {
+						// console.error("Server Request Error:", error);
+					});
+				};
+
+				$scope.updatePremiumDetails();
+			} else {
+				spUtil.addTrivialMessage(
+					"Invalid session details. No provided data found."
+				);
+			}
+		}
+	}
+
+	$scope.users[0].name = nameFromSession || $scope.data.name;
+	$scope.users[0].dob = dobFromSession ? new Date(dobFromSession) : "";
+	$scope.users[0].gender = genderFromSession || $scope.data.gender;
+	$scope.users[0].email = emailFromSession || $scope.data.email;
+	$scope.users[0].phone = phoneFromSession || $scope.data.phone;
+	$scope.users[0].passport = passportFromSession;
+
+	$scope.sub = function () {
+		// alert("Clicked");
+		if (!$scope.isFormValid()) {
+			return;
+		} else {
+			$scope.isProcessing = true;
+
+			var obj = {
+				action: "sub",
+				name: $scope.users[0].name,
+				gender: $scope.users[0].gender,
+				email: $scope.users[0].email,
+				phone: $scope.users[0].phone,
+				amount: $scope.amount,
+				details: $scope.sessionDetails,
+			};
+
+			$scope.server.get(obj).then(function (res) {
+				$scope.isProcessing = false;
+
+				var createOrderResponse = res.data.response;
+
+				$scope.data = createOrderResponse;
+
+				if (createOrderResponse) {
+					var responseObject = {
+						payment: true,
+						status: null,
+						payment_id: null,
+						order_id: null,
+						failed_response: null,
+						amount: $scope.amount,
+						sum: $scope.sum,
+						details: $scope.sessionDetails,
+						users: $scope.users,
+					};
+
+					var options = {
+						key: "rzp_test_BlIa1epOvWWidV",
+						amount: createOrderResponse.amount,
+						currency: createOrderResponse.currency,
+						name: "Smart Assurance",
+						description: createOrderResponse.notes.description,
+						order_id: createOrderResponse.id,
+						handler: function (res) {
+							responseObject.payment_id = res.razorpay_payment_id;
+							responseObject.order_id = res.razorpay_order_id;
+							responseObject.status = "Success";
+
+							if (res) {
+								/*
+								var opt = {
+									id: "",
+									title: "Transaction Details",
+									message: "<b>Payment_id: " +
+									res.razorpay_payment_id +
+									"</b>" +
+									"<br>" +
+									"<b>Order_id: " +
+									res.razorpay_order_id +
+									"</b>" +
+									"<br>" +
+									"<b>Amount: " +
+									"₹" +
+									$scope.amount +
+									"/-" +
+									"</b>",
+									buttons: [
+										{
+											label: "Close",
+											value: "cancel",
+											primary: true,
+										}
+									],
+								};
+								spModal.open(opt);
+								*/
+
+								$scope.server.get(responseObject).then(function (res) {
+									// console.log("After payment response: " + JSON.stringify(res.data));
+								});
+
+
+
+								location.href = "/vfsp";
+
+								sessionStorage.clear();
+
+								var razorpayResponse = {
+									amount : $scope.amount,
+									order_id : res.razorpay_order_id,
+									payment_id : res.razorpay_payment_id,
+									status: "success"
+								}
+
+								sessionStorage.setItem(
+									"razorpayResponse",
+									JSON.stringify(razorpayResponse)
+								);
+							}
+
+						},
+						prefill: {
+							contact: $scope.users[0].phone,
+							name: $scope.users[0].name,
+							email: $scope.users[0].email,
+						},
+						notes: {
+							name: createOrderResponse.notes.name,
+							description: createOrderResponse.notes.description,
+						},
+						theme: {
+							color: "#2300a3",
+						},
+					};
+
+					var razorpayObject = new Razorpay(options);
+
+					razorpayObject.on("payment.failed", function (response) {
+						responseObject.status = "Failed";
+						responseObject.payment_id = response.error.metadata.payment_id;
+						responseObject.order_id = response.error.metadata.order_id;
+						responseObject.failed_response = response.error;
+
+
+
+						$scope.server.get(responseObject).then(function (res) {
+							// console.log("After failed response: " + JSON.stringify(res.data));
+
+						});
+
+						if (response) {
+							/*
+							var opt = {
+								title: "Transaction Details",
+								message:
+								"<b>Description: " +
+								response.error.description +
+								"</b>" +
+								"<br>" +
+								"<b>Source: " +
+								response.error.source +
+								"</b>" +
+								"<br>" +
+								"<b>Amount: " +
+								"₹" +
+								$scope.amount +
+								"/-" +
+								"</b>",
+								buttons: [
+									{
+										label: "Close",
+										value: "cancel",
+										primary: true,
+									},
+								],
+							};
+
+							spModal.open(opt);
+							*/
+							location.href = "/vfsp";
+							sessionStorage.clear();
+
+							var razorpayResponse = {
+								amount : $scope.amount,
+								response: response,
+								status: "failed"
+							}
+
+							sessionStorage.setItem(
+								"razorpayResponse",
+								JSON.stringify(razorpayResponse)
+							);
+						}
+					});
+					razorpayObject.open();
+				} else {
+					alert("Error");
+				}
+			});
+		}
+	};
+
+	$scope.rediectToVFS = function () {
+		if (!$scope.isFormValid()) {
+			return;
+		} else {
+			sessionStorage.setItem(
+				$scope.data.user,
+				JSON.stringify($scope.sessionDetails)
+			);
+			location.href = "/vfsp?id=review";
+		}
+	};
+};
+]]></client_script>
+<controller_as>c</controller_as>
+<css>* {
+  font-family: "Helvetica";
+}
+
+.person-section {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.required {
+  color: red;
+}
+
+.pMar {
+  margin-bottom: 20px;
+}
+
+.mar {
+  margin-bottom: 15px;
+}
+
+.main {
+  /* // max-width: 800px; */
+  border-radius: 20px;
+  display: flex;
+  gap: 20px;
+  padding-left: 20px;
+  /*
+  // height: 80vh;
+  // padding: 20px;
+  // background: #f2f7ff;
+  // box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  */
+}
+
+.sticky-container {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: white;
+}
+
+.backDiv {
+  /*
+  display:flex;
+  gap:5px;
+  padding-left: 20px;
+  cursor:pointer;
+  */
+  display: flex;
+  gap: 5px;
+  max-width: 100px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 15px 0;
+  position: relative;
+  margin-left: 30px;
+}
+
+.backDiv p {
+  margin-top: -4px;
+}
+
+.section-1 {
+  
+  // width: 65%;
+  /*
+  max-height: 80vh;
+  overflow-y: auto;
+  */
+  /* // height: 77vh; */
+  padding: 10px;
+  padding-left: 30px;
+  /* 
+  border: 1px solid;
+  // margin-left: 20px;
+  */
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  
+}
+
+.cardDiv {
+  padding: 10px;
+}
+
+.mainBoxDiv{
+  width: 100%
+	display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.boxDiv {
+  padding: 10px;
+  margin: 10px 10px 20px 0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-label {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+  pointer-events: none;
+  transition: top 0.5s, font-size 0.3s;
+}
+
+.input-box {
+  width: 300px;
+  height: 50px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  font-size: 16px;
+}
+
+.input-box:focus+.input-label,
+.input-box:not(:placeholder-shown)+.input-label {
+  top: 0.1px;
+  font-size: 12px;
+  color: #333;
+  background: #fff;
+  padding: 5px;
+}
+
+.userNameInputBox {
+  text-transform: capitalize;
+}
+
+.line {
+  display: flex;
+  gap: 50px;
+}
+
+.line-1-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.line-1-inner p {
+  margin: 0;
+}
+
+.line-radio {
+  display: flex;
+  gap: 10px;
+}
+
+.custom-radio {
+  display: flex;
+  /* gap: 20px; */
+  align-items: center;
+  width: 145px;
+  height: 50px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.radio-input {
+  display: none;
+}
+
+.radio-label {
+  position: relative;
+  cursor: pointer;
+  padding-left: 10px;
+  margin-right: 10px;
+  line-height: 24px;
+}
+
+.custom-tick {
+  /* position: absolute; */
+  /* top: 0; */
+  /* left: 0; */
+  margin-left: 10px;
+  box-sizing: border-box;
+  float: right;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 2px solid #333;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #333;
+  font-size: 12px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.radio-input:checked+.radio-label .custom-tick {
+  background-color: #333;
+  color: #fff;
+}
+
+/*
+.btn {
+padding: 10px 100px 10px 100px;
+}
+.btn-div {
+text-align: center;
+margin-bottom: 20px;
+}
+*/
+.btn-div {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.btn {
+  position: relative;
+  padding: 10px 100px 10px 100px;
+}
+
+.processing-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.processing-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*  */
+
+.section-2 {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
+  z-index: 100;
+  width: 35%;
+  height: 70%;
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.section-3 {
+  padding: 10px 20px;
+  background: #f2f7ff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.h3 {
+  margin-left: 20px;
+  font-size: 14px;
+}
+
+.h4 {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.hp {
+  font-size: 14px;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.img-div {
+  display: flex;
+  padding: 0 20px;
+  gap: 15px;
+}
+
+.img-div-1 {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: #f2f7ff;
+}
+
+.img-div-down {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  margin-top: -15px;
+}
+
+.gst-p {
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.iDiv {
+  height: 200px;
+  overflow-y: auto;
+}
+
+.iDiv::-webkit-scrollbar {
+  width: 8px;
+}
+
+.iDiv::-webkit-scrollbar-thumb {
+  background-color: #b9cdd7;
+  border-radius: 6px;
+}
+
+.iDiv::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 100px;
+}
+
+
+
+/* 404 */
+.page_404 {
+  padding: 40px 0;
+  background: #fff;
+  font-family: 'Arvo', serif;
+}
+
+.page_404 img {
+  width: 100%;
+}
+
+.four_zero_four_bg {
+
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  height: 400px;
+  background-position: center;
+}
+
+
+.four_zero_four_bg h1 {
+  font-size: 80px;
+}
+
+.four_zero_four_bg h3 {
+  font-size: 80px;
+}
+
+.contant_box_404 {
+  margin-top: -50px;
+}
+
+
+.red-border {
+  border: 1px solid red;
+}
+
+.blue-border {
+  border-color: 1px solid #ccc;
+}
+.panCheckBox{
+  margin-top: -1px
+}
+.iFrameDiv  i{
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 400px) {
+  .main {
+    flex-direction: column;
+    padding-left: 10px;
+  }
+
+  .input-box {
+    width: 250px;
+  }
+
+  .section-1,
+  .section-2 {
+    width: 100%;
+  }
+
+  .backDiv {
+    margin-left: 10px;
+  }
+
+  .line {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .line,
+  .line-1-inner {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media only screen and (min-width: 401px) and (max-width: 767px) {
+  .main {
+    flex-direction: column;
+    padding-left: 10px;
+  }
+
+  .section-1,
+  .section-2 {
+    width: 100%;
+  }
+
+  .backDiv {
+    margin-left: 10px;
+  }
+
+  .line {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .line,
+  .line-1-inner {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .main {
+    padding-left: 15px;
+  }
+
+  .section-1 {
+    width: 60%;
+    padding-left: 20px;
+  }
+
+  .section-2 {
+    width: 35%;
+  }
+
+  .backDiv {
+    margin-left: 15px;
+  }
+
+  .line {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .line,
+  .line-1-inner {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .img-div,
+  .img-div-1,
+  .img-div-down {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .input-box {
+    width: 100%;
+  }
+
+  .btn {
+    padding: 10px 20px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1099px){
+  .main {
+    padding-left: 20px;
+  }
+
+  .input-box {
+    width: 250px;
+  }
+  
+  .section-1 {
+    width: 100%;
+    padding-left: 30px;
+  }
+
+  .section-2 {
+    width: 35%;
+  }
+
+  .backDiv {
+    margin-left: 30px;
+  }
+
+  .line {
+    flex-direction: row;
+  }
+
+  .line,
+  .line-1-inner {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .img-div,
+  .img-div-1,
+  .img-div-down {
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .btn {
+    padding: 10px 100px;
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+  .main {
+    padding-left: 20px;
+  }
+
+  .input-box {
+    width: 300px;
+  }
+  
+  .section-1 {
+    width: 65%;
+    padding-left: 30px;
+  }
+
+  .section-2 {
+    width: 35%;
+  }
+
+  .backDiv {
+    margin-left: 30px;
+  }
+
+  .line {
+    flex-direction: row;
+  }
+
+  .line,
+  .line-1-inner {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .img-div,
+  .img-div-1,
+  .img-div-down {
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .btn {
+    padding: 10px 100px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) and (max-width: 767px) {...}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {...}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {...}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {...}</css>
+<data_table>sp_instance_table</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list>table</field_list>
+<has_preview>true</has_preview>
+<id>payment_page</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+<name>Payment Page</name>
+<option_schema>[{"displayValue":"Page","hint":"redirect_url","name":"redirect_url","section":"Presentation","default_value":"vfs_get_page","label":"Redirect URL","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}}]</option_schema>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function () {
+	// getting userID and user_name
+	data.user = gs.getUserID();
+	data.userName = gs.getUserName();
+
+	// getting image from db_image table
+	var Iname = "futureinsurance.png";
+	var gr = new GlideRecord("db_image");
+	gr.get(Iname);
+	data.productImg = gr.getDisplayValue("image");
+
+	// getting loged in user's data to prefill the form if exist
+	var grUser = new GlideRecord("sys_user");
+	if (grUser.get(data.user)) {
+		data.name = grUser.getValue("name");
+		data.gender = grUser.getValue("gender");
+		data.email = grUser.getValue("email");
+		data.phone = grUser.getValue("mobile_phone");
+	} else {
+		gs.addErrorMessage("User record not found");
+		return;
+	}
+
+	// calculating cost and sum based on input value
+	if (input && input.getDetails) {
+		data.cost = 0;
+		data.costs = [0, 0, 0, 0];
+		data.sum = 0;
+
+		var insuranceProductsRecord = new GlideRecord(
+			"x_rptp_insureme_insurance_products"
+		);
+		insuranceProductsRecord.addQuery("prod_code", input.details.prodCode);
+		insuranceProductsRecord.addQuery("insurer", input.details.insurer);
+		insuranceProductsRecord.query();
+
+		while (insuranceProductsRecord.next()) {
+			data.sum += parseFloat(
+				insuranceProductsRecord.getValue("sum").replaceAll(",", "")
+			);
+			data.prodName = insuranceProductsRecord.getValue("prod_name");
+			data.insurerName = insuranceProductsRecord.getValue("insurer_name");
+		}
+
+		var queryPremiumRecord = function (age) {
+			var premiumRecord = new GlideRecord("x_rptp_insureme_premium");
+			premiumRecord.addQuery("min_age", "<=", age);
+			premiumRecord.addQuery("max_age", ">=", age);
+			premiumRecord.addQuery(
+				"max_days",
+				">=",
+				input.details.userdetails.duration
+			);
+			premiumRecord.addQuery(
+				"min_days",
+				"<=",
+				input.details.userdetails.duration
+			);
+			premiumRecord.addQuery("prod_code", input.details.prodCode);
+			premiumRecord.addQuery("insurer_code", input.details.insurer);
+			return premiumRecord;
+		};
+
+		var ageRanges = [input.age1, input.age2, input.age3, input.age4];
+		var costs = [0, 0, 0, 0];
+
+		ageRanges.forEach(function (age, index) {
+			if (age) {
+				var premiumQuery = queryPremiumRecord(age);
+				premiumQuery.query();
+
+				while (premiumQuery.next()) {
+					costs[index] += parseFloat(
+						premiumQuery.getValue("cost").replaceAll(",", "")
+					);
+				}
+			}
+		});
+
+		data.costs = costs;
+		data.cost = costs.reduce(function (acc, curr) {
+			return acc + curr;
+		}, 0);
+
+		return data.cost && data.costs && data.sum && data.prodName && data.insurerName;
+	}
+
+	// generating random receipt number for orderId
+	function generateReceiptNumber(prefix, length) {
+		var randomNumber = Math.floor(Math.random() * Math.pow(10, length));
+
+		var numberString = randomNumber.toString();
+
+		while (numberString.length < length) {
+			numberString = "0" + numberString;
+		}
+
+		var receiptNumber = prefix + numberString;
+
+		return receiptNumber;
+	}
+
+	// calling script include for razorpay orderId generation after submit
+	if (input && input.action === "sub") {
+		var amount = input.amount * 100;
+		var receipt = generateReceiptNumber("Receipt no. ", 6);
+		var description = "This is test payment 1";
+		var name = input.name;
+
+		var rzrpy = new x_rptp_insureme.razorpay();
+		data.response = rzrpy.createOrder(
+			amount,
+			receipt,
+			description,
+			name
+		);
+		data.id = data.response.id;
+	}
+
+	//storing data after transaction (based on failure or success)
+	if (input && input.payment === true) {
+		var paymentDetails = new GlideRecord("x_rptp_insureme_payment_details");
+
+		paymentDetails.initialize();
+
+		// Set field values
+		paymentDetails.setValue("odrer_id", input.order_id);
+		paymentDetails.setValue("payment_id", input.payment_id);
+		paymentDetails.setValue("product_code", input.details.prodCode);
+		paymentDetails.setValue("insurer_code", input.details.insurer);
+		paymentDetails.setValue('primary_email', input.users[0].email);
+		paymentDetails.setValue('primary_user', input.users[0].name);
+		paymentDetails.setValue(
+			"duration",
+			input.details.userdetails.duration + " days"
+		);
+		paymentDetails.setValue("return_date", input.details.userdetails.endDate);
+		paymentDetails.setValue("start_date", input.details.userdetails.startDate);
+		paymentDetails.setValue(
+			"travel_region",
+			input.details.userdetails.travelRegion
+		);
+		paymentDetails.setValue("trip_type", input.details.userdetails.tripType);
+		paymentDetails.setValue("users_details", JSON.stringify(input.users));
+		paymentDetails.setValue(
+			"failed_response",
+			JSON.stringify(input.failed_response)
+		);
+		paymentDetails.setValue(
+			"number_of_persons",
+			input.details.userdetails.numberOfPersons
+		);
+		paymentDetails.setValue("amount", "₹ " + input.amount);
+		paymentDetails.setValue("sum", "$ " + input.sum);
+		paymentDetails.setValue("status", input.status);
+
+		// Insert the record
+		if (!paymentDetails.insert()) {
+			var errorMessage =
+					"Error inserting record: " + paymentDetails.getErrorMessage();
+			gs.addErrorMessage(errorMessage);
+			data.errorMessage = errorMessage;
+			current.setAbortAction(true);
+			return errorMessage;
+		}
+	}
+})();
+]]></script>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>akshay</sys_created_by>
+<sys_created_on>2024-03-05 11:52:54</sys_created_on>
+<sys_id>f375eff893f88610acdc3f484dba1093</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_name>Payment Page</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_f375eff893f88610acdc3f484dba1093</sys_update_name>
+<sys_updated_by>akshay</sys_updated_by>
+<sys_updated_on>2024-03-05 11:52:54</sys_updated_on>
+<template><![CDATA[<div>
+  <div ng-show="sessionDetails">
+    <div class="sticky-container">
+      <div class="backDiv" ng-click="redirect()">
+        <i class="fa fa-arrow-circle-left"></i>
+        <p>Go back</p>
+      </div>
+    </div>
+
+    <div class="main">
+      <!-- 1st section -->
+
+      <form class="section-1" name="myForm">
+        <h3 class="pMar">Personal Details</h3>
+        <p>
+          Please fill all the mandatory(<span class="required">*</span>) fields
+        </p>
+        <div
+             class="mainBoxDiv"
+          ng-repeat="user in users track by $index"
+          ng-show="$index < numberOfPersons"
+        >
+          <div class="boxDiv">
+            <div class="person-section">
+              <h4 class="mar userNameInputBox" ng-click="togglePerson($index)">
+                {{user.name ? user.name : 'Traveller ' + ($index + 1)}}
+                {{user.age ? "(" + user.age + " yrs)" : ""}}
+              </h4>
+              <div class="iFrameDiv">
+                <i
+                  class="fa fa-angle-down"
+                  ng-show="!isPersonHidden[$index]"
+                   ng-click="togglePerson($index)"
+                ></i>
+                <i class="fa fa-angle-up" ng-show="isPersonHidden[$index]" ng-click="togglePerson($index)"></i>
+              </div>
+            </div>
+            <div ng-show="isPersonHidden[$index]">
+              <div class="line mar">
+                <!-- name and checkboxfor name -->
+                <div>
+                  <div class="input-container">
+                    <input
+                      type="text"
+                      class="input-box userNameInputBox"
+                      id="username"
+                      placeholder=""
+                      ng-model="user.name"
+                      ng-class="{ 'blue-border': user.name, 'red-border': !user.name }"
+                      ng-required="true"
+                      minlength="3"
+                    />
+                    <label for="username" class="input-label"
+                      >Enter full name <span class="required">*</span></label
+                    >
+                  </div>
+                </div>
+
+                <div class="input-container">
+                  <select
+                    class="input-box"
+                    required
+                    ng-model="user.gender"
+                    ng-class="{ 'blue-border': user.gender, 'red-border': !user.gender }"
+                  >
+                    <option value="">Please choose your gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <label class="input-label"
+                    >Gender<span class="required">*</span></label
+                  >
+                </div>
+              </div>
+              <div class="line">
+                <div class="input-container">
+                  <input
+                    type="text"
+                    class="input-box"
+                    placeholder=""
+                    ng-model="user.email"
+                    ng-required="true"
+                    ng-class="{ 'blue-border': user.email, 'red-border': !user.email }"
+                  />
+                  <label for="username" class="input-label"
+                    >Enter your email <span class="required">*</span></label
+                  >
+                </div>
+                <div class="input-container">
+                  <input
+                    type="tel"
+                    class="input-box"
+                    ng-class="{ 'blue-border': user.phone, 'red-border': !user.phone }"
+                    placeholder=""
+                    ng-model="user.phone"
+                    ng-required="true"
+                    maxlength="10"
+                    pattern="[0-9]{10}"
+                  />
+                  <label for="username" class="input-label"
+                    >Enter your 10 digit mobile number
+                    <span class="required">*</span></label
+                  >
+                </div>
+              </div>
+              <!-- line 2 -->
+              <div class="line">
+                <div class="input-container">
+                  <input
+                    type="date"
+                    class="input-box"
+                    ng-class="{ 'blue-border': user.dob, 'red-border': !user.dob }"
+                    id="dob"
+                    placeholder=""
+                    ng-model="user.dob"
+                    ng-change="calculateAge()"
+                    ng-required="true"
+                  />
+                  <label for="username" class="input-label"
+                    >Enter date of birth<span class="required">*</span></label
+                  >
+                </div>
+
+                <div class="input-container">
+                  <input
+                    type="text"
+                    class="input-box"
+                    id="username"
+                    value="Indian"
+                    disabled
+                  />
+                  <label for="username" class="input-label">Nationality</label>
+                </div>
+              </div>
+              <!-- line3 -->
+              <div class="line">
+                <div>
+                  <div class="input-container">
+                    <input
+                      type="text"
+                      class="input-box"
+                      id="username"
+                      placeholder=""
+                      ng-class="{ 'blue-border': user.passport, 'red-border': !user.passport }"
+                      ng-model="user.passport"
+                      maxlength="8"
+                      ng-change="validatePassport()"
+                      ng-required="true"
+                    />
+                    <label for="username" class="input-label"
+                      >Enter passport number(A1234567)<span class="required"
+                        >*</span
+                      ></label
+                    >
+                  </div>
+                 
+                </div>
+                <div>
+                  <div class="input-container">
+                    <input
+                      type="text"
+                      class="input-box"
+                      id="panInput"
+                      placeholder=""
+                      ng-model="user.panNumber"
+                      ng-change="formatPan()"
+                      maxlength="10"
+                      ng-disabled="isPanDisabled"
+                    />
+                    <label for="panInput" class="input-label"
+                      >Enter pan number(ABCDE1234F)</label
+                    >
+                  </div>
+
+                  <div class="line-1-inner">
+                    <input
+                      type="checkbox"
+                      ng-model="isPanDisabled"
+                      ng-init="isPanDisabled=false"
+                           class="panCheckBox"
+                    />
+                    <p>I don't have a pancard</p>
+                  </div>
+                </div>
+              </div>
+              <h4>Nominee Details</h4>
+              <div class="line">
+                <div class="input-container">
+                  <input
+                    type="text"
+                    class="input-box userNameInputBox"
+                    id="username"
+                    placeholder=""
+                    ng-model="user.nominee"
+                    ng-class="{ 'blue-border': user.nominee, 'red-border': !user.nominee }"
+                    ng-required="true"
+                    minlength="3"
+                  />
+                  <label for="username" class="input-label"
+                    >Enter nominee full name<span class="required"
+                      >*</span
+                    ></label
+                  >
+                </div>
+                <div class="input-container">
+                  <select
+                    class="input-box"
+                    required
+                    ng-model="user.relationship"
+                    ng-class="{ 'blue-border': user.relationship, 'red-border': !user.relationship }"
+                    ng-init="user.relationship=''"
+                  >
+                    <option value="">Please choose an option</option>
+                    <option value="wife">Wife</option>
+                    <option value="father">Father</option>
+                    <option value="mother">Mother</option>
+                    <option value="brother">Brother</option>
+                    <option value="sister">Sister</option>
+                  </select>
+                  <label for="username" class="input-label"
+                    >Select nominee relation<span class="required"
+                      >*</span
+                    ></label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!-- 2nd section -->
+      <!-- 
+ ng-style="{ 'height': containerHeight }"
+-->
+      <div class="section-2">
+        <h3 class="h3">Premium Summary</h3>
+        <hr />
+
+        <div>
+          <div class="section-3" ng-click="toggleDummyData()">
+            <p>Trip Details</p>
+            <i class="fa fa-angle-down" ng-show="showDummyData == false"></i>
+            <i class="fa fa-angle-up" ng-show="showDummyData == true"></i>
+          </div>
+          <div ng-show="showDummyData">
+            <div class="img-div-1">
+              <p>Destination(s)</p>
+              <p class="capitalize">{{travelRegion? travelRegion : ""}}</p>
+            </div>
+            <div class="img-div-1">
+              <p>Trip Duration</p>
+              <div>
+                <p style="margin-left: 90px">
+                  {{duration ? duration + " day(s)" : ""}}
+                </p>
+                <p
+                  ng-show="formattedStartDate && formattedEndDate"
+                  class="gst-p"
+                >
+                  {{formattedStartDate}} - {{formattedEndDate}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="iDiv">
+          <div
+            ng-repeat="user in users track by $index"
+            ng-show="$index < numberOfPersons"
+          >
+            <p class="h3 userNameInputBox">
+              Plan for: {{user.name ? user.name : 'Traveller ' + ($index + 1)}}
+              {{user.age ? "(" + user.age + " yrs)" : ""}}
+            </p>
+            <div class="img-div">
+              <img
+                src="{{productImg}}"
+                alt="sfbh"
+                height="100px"
+                width="100px"
+              />
+              <div>
+                <h4 class="h4">
+                  <span>{{insurerName ? insurerName : ""}}</span> -
+                  <span>{{prodName ? prodName : ""}}</span>
+                </h4>
+                <p class="hp">Sum Insured: {{ sum ? "$"+sum : ""}}</p>
+                <p class="hp">
+                  Total Premium: {{ costs[$index] ? "₹" + costs[$index] + "/-" :
+                  ""}}
+                </p>
+              </div>
+            </div>
+            <hr />
+          </div>
+        </div>
+        <hr/>
+
+
+        <div class="img-div-down">
+          <h4>Total Premium</h4>
+          <div>
+            <h4>{{ amount ? "₹" + amount + "/-" : ""}}</h4>
+            <p ng-show="amount" class="gst-p">(GST included)</p>
+          </div>
+        </div>
+        <br />
+
+        <div class="btn-div" ng-hide="sessionDetails.newSessionData">
+          <button
+            class="btn btn-primary"
+            ng-click="sub()"
+            ng-disabled="isProcessing || !isFormValid()"
+            ng-class="{'diabled-class': (isProcessing || !isFormValid())}"
+          >
+            <div ng-show="isProcessing" class="processing-overlay">
+              <div class="processing-spinner"></div>
+            </div>
+            Pay Now
+          </button>
+        </div>
+
+        <div class="btn-div" ng-show="sessionDetails.newSessionData">
+          <button
+            class="btn btn-primary"
+            ng-click="rediectToVFS()"
+            ng-disabled="!isFormValid()"
+            ng-class="{'diabled-class': (isProcessing || !isFormValid())}"
+          >
+            <div ng-show="isProcessing" class="processing-overlay">
+              <div class="processing-spinner"></div>
+            </div>
+            Add to cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-show="!sessionDetails">
+    <section class="page_404">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="col-sm-10 col-sm-offset-1 text-center">
+              <div class="four_zero_four_bg">
+                <h1 class="text-center">404</h1>
+              </div>
+              <div class="contant_box_404">
+                <h3 class="h2">Look like you're lost</h3>
+                <p>the page you are looking for is not avaible!</p>
+                <button class="btn btn-primary" ng-click="redirect()">
+                  Go back
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+]]></template>
+</sp_widget>
+</record_update>

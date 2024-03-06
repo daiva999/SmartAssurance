@@ -1,9 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller = function ($scope, spUtil, spModal) {
+<category>custom</category>
+<client_script><![CDATA[api.controller = function ($scope, spUtil, spModal) {
 	var c = this;
-
+	$scope.amount = "";
+	$scope.numberOfTravellers=1;
+	$scope.productImg = $scope.data.productImg;
+//c.total=c.data.amount;
+	$scope.redirect = function () {
+		window.history.back();
+	};
+	c.premiumValue=1000;
+	c.addOnList=[];
+	
+	$scope.addOnDeleteButton=function(record,index){
+		//var parsedAmt=parseInt($scope.amount);
+		
+	for(var i=0;i<c.addOnList.length;i++){
+	//	alert(JSON.stringify(c.addOnList[i]))
+		if(c.addOnList[i].index==index){
+			c.addOnList.splice(i,1);
+			$scope.amount=+$scope.amount-(record.addOnValue*$scope.numberOfTravellers);
+		}
+		
+	}
+		record.visible=true;
+	}
+	
+	$scope.redirectToPayment=function(){
+	}
+	
+	$scope.addOn=function(record,index){
+		
+		var obj={
+			"name":record.AddOnName,
+			"value":record.addOnValue,
+			"index":index
+		}
+		c.addOnList.push(obj);
+	
+		$scope.amount= +$scope.amount+parseInt(record.addOnValue*$scope.numberOfTravellers);
+		record.visible=false;
+	}
 	$scope.redirect = function () {
 		window.history.back();
 	};
@@ -23,8 +61,7 @@
 		};
 	});
 
-	$scope.amount = "";
-	$scope.productImg = $scope.data.productImg;
+	
 
 
 	$scope.calculateAge = function () {
@@ -248,7 +285,7 @@
 				$scope.duration = $scope.sessionDetails.userdetails.duration;
 				$scope.numberOfPersons =
 					$scope.sessionDetails.userdetails.numberOfPersons;
-
+$scope.numberOfTravellers=parseInt($scope.numberOfPersons);
 				for (var l = 0; l < $scope.numberOfPersons; l++) {
 					$scope.users[l].age =
 						$scope.sessionDetails.userdetails.travellerAges[l].age;
@@ -507,8 +544,86 @@
 	};
 };
 ]]></client_script>
-        <controller_as>c</controller_as>
-        <css>* {
+<controller_as>c</controller_as>
+<css>.addOnsList{
+padding:25px;
+}
+
+.listOfDisplay{
+padding:10px;
+}
+.displayAddOns{
+  display:flex;
+  justify-content: space-between;
+}
+
+
+.addOnContainer{
+display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 4 columns */
+    grid-gap: 20px; 
+  width: 50vw;
+}
+.name_Image{
+  padding:10px;
+display:flex;
+  align-items: center;
+}
+
+
+.addOncard{
+  padding:10px;
+  border:0.1px grey solid;
+  display:grip;
+  border-radius:5px;
+}
+img{
+width:50px;
+height:50px;
+}
+.mainContainer{
+  margin-top:23px;
+display:flex;
+  gap:10px;
+}
+.addOnName{
+  font-size:20px;
+  font-weight:400
+}
+
+.addOnAmt{
+font-size:18px;
+ font-weight:400;
+}
+
+.addOnValue{
+padding:10px;
+}
+.addOnDescription{
+padding:10px;
+}
+
+.addOnDescription{
+  padding:10px;
+  border-bottom:1px grey dotted;
+}
+
+
+.backDiv{
+display:flex;
+  align-items: baseline;
+  gap: 10px;
+    font-size: 18px;
+  
+}
+
+
+
+
+
+
+
+* {
   font-family: "Helvetica";
 }
 
@@ -545,7 +660,7 @@
 }
 
 .sticky-container {
-  position: sticky;
+  //position: sticky;
   top: 0;
   z-index: 1000;
   background-color: white;
@@ -782,7 +897,7 @@ margin-bottom: 20px;
   top: 20px;
   z-index: 100;
   width: 35%;
-  height: 70%;
+  min-height: 70%;
   border-radius: 5px;
   background: #ffffff;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
@@ -1102,6 +1217,10 @@ margin-bottom: 20px;
     padding: 10px 100px;
   }
 }
+.addOnDeleteButton,.addOnButton{
+	padding:10px;
+  float: right;
+}
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) and (max-width: 767px) {...}
@@ -1111,24 +1230,50 @@ margin-bottom: 20px;
 @media only screen and (min-width: 992px) {...}
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {...}</css>
-        <data_table>sp_instance_table</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list>table</field_list>
-        <has_preview>true</has_preview>
-        <id>test_payment</id>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
-        <name>Test Payment</name>
-        <option_schema>[{"displayValue":"Page","hint":"redirect_url","name":"redirect_url","section":"Presentation","default_value":"vfs_get_page","label":"Redirect URL","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}}]</option_schema>
-        <public>false</public>
-        <roles/>
-        <script><![CDATA[(function () {
+<data_table>sp_instance_table</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list>table</field_list>
+<has_preview>true</has_preview>
+<id>test_payment</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+<name>Test Payment</name>
+<option_schema>[{"displayValue":"Page","hint":"redirect_url","name":"redirect_url","section":"Presentation","default_value":"vfs_get_page","label":"Redirect URL","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}}]</option_schema>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function () {
 	// getting userID and user_name
 	data.user = gs.getUserID();
 	data.userName = gs.getUserName();
 
+	
+		data.user = gs.getUserID();
+	data.userName = gs.getUserName();
+data.AddOnsData=[];
+	var addOnsGr=new GlideRecord('x_rptp_insureme_addons');
+	addOnsGr.query();
+	while(addOnsGr.next()){
+		var obj={
+			"image":findImage(),
+			"CoverAmt":addOnsGr.getDisplayValue("cover_amount"),
+			"AddOnName": addOnsGr.getDisplayValue("addon_name"),
+			"addOnValue":addOnsGr.getValue("value"),
+			"description":addOnsGr.getValue("description"),
+			"visible":true
+		}
+		data.AddOnsData.push(obj);
+	}
+function findImage() {
+		var Iname = 'futureinsurance.png';
+		var gr = new GlideRecord("db_image");
+		gr.get(Iname);
+		return gr.getDisplayValue('image');
+ 
+	}
+	
+	
 	// getting image from db_image table
 	var Iname = "futureinsurance.png";
 	var gr = new GlideRecord("db_image");
@@ -1292,251 +1437,58 @@ margin-bottom: 20px;
 	}
 })();
 ]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>chiranjit.behera</sys_created_by>
-        <sys_created_on>2024-01-16 09:55:47</sys_created_on>
-        <sys_id>12c4724593f37110acdc3f484dba103b</sys_id>
-        <sys_mod_count>1969</sys_mod_count>
-        <sys_name>Test Payment</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_12c4724593f37110acdc3f484dba103b</sys_update_name>
-        <sys_updated_by>chiranjit.behera</sys_updated_by>
-        <sys_updated_on>2024-03-05 06:57:09</sys_updated_on>
-        <template><![CDATA[<div>
-  <div ng-show="sessionDetails">
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>chiranjit.behera</sys_created_by>
+<sys_created_on>2024-01-16 09:55:47</sys_created_on>
+<sys_id>12c4724593f37110acdc3f484dba103b</sys_id>
+<sys_mod_count>2020</sys_mod_count>
+<sys_name>Test Payment</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_12c4724593f37110acdc3f484dba103b</sys_update_name>
+<sys_updated_by>akshay</sys_updated_by>
+<sys_updated_on>2024-03-06 07:36:18</sys_updated_on>
+<template><![CDATA[<div>
+
+<div class="mainContainer">
     <div class="sticky-container">
-      <div class="backDiv" ng-click="redirect()">
-        <i class="fa fa-arrow-circle-left"></i>
-        <p>Go back</p>
-      </div>
-    </div>
-
-    <div class="main">
-      <!-- 1st section -->
-
-      <form class="section-1" name="myForm">
-        <h3 class="pMar">Personal Details</h3>
-        <p>
-          Please fill all the mandatory(<span class="required">*</span>) fields
-        </p>
-        <div
-             class="mainBoxDiv"
-          ng-repeat="user in users track by $index"
-          ng-show="$index < numberOfPersons"
-        >
-          <div class="boxDiv">
-            <div class="person-section">
-              <h4 class="mar userNameInputBox" ng-click="togglePerson($index)">
-                {{user.name ? user.name : 'Traveller ' + ($index + 1)}}
-                {{user.age ? "(" + user.age + " yrs)" : ""}}
-              </h4>
-              <div class="iFrameDiv">
-                <i
-                  class="fa fa-angle-down"
-                  ng-show="!isPersonHidden[$index]"
-                   ng-click="togglePerson($index)"
-                ></i>
-                <i class="fa fa-angle-up" ng-show="isPersonHidden[$index]" ng-click="togglePerson($index)"></i>
-              </div>
-            </div>
-            <div ng-show="isPersonHidden[$index]">
-              <div class="line mar">
-                <!-- name and checkboxfor name -->
-                <div>
-                  <div class="input-container">
-                    <input
-                      type="text"
-                      class="input-box userNameInputBox"
-                      id="username"
-                      placeholder=""
-                      ng-model="user.name"
-                      ng-class="{ 'blue-border': user.name, 'red-border': !user.name }"
-                      ng-required="true"
-                      minlength="3"
-                    />
-                    <label for="username" class="input-label"
-                      >Enter full name <span class="required">*</span></label
-                    >
-                  </div>
-                </div>
-
-                <div class="input-container">
-                  <select
-                    class="input-box"
-                    required
-                    ng-model="user.gender"
-                    ng-class="{ 'blue-border': user.gender, 'red-border': !user.gender }"
-                  >
-                    <option value="">Please choose your gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                  </select>
-                  <label class="input-label"
-                    >Gender<span class="required">*</span></label
-                  >
-                </div>
-              </div>
-              <div class="line">
-                <div class="input-container">
-                  <input
-                    type="text"
-                    class="input-box"
-                    placeholder=""
-                    ng-model="user.email"
-                    ng-required="true"
-                    ng-class="{ 'blue-border': user.email, 'red-border': !user.email }"
-                  />
-                  <label for="username" class="input-label"
-                    >Enter your email <span class="required">*</span></label
-                  >
-                </div>
-                <div class="input-container">
-                  <input
-                    type="tel"
-                    class="input-box"
-                    ng-class="{ 'blue-border': user.phone, 'red-border': !user.phone }"
-                    placeholder=""
-                    ng-model="user.phone"
-                    ng-required="true"
-                    maxlength="10"
-                    pattern="[0-9]{10}"
-                  />
-                  <label for="username" class="input-label"
-                    >Enter your 10 digit mobile number
-                    <span class="required">*</span></label
-                  >
-                </div>
-              </div>
-              <!-- line 2 -->
-              <div class="line">
-                <div class="input-container">
-                  <input
-                    type="date"
-                    class="input-box"
-                    ng-class="{ 'blue-border': user.dob, 'red-border': !user.dob }"
-                    id="dob"
-                    placeholder=""
-                    ng-model="user.dob"
-                    ng-change="calculateAge()"
-                    ng-required="true"
-                  />
-                  <label for="username" class="input-label"
-                    >Enter date of birth<span class="required">*</span></label
-                  >
-                </div>
-
-                <div class="input-container">
-                  <input
-                    type="text"
-                    class="input-box"
-                    id="username"
-                    value="Indian"
-                    disabled
-                  />
-                  <label for="username" class="input-label">Nationality</label>
-                </div>
-              </div>
-              <!-- line3 -->
-              <div class="line">
-                <div>
-                  <div class="input-container">
-                    <input
-                      type="text"
-                      class="input-box"
-                      id="username"
-                      placeholder=""
-                      ng-class="{ 'blue-border': user.passport, 'red-border': !user.passport }"
-                      ng-model="user.passport"
-                      maxlength="8"
-                      ng-change="validatePassport()"
-                      ng-required="true"
-                    />
-                    <label for="username" class="input-label"
-                      >Enter passport number(A1234567)<span class="required"
-                        >*</span
-                      ></label
-                    >
-                  </div>
-                 
-                </div>
-                <div>
-                  <div class="input-container">
-                    <input
-                      type="text"
-                      class="input-box"
-                      id="panInput"
-                      placeholder=""
-                      ng-model="user.panNumber"
-                      ng-change="formatPan()"
-                      maxlength="10"
-                      ng-disabled="isPanDisabled"
-                    />
-                    <label for="panInput" class="input-label"
-                      >Enter pan number(ABCDE1234F)</label
-                    >
-                  </div>
-
-                  <div class="line-1-inner">
-                    <input
-                      type="checkbox"
-                      ng-model="isPanDisabled"
-                      ng-init="isPanDisabled=false"
-                           class="panCheckBox"
-                    />
-                    <p>I don't have a pancard</p>
-                  </div>
-                </div>
-              </div>
-              <h4>Nominee Details</h4>
-              <div class="line">
-                <div class="input-container">
-                  <input
-                    type="text"
-                    class="input-box userNameInputBox"
-                    id="username"
-                    placeholder=""
-                    ng-model="user.nominee"
-                    ng-class="{ 'blue-border': user.nominee, 'red-border': !user.nominee }"
-                    ng-required="true"
-                    minlength="3"
-                  />
-                  <label for="username" class="input-label"
-                    >Enter nominee full name<span class="required"
-                      >*</span
-                    ></label
-                  >
-                </div>
-                <div class="input-container">
-                  <select
-                    class="input-box"
-                    required
-                    ng-model="user.relationship"
-                    ng-class="{ 'blue-border': user.relationship, 'red-border': !user.relationship }"
-                    ng-init="user.relationship=''"
-                  >
-                    <option value="">Please choose an option</option>
-                    <option value="wife">Wife</option>
-                    <option value="father">Father</option>
-                    <option value="mother">Mother</option>
-                    <option value="brother">Brother</option>
-                    <option value="sister">Sister</option>
-                  </select>
-                  <label for="username" class="input-label"
-                    >Select nominee relation<span class="required"
-                      >*</span
-                    ></label
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="backDiv" ng-click="redirect()">
+            <i class="fa fa-arrow-circle-left"></i>
+            <p>Go back</p>
         </div>
-      </form>
 
+
+        <div class="main">
+            <!-- 1st section -->
+
+            <div class="addOnContainer">
+                <div class="addOncard" ng-repeat="(index,record) in data.AddOnsData">
+                  <div class="name_Image">
+                        <img class="addOnImage" src={{record.image}}> 
+                    <div class="addOnName">
+                        {{record.AddOnName}}
+                    </div>
+                    </div>  
+                  
+                    <div class="addOnDescription">
+                        {{record.description}}
+                    </div>
+                    <div class="addOnValue">
+                          <span class="addOnAmt">₹ {{record.addOnValue*numberOfTravellers}}</span> <span>for {{numberOfTravellers}} traveller(s)</span>
+                      <button class="addOnButton" ng-if="record.visible" ng-click="addOn(record,index)">
+                        ADD
+                    </button>
+                      <button class="addOnDeleteButton" ng-if= "!record.visible" ng-click="addOnDeleteButton(record,index)">
+                        Remove
+                    </button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
       <!-- 2nd section -->
       <!-- 
  ng-style="{ 'height': containerHeight }"
@@ -1596,18 +1548,45 @@ margin-bottom: 20px;
                 </h4>
                 <p class="hp">Sum Insured: {{ sum ? "$"+sum : ""}}</p>
                 <p class="hp">
-                  Total Premium: {{ costs[$index] ? "₹" + costs[$index] + "/-" :
+                  Premium: {{ costs[$index] ? "₹" + costs[$index] + "/-" :
                   ""}}
                 </p>
               </div>
             </div>
             <hr />
-          </div>
-        </div>
+         
         <hr/>
 
 
-        <div class="img-div-down">
+
+        <div class="btn-div" ng-show="sessionDetails.newSessionData">
+          <button
+            class="btn btn-primary"
+            ng-click="rediectToVFS()"
+            ng-disabled="!isFormValid()"
+            ng-class="{'diabled-class': (isProcessing || !isFormValid())}"
+          >
+            <div ng-show="isProcessing" class="processing-overlay">
+              <div class="processing-spinner"></div>
+            </div>
+            Add to cart
+          </button>
+        </div>
+      </div>
+           </div>
+          <div class="addOnsList" ng-if="c.addOnList.length>0">
+            <h4>
+              List Of AddOns
+            </h4>
+<div class="listOfDisplay" ng-repeat="list in c.addOnList">
+<div class="displayAddOns">
+              <p class="addOnName">{{list.name}}</p><p class="displayvalue">₹ {{list.value*numberOfTravellers}}
+  </p>
+</div>
+</div>
+</div>
+          
+                <div class="img-div-down">
           <h4>Total Premium</h4>
           <div>
             <h4>{{ amount ? "₹" + amount + "/-" : ""}}</h4>
@@ -1630,23 +1609,9 @@ margin-bottom: 20px;
           </button>
         </div>
 
-        <div class="btn-div" ng-show="sessionDetails.newSessionData">
-          <button
-            class="btn btn-primary"
-            ng-click="rediectToVFS()"
-            ng-disabled="!isFormValid()"
-            ng-class="{'diabled-class': (isProcessing || !isFormValid())}"
-          >
-            <div ng-show="isProcessing" class="processing-overlay">
-              <div class="processing-spinner"></div>
-            </div>
-            Add to cart
-          </button>
-        </div>
-      </div>
     </div>
   </div>
-
+<!--
   <div ng-show="!sessionDetails">
     <section class="page_404">
       <div class="container">
@@ -1668,8 +1633,8 @@ margin-bottom: 20px;
         </div>
       </div>
     </section>
-  </div>
+  </div> -->
 </div>
 ]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

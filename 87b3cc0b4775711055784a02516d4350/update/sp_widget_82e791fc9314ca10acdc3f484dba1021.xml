@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller = function($scope) {
+<category>custom</category>
+<client_script><![CDATA[api.controller = function($scope) {
     /* widget controller */
     var c = this;
 
@@ -30,8 +30,8 @@
     };
 };
 ]]></client_script>
-        <controller_as>c</controller_as>
-        <css>/* Add your CSS styles here */
+<controller_as>c</controller_as>
+<css>/* Add your CSS styles here */
 body {
   font-family: Arial, sans-serif;
 }
@@ -79,20 +79,20 @@ button[type="submit"]:hover {
 .required{
   color : red;
 }</css>
-        <data_table>sp_instance</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list/>
-        <has_preview>true</has_preview>
-        <id>your_details</id>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
-        <name>your details</name>
-        <option_schema/>
-        <public>true</public>
-        <roles/>
-        <script><![CDATA[(function() {
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>true</has_preview>
+<id>your_details</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+<name>your details</name>
+<option_schema/>
+<public>true</public>
+<roles/>
+<script><![CDATA[(function() {
   /* populate the 'data' object */
   /* e.g., data.table = $sp.getValue('table'); */
 
@@ -118,20 +118,20 @@ button[type="submit"]:hover {
 	
 	
 })();]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>Surya.Prathap</sys_created_by>
-        <sys_created_on>2024-02-09 05:02:54</sys_created_on>
-        <sys_id>82e791fc9314ca10acdc3f484dba1021</sys_id>
-        <sys_mod_count>227</sys_mod_count>
-        <sys_name>your details</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_82e791fc9314ca10acdc3f484dba1021</sys_update_name>
-        <sys_updated_by>Surya.Prathap</sys_updated_by>
-        <sys_updated_on>2024-02-28 07:03:38</sys_updated_on>
-        <template><![CDATA[<div style="padding: 20px;">
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>Surya.Prathap</sys_created_by>
+<sys_created_on>2024-02-09 05:02:54</sys_created_on>
+<sys_id>82e791fc9314ca10acdc3f484dba1021</sys_id>
+<sys_mod_count>227</sys_mod_count>
+<sys_name>your details</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_82e791fc9314ca10acdc3f484dba1021</sys_update_name>
+<sys_updated_by>Surya.Prathap</sys_updated_by>
+<sys_updated_on>2024-02-28 07:03:38</sys_updated_on>
+<template><![CDATA[<div style="padding: 20px;">
 
   <form >
     
@@ -218,5 +218,5 @@ button[type="submit"]:hover {
 
 </div>
 ]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

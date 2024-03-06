@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller = function($scope,$timeout,spUtil) {
+<category>custom</category>
+<client_script><![CDATA[api.controller = function($scope,$timeout,spUtil) {
 	var c = this;
 
 	c.submit = function (){
@@ -93,8 +93,8 @@ c.server
 	}
 };
 ]]></client_script>
-        <controller_as>c</controller_as>
-        <css>.goBack {
+<controller_as>c</controller_as>
+<css>.goBack {
   position: relative;
   width: 100px;
   height: 40px; 
@@ -204,22 +204,22 @@ div {
   width:20%
 }
 </css>
-        <data_table>sp_instance</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list/>
-        <has_preview>true</has_preview>
-        <id>new_user</id>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>true</has_preview>
+<id>new_user</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-        <name>Create New User</name>
-        <option_schema>[{"displayValue":"Page","name":"redirect_url","display_value_list":[],"section":"Presentation","default_value":"user","label":"url","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}},{"displayValue":"Table","name":"table_2","section":"Data","label":"Table 2","type":"reference","value":"sys_db_object","ed":{"reference":"sys_db_object"}}]</option_schema>
-        <public>false</public>
-        <roles/>
-        <script><![CDATA[(function () {
+<name>Create New User</name>
+<option_schema>[{"displayValue":"Page","name":"redirect_url","display_value_list":[],"section":"Presentation","default_value":"user","label":"url","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}},{"displayValue":"Table","name":"table_2","section":"Data","label":"Table 2","type":"reference","value":"sys_db_object","ed":{"reference":"sys_db_object"}}]</option_schema>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function () {
 	try {
 		// Check if a user with the same email exists
 		var grEmail = new GlideRecord('sys_user');
@@ -293,20 +293,20 @@ div {
 	}
 })();
 ]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-12-19 11:08:09</sys_created_on>
-        <sys_id>79c8b680475b751055784a02516d4339</sys_id>
-        <sys_mod_count>237</sys_mod_count>
-        <sys_name>Create New User</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_79c8b680475b751055784a02516d4339</sys_update_name>
-        <sys_updated_by>chandan.parmar</sys_updated_by>
-        <sys_updated_on>2024-03-04 06:48:31</sys_updated_on>
-        <template><![CDATA[<div>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2023-12-19 11:08:09</sys_created_on>
+<sys_id>79c8b680475b751055784a02516d4339</sys_id>
+<sys_mod_count>237</sys_mod_count>
+<sys_name>Create New User</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_79c8b680475b751055784a02516d4339</sys_update_name>
+<sys_updated_by>chandan.parmar</sys_updated_by>
+<sys_updated_on>2024-03-04 06:48:31</sys_updated_on>
+<template><![CDATA[<div>
 
   <div admin-back-button class="bt"></div>
   <form novalidate class="css-form" >
@@ -399,5 +399,5 @@ div {
 
 
 ]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller=function() {
+<category>custom</category>
+<client_script><![CDATA[api.controller=function() {
   /* widget controller */
   var c = this;
 	
@@ -63,8 +63,8 @@ c.printDurationInDays();
 
 
 };]]></client_script>
-        <controller_as>c</controller_as>
-        <css>
+<controller_as>c</controller_as>
+<css>
 
 * {
     margin: 0;
@@ -493,34 +493,34 @@ label {
 }
 
 </css>
-        <data_table>sp_instance</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list/>
-        <has_preview>true</has_preview>
-        <id>travel_details</id>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
-        <name>Travel Details</name>
-        <option_schema/>
-        <public>false</public>
-        <roles/>
-        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>harshitha</sys_created_by>
-        <sys_created_on>2024-01-17 04:46:01</sys_created_on>
-        <sys_id>227736dd93b3b110acdc3f484dba100c</sys_id>
-        <sys_mod_count>11</sys_mod_count>
-        <sys_name>Travel Details</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_227736dd93b3b110acdc3f484dba100c</sys_update_name>
-        <sys_updated_by>harshitha</sys_updated_by>
-        <sys_updated_on>2024-01-17 11:24:03</sys_updated_on>
-        <template><![CDATA[<div>
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>true</has_preview>
+<id>travel_details</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+<name>Travel Details</name>
+<option_schema/>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>harshitha</sys_created_by>
+<sys_created_on>2024-01-17 04:46:01</sys_created_on>
+<sys_id>227736dd93b3b110acdc3f484dba100c</sys_id>
+<sys_mod_count>11</sys_mod_count>
+<sys_name>Travel Details</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_227736dd93b3b110acdc3f484dba100c</sys_update_name>
+<sys_updated_by>harshitha</sys_updated_by>
+<sys_updated_on>2024-01-17 11:24:03</sys_updated_on>
+<template><![CDATA[<div>
   <div class="travelinfo_blk">
     <div class="info_fieldblk">
         <div class="field_ttl">Where?</div>
@@ -728,5 +728,5 @@ label {
 
 
 </div>]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

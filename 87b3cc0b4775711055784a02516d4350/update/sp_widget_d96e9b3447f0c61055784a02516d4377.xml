@@ -1,0 +1,1474 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sp_widget action="INSERT_OR_UPDATE">
+<category>custom</category>
+<client_script><![CDATA[api.controller=function() {
+  /* widget controller */
+  var c = this;
+};]]></client_script>
+<controller_as>c</controller_as>
+<css>.new-header.desktop .header-menu {
+    border-left: 1px solid #dedede;
+    -webkit-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto
+}
+
+.new-header.desktop .header-menu ul li:hover span.open-status {
+    background: url("../../../etc.clientlibs/icicibank/clientlibs/clientlib-base/resources/images/arrow_down_orange.png") no-repeat
+}
+
+.new-header.desktop .header-menu ul li.is-active span.open-status {
+    background: url("../../../etc.clientlibs/icicibank/clientlibs/clientlib-base/resources/images/arrow_down_orange.png") no-repeat;
+    background-position: 0 2.5px;
+    transform: rotate(180deg)
+}
+.header-menu .menu-inner .country-flag-container .country-dropdown .sub-menu-inner ul li:nth-child(2) {
+    padding-left: 35px !important
+}
+@media screen and (max-width: 992px) {
+    .header-menu {
+        z-index:auto
+    }
+
+    .header-level-1 {
+        z-index: 999
+    }
+
+    .header-level-2 {
+        position: relative;
+        z-index: 777
+    }
+
+    .header-level-3 {
+        position: fixed;
+        left: -100%;
+        top: auto
+    }
+
+    .is-drop-active .header-level-1 {
+        z-index: 999
+    }
+
+    .is-drop-active .header-level-2 {
+        z-index: 777
+    }
+
+    body.is-nav-open.is-drop-active .header-level-1 {
+        z-index: 999
+    }
+
+    body.is-nav-open.is-drop-active .header-level-2 {
+        z-index: 888
+    }
+
+    body.is-nav-open .header-level-3 {
+        z-index: 777
+    }
+
+    body.is-nav-open.is-drop-active .header-overlay {
+        z-index: 777
+    }
+}
+.top-menu-v2 {
+    position: relative;
+    padding: 0 16px 7px;
+    background-color: #fff
+}
+
+@media(min-width: 992px) {
+    .top-menu-v2 {
+        padding:16px
+    }
+
+    .top-menu-v2 .right-side-menu-v2 {
+        display: block
+    }
+}
+
+.menu-item-nav .menu-txt.active ~ .topmenu-dropdown {
+    background-color: #fff;
+    display: block
+}
+
+.top-menu-v2 .menu-item-nav .menu-txt {
+    color: #3d3d3d
+}
+
+.top-menu-v2 .menu-item-nav .menu-txt.active {
+    color: #f37e20
+}
+
+.top-menu-v2 .menu-item-nav .menu-nav-tab .dropdown-arrow,.top-menu-wrapper--mobile .menu-item-nav .menu-nav-tab .dropdown-arrow {
+    color: #3d3d3d
+}
+
+.top-menu-v2 .menu-item-nav.active .menu-nav-tab .dropdown-arrow,.top-menu-wrapper--mobile .menu-item-nav.active .menu-nav-tab .dropdown-arrow {
+    top: 12px;
+    transform: rotate(180deg);
+    color: #f37e20
+}
+
+.top-menu-v2 .top-menu .menu-item-nav {
+    padding: 0
+}
+
+.top-menu-v2 .menu-item-nav .dropdown-arrow,.top-menu-wrapper--mobile .menu-item-nav .dropdown-arrow {
+    font-size: 13px;
+    margin-left: 6px;
+    margin-top: 2px;
+    margin-right: 8px
+}
+
+@media only screen and (min-width: 992px) {
+    .topmenu-dropdown .menu-nav-dropdown__inner .menu-nav-dropdown__inner__list li:not(:last-child) {
+        padding-bottom:12px
+    }
+}
+
+.topmenu-dropdown .menu-nav-dropdown__inner .menu-nav-dropdown__inner__list a {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 140.625%;
+    color: #3d3d3d;
+    display: flex;
+    align-items: center
+}
+
+@media(min-width: 768px) and (max-width:1199px) {
+    .topmenu-dropdown .menu-nav-dropdown__inner .menu-nav-dropdown__inner__list a {
+        font-size:12px
+    }
+}
+
+@media(min-width: 1200px) {
+    .top-menu-v2 .menu-item-nav:hover .menu-nav-tab .dropdown-arrow {
+        top:12px;
+        transform: rotate(180deg);
+        color: #f37e20
+    }
+
+    .topmenu-dropdown .menu-nav-dropdown__inner .menu-nav-dropdown__inner__list a {
+        font-size: 15px
+    }
+}
+
+.top-menu-v2 .menu-item-nav .menu-nav-tab {
+    color: #3d3d3d;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding-top: 12px;
+    padding-bottom: 12px
+}
+
+.top-menu-v2 .menu-item-nav .menu-txt {
+    white-space: nowrap
+}
+
+.top-menu-v2 .menu-nav-dropdown__inner .menu-nav-dropdown__inner__list {
+    list-style: none
+}
+
+.top-menu-wrapper--mobile .menu-item-nav .topmenu-dropdown {
+    display: none
+}
+
+.top-menu-wrapper--mobile .menu-item-nav .topmenu-dropdown.active {
+    display: block;
+    background: #fff;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    opacity: 1
+}
+
+.topmenu-dropdown .menu-nav-dropdown__inner .menu-nav-dropdown__inner__list a:hover {
+    color: #f37e20
+}
+
+.top-menu-v2 .menu-item-nav {
+    position: relative
+}
+
+.top-menu-v2 .menu-item-nav .menu-nav-tab:hover {
+    color: #f37e20
+}
+
+@media(min-width: 992px) {
+    .top-menu-v2 .menu-inner--v2 {
+        max-width:1260px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        justify-content: space-between;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        align-items: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center
+    }
+
+    .top-menu-v2 .menu-item-nav .menu-txt:hover {
+        color: #f37e20
+    }
+
+    .top-menu-v2 .top-menu .menu-item-nav {
+        padding: 0 24px
+    }
+
+    .topmenu-dropdown .menu-nav-dropdown__inner .menu-nav-dropdown__inner__list a:hover {
+        text-decoration: underline
+    }
+
+    .top-menu-v2 {
+        padding: 0
+    }
+
+    .top-menu-v2 .menu-item-nav:not(:first-child) {
+        margin-left: 8px
+    }
+
+    .top-menu-v2 .menu-item-nav:last-child {
+        margin-right: 0
+    }
+
+    .top-menu-v2 .menu-item-nav:not(:last-child) {
+        border-bottom: 0
+    }
+
+    .top-menu-v2 .top-menu-items {
+        display: flex;
+        flex-grow: 1;
+        border-bottom: 0;
+        margin-right: 0;
+        margin-bottom: 10px;
+        border-bottom: 0
+    }
+
+    .top-menu-v2 .menu-item-nav.active {
+        display: block
+    }
+
+    .topmenu-dropdown.topmenu-resetPos {
+        transform: translate(-76%)
+    }
+}
+
+@media(max-width: 991px) {
+    .top-menu-v2 .menu-item-nav .menu-nav-tab {
+        color:#3d3d3d;
+        text-decoration: none;
+        display: flex;
+        align-items: flex-start;
+        padding-right: 12px
+    }
+
+    .top-menu-v2 .menu-item-nav .dropdown-arrow,.top-menu-wrapper--mobile .menu-item-nav .dropdown-arrow {
+        position: absolute;
+        right: 0;
+        transform: translateY(-50%);
+        top: 23px;
+        margin-right: 0;
+        line-height: 50px
+    }
+
+    .top-menu-wrapper--mobile .menu-item-nav.active .dropdown-arrow {
+        transform: translateY(-50%) rotate(180deg);
+        color: #f37e20
+    }
+
+    .top-menu-v2 .menu-item-nav .topmenu-dropdown.active {
+        display: block;
+        background: inherit;
+        width: 100%;
+        left: 0;
+        opacity: 1
+    }
+
+    .top-menu-v2 .topmenu-dropdown {
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 0
+    }
+}
+
+@media(min-width: 768px) and (max-width:1024px) and (orientation:landscape) {
+    .topmenu-dropdown.topmenu-resetPos {
+        transform:translate(-82%)
+    }
+
+    .top-menu-v2 .menu-item-nav .menu-txt {
+        padding-left: 5px
+    }
+
+    .top-menu-v2 .menu-item-nav .dropdown-arrow {
+        margin-right: 3px
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .top-menu-v2 .menu-item-nav .menu-txt,.top-menu-wrapper--mobile .menu-item-nav .menu-txt {
+        font-size:13px
+    }
+
+    .top-menu-wrapper--mobile .menu-item-nav .topmenu-dropdown {
+        display: none
+    }
+}
+
+@media only screen and (width: 1180px) and (height:820px) {
+    .top-menu-v2 .menu-item-nav .menu-txt {
+        font-size:13px;
+        padding-left: 5px;
+        letter-spacing: -1px
+    }
+}
+
+@media(min-width: 992px) {
+    .top-menu-v2 .menu-inner--v2 {
+        align-items:flex-start;
+        -webkit-align-items: flex-start;
+        -ms-flex-align: flex-start
+    }
+}
+
+.top-menu-v2 .left-side-menu-v2 ul {
+    display: flex;
+    background: rgba(241,129,33,0.2);
+    width: fit-content;
+    height: 31px;
+    border-radius: 0 0 8px 8px;
+    padding: 0
+}
+
+.top-menu-v2 .left-side-menu-v2 ul .top-menu-v2-link-area {
+    padding: 8px 0
+}
+
+@media only screen and (min-width: 992px) {
+    .top-menu-v2 .left-side-menu-v2 ul {
+        padding:0
+    }
+}
+
+.top-menu-v2 .left-side-menu-v2 ul li a {
+    color: #333;
+    display: flex;
+    padding: 0 6px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .26px;
+    line-height: .7
+}
+
+.top-menu-v2 .left-side-menu-v2 ul li:not(:last-child) a {
+    border-right: 1.5px solid #ccc
+}
+
+@media(min-width: 768px) and (max-width:1199px) {
+    .top-menu-v2 .left-side-menu-v2 ul li a {
+        font-size:12px
+    }
+}
+
+@media(min-width: 1200px) {
+    .top-menu-v2 .left-side-menu-v2 ul li a {
+        font-size:15px;
+        letter-spacing: .75px;
+        padding: 0 11px
+    }
+}
+
+.top-menu-v2 .left-side-menu-v2 ul li.is--active .top-menu-v2-link-area {
+    padding: 0
+}
+
+.top-menu-v2 .left-side-menu-v2 ul li.is--active a {
+    color: #fff;
+    border-right: 0;
+    border-radius: 0 0 8px 8px;
+    padding: 10px 6px 12px 6px;
+    background: #f18121;
+    box-shadow: 0 1px 8px 0 rgba(211,146,90,0.6);
+    font-weight: 800;
+    line-height: .7
+}
+
+@media only screen and (min-width: 992px) {
+    .top-menu-v2 .left-side-menu-v2 ul li.is--active a {
+        letter-spacing:.3px;
+        line-height: .75;
+        padding: 10px 15px 12px 15px
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .top-menu-v2 .right-side-menu-v2 {
+        display:-ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        align-items: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        gap: 12px;
+        padding-top: 6px
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .top-menu-v2 .top-menu-items {
+        margin-bottom:0
+    }
+}
+
+.top-menu-v2 .menu-item-nav {
+    position: relative
+}
+
+.top-menu-v2 .menu-nav-dropdown {
+    position: absolute;
+    right: -17px;
+    top: auto;
+    display: none
+}
+
+.top-menu-v2 .menu-nav-dropdown__inner {
+    border: 1px solid #f37e20;
+    border-radius: 12px;
+    min-width: 270px;
+    background-color: #fff;
+    overflow-x: hidden;
+    width: max-content
+}
+
+.top-menu-v2 .menu-nav-dropdown__inner:before {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 5px;
+    right: 20px;
+    top: -4px;
+    background-image: url("../../../etc.clientlibs/icicibank/clientlibs/clientlib-base-v2/resources/images/dropdown-level1-arrow.svg");
+    background-repeat: no-repeat;
+    background-position: 0 0
+}
+
+.top-menu-v2 .menu-nav-dropdown__inner::after {
+    content: "";
+    background: #fff;
+    width: 19px;
+    position: absolute;
+    top: 1px;
+    height: 2px;
+    right: 23px
+}
+
+.top-menu-v2 .country-dropdown .menu-nav-dropdown__inner {
+    min-width: 205px
+}
+
+.top-menu-v2 .country-dropdown {
+    padding-top: 2px
+}
+
+.top-menu-v2 .country-dropdown .menu-nav-dropdown__inner::before {
+    background-image: url("../../../etc.clientlibs/icicibank/clientlibs/clientlib-base-v2/resources/images/dropdown-top-arrow-white.svg");
+    top: -7px;
+    height: 10px;
+    width: 28px;
+    right: 19px
+}
+
+.top-menu-v2 .country-dropdown .menu-nav-dropdown__inner::after {
+    top: 3px
+}
+
+.top-menu-v2 .menu-nav-dropdown__inner__list {
+    padding: 8px 32px 16px
+}
+
+@media(max-width: 991px) {
+    .top-menu-v2 .menu-item-nav .menu-nav-tab.country-drop-select {
+        padding:8px 0
+    }
+
+    .top-menu-v2 .menu-item-nav .menu-nav-tab.country-drop-select img {
+        width: 23px;
+        height: 15px
+    }
+
+    .top-menu-v2 .menu-nav-dropdown {
+        right: -2px
+    }
+
+    .top-menu-v2 .menu-nav-dropdown__inner:before {
+        width: 23px;
+        height: 9px;
+        right: 10px;
+        top: -4.1px
+    }
+}
+
+.top-menu-v2 .menu-nav-dropdown li {
+    padding: 12px 0
+}
+
+@media(min-width: 768px) and (max-width:1199px) {
+    .top-menu-v2 .menu-nav-dropdown li {
+        font-size:12px
+    }
+}
+
+@media(min-width: 1200px) {
+    .top-menu-v2 .menu-nav-dropdown li {
+        color:#3d3d3d;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 140.625%;
+        text-transform: capitalize
+    }
+
+    .top-menu-v2 .menu-item-nav:hover .menu-nav-dropdown {
+        display: block
+    }
+}
+
+.top-menu-v2 .menu-nav-dropdown li:not(:last-child) {
+    border-bottom: 1px solid #dedede
+}
+
+.top-menu-v2 .menu-item-nav .dropdown-arrow {
+    font-size: 12px;
+    margin-top: 2px;
+    margin-left: 5px;
+    margin-right: 10px
+}
+
+.top-menu-v2 .menu-item-nav .menu-nav-tab {
+    display: flex;
+    align-items: flex-start
+}
+
+@media only screen and (min-width: 992px) {
+    .top-menu-v2 .menu-item-nav .menu-nav-tab {
+        color:#333;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        padding-top: 6px;
+        padding-bottom: 8px
+    }
+}
+
+.top-menu-v2 .menu-item-nav .menu-nav-tab::after {
+    content: "";
+    border-right: 1.5px solid rgba(51,51,51,0.3);
+    position: absolute;
+    height: 12px;
+    right: 0
+}
+
+.top-menu-v2 .menu-txt,.top-menu-wrapper--mobile .menu-txt {
+    color: #3d3d3d;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 18px
+}
+
+.top-menu-v2 .menu-item-nav.active .menu-txt,.top-menu-wrapper--mobile .menu-item-nav.active .menu-txt {
+    color: #f18121
+}
+
+@media(min-width: 768px) and (max-width:1199px) {
+    .top-menu-v2 .menu-item-nav .menu-txt,.top-menu-wrapper--mobile .menu-txt {
+        font-size:12px
+    }
+}
+
+@media(min-width: 1200px) {
+    .top-menu-v2 .menu-item-nav .menu-txt {
+        color:#333;
+        font-size: 14px;
+        line-height: 16px;
+        letter-spacing: .75px
+    }
+}
+.site-logo {
+    margin-top: -2px
+}
+
+@media(min-width: 992px) {
+    .site-logo {
+        margin-top:-4px
+    }
+}
+.login-toggle {
+    border: 0;
+    background-color: #f37e20;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    line-height: .9;
+    transition: background-color .3s ease 0;
+}
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+button, select {
+    text-transform: none;
+}
+button {
+    overflow: visible;
+}
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+*, :after, :before {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Muli, sans-serif;
+}
+*, ::after, ::before {
+    box-sizing: inherit;
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+user agent stylesheet
+button {
+    appearance: auto;
+    font-style: ;
+    font-variant-ligatures: ;
+    font-variant-caps: ;
+    font-variant-numeric: ;
+    font-variant-east-asian: ;
+    font-variant-alternates: ;
+    font-variant-position: ;
+    font-weight: ;
+    font-stretch: ;
+    font-size: ;
+    font-family: ;
+    font-optical-sizing: ;
+    font-kerning: ;
+    font-feature-settings: ;
+    font-variation-settings: ;
+    text-rendering: auto;
+    color: buttontext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: buttonface;
+    margin: 0em;
+    padding-block: 1px;
+    padding-inline: 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonborder;
+    border-image: initial;
+}
+.rightColumnContainer p a, .rows p a, ol li, ul li {
+    font-size: 13px;
+}
+ol li, ul li {
+    list-style-type: none;
+}
+user agent stylesheet
+li {
+    text-align: -webkit-match-parent;
+}
+header ul, header ol li {
+    list-style-type: none;
+}
+user agent stylesheet
+ul {
+    list-style-type: disc;
+}
+body {
+    margin: 0;
+    padding: 0;
+    color: #4b4b4b;
+    font-size: 14px;
+    line-height: 140%;
+    font-family: Muli, sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+    background: #fff;
+}
+body {
+    font-family: Muli, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+html {
+    color: #454545 !important;
+}
+html {
+    font-size: 10px;
+    -webkit-tap-highlight-color: transparent;
+}
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "Muli", sans-serif;
+}
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "Muli", sans-serif;
+}
+*, :after, :before {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Muli, sans-serif;
+}
+*, ::after, ::before {
+    box-sizing: inherit;
+}
+:after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "Muli", sans-serif;
+}
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "Muli", sans-serif;
+}
+*, :after, :before {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Muli, sans-serif;
+}
+*, ::after, ::before {
+    box-sizing: inherit;
+}
+:after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+} .site-logo img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+.brand-logo .logo-image {
+    width: 140px;
+    height: 28.77px;
+    background-position: -2px -33px;
+    background-size: 295px;
+}
+.brand-logo .logo-image {
+    width: 103.71px;
+    height: 19.83px;
+    background-position: -1px -24px;
+    background-size: 217px;
+    display: inline-block;
+    vertical-align: top;
+    text-indent: -9999px;
+}
+.sprite-img {
+    background: url(../../../etc.clientlibs/icicibank/clientlibs/clientlib-base-v2/resources/images/sprit-image.png) no-repeat;
+}
+*, :after, :before {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Muli, sans-serif;
+}
+*, ::after, ::before {
+    box-sizing: inherit;
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+a, a:hover, a:link, a:visited {
+    color: #f37e20;
+}
+.brand-logo {
+    width: 104px;
+    text-decoration: none;
+    display: inline-block;
+    line-height: 0;
+    vertical-align: top;
+}
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+user agent stylesheet
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+}
+body {
+    margin: 0;
+    padding: 0;
+    color: #4b4b4b;
+    font-size: 14px;
+    line-height: 140%;
+    font-family: Muli, sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+    background: #fff;
+}
+body {
+    font-family: Muli, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+html {
+    color: #454545 !important;
+}
+html {
+    font-size: 10px;
+    -webkit-tap-highlight-color: transparent;
+}
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "Muli", sans-serif;
+}
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "Muli", sans-serif;
+}
+*, :after, :before {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Muli, sans-serif;
+}
+*, ::after, ::before {
+    box-sizing: inherit;
+}
+:after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "Muli", sans-serif;
+}
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "Muli", sans-serif;
+}
+*, :after, :before {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Muli, sans-serif;
+}
+*, ::after, ::before {
+    box-sizing: inherit;
+}
+:after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.hed-dropdown-toggle.login-toggle {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 10px; /* Adjust the margin as needed */
+        font-size: 20px; /* Adjust the font size as needed */
+        padding: 10px 20px; /* Adjust the padding as needed */
+    }
+
+
+
+
+
+
+
+
+
+
+</css>
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>true</has_preview>
+<id>icici_header</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+<name>ICICI Header</name>
+<option_schema/>
+<public>true</public>
+<roles/>
+<script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+
+})();]]></script>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>Surya.Prathap</sys_created_by>
+<sys_created_on>2024-03-05 11:22:17</sys_created_on>
+<sys_id>d96e9b3447f0c61055784a02516d4377</sys_id>
+<sys_mod_count>69</sys_mod_count>
+<sys_name>ICICI Header</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_d96e9b3447f0c61055784a02516d4377</sys_update_name>
+<sys_updated_by>Surya.Prathap</sys_updated_by>
+<sys_updated_on>2024-03-06 06:53:35</sys_updated_on>
+<template><![CDATA[
+
+
+
+<header id="new-header-v2" class="new-header-v2 desktop sticky-enable" data-ctaregion="header">
+   
+  <div class="header-menu">
+    <div class="header-level-1 top-menu-wrapper">
+      <div class="top-menu-v2" data-ctaregion="top mega nav">
+        <div class="menu-inner--v2">
+          <nav
+               class="left-side-menu-v2"
+               data-ctaregion="top mega nav usersegment"
+               >
+            <ul>
+              <li
+                  class="top-menu-v2-item is--default is--active"
+                  >
+                <div
+                     class="top-menu-v2-link-area menu-link-area--v2"
+                     >
+                  <a
+                     href="https://www.icicibank.com?ITM=nli_cms_personal_header_nav"
+                     target="_self"
+                     data-linktype="menu link"
+                     data-webinteractiontype="other"
+                     >Personal</a
+                    >
+                </div>
+              </li>
+
+              <li class="top-menu-v2-item">
+                <div
+                     class="top-menu-v2-link-area menu-link-area--v2"
+                     >
+                  <a
+                     href="/nri-banking?ITM=nli_cms_nri_header_nav"
+                     target="_self"
+                     data-linktype="menu link"
+                     data-webinteractiontype="other"
+                     >NRI</a
+                    >
+                </div>
+              </li>
+
+              <li class="top-menu-v2-item">
+                <div
+                     class="top-menu-v2-link-area menu-link-area--v2"
+                     >
+                  <a
+                     href="/business-banking?ITM=nli_cms_business_header_nav"
+                     target="_self"
+                     data-linktype="menu link"
+                     data-webinteractiontype="other"
+                     >Business</a
+                    >
+                </div>
+              </li>
+
+              <li class="top-menu-v2-item">
+                <div
+                     class="top-menu-v2-link-area menu-link-area--v2"
+                     >
+                  <a
+                     href="/corporate?ITM=nli_cms_corporate_header_nav"
+                     target="_self"
+                     data-linktype="menu link"
+                     data-webinteractiontype="other"
+                     >Corporate</a
+                    >
+                </div>
+              </li>
+            </ul>
+          </nav>
+
+
+          <nav class="right-side-menu-v2"  style ="padding-top: 0px;"data-ctaregion="top mega nav">
+
+            <div class="country-flag-left-container">
+
+              <ul class="top-menu-items">
+
+
+
+                <li class="menu-item-nav">
+
+                  <a href="/about-us/invest-relations?ITM=nli_cms_investor_relations_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other" class="menu-nav-tab">
+
+                    <span class="menu-txt">Investor Relations</span>
+
+                    <span class="icicon-arrow-down dropdown-arrow d-none d-lg-block"></span>
+
+                  </a>
+
+                  <span class="icicon-arrow-down d-lg-none dropdown-arrow"></span>
+
+                  <div class="topmenu-dropdown menu-nav-dropdown" data-ctaregion="top mega nav:Investor Relations">
+
+                    <div class="menu-nav-dropdown__inner">
+
+                      <ul class="menu-nav-dropdown__inner__list">
+
+
+
+                        <li><a href="/about-us/annual?ITM=nli_cms_investor_relations_annual_reports_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Annual Reports</a>
+
+                        </li>
+
+
+
+                        <li><a href="/about-us/investor?ITM=nli_cms_investor_relations_investor_presentation_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Investor Presentation</a>
+
+                        </li>
+
+
+
+                        <li><a href="/about-us/qfr?ITM=nli_cms_investor_relations_quarterly_results_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Quarterly Results</a>
+
+                        </li>
+
+
+
+                        <li><a href="/about-us/notice?ITM=nli_cms_investor_relations_notice_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Notice</a>
+
+                        </li>
+
+
+
+                        <li><a href="/about-us/investor-contact?ITM=nli_cms_investor_relations_investor_contact_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Investor Contact</a>
+
+                        </li>
+
+
+
+                      </ul>
+
+                    </div>
+
+                  </div>
+
+                </li>
+
+
+
+                <li class="menu-item-nav">
+
+                  <a href="/about-us?ITM=nli_cms_about_us_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other" class="menu-nav-tab">
+
+                    <span class="menu-txt">About Us</span>
+
+                    <span class="icicon-arrow-down dropdown-arrow d-none d-lg-block"></span>
+
+                  </a>
+
+                  <span class="icicon-arrow-down d-lg-none dropdown-arrow"></span>
+
+                  <div class="topmenu-dropdown menu-nav-dropdown" data-ctaregion="top mega nav:About Us">
+
+                    <div class="menu-nav-dropdown__inner">
+
+                      <ul class="menu-nav-dropdown__inner__list">
+
+
+
+                        <li><a href="/about-us/group-comp?ITM=nli_cms_about_us_icici_group_companies_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">ICICI Group Companies</a>
+
+                        </li>
+
+
+
+                        <li><a href="/about-us/bod-1?ITM=nli_cms_about_us_board_of_directors_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Board of Directors</a>
+
+                        </li>
+
+
+
+                        <li><a href="/about-us/media-center?ITM=nli_cms_about_us_media_center_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Media Center</a>
+
+                        </li>
+
+
+
+                        <li><a href="/about-us/awards?ITM=nli_cms_about_us_awards_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Awards &amp; Recognition</a>
+
+                        </li>
+
+
+
+                        <li><a href="/about-us/esg?ITM=nli_cms_about_us_environment_social_and_governance_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Environment, Social and Governance</a>
+
+                        </li>
+
+
+
+                        <li><a href="https://www.icicicareers.com/?ITM=nli_cms_ways_to_bank_header_nav" target="_blank" data-linktype="dropdown link" data-webinteractiontype="exit">Career Opportunities</a>
+
+                        </li>
+
+
+
+                      </ul>
+
+                    </div>
+
+                  </div>
+
+                </li>
+
+
+
+                <li class="menu-item-nav">
+
+                  <a href="/personal-banking/connect?ITM=nli_cms_ways_to_bank_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other" class="menu-nav-tab">
+
+                    <span class="menu-txt">Ways to Bank</span>
+
+                    <span class="icicon-arrow-down dropdown-arrow d-none d-lg-block"></span>
+
+                  </a>
+
+                  <span class="icicon-arrow-down d-lg-none dropdown-arrow"></span>
+
+                  <div class="topmenu-dropdown menu-nav-dropdown" data-ctaregion="top mega nav:Ways to Bank">
+
+                    <div class="menu-nav-dropdown__inner">
+
+                      <ul class="menu-nav-dropdown__inner__list">
+
+
+
+                        <li><a href="/digital-banking/retail-digital-banking" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Digital Banking</a>
+
+                        </li>
+
+
+
+                        <li><a href="/mobile-banking?ITM=nli_cms_ways_to_bank_mobile_banking_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Mobile Banking </a>
+
+                        </li>
+
+
+
+                        <li><a href="/personal-banking/insta-banking/internet-banking?ITM=nli_cms_ways_to_bank_internet_banking_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Internet Banking</a>
+
+                        </li>
+
+
+
+                        <li><a href="/mobile-banking/imobile-pay?ITM=nli_cms_ways_to_bank_imobile_pay_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">iMobile Pay</a>
+
+                        </li>
+
+
+
+                        <li><a href="/online-services/whatsapp-banking?ITM=nli_cms_ways_to_bank_whatsapp_banking_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">WhatsApp Banking</a>
+
+                        </li>
+
+
+
+                        <li><a href="/personal-banking/bank-wallet/pockets/pockets?ITM=nli_cms_ways_to_bank_pockets_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Pockets</a>
+
+                        </li>
+
+
+
+                        <li><a href="/personal-banking/ipalchatbot?ITM=nli_cms_ways_to_bank_ask_ipal_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Ask iPal</a>
+
+                        </li>
+
+
+
+                        <li><a href="/find-atm-branch?ITM=nli_cms_ways_to_bank_atm_branches_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">ATMs and Branches</a>
+
+                        </li>
+
+
+
+                      </ul>
+
+                    </div>
+
+                  </div>
+
+                </li>
+
+
+
+              </ul>
+
+            </div>
+            <div>
+
+
+              <ul class="top-menu-items">
+
+
+
+                <li class="menu-item-nav">
+
+                  <a target="_self" class="menu-nav-tab" data-linktype="dropdown link" data-webinteractiontype="other" role="button">
+
+                    <span class="menu-txt">Customer Services</span>
+
+                    <span class="icicon-arrow-down dropdown-arrow d-none d-lg-block"></span>
+
+                  </a>
+
+                  <span class="icicon-arrow-down d-lg-none dropdown-arrow"></span>
+
+                  <div class="topmenu-dropdown menu-nav-dropdown" data-ctaregion="top mega nav:Customer Services">
+
+                    <div class="menu-nav-dropdown__inner">
+
+                      <ul class="menu-nav-dropdown__inner__list">
+
+
+
+                        <li>
+
+                          <a href="/contact-us?ITM=nli_cms_customer_services_contact_us_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Contact Us</a>
+
+                        </li>
+
+
+
+                        <li>
+
+                          <a href="/customer-care?ITM=nli_cms_customer_services_customer_care_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Customer Care</a>
+
+                        </li>
+
+
+
+                        <li>
+
+                          <a href="/personal-banking/insta-banking/internet-banking/list-of-service-requests?ITM=nli_cms_customer_services_service_requests_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Service Requests</a>
+
+                        </li>
+
+
+
+                        <li>
+
+                          <a href="/form-center?ITM=nli_cms_customer_services_form_center_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Form Center</a>
+
+                        </li>
+
+
+
+                        <li>
+
+                          <a href="https://leads.icicibank.com/NewSalesWeb/odrMenu.htm?ITM=nli_cms_customer_services_online_assist_header_nav" target="_blank" data-linktype="dropdown link" data-webinteractiontype="other">Online Assist</a>
+
+                        </li>
+
+
+
+                        <li>
+
+                          <a href="/feedback?ITM=nli_cms_customer_services_feedback_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Feedback</a>
+
+                        </li>
+
+
+
+                        <li>
+
+                          <a href="https://nli.icicibank.com/NewRetailWeb/complaint.htm?ITM=nli_cms_ContactUs_Raise_a_Query_hyperlink&amp;_ga=2.129866437.875324643.1706780063-1263642670.1706780063" target="_blank" data-linktype="dropdown link" data-webinteractiontype="other">Queries &amp; Complaints</a>
+
+                        </li>
+
+
+
+                        <li>
+
+                          <a href="/personal-banking/customer-service/help-section?ITM=nli_cms_customer_services_faqs_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">FAQs</a>
+
+                        </li>
+
+
+
+                        <li>
+
+                          <a href="/online-safe-banking/report-fraud?ITM=nli_cms_ways_to_bank_report_suspicious_behaviour_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Report Suspicious Behaviour</a>
+
+                        </li>
+
+
+
+                        <li>
+
+                          <a href="/online-safe-banking/report-unauthorized-transaction?ITM=nli_cms_ways_to_bank_report_unauthorized_transaction_header_nav" target="_self" data-linktype="dropdown link" data-webinteractiontype="other">Report Unauthorized Transaction</a>
+
+                        </li>
+
+
+
+                      </ul>
+
+                    </div>
+
+                  </div>
+
+                </li>
+<li>
+<a href="#" style="padding: 10px;padding-top:10px">
+    1800 1080
+    <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT4eYwUIMxf4QeS1jjJu-MPc7-r5oISXB4bmuIcgpd0eoJmFQfL"
+         alt="Phone Icon"
+         style="vertical-align: middle; height: 2em; width: 2em; ">
+</a>
+
+
+              </ul>
+
+            </div>
+
+          </nav>
+
+        </div>
+        <div style="padding-top:0px" class="header-level-2-left d-flex align-items-center mr-auto">
+          <button class="hamburger d-lg-none" type="button" title="Hamburger" aria-label="Hamburger">
+            <span class="line line1"></span>
+            <span class="line line2"></span>
+            <span class="line line3"></span>
+          </button>
+          <div  class="site-logo">
+            <a class="brand-logo" href="/homepage" target="_self" data-linktype="logo link" data-webinteractiontype="other">
+             <span class="logo-image sprite-img logo-image logo-india">
+    <img style="max-width: 200px;
+                height: auto;
+                display: block;
+                margin-left: 20px;"
+         src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/ICICI_Bank_Logo.svg/2560px-ICICI_Bank_Logo.svg.png"
+         alt="ICICI Bank Logo">
+</span>
+
+
+
+            </a>
+
+          </div>
+        </div></div></div></div></header>
+]]></template>
+</sp_widget>
+</record_update>

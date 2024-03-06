@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>standard</category>
-        <client_script><![CDATA[function ($scope, spUtil, $rootScope, $timeout, spAriaUtil, spGtd, $window, i18n) {
+<category>standard</category>
+<client_script><![CDATA[function ($scope, spUtil, $rootScope, $timeout, spAriaUtil, spGtd, $window, i18n) {
 	var KEY_ENTER = 13;
 	$scope.collapse = function() {
 		$rootScope.$emit('sp-navbar-collapse');
@@ -123,8 +123,8 @@
 	}
   $rootScope.$broadcast('sp-header-loaded');
 }]]></client_script>
-        <controller_as>c</controller_as>
-        <css>.header-loader {
+<controller_as>c</controller_as>
+<css>.header-loader {
 	float: left;
   	width: 24px;
   	position: relative;
@@ -261,15 +261,15 @@
 	}
 }
 </css>
-        <data_table>sp_instance_menu</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list>title</field_list>
-        <has_preview>true</has_preview>
-        <id>admin_portal_menu</id>
-        <internal>false</internal>
-        <link><![CDATA[function(scope, elem) {
+<data_table>sp_instance_menu</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list>title</field_list>
+<has_preview>true</has_preview>
+<id>admin_portal_menu</id>
+<internal>false</internal>
+<link><![CDATA[function(scope, elem) {
 		function isMDScreenSize() {
 		return window.matchMedia('(max-width: 992px)').matches;
 	}
@@ -387,11 +387,11 @@
 		}
 	}
 }]]></link>
-        <name>Admin Portal Menu</name>
-        <option_schema/>
-        <public>true</public>
-        <roles/>
-        <script><![CDATA[(function(){
+<name>Admin Portal Menu</name>
+<option_schema/>
+<public>true</public>
+<roles/>
+<script><![CDATA[(function(){
 	// build menus
 	var menu_id = $sp.getValue('sys_id'); // instance sys_id
 	data.menu = {};
@@ -419,20 +419,20 @@
 		}
 	}
 })();]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-12-22 16:10:12</sys_created_on>
-        <sys_id>e7bad78d935f7150acdc3f484dba10d1</sys_id>
-        <sys_mod_count>2</sys_mod_count>
-        <sys_name>Admin Portal Menu</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_e7bad78d935f7150acdc3f484dba10d1</sys_update_name>
-        <sys_updated_by>akshay</sys_updated_by>
-        <sys_updated_on>2024-02-07 04:41:42</sys_updated_on>
-        <template><![CDATA[<ul class="nav navbar-nav" aria-label="${Header}" role="menubar">
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2023-12-22 16:10:12</sys_created_on>
+<sys_id>e7bad78d935f7150acdc3f484dba10d1</sys_id>
+<sys_mod_count>2</sys_mod_count>
+<sys_name>Admin Portal Menu</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_e7bad78d935f7150acdc3f484dba10d1</sys_update_name>
+<sys_updated_by>akshay</sys_updated_by>
+<sys_updated_on>2024-02-07 04:41:42</sys_updated_on>
+<template><![CDATA[<ul class="nav navbar-nav" aria-label="${Header}" role="menubar">
   <div class="header-loader" ng-class="{'invisible': !loadingIndicator}">
     <div class="hidden-xs hidden-sm sp-loading-indicator la-sm">
       <div></div>
@@ -544,5 +544,5 @@
     </div>
   </li>
 </ul>]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

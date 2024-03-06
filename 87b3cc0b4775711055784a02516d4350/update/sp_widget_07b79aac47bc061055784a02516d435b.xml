@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller = function ($scope, $rootScope, spUtil) {
+<category>custom</category>
+<client_script><![CDATA[api.controller = function ($scope, $rootScope, spUtil) {
 	var c = this;
 
 
@@ -266,8 +266,8 @@
 }
 
 ]]></client_script>
-        <controller_as>c</controller_as>
-        <css>* {
+<controller_as>c</controller_as>
+<css>* {
   font-family: 'Helvetica';
 }
 
@@ -342,8 +342,12 @@ option {
 
 .line {
   display: grid;
-  gap:30px;
+  gap:15px;
   grid-template-columns: repeat(2, 1fr);
+  
+  //display:flex;
+  //gap:30px;
+  
 }
 
 .topSection {
@@ -453,41 +457,45 @@ h4 {
 
 .space {
   margin-bottom: 5px;
+}
+
+.ages{
+  margin:1px;
 }</css>
-        <data_table>sp_instance</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list/>
-        <has_preview>true</has_preview>
-        <id>vfs_pop_up_form</id>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
-        <name>VFS Pop Up Form</name>
-        <option_schema/>
-        <public>false</public>
-        <roles/>
-        <script><![CDATA[(function() {
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>true</has_preview>
+<id>vfs_pop_up_form</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+<name>VFS Pop Up Form</name>
+<option_schema/>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function() {
 	/* populate the 'data' object */
 	/* e.g., data.table = $sp.getValue('table'); */
 	data.userId = gs.getUserID();
 	data.username=gs.getUserName();
 	// gs.addInfoMessage(data.userId)
 })();]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>harshitha</sys_created_by>
-        <sys_created_on>2024-03-04 11:34:40</sys_created_on>
-        <sys_id>07b79aac47bc061055784a02516d435b</sys_id>
-        <sys_mod_count>53</sys_mod_count>
-        <sys_name>VFS Pop Up Form</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_07b79aac47bc061055784a02516d435b</sys_update_name>
-        <sys_updated_by>harshitha</sys_updated_by>
-        <sys_updated_on>2024-03-05 09:54:58</sys_updated_on>
-        <template><![CDATA[<div>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>harshitha</sys_created_by>
+<sys_created_on>2024-03-04 11:34:40</sys_created_on>
+<sys_id>07b79aac47bc061055784a02516d435b</sys_id>
+<sys_mod_count>62</sys_mod_count>
+<sys_name>VFS Pop Up Form</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_07b79aac47bc061055784a02516d435b</sys_update_name>
+<sys_updated_by>harshitha</sys_updated_by>
+<sys_updated_on>2024-03-06 06:37:19</sys_updated_on>
+<template><![CDATA[<div>
 
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
@@ -555,7 +563,7 @@ h4 {
               </select>
             </div>
             <div ng-repeat="traveller in travellers track by $index">
-              <label>Age of Person {{$index + 1}}: <span style="color: red">*</span></label>
+              <label class="ages">Age of Person {{$index + 1}}: <span style="color: red">*</span></label>
               <select style="width: 100%;" id="selectAge{{$index}}" name="selectAge{{$index}}" ng-model="traveller.age" ng-options="age for age in ages" required></select>
             </div>
           </div>
@@ -572,5 +580,5 @@ h4 {
 
 
 ]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

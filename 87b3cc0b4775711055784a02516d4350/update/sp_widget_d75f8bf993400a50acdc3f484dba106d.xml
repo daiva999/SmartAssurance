@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller=function($scope,$window) {
+<category>custom</category>
+<client_script><![CDATA[api.controller=function($scope,$window) {
   /* widget controller */
   var c = this;
 	$scope.shareschengen=function(){
@@ -39,8 +39,8 @@ $window.sessionStorage.removeItem("abc");
 	sessionStorage.setItem("sessionKey", backupValue);
 	
 };]]></client_script>
-        <controller_as>c</controller_as>
-        <css> body {
+<controller_as>c</controller_as>
+<css> body {
       font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
@@ -106,22 +106,22 @@ $window.sessionStorage.removeItem("abc");
       margin-left:15%;
     }
    table {       width: 100%;       border-collapse: collapse;    border: none; }     th, td {       border: 1px solid #dddddd;       text-align: left;       padding: 8px; border: none; } th { background-color: #f2f2f2; border: none; }</css>
-        <data_table>sp_instance</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list/>
-        <has_preview>true</has_preview>
-        <id/>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>true</has_preview>
+<id/>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-        <name>page2</name>
-        <option_schema/>
-        <public>true</public>
-        <roles>public</roles>
-        <script><![CDATA[(function() {
+<name>page2</name>
+<option_schema/>
+<public>true</public>
+<roles>public</roles>
+<script><![CDATA[(function() {
 	 data.applicantNames = [];
 
   data.userName = gs.getUserName();
@@ -142,20 +142,20 @@ $window.sessionStorage.removeItem("abc");
   //gs.addInfoMessage("Applicant names: " + data.applicantNames.join(', '));
 })();
 ]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>pooja.jayaram</sys_created_by>
-        <sys_created_on>2024-01-31 06:03:47</sys_created_on>
-        <sys_id>d75f8bf993400a50acdc3f484dba106d</sys_id>
-        <sys_mod_count>127</sys_mod_count>
-        <sys_name>page2</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_d75f8bf993400a50acdc3f484dba106d</sys_update_name>
-        <sys_updated_by>Ajmal.akram</sys_updated_by>
-        <sys_updated_on>2024-02-29 04:43:41</sys_updated_on>
-        <template><![CDATA[<div class="widget-container1">
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>pooja.jayaram</sys_created_by>
+<sys_created_on>2024-01-31 06:03:47</sys_created_on>
+<sys_id>d75f8bf993400a50acdc3f484dba106d</sys_id>
+<sys_mod_count>127</sys_mod_count>
+<sys_name>page2</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_d75f8bf993400a50acdc3f484dba106d</sys_update_name>
+<sys_updated_by>Ajmal.akram</sys_updated_by>
+<sys_updated_on>2024-02-29 04:43:41</sys_updated_on>
+<template><![CDATA[<div class="widget-container1">
   <div class="section-heading">Active Application(s)</div>
   <!-- Start New Booking Button -->
   <a href="https://ven06798.service-now.com/vfsp?id=appointment_details">
@@ -196,5 +196,5 @@ $window.sessionStorage.removeItem("abc");
   </a> 
 </div>
 ]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

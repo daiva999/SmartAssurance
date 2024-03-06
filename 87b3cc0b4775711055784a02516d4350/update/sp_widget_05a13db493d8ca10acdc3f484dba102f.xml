@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller=function($rootScope,$scope) {
+<category>custom</category>
+<client_script><![CDATA[api.controller=function($rootScope,$scope) {
 
 	/* widget controller */
 	var c = this;
@@ -52,228 +52,8 @@ c.number=[]
 	});
 };
 ]]></client_script>
-        <controller_as>c</controller_as>
-        <css>* {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter',sans-serif;
-}
-.body{
-  width:110%
-    position:absolute;
-  top:0;
-  left:0;
-}
-
-
-#productsSelected{
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  // background: #E5E4E2;
-  margin: 30px;
-  width: 100%;
-  height: 8rem;
-  padding: -1px 1rem;
-  align-items: center;
-  gap: 1rem;
-  display: inline-flex;
-}
-
-.comparisionPage {
-
-  background: #f4f5f7;
-  width: 110%;
-  //height: 100vh;
-
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  //padding-top:40px;
-
-}
-
-.title {
-  margin: 20px;
-  font-size: 24px;
-  font-weight: 600;
-  color:#253858;
-}
-
-.comparison-table {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #ccc;
-  width: 100%;
-  margin: 0 auto;
-  border-radius: 10px;
-  background: #f5f5f5;
-  box-shadow: 0px 0px 10px rgb(172, 172, 172);
-  color: #253858;
-  padding: 0 10px;
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 10px;
-}
-
-
-.row:nth-child(even) {
-  background: #dfdfdf;
-} 
-
-.key {
-  flex-basis: 30%;
-  font-weight: bold;
-  padding: 5px 0;
-}
-
-.product-a,
-.product-b,.product-c {
-  flex-basis: 35%;
-  padding: 5px 10px;
-}
-
-.key,
-.product-a {
-  //   border-right: 1px solid #d0d0d0;
-}
-
-img {
-  height: 100px;
-  width:100px;
-} 
-
-.productTitle {
-  text-align: center;
-  font-size: 18px;
-  font-weight: 600;
-  color: #686868;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  margin-left:15px;
-}
-
-.btn {
-  margin:10px;
-  background: #03A678;
-  padding: 10px 40px;
-  border-radius: 10px;
-  border: none;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.productLogo {
-  background: #fff;
-  height: 60px;
-  width: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  border: 1px solid #dfe1e6;
-}
-
-.tableHeading {
-  font-size: 24px;
-  //   border-right: 1px solid #d0d0d0;
-  font-weight: 600;
-  color: #686868;
-  flex-basis: 30%;
-}
-
-.wrong {
-  color: rgb(135, 0, 0);
-  width: 30px;
-  height: 30px;
-}
-
-.breadcrum {
-  position: absolute;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  margin-top: 100px;
-  margin-left: 3%;
-}
-
-.breadcrumbContent{
-  color:black;
-  text-decoration: none;
-}
-
-.breadcrumbContent:hover{
-  color:#253858;
-  text-decoration: none;
-}
-.product-a, .product-b,.product-c{
-  display:inline-flex;
-}
-.modal{
-  visbility:hidden;
-  outline: none !important;
-
-}
-.compareButton{
-  background-color: #03A678;
-  background: #03A678
-    min-width: 3.5rem;
-  margin: 10px;
-  height: 35px;
-  padding: 9px;
-  text-align: center;
-  color: white;
-  font-size: 1.5rem;
-  font-weight: 500;
-  border: none;
-  border-radius: 0.5rem;
-  visibility:hidden;
-  padding-left: 30px;
-  padding-right: 30px;
-}
-.selected-item{
-  text-transform:capitalize;
-}
-.card-image img{
-  width:120px;
-  height:120px;
-}
-
-.card{
-  padding:20px;
-}
-
-.selected-item{
-  font-size: 1.5rem;
-  font-weight: 750;
-  color: #03A678;
-}
-
-.comparisionPage{
-  padding-left: 5%;
-  padding-right: 5%;
-}
-
-.product-c{
-  width:220px !important; 
-}
-.btn-primary{
-  border-radius: 0.5rem !important;
-  background-color: #03A678 !important;
-}
-#myPopupToGetInputData{
-  margin-left:250px;
-  margin-top:20px;
-}
-@media only screen and (max-width: 767px) {
+<controller_as>c</controller_as>
+<css>@media only screen and (max-width: 400px) {
   #productsSelected{
     display:flex;
     flex-direction:column;
@@ -283,8 +63,245 @@ img {
     margin-left:0px
   }
 
-  .row {
+  .tableHeading {
+    font-size: 10px;
+    //   border-right: 1px solid #d0d0d0;
+    font-weight: 600;
+    color: #686868;
+    flex-basis: 30%;
+  }
 
+  .product-a,.product-c,.product-b {
+    display: block;
+  }
+
+  .productLogo img{
+    width:100%;
+    height:100%;
+  }
+  .productTitle {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: #686868;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left:0px;
+  }
+  .comparisionPage{
+    padding-left: 1%;
+    padding-right: 1%;
+    width: 100%;
+  }
+
+  .productLogo {
+    background: #fff;
+    height: 40px;
+    width: 85px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #dfe1e6;
+  }
+
+  .title {
+    margin: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color:#253858;
+  }
+  .btn {
+    margin:7px;
+    background: #03A678;
+    padding: 8px 20px;
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+  }
+  #productFeaturesHeading{
+    padding-top:35px;
+  }
+  .row{
+    display: flex;
+    justify-content: space-between;
+    padding:5px 5px;
+    font-size: 9px;
+
+  }
+
+  .card-image img{
+    width:70px;
+    height:35px;
+    mix-blend-mode: multiply;
+  }
+  .modal-dialog {
+    margin-top:150px;
+  }
+  .body {
+    padding-bottom: 0.5rem;
+  }
+  .productsSelectedContainer {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: white;
+    // visibility: hidden;
+  }
+
+  #productsSelected{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding-left: 8%;
+
+    height: 5%;
+
+    gap: 0.5rem;
+  }
+  .card{
+    padding: 0px;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (min-width: 401px) and (max-width: 600px) {
+  #productsSelected{
+    display:flex;
+    flex-direction:column;
+  }
+  #myPopupToGetInputData{
+    margin-top:20px;
+    margin-left:0px
+  }
+
+  .tableHeading {
+    font-size: 10px;
+    //   border-right: 1px solid #d0d0d0;
+    font-weight: 600;
+    color: #686868;
+    flex-basis: 30%;
+  }
+
+  .product-a,.product-c,.product-b {
+    display: block;
+  }
+
+  .productLogo img{
+    width:100%;
+    height:100%;
+  }
+  .productTitle {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: #686868;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left:0px;
+  }
+  .comparisionPage{
+    padding-left: 1%;
+    padding-right: 1%;
+    width: 100%;
+  }
+
+  .productLogo {
+    background: #fff;
+    height: 40px;
+    width: 85px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #dfe1e6;
+  }
+
+  .title {
+    margin: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color:#253858;
+  }
+  .btn {
+    margin:7px;
+    background: #03A678;
+    padding: 8px 20px;
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+  }
+  #productFeaturesHeading{
+    padding-top:35px;
+  }
+  .row{
+    display: flex;
+    justify-content: space-between;
+    padding:5px 5px;
+    font-size: 9px;
+
+  }
+
+  .card-image img{
+    width:70px;
+    height:35px;
+    mix-blend-mode: multiply;
+  }
+  .modal-dialog {
+    margin-top:150px;
+  }
+  .body {
+    padding-bottom: 0.5rem;
+  }
+  .productsSelectedContainer {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: white;
+    // visibility: hidden;
+  }
+
+  #productsSelected{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding-left: 8%;
+
+    height: 5%;
+
+    gap: 0.5rem;
+  }
+  .card{
+    padding:0px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  #productsSelected{
+    display:flex;
+    flex-direction:column;
+
+  }
+  #myPopupToGetInputData{
+    margin-top:20px;
+    margin-left:0px
   }
 
   .tableHeading {
@@ -373,12 +390,12 @@ img {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background: #E5E4E2;
+    gap: 1rem;
+    background: white;
     // visibility: hidden;
   }
 
   #productsSelected{
-    background-color:white;
     margin: 0px;
     padding: 0px;
     display: flex;
@@ -386,7 +403,7 @@ img {
     flex-wrap: nowrap;
     padding-left: 8%;
 
-    height: 5%;
+    height: 7%;
 
     gap: 0.5rem;
   }
@@ -394,23 +411,390 @@ img {
     padding:0px;
   }
 }
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+ #productsSelected {
+    display: flex;
+    flex-direction: column;
+}
+
+#myPopupToGetInputData {
+    margin-top: 20px;
+    margin-left: 0px;
+}
+
+.tableHeading {
+    font-size: 10px;
+    font-weight: 600;
+    color: #686868;
+    flex-basis: 30%;
+}
+
+.product-a,
+.product-c,
+.product-b {
+    display: block;
+}
+
+.productLogo {
+    background: #fff;
+    height: 40px;
+    width: 40px; /* Adjust the width to your desired size */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #dfe1e6;
+}
+
+.productLogo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 5px; /* Add border-radius to the image */
+}
+
+.productTitle {
+    text-align: left; /* Align the text to the left */
+    font-size: 10px;
+    font-weight: 600;
+    color: #686868;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: 5px; /* Adjust the left margin to your desired spacing */
+    width: 60px; /* Set a fixed width for the name to align with the image */
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+    overflow: hidden; /* Hide any overflowing text */
+    text-overflow: ellipsis; /* Display ellipsis (...) for truncated text */
+}
+
+.comparisionPage {
+    padding-left: 1%;
+    padding-right: 1%;
+    width: 100%;
+}
+
+.title {
+    margin: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #253858;
+}
+
+.btn {
+    margin: 7px;
+    background: #03A678;
+    padding: 8px 20px;
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+#productFeaturesHeading {
+    padding-top: 35px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 5px;
+    font-size: 9px;
+}
+
+.card-image img {
+    margin-top: 20px;
+    width: 70px;
+    height: 35px;
+}
+
+.modal-dialog {
+    margin-top: 150px;
+}
+
+.body {
+    padding-bottom: 0.5rem;
+}
+
+.productsSelectedContainer {
+    height: 80px;
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    gap: 1rem;
+    background: white;
+    justify-content: center;
+    /* visibility: hidden; */
+}
+
+#productsSelected {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding-left: 8%;
+    height: 7%;
+    gap: 0.5rem;
+}
+
+.card {
+    padding: 0px;
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  * {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter',sans-serif;
+  }
+  .body{
+    width:110%
+      position:absolute;
+    top:0;
+    left:0;
+  }
+
+
+  #productsSelected{
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: white;
+    // margin: 30px;
+    width: 100%;
+    height: 8rem;
+    padding: -1px 1rem;
+    align-items: center;
+    gap: 1rem;
+    display: inline-flex;
+  }
+
+  .card-image img{
+    margin-top: 20px;
+    width:120px;
+    height:100px;
+    mix-blend-mode: multiply;
+  }
+
+  .card{
+    padding: 0 20px;
+  }
+
+  .comparisionPage {
+
+    background: #f4f5f7;
+    width: 110%;
+    //height: 100vh;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    //padding-top:40px;
+
+  }
+
+  .title {
+    margin: 20px;
+    font-size: 24px;
+    font-weight: 600;
+    color:#253858;
+  }
+
+  .comparison-table {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 10px;
+    background: #f5f5f5;
+    box-shadow: 0px 0px 10px rgb(172, 172, 172);
+    color: #253858;
+    padding: 0 10px;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px;
+  }
+
+
+  .row:nth-child(even) {
+    background: #dfdfdf;
+  } 
+
+  .key {
+    flex-basis: 30%;
+    font-weight: bold;
+    padding: 5px 0;
+  }
+
+  .product-a,
+  .product-b,.product-c {
+    flex-basis: 35%;
+    padding: 5px 10px;
+  }
+
+  .key,
+  .product-a {
+    //   border-right: 1px solid #d0d0d0;
+  }
+
+  img {
+    height: 100px;
+    width:100px;
+  } 
+
+  .productTitle {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #686868;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left:15px;
+  }
+
+  .btn {
+    margin:10px;
+    background: #03A678;
+    padding: 10px 40px;
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .productLogo {
+    background: #fff;
+    height: 60px;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #dfe1e6;
+  }
+
+  .tableHeading {
+    font-size: 24px;
+    //   border-right: 1px solid #d0d0d0;
+    font-weight: 600;
+    color: #686868;
+    flex-basis: 30%;
+  }
+
+  .wrong {
+    color: rgb(135, 0, 0);
+    width: 30px;
+    height: 30px;
+  }
+
+  .breadcrum {
+    position: absolute;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: 100px;
+    margin-left: 3%;
+  }
+
+  .breadcrumbContent{
+    color:black;
+    text-decoration: none;
+  }
+
+  .breadcrumbContent:hover{
+    color:#253858;
+    text-decoration: none;
+  }
+  .product-a, .product-b,.product-c{
+    display:inline-flex;
+  }
+  .modal{
+    visbility:hidden;
+    outline: none !important;
+
+  }
+  .compareButton{
+    background-color: #03A678;
+    background: #03A678
+      min-width: 3.5rem;
+    margin: 10px;
+    height: 35px;
+    padding: 9px;
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 0.5rem;
+    visibility:hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .selected-item{
+    text-transform:capitalize;
+  }
+
+
+  .selected-item{
+    font-size: 1.5rem;
+    font-weight: 750;
+    color: #03A678;
+  }
+
+  .comparisionPage{
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .product-c{
+    width:220px !important; 
+  }
+  .btn-primary{
+    border-radius: 0.5rem !important;
+    background-color: #03A678 !important;
+  }
+  #myPopupToGetInputData{
+    margin-left:250px;
+    margin-top:20px;
+  }
 }</css>
-        <data_table>sp_instance</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list/>
-        <has_preview>true</has_preview>
-        <id>product_comp_model</id>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>true</has_preview>
+<id>product_comp_model</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-        <name>productComparePopUp</name>
-        <option_schema/>
-        <public>true</public>
-        <roles/>
-        <script><![CDATA[(function() {
+<name>productComparePopUp</name>
+<option_schema/>
+<public>true</public>
+<roles/>
+<script><![CDATA[(function() {
 	data.productDetailsdata=[]
 	data.rows=[]
 	data.premium=[]
@@ -593,20 +977,20 @@ benefitsArray.push(arr);
 		data.features.push(str);
 	})*/
 })();]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>akshay</sys_created_by>
-        <sys_created_on>2024-02-09 06:56:32</sys_created_on>
-        <sys_id>05a13db493d8ca10acdc3f484dba102f</sys_id>
-        <sys_mod_count>613</sys_mod_count>
-        <sys_name>productComparePopUp</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_05a13db493d8ca10acdc3f484dba102f</sys_update_name>
-        <sys_updated_by>chiranjit.behera</sys_updated_by>
-        <sys_updated_on>2024-03-05 09:43:50</sys_updated_on>
-        <template><![CDATA[<div>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>akshay</sys_created_by>
+<sys_created_on>2024-02-09 06:56:32</sys_created_on>
+<sys_id>05a13db493d8ca10acdc3f484dba102f</sys_id>
+<sys_mod_count>661</sys_mod_count>
+<sys_name>productComparePopUp</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_05a13db493d8ca10acdc3f484dba102f</sys_update_name>
+<sys_updated_by>chiranjit.behera</sys_updated_by>
+<sys_updated_on>2024-03-06 07:25:55</sys_updated_on>
+<template><![CDATA[<div>
 
   <div class="productsSelectedContainer" ng-show="c.getData.length > 0">
     <div id="productsSelected" ng-controller="c">
@@ -621,6 +1005,10 @@ benefitsArray.push(arr);
 
     </div>
   </div>
+  
+  
+  
+  
   <!--<button type="button" class="btn btn-primary" ng-click="c.showModalPopup()"  data-toggle="modal" 
                   data-target="#myPopupToGetInputData" style="margin-top:50px;">Compare</button> -->
   <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
@@ -685,5 +1073,5 @@ benefitsArray.push(arr);
     </div>
   </div>
 </div>]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

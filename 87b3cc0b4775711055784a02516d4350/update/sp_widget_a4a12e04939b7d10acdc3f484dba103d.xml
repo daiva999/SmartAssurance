@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller = function ($scope, spModal) {
+<category>custom</category>
+<client_script><![CDATA[api.controller = function ($scope, spModal) {
 	var c = this;	
 	$scope.temp = $scope.searchQuery;	
 
@@ -63,8 +63,8 @@
 
 
 };]]></client_script>
-        <controller_as>c</controller_as>
-        <css>.goBack {
+<controller_as>c</controller_as>
+<css>.goBack {
   position: relative;
   width: 100px;
   height: 40px; 
@@ -223,22 +223,22 @@ border-radius: 34px;
 .slider.round:before {
 border-radius: 50%;
 }</css>
-        <data_table>sp_instance_table</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list>title,table,filter,field_list</field_list>
-        <has_preview>true</has_preview>
-        <id>category_list</id>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {
+<data_table>sp_instance_table</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list>title,table,filter,field_list</field_list>
+<has_preview>true</has_preview>
+<id>category_list</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-        <name>Category List</name>
-        <option_schema/>
-        <public>false</public>
-        <roles/>
-        <script><![CDATA[(function () {
+<name>Category List</name>
+<option_schema/>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function () {
 
 	// Storing all the objects in this array
 	data.arr = [];
@@ -299,20 +299,20 @@ border-radius: 50%;
 	}
 })();
 ]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-12-19 09:27:23</sys_created_on>
-        <sys_id>a4a12e04939b7d10acdc3f484dba103d</sys_id>
-        <sys_mod_count>359</sys_mod_count>
-        <sys_name>Category List</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_a4a12e04939b7d10acdc3f484dba103d</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-01-09 10:11:45</sys_updated_on>
-        <template><![CDATA[<div>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2023-12-19 09:27:23</sys_created_on>
+<sys_id>a4a12e04939b7d10acdc3f484dba103d</sys_id>
+<sys_mod_count>359</sys_mod_count>
+<sys_name>Category List</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_a4a12e04939b7d10acdc3f484dba103d</sys_update_name>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2024-01-09 10:11:45</sys_updated_on>
+<template><![CDATA[<div>
   
   
   <div class="headDiv">
@@ -385,5 +385,5 @@ border-radius: 50%;
   <admin-pagination></admin-pagination>
 </div>
 ]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

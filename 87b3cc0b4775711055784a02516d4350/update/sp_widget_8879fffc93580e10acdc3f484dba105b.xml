@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller=function($rootScope,$scope) {
+<category>custom</category>
+<client_script><![CDATA[api.controller=function($rootScope,$scope) {
 /* widget controller */
 var c = this;
 c.getData=[]
@@ -25,206 +25,206 @@ c.getData.forEach(function(product){
 
 };
 ]]></client_script>
-        <controller_as>c</controller_as>
-        <css>        * {&#13;
-            margin: 0;&#13;
-            padding: 0;&#13;
-            font-family: 'Inter',sans-serif;&#13;
-        }&#13;
-		.body{&#13;
-      width:100%&#13;
-			position:absolute;&#13;
-			top:0;&#13;
-			left:0;&#13;
-		}&#13;
-        .comparisionPage {&#13;
-&#13;
-            background: #f4f5f7;&#13;
-            width: 100%;&#13;
-            //height: 100vh;&#13;
-          	&#13;
-            display: flex;&#13;
-            align-items: center;&#13;
-            flex-direction: column;&#13;
-			//padding-top:40px;&#13;
-			&#13;
-        }&#13;
-&#13;
-        .title {&#13;
-            margin: 30px;&#13;
-            font-size: 24px;&#13;
-            font-weight: 600;&#13;
-			      color:#253858;&#13;
-        }&#13;
-&#13;
-        .comparison-table {&#13;
-            display: flex;&#13;
-            flex-direction: column;&#13;
-            border: 1px solid #ccc;&#13;
-            width: 100%;&#13;
-            margin: 0 auto;&#13;
-            border-radius: 10px;&#13;
-            background: #f5f5f5;&#13;
-            box-shadow: 0px 0px 10px rgb(172, 172, 172);&#13;
-            color: #253858;&#13;
-			      padding: 0 10px;&#13;
-        }&#13;
-&#13;
-        .row {&#13;
-            display: flex;&#13;
-            justify-content: space-between;&#13;
-            padding: 10px 10px;&#13;
-        }&#13;
-&#13;
-		&#13;
-        .row:nth-child(even) {&#13;
-            background: #dfdfdf;&#13;
-        } &#13;
-&#13;
-        .key {&#13;
-            flex-basis: 30%;&#13;
-            font-weight: bold;&#13;
-            padding: 5px 0;&#13;
-        }&#13;
-&#13;
-        .product-a,&#13;
-        .product-b {&#13;
-            flex-basis: 35%;&#13;
-            padding: 5px 10px;&#13;
-        }&#13;
-&#13;
-        .key,&#13;
-        .product-a {&#13;
-            border-right: 1px solid #d0d0d0;&#13;
-        }&#13;
-&#13;
-        img {&#13;
-            height: 100px;&#13;
-            width:100px;&#13;
-        } &#13;
-&#13;
-        .productTitle {&#13;
-            text-align: center;&#13;
-            font-size: 18px;&#13;
-            font-weight: 600;&#13;
-            color: #686868;&#13;
-            margin-top: 20px;&#13;
-            margin-bottom: 10px;&#13;
-            margin-left:15px;&#13;
-        }&#13;
-&#13;
-        .btn {&#13;
-            background: #2673e7;&#13;
-            padding: 10px 60px;&#13;
-            border-radius: 8px;&#13;
-            border: none;&#13;
-            color: #fff;&#13;
-            font-size: 16px;&#13;
-            font-weight: 600;&#13;
-        }&#13;
-&#13;
-        .productLogo {&#13;
-            background: #fff;&#13;
-            height: 60px;&#13;
-            width: 100px;&#13;
-            display: flex;&#13;
-            justify-content: center;&#13;
-            align-items: center;&#13;
-            border-radius: 5px;&#13;
-            border: 1px solid #dfe1e6;&#13;
-        }&#13;
-&#13;
-        .tableHeading {&#13;
-            font-size: 24px;&#13;
-            border-right: 1px solid #d0d0d0;&#13;
-            font-weight: 600;&#13;
-            color: #686868;&#13;
-            flex-basis: 30%;&#13;
-        }&#13;
-&#13;
-        .wrong {&#13;
-            color: rgb(135, 0, 0);&#13;
-            width: 30px;&#13;
-            height: 30px;&#13;
-        }&#13;
-		&#13;
-		.breadcrum {&#13;
-			position: absolute;&#13;
-			font-size: 14px;&#13;
-			font-style: normal;&#13;
-			font-weight: 400;&#13;
-			margin-top: 100px;&#13;
-			margin-left: 3%;&#13;
-		}&#13;
-		&#13;
-		.breadcrumbContent{&#13;
-			color:black;&#13;
-            text-decoration: none;&#13;
-		}&#13;
-		&#13;
-		.breadcrumbContent:hover{&#13;
-			color:#253858;&#13;
-            text-decoration: none;&#13;
-		}&#13;
-.product-a, .product-b{&#13;
-  display:inline-flex;&#13;
-}&#13;
-.modal{&#13;
-  visbility:hidden;&#13;
-      outline: none !important;&#13;
-&#13;
-}&#13;
-.compareButton{&#13;
-  background:#6eb8b1&#13;
-  min-width: 3.5rem;&#13;
-  margin: 61px;&#13;
-    height: 46px;&#13;
-    padding: 9px;&#13;
-  text-align: center;&#13;
-  background-color:#6eb8b1;&#13;
-  color: white;&#13;
-  font-size: 1.5rem;&#13;
-  font-weight: 500;&#13;
-  border: none;&#13;
-  border-radius: 0.5rem;&#13;
-  visibility:hidden;&#13;
-}&#13;
-.selected-item{&#13;
-  text-transform:capitalize;&#13;
-}&#13;
-.card-image img{&#13;
-  width:120px;&#13;
-  height:120px;&#13;
-}&#13;
-#productsSelected{&#13;
-    padding-left: 21%;&#13;
-    margin: 30px;&#13;
-  	width: 100rem;&#13;
-    height: 10rem;&#13;
-    padding: -1px 1rem;&#13;
-    display: flex;&#13;
-    align-items: center;&#13;
-    gap: 3rem;&#13;
-}&#13;
-&#13;
-&#13;
+<controller_as>c</controller_as>
+<css>        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter',sans-serif;
+        }
+		.body{
+      width:100%
+			position:absolute;
+			top:0;
+			left:0;
+		}
+        .comparisionPage {
+
+            background: #f4f5f7;
+            width: 100%;
+            //height: 100vh;
+          	
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+			//padding-top:40px;
+			
+        }
+
+        .title {
+            margin: 30px;
+            font-size: 24px;
+            font-weight: 600;
+			      color:#253858;
+        }
+
+        .comparison-table {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ccc;
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 10px;
+            background: #f5f5f5;
+            box-shadow: 0px 0px 10px rgb(172, 172, 172);
+            color: #253858;
+			      padding: 0 10px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 10px;
+        }
+
+		
+        .row:nth-child(even) {
+            background: #dfdfdf;
+        } 
+
+        .key {
+            flex-basis: 30%;
+            font-weight: bold;
+            padding: 5px 0;
+        }
+
+        .product-a,
+        .product-b {
+            flex-basis: 35%;
+            padding: 5px 10px;
+        }
+
+        .key,
+        .product-a {
+            border-right: 1px solid #d0d0d0;
+        }
+
+        img {
+            height: 100px;
+            width:100px;
+        } 
+
+        .productTitle {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #686868;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            margin-left:15px;
+        }
+
+        .btn {
+            background: #2673e7;
+            padding: 10px 60px;
+            border-radius: 8px;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .productLogo {
+            background: #fff;
+            height: 60px;
+            width: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            border: 1px solid #dfe1e6;
+        }
+
+        .tableHeading {
+            font-size: 24px;
+            border-right: 1px solid #d0d0d0;
+            font-weight: 600;
+            color: #686868;
+            flex-basis: 30%;
+        }
+
+        .wrong {
+            color: rgb(135, 0, 0);
+            width: 30px;
+            height: 30px;
+        }
+		
+		.breadcrum {
+			position: absolute;
+			font-size: 14px;
+			font-style: normal;
+			font-weight: 400;
+			margin-top: 100px;
+			margin-left: 3%;
+		}
+		
+		.breadcrumbContent{
+			color:black;
+            text-decoration: none;
+		}
+		
+		.breadcrumbContent:hover{
+			color:#253858;
+            text-decoration: none;
+		}
+.product-a, .product-b{
+  display:inline-flex;
+}
+.modal{
+  visbility:hidden;
+      outline: none !important;
+
+}
+.compareButton{
+  background:#6eb8b1
+  min-width: 3.5rem;
+  margin: 61px;
+    height: 46px;
+    padding: 9px;
+  text-align: center;
+  background-color:#6eb8b1;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.5rem;
+  visibility:hidden;
+}
+.selected-item{
+  text-transform:capitalize;
+}
+.card-image img{
+  width:120px;
+  height:120px;
+}
+#productsSelected{
+    padding-left: 21%;
+    margin: 30px;
+  	width: 100rem;
+    height: 10rem;
+    padding: -1px 1rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+
 </css>
-        <data_table>sp_instance</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list/>
-        <has_preview>true</has_preview>
-        <id/>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>true</has_preview>
+<id/>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-        <name>Copy of productComparePopUp</name>
-        <option_schema/>
-        <public>true</public>
-        <roles/>
-        <script><![CDATA[(function() {
+<name>Copy of productComparePopUp</name>
+<option_schema/>
+<public>true</public>
+<roles/>
+<script><![CDATA[(function() {
 	var user= gs.getUserID();
 	var prd1="";
 	var prd2="";
@@ -323,20 +323,20 @@ if(input && input.value=="true") {
 		data.features.push(str);
 	})*/
 })();]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>kumar.raja</sys_created_by>
-        <sys_created_on>2024-02-09 16:48:38</sys_created_on>
-        <sys_id>8879fffc93580e10acdc3f484dba105b</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>Copy of productComparePopUp</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_8879fffc93580e10acdc3f484dba105b</sys_update_name>
-        <sys_updated_by>kumar.raja</sys_updated_by>
-        <sys_updated_on>2024-02-09 16:48:38</sys_updated_on>
-        <template><![CDATA[<div>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>kumar.raja</sys_created_by>
+<sys_created_on>2024-02-09 16:48:38</sys_created_on>
+<sys_id>8879fffc93580e10acdc3f484dba105b</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_name>Copy of productComparePopUp</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_8879fffc93580e10acdc3f484dba105b</sys_update_name>
+<sys_updated_by>kumar.raja</sys_updated_by>
+<sys_updated_on>2024-02-09 16:48:38</sys_updated_on>
+<template><![CDATA[<div>
 
     <div class="productsSelectedContainer">
         <div id="productsSelected" ng-controller="c" style="display: inline-flex;">
@@ -410,5 +410,5 @@ if(input && input.value=="true") {
         </div>
     </div>
 </div>]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

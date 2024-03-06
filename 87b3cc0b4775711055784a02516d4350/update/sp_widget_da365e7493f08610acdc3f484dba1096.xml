@@ -1,47 +1,162 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller=function() {
+<category>custom</category>
+<client_script><![CDATA[api.controller=function() {
   /* widget controller */
   var c = this;
 };]]></client_script>
-        <controller_as>c</controller_as>
-        <css/>
-        <data_table>sp_instance</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list/>
-        <has_preview>false</has_preview>
-        <id/>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {
+<controller_as>c</controller_as>
+<css>.navbar {
+  background-color: white;
+}
+
+.nav-links {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-links li a {
+  display: block;
+  padding: 10px 20px;
+  color: black;
+  text-decoration: none;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  z-index: 1;
+  padding-top: 5px;
+   border: 1px solid #ccc;
+  border-radius : 20px;
+}
+
+.dropdown li {
+  display: block;
+}
+
+.dropdown li a {
+  padding: 0px;
+  color: black;
+  text-decoration: none;
+}
+
+.nav-links li:hover .dropdown {
+  display: block;
+}
+
+.nav-links li a:hover {
+  color: red; /* Change text color to red when hovering */
+}
+
+.dropdown li a:hover {
+  background-color: white;
+}
+</css>
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>true</has_preview>
+<id/>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-        <name>IC</name>
-        <option_schema/>
-        <public>false</public>
-        <roles/>
-        <script><![CDATA[(function() {
+<name>IC</name>
+<option_schema/>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function() {
   /* populate the 'data' object */
   /* e.g., data.table = $sp.getValue('table'); */
 
 })();]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>Ajmal.akram</sys_created_by>
-        <sys_created_on>2024-03-05 06:06:42</sys_created_on>
-        <sys_id>da365e7493f08610acdc3f484dba1096</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>IC</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_da365e7493f08610acdc3f484dba1096</sys_update_name>
-        <sys_updated_by>Ajmal.akram</sys_updated_by>
-        <sys_updated_on>2024-03-05 06:06:42</sys_updated_on>
-        <template><![CDATA[<div>
-<!-- your widget template -->
-</div>]]></template>
-    </sp_widget>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>Ajmal.akram</sys_created_by>
+<sys_created_on>2024-03-05 06:06:42</sys_created_on>
+<sys_id>da365e7493f08610acdc3f484dba1096</sys_id>
+<sys_mod_count>25</sys_mod_count>
+<sys_name>IC</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_da365e7493f08610acdc3f484dba1096</sys_update_name>
+<sys_updated_by>Ajmal.akram</sys_updated_by>
+<sys_updated_on>2024-03-06 06:41:24</sys_updated_on>
+<template><![CDATA[<div>
+  <nav class="navbar">
+    <ul class="nav-links">
+      <li>
+        <a href="#">Investor Relations</a>
+        <ul class="dropdown">
+          <li><a href="#">Annual Reports</a></li><hr>
+          <li><a href="#">Investor Presentation</a></li><hr>
+          <li><a href="#">Quarterly Results</a></li><hr>
+          <li><a href="#">Notice</a></li><hr>
+          <li><a href="#">Investor Contact</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">About Us</a>
+        <ul class="dropdown">
+          <li><a href="#">ICICI Group Companies</a></li><hr>
+          <li><a href="#">Board of Directors</a></li><hr>
+          <li><a href="#">Media Center</a></li><hr>
+          <li><a href="#">Awards & Recognition</a></li><hr>
+          <li><a href="#">Environment, Social and Governance</a></li><hr>
+          <li><a href="#">Career Opportunities</a></li><hr>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Ways to Bank</a>
+        <ul class="dropdown">
+          <li><a href="#">Digital Banking</a></li>
+          <hr>
+          <li><a href="#">Mobile Banking</a></li> <hr>
+          <li><a href="#">Internet Banking</a></li> <hr>
+          <li><a href="#">iMobile Pay</a></li> <hr>
+          <li><a href="#">WhatsApp Banking</a></li> <hr>
+          <li><a href="#">Pockets</a></li> <hr>
+          <li><a href="#">Ask iPal</a></li> <hr>
+          <li><a href="#">ATMs and Branches</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Customer Services</a>
+        <ul class="dropdown">
+          <li><a href="#">Contact Us</a></li> <hr>
+          <li><a href="#">Customer Care</a></li> <hr>
+          <li><a href="#">Service Requests</a></li> <hr>
+          <li><a href="#">Form Center</a></li> <hr>
+          <li><a href="#">Online Assist</a></li> <hr>
+          <li><a href="#">Feedback</a></li> <hr>
+          <li><a href="#">Queries & Complaints</a></li> <hr>
+          <li><a href="#">FAQs</a></li> <hr>
+          <li><a href="#">Report Suspicious Behaviour</a></li> <hr>
+          <li><a href="#">Report Unauthorized Transaction</a></li>
+        </ul>
+      </li>
+     <li>
+  <a href="#">
+     <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT4eYwUIMxf4QeS1jjJu-MPc7-r5oISXB4bmuIcgpd0eoJmFQfL" alt="Phone Icon" style="vertical-align: middle;">
+    1800 1080
+   
+  </a>
+</li>
+    </ul>
+  </nav>
+</div>
+]]></template>
+</sp_widget>
 </record_update>

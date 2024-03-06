@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller=function() {  /* widget controller */  var c = this;};]]></client_script>
-        <controller_as>c</controller_as>
-        <css>.card {
+<category>custom</category>
+<client_script><![CDATA[api.controller=function() {  /* widget controller */  var c = this;};]]></client_script>
+<controller_as>c</controller_as>
+<css>.card {
   background: white;
   margin: auto;
   margin-top: 3rem;
@@ -51,34 +51,34 @@ button {
 
 
 </css>
-        <data_table>sp_instance</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list/>
-        <has_preview>true</has_preview>
-        <id>vfs_form_design</id>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
-        <name>VFS Form Design</name>
-        <option_schema/>
-        <public>false</public>
-        <roles/>
-        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>harshitha</sys_created_by>
-        <sys_created_on>2024-01-17 06:48:41</sys_created_on>
-        <sys_id>eb83d3519377b110acdc3f484dba10e9</sys_id>
-        <sys_mod_count>36</sys_mod_count>
-        <sys_name>VFS Form Design</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_eb83d3519377b110acdc3f484dba10e9</sys_update_name>
-        <sys_updated_by>harshitha</sys_updated_by>
-        <sys_updated_on>2024-01-17 09:39:24</sys_updated_on>
-        <template><![CDATA[<div>
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>true</has_preview>
+<id>vfs_form_design</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+<name>VFS Form Design</name>
+<option_schema/>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>harshitha</sys_created_by>
+<sys_created_on>2024-01-17 06:48:41</sys_created_on>
+<sys_id>eb83d3519377b110acdc3f484dba10e9</sys_id>
+<sys_mod_count>36</sys_mod_count>
+<sys_name>VFS Form Design</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_eb83d3519377b110acdc3f484dba10e9</sys_update_name>
+<sys_updated_by>harshitha</sys_updated_by>
+<sys_updated_on>2024-01-17 09:39:24</sys_updated_on>
+<template><![CDATA[<div>
   <div class="card">
     <h1>
       Select travel type
@@ -116,5 +116,5 @@ button {
     </div>
    </div>  
 </div>]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

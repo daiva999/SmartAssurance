@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller=function() {
+<category>custom</category>
+<client_script><![CDATA[api.controller=function() {
   /* widget controller */
   var c = this;
 };]]></client_script>
-        <controller_as>c</controller_as>
-        <css>.header {
+<controller_as>c</controller_as>
+<css>.header {
         display: flex;
         justify-content: space-between;
         padding: 10px;
@@ -23,40 +23,40 @@
         cursor: pointer;
         font-size: 10px;
       }</css>
-        <data_table>sp_instance</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list/>
-        <has_preview>true</has_preview>
-        <id>vfs_header</id>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>true</has_preview>
+<id>vfs_header</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-        <name>VFS Header</name>
-        <option_schema/>
-        <public>true</public>
-        <roles/>
-        <script><![CDATA[(function() {
+<name>VFS Header</name>
+<option_schema/>
+<public>true</public>
+<roles/>
+<script><![CDATA[(function() {
   /* populate the 'data' object */
   /* e.g., data.table = $sp.getValue('table'); */
 
 })();]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>madhurya.jagadeesh</sys_created_by>
-        <sys_created_on>2024-01-16 05:29:15</sys_created_on>
-        <sys_id>caa7bd4147fb3d1055784a02516d432f</sys_id>
-        <sys_mod_count>16</sys_mod_count>
-        <sys_name>VFS Header</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_caa7bd4147fb3d1055784a02516d432f</sys_update_name>
-        <sys_updated_by>madhurya.jagadeesh</sys_updated_by>
-        <sys_updated_on>2024-02-20 11:53:41</sys_updated_on>
-        <template><![CDATA[<div class="header">
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>madhurya.jagadeesh</sys_created_by>
+<sys_created_on>2024-01-16 05:29:15</sys_created_on>
+<sys_id>caa7bd4147fb3d1055784a02516d432f</sys_id>
+<sys_mod_count>16</sys_mod_count>
+<sys_name>VFS Header</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_caa7bd4147fb3d1055784a02516d432f</sys_update_name>
+<sys_updated_by>madhurya.jagadeesh</sys_updated_by>
+<sys_updated_on>2024-02-20 11:53:41</sys_updated_on>
+<template><![CDATA[<div class="header">
       <div>
         <img
           class="logoImg"
@@ -81,5 +81,5 @@
       </div>
     </div>
     <hr />]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

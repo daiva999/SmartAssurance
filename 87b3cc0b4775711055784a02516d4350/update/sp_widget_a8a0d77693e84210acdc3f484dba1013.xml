@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller=function($scope){
+<category>custom</category>
+<client_script><![CDATA[api.controller=function($scope){
 	var c=this;
 	var a=[];
 		$scope.length=c.data.premiumData.length;
@@ -27,25 +27,25 @@
 
 
 ]]></client_script>
-        <controller_as>c</controller_as>
-        <css>.compareContainer{
+<controller_as>c</controller_as>
+<css>.compareContainer{
   display:flex;
   justify-content:space-between;
 }</css>
-        <data_table>sp_instance</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list/>
-        <has_preview>true</has_preview>
-        <id>comparewidget</id>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
-        <name>compare widget</name>
-        <option_schema/>
-        <public>true</public>
-        <roles/>
-        <script><![CDATA[(function() {
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>true</has_preview>
+<id>comparewidget</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+<name>compare widget</name>
+<option_schema/>
+<public>true</public>
+<roles/>
+<script><![CDATA[(function() {
 	data.premiumData=[
     {
         'title': "1st Year Premium",
@@ -95,20 +95,20 @@
 })();
 
 ]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>kumar.raja</sys_created_by>
-        <sys_created_on>2024-02-28 05:13:54</sys_created_on>
-        <sys_id>a8a0d77693e84210acdc3f484dba1013</sys_id>
-        <sys_mod_count>49</sys_mod_count>
-        <sys_name>compare widget</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_a8a0d77693e84210acdc3f484dba1013</sys_update_name>
-        <sys_updated_by>kumar.raja</sys_updated_by>
-        <sys_updated_on>2024-02-28 06:26:24</sys_updated_on>
-        <template><![CDATA[<div class='compareContainer'>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>kumar.raja</sys_created_by>
+<sys_created_on>2024-02-28 05:13:54</sys_created_on>
+<sys_id>a8a0d77693e84210acdc3f484dba1013</sys_id>
+<sys_mod_count>49</sys_mod_count>
+<sys_name>compare widget</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_a8a0d77693e84210acdc3f484dba1013</sys_update_name>
+<sys_updated_by>kumar.raja</sys_updated_by>
+<sys_updated_on>2024-02-28 06:26:24</sys_updated_on>
+<template><![CDATA[<div class='compareContainer'>
   <div ng-repeat='(index, premiumData) in c.data.premiumData'>
     <button ng-click='removeData(index)' ng-if="!isEmpty(premiumData)">
       X
@@ -123,5 +123,5 @@
   </div>
 </div>
 ]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller = function ($scope) {
+<category>custom</category>
+<client_script><![CDATA[api.controller = function ($scope) {
 	var c = this;
 	$scope.obj=[];
 	$scope.count=0;
 	$scope.value=false;
-
-
+	$scope.modalVisible = false;
+	$scope.obj1=[];
+	
 	var policy = sessionStorage.getItem('policy');
 	if (policy) {
 		policy = JSON.parse(policy);
@@ -28,6 +29,8 @@
 
 
 		$scope.insurance =  res.data.array2[0].status;
+
+
 		if($scope.insurance =="Success")
 		{
 			$scope.insurance ="Success";
@@ -41,27 +44,40 @@
 			$scope.insurance = "In Progress";
 		}
 
-
-		$scope.ClaimInsurance = function(){
-			 var policyAmount = prompt("Please enter the amount you would like to claim", "");
-			c.server.get({"method" :"claim", "Value" : policyAmount, "value2" : $scope.policynumber }).then(function(res){
-				
-			});
+		$scope.ClaimInsurance = function() {
+				$scope.modalVisible = true; 
+		//	$scope.modalVisible = false; 
 			$scope.insurance = "Success";
 			$scope.Color = "green";
-					$scope.ButValue="Claimed";
+			$scope.ButValue = "Claimed";
 
-			$scope.count+=1;
-			//	 	alert($scope.count);
+		};
+		$scope.ClaimInsurance1 = function(){
+
+			obj1 = {
+				"amount" : $scope.claimAmount,
+				"reason" : $scope.claimReason
+			};
+
+			$scope.Result = JSON.parse(JSON.stringify(obj1.amount));
+			$scope.Result1 =JSON.parse(JSON.stringify(obj1.reason));
+
+			c.server.get({"method" :"claim", "Value" : $scope.Result , "value2" : $scope.policynumber , "value3" :$scope.Result1}).then(function(res){
+
+			});
 		}
+
+
 	});
+
+
 
 
 
 };
 ]]></client_script>
-        <controller_as>c</controller_as>
-        <css>.bg-img {
+<controller_as>c</controller_as>
+<css>.bg-img {
   /* Add your background image styles here */
 }
 
@@ -101,7 +117,7 @@ h1 {
 
 .pdf-link {
   display: inline-block;
-  width: 200px;
+
   margin: 20px auto;
   text-align: center;
 }
@@ -109,6 +125,7 @@ h1 {
 .pdf-link img {
   width: 100%; /* Adjust image width */
   border-radius: 10px;
+  padding-left:0px;
 }
 
 .but1 {
@@ -127,23 +144,24 @@ h1 {
   padding:10px;
 }
 
+
 </css>
-        <data_table>sp_instance</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list/>
-        <has_preview>true</has_preview>
-        <id/>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>true</has_preview>
+<id/>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-        <name>policy claim</name>
-        <option_schema/>
-        <public>true</public>
-        <roles/>
-        <script><![CDATA[(function() {
+<name>policy claim</name>
+<option_schema/>
+<public>true</public>
+<roles/>
+<script><![CDATA[(function() {
 	/* populate the 'data' object */
 	/* e.g., data.table = $sp.getValue('table'); */
 	data.array = [];
@@ -153,16 +171,6 @@ h1 {
 	var url = "";
 	var status = "";
 	var sys=" ";
-	
-	
-
-
-
-
-	
-	
-	
-	
 
 	if(input && input.action == "create"){
 //	gs.addInfoMessage(input.value)
@@ -192,26 +200,7 @@ h1 {
 
 
 			});
-				if (input && input.method == "claim") {
-    
-    var claim = new GlideRecord('x_rptp_insureme_claim_table');
-    claim.query();
-	gs.addInfoMessage(input.value2);
-	
-	gs.addErrorMessage(JSON.stringify(data.array))
-     
-    if (claim.next()) {
 
-            claim.initialize(); 
-            claim.status = 2;
-          //  claim.sum_insured =dsa ;
-         //   claim.amount_claim = dsa;
-         //   claim.insert(); 
-    } else {
-      //  claim.amount_claim = input.Value;
-       // claim.update(); 
-    }
-}
 			
 			gr1 = new GlideRecord('sys_attachment');
 			gr1.addQuery('table_sys_id',sys);
@@ -233,23 +222,49 @@ h1 {
 		}
 		
 	}
+					if (input && input.method == "claim") {
+    
+    var claim = new GlideRecord('x_rptp_insureme_claim_table');
+    claim.query();
+	gs.addInfoMessage(input.value2);
+	   
+    if (claim.next()) {
+			
+		var tb = new GlideRecord('x_rptp_insureme_payment_details');
+		tb.addQuery('number',input.value2);
+		tb.query();
+			if(tb.next()){
+            claim.initialize(); 
+            claim.status = 2;
+				claim.policy_number = tb.sys_id;
+           claim.sum_insured = tb.sum;
+           claim.amount_claim = JSON.parse(input.Value);
+				claim.claiming_reason = input.value3;
+            claim.insert(); 
+  
+    } else {
+        claim.amount_claim = input.Value;
+        claim.update(); 
+    }
+		}
+}
 
 
 })();]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>Surya.Prathap</sys_created_by>
-        <sys_created_on>2024-02-28 10:49:25</sys_created_on>
-        <sys_id>a35dd887472486d055784a02516d4357</sys_id>
-        <sys_mod_count>337</sys_mod_count>
-        <sys_name>policy claim</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_a35dd887472486d055784a02516d4357</sys_update_name>
-        <sys_updated_by>Ajmal.akram</sys_updated_by>
-        <sys_updated_on>2024-03-05 10:06:01</sys_updated_on>
-        <template><![CDATA[<body class = "bg-img">
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>Surya.Prathap</sys_created_by>
+<sys_created_on>2024-02-28 10:49:25</sys_created_on>
+<sys_id>a35dd887472486d055784a02516d4357</sys_id>
+<sys_mod_count>474</sys_mod_count>
+<sys_name>policy claim</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_a35dd887472486d055784a02516d4357</sys_update_name>
+<sys_updated_by>Ajmal.akram</sys_updated_by>
+<sys_updated_on>2024-03-06 07:35:16</sys_updated_on>
+<template><![CDATA[<body class = "bg-img">
   <div class="form-container" >
 
     <section class="section">
@@ -265,7 +280,8 @@ h1 {
           <th>Sum Insured</th>
           <th>Applicant Name</th>
           <th>Status</th>
-          <th>Claim Insurance</th>
+          <th ng-show = "!modalVisible" >Claim Insurance</th>
+
           <th></th>
         </tr>
         <tr class = "spacing">
@@ -278,23 +294,82 @@ h1 {
           <td>{{obj.name}}</td>
           <td><h4 style="color: {{Color}};">{{insurance}}</h4></td>
 
-          <td><a herf=""  ng-disabled="value" ng-click="ClaimInsurance()"><button class="but1">
-            {{ButValue}}</button></a>
+          <td>
+            <a href=""  ng-click="ClaimInsurance()">
+              <button  ng-show = "!modalVisible" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="background-color: #e86020; border-radius: 10px">
+                {{ButValue}}
+              </button>
+            </a>
           </td>
-         <td>
-    <a href="{{obj1.url}}" class="pdf-link" target="_blank" download="document.pdf">
-        <button type="button" class="btn btn-link">
-            <span id="boot-icon" class="bi bi-download" style="    font-size: 50px;
-    -webkit-text-stroke-width: 4px;
-    color: black;"></span>
-        </button>
-    </a>
-</td>
+
+          <td>
+            <a href="{{obj1.url}}" class="pdf-link" target="_blank" download="document.pdf">
+              <button type="button" class="btn btn-link">
+                <span id="boot-icon" class="bi bi-download" style="    font-size: 30px;
+                                                                   -webkit-text-stroke-width: 2px;
+                                                                   color: black;"></span>
+              </button>
+            </a>
+          </td>
 
         </tr>
-      
+
       </table>
+      <hr>
+      <table class="policy-table" ng-show ="modalVisible" >
+        <h1>Claim Details</h1>
+        <hr>
+        <tr>
+          <th>SL. No</th>
+          <th>Amount Claimed</th>
+          <th>Reason</th>
+          <th>Status</th>
+        </tr>
+        <tr class = "spacing">
+          <td>1</td>
+          <td>{{Result}}</td>
+          <td>{{Result1}}</td>
+          <td>{{ButValue}}</td>
+        </tr>
+
+      </table>
+
+      <!-- Modal --><div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Claiming Reason</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Add two input fields for claim amount and reason -->
+            <div class="form-group">
+              <label for="claimAmount">Claim Amount:<span></span></label>
+              <input type="text" class="form-control" id="claimAmount" ng-model="claimAmount" placeholder="Enter claim amount" ng-max = "obj.sum">
+            {{obj.Sum}}  
+            </div>
+            <div class="form-group">
+              <label for="claimReason">Claim Reason:</label>
+              <textarea class="form-control" id="claimReason" rows="3" placeholder="Enter claim reason" ng-model="claimReason"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" ng-click="ClaimInsurance1()" data-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+      </div>
+
+
+
+
+
+
     </section>
+
   </div>
 
 
@@ -302,5 +377,5 @@ h1 {
 
 
 ]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

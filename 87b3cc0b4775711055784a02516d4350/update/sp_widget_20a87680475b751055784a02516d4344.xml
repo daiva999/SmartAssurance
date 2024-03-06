@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller = function ($scope, $element, $window, $location, $rootScope, $timeout, snAttachmentHandler, $http, spUtil, userPreferences, $filter, i18n, $uibModal, spAriaUtil) {
+<category>custom</category>
+<client_script><![CDATA[api.controller = function ($scope, $element, $window, $location, $rootScope, $timeout, snAttachmentHandler, $http, spUtil, userPreferences, $filter, i18n, $uibModal, spAriaUtil) {
 	
 	var c = this;
 	c.submit = function(){
@@ -45,8 +45,8 @@
 
 
 };]]></client_script>
-        <controller_as>c</controller_as>
-        <css>.goBack {
+<controller_as>c</controller_as>
+<css>.goBack {
   position: relative;
   width: 100px;
   height: 40px; 
@@ -143,22 +143,22 @@ div {
     color: red;
 }
 </css>
-        <data_table>sp_instance_table</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list>table</field_list>
-        <has_preview>false</has_preview>
-        <id>new_product</id>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {
+<data_table>sp_instance_table</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list>table</field_list>
+<has_preview>false</has_preview>
+<id>new_product</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-        <name>Create New Product</name>
-        <option_schema>[{"displayValue":"Page","name":"redirect_url","section":"Presentation","default_value":"product","label":"url","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}}]</option_schema>
-        <public>false</public>
-        <roles/>
-        <script><![CDATA[(function(){
+<name>Create New Product</name>
+<option_schema>[{"displayValue":"Page","name":"redirect_url","section":"Presentation","default_value":"product","label":"url","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}}]</option_schema>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function(){
 
 	data.cat = [];
 	data.insurerCode = [];
@@ -309,20 +309,20 @@ while (catgr.next()) {
 
 
 })();]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-12-19 11:07:36</sys_created_on>
-        <sys_id>20a87680475b751055784a02516d4344</sys_id>
-        <sys_mod_count>333</sys_mod_count>
-        <sys_name>Create New Product</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_20a87680475b751055784a02516d4344</sys_update_name>
-        <sys_updated_by>chandan.parmar</sys_updated_by>
-        <sys_updated_on>2024-03-01 05:51:29</sys_updated_on>
-        <template><![CDATA[<div>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2023-12-19 11:07:36</sys_created_on>
+<sys_id>20a87680475b751055784a02516d4344</sys_id>
+<sys_mod_count>333</sys_mod_count>
+<sys_name>Create New Product</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_20a87680475b751055784a02516d4344</sys_update_name>
+<sys_updated_by>chandan.parmar</sys_updated_by>
+<sys_updated_on>2024-03-01 05:51:29</sys_updated_on>
+<template><![CDATA[<div>
   
   <div admin-back-button class="bt"></div>
     <div class = "head"> 
@@ -375,5 +375,5 @@ while (catgr.next()) {
     <input  id="submit_button" type="submit" value="Create Product" ng-click="c.submit()" />
   </form> 
 </div>]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

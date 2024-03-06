@@ -1,12 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller = function ($scope, spUtil, spModal) {
+<category>custom</category>
+<client_script><![CDATA[api.controller = function ($scope, spUtil, spModal) {
 	var c = this;
-
-	$scope.redirect = function () {
-		window.history.back();
-	};
 
 	$scope.users = Array.apply(null, Array(4)).map(function () {
 		return {
@@ -140,123 +136,28 @@
 		});
 	};
 
-	var prod_code, insurer_code, startDate, endDate, options;
-
-	var nameFromSession,
-			dobFromSession,
-			phoneFromSession,
-			passportFromSession,
-			emailFromSession,
-			genderFromSession;
-
-	// $scope.sessionDetails = "";
+	var startDate, endDate, options;
 
 	$scope.sessionKey = $scope.data.user;
 
 	$scope.sessionDetails = JSON.parse(sessionStorage.getItem($scope.sessionKey));
 
 	if ($scope.sessionDetails) {
-		if ($scope.sessionDetails.newSessionData) {
-			$scope.sessionDetails.userArray = $scope.users;
-
-			for(var i=0; i<$scope.sessionDetails.userArray.length; i++){
-				$scope.users[i].nominee = $scope.sessionDetails.userArray[i].nominee;
-				$scope.users[i].relationship = $scope.sessionDetails.userArray[i].relationship;
-			}
-
-			prod_code = $scope.sessionDetails.prodCode;
-			$scope.prod = prod_code.replace(/_/g, " ");
-			$scope.travelRegion =
-				$scope.sessionDetails.userdetails.travelRegion.replace(/_/g, " ");
-			insurer_code = $scope.sessionDetails.insurer;
-			$scope.insurer = insurer_code.replace(/_/g, " ");
-
-			nameFromSession =
-				$scope.sessionDetails.newSessionData.firstName +
-				" " +
-				$scope.sessionDetails.newSessionData.lastName;
-			dobFromSession = $scope.sessionDetails.newSessionData.dob;
-			phoneFromSession = $scope.sessionDetails.newSessionData.Contact;
-			passportFromSession = $scope.sessionDetails.newSessionData.Passports;
-			emailFromSession = $scope.sessionDetails.newSessionData.email;
-			genderFromSession = $scope.sessionDetails.newSessionData.gender;
-
-			$scope.duration = $scope.sessionDetails.userdetails.duration;
-			$scope.numberOfPersons =
-				$scope.sessionDetails.userdetails.numberOfPersons;
-
-			for (var j = 0; j < $scope.numberOfPersons; j++) {
-				$scope.users[j].age =
-					$scope.sessionDetails.userdetails.travellerAges[j].age;
-				spUtil.addInfoMessage($scope.users[j].age);
-			}
-
-			startDate = new Date($scope.sessionDetails.userdetails.startDate);
-			endDate = new Date($scope.sessionDetails.userdetails.endDate);
-
-			options = { day: "numeric", month: "short", year: "numeric" };
-
-			$scope.formattedStartDate = new Intl.DateTimeFormat(
-				"en-US",
-				options
-			).format(startDate);
-			$scope.formattedEndDate = new Intl.DateTimeFormat(
-				"en-US",
-				options
-			).format(endDate);
-
-			$scope.updatePremiumDetails = function () {
-				var getPremiumDetailsObj = {
-					getDetails: true,
-					details: $scope.sessionDetails,
-					numberOfPersons: $scope.numberOfPersons,
-				};
-
-				for (var i = 0; i < $scope.numberOfPersons; i++) {
-					getPremiumDetailsObj["age" + (i + 1)] = $scope.users[i].age;
-				}
-
-				$scope.server
-					.get(getPremiumDetailsObj)
-					.then(function (res) {
-					// console.log("Server Response:", res.data);
-					$scope.sessionDetails.amount = res.data.cost;
-					$scope.sessionDetails.prodName = res.data.prodName;
-					$scope.sessionDetails.insurerName = res.data.insurerName;
-
-					$scope.amount = res.data.cost;
-					$scope.costs = res.data.costs;
-					$scope.sum = res.data.sum;
-					$scope.prodName = res.data.prodName;
-					$scope.insurerName = res.data.insurerName;
-				})
-					.catch(function (error) {
-					// console.error("Server Request Error:", error);
-				});
-			};
-
-			$scope.updatePremiumDetails();
-		} else {
 			if ($scope.sessionDetails) {
-				prod_code = $scope.sessionDetails.prodCode;
-				$scope.prod = prod_code.replace(/_/g, " ");
 				$scope.travelRegion =
-					$scope.sessionDetails.userdetails.travelRegion.replace(/_/g, " ");
-				insurer_code = $scope.sessionDetails.insurer;
-				$scope.insurer = insurer_code.replace(/_/g, " ");
-
-				$scope.duration = $scope.sessionDetails.userdetails.duration;
+					$scope.sessionDetails.travelRegion.replaceAll(/_/g, " ");
+				$scope.duration = $scope.sessionDetails.duration;
 				$scope.numberOfPersons =
-					$scope.sessionDetails.userdetails.numberOfPersons;
+					$scope.sessionDetails.numberOfPersons;
 
 				for (var l = 0; l < $scope.numberOfPersons; l++) {
 					$scope.users[l].age =
-						$scope.sessionDetails.userdetails.travellerAges[l].age;
+						$scope.sessionDetails.travellerAges[l].age;
 					spUtil.addInfoMessage($scope.users[l].age);
 				}
 
-				startDate = new Date($scope.sessionDetails.userdetails.startDate);
-				endDate = new Date($scope.sessionDetails.userdetails.endDate);
+				startDate = new Date($scope.sessionDetails.startDate);
+				endDate = new Date($scope.sessionDetails.endDate);
 
 				options = { day: "numeric", month: "short", year: "numeric" };
 
@@ -268,231 +169,20 @@
 					"en-US",
 					options
 				).format(endDate);
-
-				$scope.updatePremiumDetails = function () {
-					var getPremiumDetailsObj = {
-						getDetails: true,
-						details: $scope.sessionDetails,
-						numberOfPersons: $scope.numberOfPersons,
-					};
-
-					for (var i = 0; i < $scope.numberOfPersons; i++) {
-						getPremiumDetailsObj["age" + (i + 1)] = $scope.users[i].age;
-					}
-
-					$scope.server
-						.get(getPremiumDetailsObj)
-						.then(function (res) {
-						// console.log("Server Response:", res.data);
-						$scope.amount = res.data.cost;
-						$scope.costs = res.data.costs;
-						$scope.sum = res.data.sum;
-						$scope.prodName = res.data.prodName;
-						$scope.insurerName = res.data.insurerName;
-					})
-						.catch(function (error) {
-						// console.error("Server Request Error:", error);
-					});
-				};
-
-				$scope.updatePremiumDetails();
 			} else {
 				spUtil.addTrivialMessage(
 					"Invalid session details. No provided data found."
 				);
 			}
-		}
+		
 	}
 
-	$scope.users[0].name = nameFromSession || $scope.data.name;
-	$scope.users[0].dob = dobFromSession ? new Date(dobFromSession) : "";
-	$scope.users[0].gender = genderFromSession || $scope.data.gender;
-	$scope.users[0].email = emailFromSession || $scope.data.email;
-	$scope.users[0].phone = phoneFromSession || $scope.data.phone;
-	$scope.users[0].passport = passportFromSession;
-
-	$scope.sub = function () {
-		// alert("Clicked");
-		if (!$scope.isFormValid()) {
-			return;
-		} else {
-			$scope.isProcessing = true;
-
-			var obj = {
-				action: "sub",
-				name: $scope.users[0].name,
-				gender: $scope.users[0].gender,
-				email: $scope.users[0].email,
-				phone: $scope.users[0].phone,
-				amount: $scope.amount,
-				details: $scope.sessionDetails,
-			};
-
-			$scope.server.get(obj).then(function (res) {
-				$scope.isProcessing = false;
-
-				var createOrderResponse = res.data.response;
-
-				$scope.data = createOrderResponse;
-
-				if (createOrderResponse) {
-					var responseObject = {
-						payment: true,
-						status: null,
-						payment_id: null,
-						order_id: null,
-						failed_response: null,
-						amount: $scope.amount,
-						sum: $scope.sum,
-						details: $scope.sessionDetails,
-						users: $scope.users,
-					};
-
-					var options = {
-						key: "rzp_test_BlIa1epOvWWidV",
-						amount: createOrderResponse.amount,
-						currency: createOrderResponse.currency,
-						name: "Smart Assurance",
-						description: createOrderResponse.notes.description,
-						order_id: createOrderResponse.id,
-						handler: function (res) {
-							responseObject.payment_id = res.razorpay_payment_id;
-							responseObject.order_id = res.razorpay_order_id;
-							responseObject.status = "Success";
-
-							if (res) {
-								/*
-								var opt = {
-									id: "",
-									title: "Transaction Details",
-									message: "<b>Payment_id: " +
-									res.razorpay_payment_id +
-									"</b>" +
-									"<br>" +
-									"<b>Order_id: " +
-									res.razorpay_order_id +
-									"</b>" +
-									"<br>" +
-									"<b>Amount: " +
-									"₹" +
-									$scope.amount +
-									"/-" +
-									"</b>",
-									buttons: [
-										{
-											label: "Close",
-											value: "cancel",
-											primary: true,
-										}
-									],
-								};
-								spModal.open(opt);
-								*/
-
-								$scope.server.get(responseObject).then(function (res) {
-									// console.log("After payment response: " + JSON.stringify(res.data));
-								});
+	$scope.users[0].name = $scope.data.name;
+	$scope.users[0].gender = $scope.data.gender;
+	$scope.users[0].email = $scope.data.email;
+	$scope.users[0].phone = $scope.data.phone;
 
 
-
-								location.href = "/vfsp";
-
-								sessionStorage.clear();
-
-								var razorpayResponse = {
-									amount : $scope.amount,
-									order_id : res.razorpay_order_id,
-									payment_id : res.razorpay_payment_id,
-									status: "success"
-								}
-
-								sessionStorage.setItem(
-									"razorpayResponse",
-									JSON.stringify(razorpayResponse)
-								);
-							}
-
-						},
-						prefill: {
-							contact: $scope.users[0].phone,
-							name: $scope.users[0].name,
-							email: $scope.users[0].email,
-						},
-						notes: {
-							name: createOrderResponse.notes.name,
-							description: createOrderResponse.notes.description,
-						},
-						theme: {
-							color: "#2300a3",
-						},
-					};
-
-					var razorpayObject = new Razorpay(options);
-
-					razorpayObject.on("payment.failed", function (response) {
-						responseObject.status = "Failed";
-						responseObject.payment_id = response.error.metadata.payment_id;
-						responseObject.order_id = response.error.metadata.order_id;
-						responseObject.failed_response = response.error;
-
-
-
-						$scope.server.get(responseObject).then(function (res) {
-							// console.log("After failed response: " + JSON.stringify(res.data));
-
-						});
-
-						if (response) {
-							/*
-							var opt = {
-								title: "Transaction Details",
-								message:
-								"<b>Description: " +
-								response.error.description +
-								"</b>" +
-								"<br>" +
-								"<b>Source: " +
-								response.error.source +
-								"</b>" +
-								"<br>" +
-								"<b>Amount: " +
-								"₹" +
-								$scope.amount +
-								"/-" +
-								"</b>",
-								buttons: [
-									{
-										label: "Close",
-										value: "cancel",
-										primary: true,
-									},
-								],
-							};
-
-							spModal.open(opt);
-							*/
-							location.href = "/vfsp";
-							sessionStorage.clear();
-
-							var razorpayResponse = {
-								amount : $scope.amount,
-								response: response,
-								status: "failed"
-							}
-
-							sessionStorage.setItem(
-								"razorpayResponse",
-								JSON.stringify(razorpayResponse)
-							);
-						}
-					});
-					razorpayObject.open();
-				} else {
-					alert("Error");
-				}
-			});
-		}
-	};
 
 	var dataToSend = {
 		details: $scope.sessionDetails,
@@ -505,7 +195,7 @@
 			return;
 		} else {
 			sessionStorage.setItem(
-				$scope.data.user,
+				$scope.data.userName,
 				JSON.stringify(dataToSend)
 			);
 			location.href = "/vfsp?id=test_payment";
@@ -513,8 +203,8 @@
 	};
 };
 ]]></client_script>
-        <controller_as>c</controller_as>
-        <css>* {
+<controller_as>c</controller_as>
+<css>* {
   font-family: "Helvetica";
 }
 
@@ -1108,22 +798,22 @@ margin-bottom: 20px;
 @media only screen and (min-width: 992px) {...}
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {...}</css>
-        <data_table>sp_instance</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list/>
-        <has_preview>true</has_preview>
-        <id>payment_popup</id>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>true</has_preview>
+<id>payment_popup</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-        <name>payment_popup</name>
-        <option_schema/>
-        <public>false</public>
-        <roles/>
-        <script><![CDATA[(function () {
+<name>payment_popup</name>
+<option_schema/>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function () {
 	// getting userID and user_name
 	data.user = gs.getUserID();
 	data.userName = gs.getUserName();
@@ -1174,12 +864,12 @@ margin-bottom: 20px;
 			premiumRecord.addQuery(
 				"max_days",
 				">=",
-				input.details.userdetails.duration
+				input.details.duration
 			);
 			premiumRecord.addQuery(
 				"min_days",
 				"<=",
-				input.details.userdetails.duration
+				input.details.duration
 			);
 			premiumRecord.addQuery("prod_code", input.details.prodCode);
 			premiumRecord.addQuery("insurer_code", input.details.insurer);
@@ -1225,275 +915,259 @@ margin-bottom: 20px;
 		return receiptNumber;
 	}
 
-	// calling script include for razorpay orderId generation after submit
-	if (input && input.action === "sub") {
-		var amount = input.amount * 100;
-		var receipt = generateReceiptNumber("Receipt no. ", 6);
-		var description = "This is test payment 1";
-		var name = input.name;
-
-		var rzrpy = new x_rptp_insureme.razorpay();
-		data.response = rzrpy.createOrder(
-			amount,
-			receipt,
-			description,
-			name
-		);
-		data.id = data.response.id;
-	}
 
 
 
 })();
 ]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>nikita</sys_created_by>
-        <sys_created_on>2024-03-04 11:41:51</sys_created_on>
-        <sys_id>dc495e6047fc061055784a02516d4341</sys_id>
-        <sys_mod_count>25</sys_mod_count>
-        <sys_name>payment_popup</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_dc495e6047fc061055784a02516d4341</sys_update_name>
-        <sys_updated_by>nikita</sys_updated_by>
-        <sys_updated_on>2024-03-05 09:11:30</sys_updated_on>
-        <template><![CDATA[<div>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>nikita</sys_created_by>
+<sys_created_on>2024-03-04 11:41:51</sys_created_on>
+<sys_id>dc495e6047fc061055784a02516d4341</sys_id>
+<sys_mod_count>48</sys_mod_count>
+<sys_name>payment_popup</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_dc495e6047fc061055784a02516d4341</sys_update_name>
+<sys_updated_by>nikita</sys_updated_by>
+<sys_updated_on>2024-03-06 07:06:19</sys_updated_on>
+<template><![CDATA[<div>
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     click here
   </button>
 
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-     <form class="section-1" name="myForm">
-        <h3 class="pMar">Personal Details</h3>
-        <p>
-          Please fill all the mandatory(<span class="required">*</span>) fields
-        </p>
-        <div
-          ng-repeat="user in users track by $index"
-          
-        >
-          <!--ng-show="$index < numberOfPersons"-->
-          <div class="boxDiv">
-            <div class="person-section">
-              <h4 class="mar userNameInputBox" ng-click="togglePerson($index)">
-                {{user.name ? user.name : 'Traveller ' + ($index + 1)}}
-                {{user.age ? "(" + user.age + " yrs)" : ""}}
-              </h4>
-              <div class="iFrameDiv">
-                <i
-                  class="fa fa-angle-down"
-                  ng-show="!isPersonHidden[$index]"
-                   ng-click="togglePerson($index)"
-                ></i>
-                <i class="fa fa-angle-up" ng-show="isPersonHidden[$index]" ng-click="togglePerson($index)"></i>
+    <form class="section-1" name="myForm">
+      <h3 class="pMar">Personal Details</h3>
+      <p>
+        Please fill all the mandatory(<span class="required">*</span>) fields
+      </p>
+      <div
+           class="mainBoxDiv"
+           ng-repeat="user in users track by $index"
+           ng-show="$index < numberOfPersons"
+           >
+        <div class="boxDiv">
+          <div class="person-section">
+            <h4 class="mar userNameInputBox" ng-click="togglePerson($index)">
+              {{user.name ? user.name : 'Traveller ' + ($index + 1)}}
+              {{user.age ? "(" + user.age + " yrs)" : ""}}
+            </h4>
+            <div class="iFrameDiv">
+              <i
+                 class="fa fa-angle-down"
+                 ng-show="!isPersonHidden[$index]"
+                 ng-click="togglePerson($index)"
+                 ></i>
+              <i class="fa fa-angle-up" ng-show="isPersonHidden[$index]" ng-click="togglePerson($index)"></i>
+            </div>
+          </div>
+          <div ng-show="isPersonHidden[$index]">
+            <div class="line mar">
+              <!-- name and checkboxfor name -->
+              <div>
+                <div class="input-container">
+                  <input
+                         type="text"
+                         class="input-box userNameInputBox"
+                         id="username"
+                         placeholder=""
+                         ng-model="user.name"
+                         ng-class="{ 'blue-border': user.name, 'red-border': !user.name }"
+                         ng-required="true"
+                         minlength="3"
+                         />
+                  <label for="username" class="input-label"
+                         >Enter full name <span class="required">*</span></label
+                    >
+                </div>
+              </div>
+
+              <div class="input-container">
+                <select
+                        class="input-box"
+                        required
+                        ng-model="user.gender"
+                        ng-class="{ 'blue-border': user.gender, 'red-border': !user.gender }"
+                        >
+                  <option value="">Please choose your gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+                <label class="input-label"
+                       >Gender<span class="required">*</span></label
+                  >
               </div>
             </div>
-            <div ng-show="isPersonHidden[$index]">
-              <div class="line mar">
-                <!-- name and checkboxfor name -->
-                <div>
-                  <div class="input-container">
-                    <input
-                      type="text"
-                      class="input-box userNameInputBox"
-                      id="username"
-                      placeholder=""
-                      ng-model="user.name"
-                      ng-class="{ 'blue-border': user.name, 'red-border': !user.name }"
-                      ng-required="true"
-                      minlength="3"
-                    />
-                    <label for="username" class="input-label"
-                      >Enter full name <span class="required">*</span></label
-                    >
-                  </div>
-                </div>
+            <div class="line">
+              <div class="input-container">
+                <input
+                       type="text"
+                       class="input-box"
+                       placeholder=""
+                       ng-model="user.email"
+                       ng-required="true"
+                       ng-class="{ 'blue-border': user.email, 'red-border': !user.email }"
+                       />
+                <label for="username" class="input-label"
+                       >Enter your email <span class="required">*</span></label
+                  >
+              </div>
+              <div class="input-container">
+                <input
+                       type="tel"
+                       class="input-box"
+                       ng-class="{ 'blue-border': user.phone, 'red-border': !user.phone }"
+                       placeholder=""
+                       ng-model="user.phone"
+                       ng-required="true"
+                       maxlength="10"
+                       pattern="[0-9]{10}"
+                       />
+                <label for="username" class="input-label"
+                       >Enter your 10 digit mobile number
+                  <span class="required">*</span></label
+                  >
+              </div>
+            </div>
+            <!-- line 2 -->
+            <div class="line">
+              <div class="input-container">
+                <input
+                       type="date"
+                       class="input-box"
+                       ng-class="{ 'blue-border': user.dob, 'red-border': !user.dob }"
+                       id="dob"
+                       placeholder=""
+                       ng-model="user.dob"
+                       ng-change="calculateAge()"
+                       ng-required="true"
+                       />
+                <label for="username" class="input-label"
+                       >Enter date of birth<span class="required">*</span></label
+                  >
+              </div>
 
-                <div class="input-container">
-                  <select
-                    class="input-box"
-                    required
-                    ng-model="user.gender"
-                    ng-class="{ 'blue-border': user.gender, 'red-border': !user.gender }"
-                  >
-                    <option value="">Please choose your gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                  </select>
-                  <label class="input-label"
-                    >Gender<span class="required">*</span></label
-                  >
-                </div>
+              <div class="input-container">
+                <input
+                       type="text"
+                       class="input-box"
+                       id="username"
+                       value="Indian"
+                       disabled
+                       />
+                <label for="username" class="input-label">Nationality</label>
               </div>
-              <div class="line">
+            </div>
+            <!-- line3 -->
+            <div class="line">
+              <div>
                 <div class="input-container">
                   <input
-                    type="text"
-                    class="input-box"
-                    placeholder=""
-                    ng-model="user.email"
-                    ng-required="true"
-                    ng-class="{ 'blue-border': user.email, 'red-border': !user.email }"
-                  />
+                         type="text"
+                         class="input-box"
+                         id="username"
+                         placeholder=""
+                         ng-class="{ 'blue-border': user.passport, 'red-border': !user.passport }"
+                         ng-model="user.passport"
+                         maxlength="8"
+                         ng-change="validatePassport()"
+                         ng-required="true"
+                         />
                   <label for="username" class="input-label"
-                    >Enter your email <span class="required">*</span></label
-                  >
-                </div>
-                <div class="input-container">
-                  <input
-                    type="tel"
-                    class="input-box"
-                    ng-class="{ 'blue-border': user.phone, 'red-border': !user.phone }"
-                    placeholder=""
-                    ng-model="user.phone"
-                    ng-required="true"
-                    maxlength="10"
-                    pattern="[0-9]{10}"
-                  />
-                  <label for="username" class="input-label"
-                    >Enter your 10 digit mobile number
-                    <span class="required">*</span></label
-                  >
-                </div>
-              </div>
-              <!-- line 2 -->
-              <div class="line">
-                <div class="input-container">
-                  <input
-                    type="date"
-                    class="input-box"
-                    ng-class="{ 'blue-border': user.dob, 'red-border': !user.dob }"
-                    id="dob"
-                    placeholder=""
-                    ng-model="user.dob"
-                    ng-change="calculateAge()"
-                    ng-required="true"
-                  />
-                  <label for="username" class="input-label"
-                    >Enter date of birth<span class="required">*</span></label
-                  >
-                </div>
-
-                <div class="input-container">
-                  <input
-                    type="text"
-                    class="input-box"
-                    id="username"
-                    value="Indian"
-                    disabled
-                  />
-                  <label for="username" class="input-label">Nationality</label>
-                </div>
-              </div>
-              <!-- line3 -->
-              <div class="line">
-                <div>
-                  <div class="input-container">
-                    <input
-                      type="text"
-                      class="input-box"
-                      id="username"
-                      placeholder=""
-                      ng-class="{ 'blue-border': user.passport, 'red-border': !user.passport }"
-                      ng-model="user.passport"
-                      maxlength="8"
-                      ng-change="validatePassport()"
-                      ng-required="true"
-                    />
-                    <label for="username" class="input-label"
-                      >Enter passport number(A1234567)<span class="required"
-                        >*</span
-                      ></label
-                    >
-                  </div>
-                 
-                </div>
-                <div>
-                  <div class="input-container">
-                    <input
-                      type="text"
-                      class="input-box"
-                      id="panInput"
-                      placeholder=""
-                      ng-model="user.panNumber"
-                      ng-change="formatPan()"
-                      maxlength="10"
-                      ng-disabled="isPanDisabled"
-                    />
-                    <label for="panInput" class="input-label"
-                      >Enter pan number(ABCDE1234F)</label
-                    >
-                  </div>
-
-                  <div class="line-1-inner">
-                    <input
-                      type="checkbox"
-                      ng-model="isPanDisabled"
-                      ng-init="isPanDisabled=false"
-                           class="panCheckBox"
-                    />
-                    <p>I don't have a pancard</p>
-                  </div>
-                </div>
-              </div>
-              <h4>Nominee Details</h4>
-              <div class="line">
-                <div class="input-container">
-                  <input
-                    type="text"
-                    class="input-box userNameInputBox"
-                    id="username"
-                    placeholder=""
-                    ng-model="user.nominee"
-                    ng-class="{ 'blue-border': user.nominee, 'red-border': !user.nominee }"
-                    ng-required="true"
-                    minlength="3"
-                  />
-                  <label for="username" class="input-label"
-                    >Enter nominee full name<span class="required"
-                      >*</span
+                         >Enter passport number(A1234567)<span class="required"
+                                                               >*</span
                     ></label
-                  >
+                    >
                 </div>
+
+              </div>
+              <div>
                 <div class="input-container">
-                  <select
-                    class="input-box"
-                    required
-                    ng-model="user.relationship"
-                    ng-class="{ 'blue-border': user.relationship, 'red-border': !user.relationship }"
-                    ng-init="user.relationship=''"
-                  >
-                    <option value="">Please choose an option</option>
-                    <option value="wife">Wife</option>
-                    <option value="father">Father</option>
-                    <option value="mother">Mother</option>
-                    <option value="brother">Brother</option>
-                    <option value="sister">Sister</option>
-                  </select>
-                  <label for="username" class="input-label"
-                    >Select nominee relation<span class="required"
-                      >*</span
-                    ></label
-                  >
+                  <input
+                         type="text"
+                         class="input-box"
+                         id="panInput"
+                         placeholder=""
+                         ng-model="user.panNumber"
+                         ng-change="formatPan()"
+                         maxlength="10"
+                         ng-disabled="isPanDisabled"
+                         />
+                  <label for="panInput" class="input-label"
+                         >Enter pan number(ABCDE1234F)</label
+                    >
                 </div>
+
+                <div class="line-1-inner">
+                  <input
+                         type="checkbox"
+                         ng-model="isPanDisabled"
+                         ng-init="isPanDisabled=false"
+                         class="panCheckBox"
+                         />
+                  <p>I don't have a pancard</p>
+                </div>
+              </div>
+            </div>
+            <h4>Nominee Details</h4>
+            <div class="line">
+              <div class="input-container">
+                <input
+                       type="text"
+                       class="input-box userNameInputBox"
+                       id="username"
+                       placeholder=""
+                       ng-model="user.nominee"
+                       ng-class="{ 'blue-border': user.nominee, 'red-border': !user.nominee }"
+                       ng-required="true"
+                       minlength="3"
+                       />
+                <label for="username" class="input-label"
+                       >Enter nominee full name<span class="required"
+                                                     >*</span
+                  ></label
+                  >
+              </div>
+              <div class="input-container">
+                <select
+                        class="input-box"
+                        required
+                        ng-model="user.relationship"
+                        ng-class="{ 'blue-border': user.relationship, 'red-border': !user.relationship }"
+                        ng-init="user.relationship=''"
+                        >
+                  <option value="">Please choose an option</option>
+                  <option value="wife">Wife</option>
+                  <option value="father">Father</option>
+                  <option value="mother">Mother</option>
+                  <option value="brother">Brother</option>
+                  <option value="sister">Sister</option>
+                </select>
+                <label for="username" class="input-label"
+                       >Select nominee relation<span class="required"
+                                                     >*</span
+                  ></label
+                  >
               </div>
             </div>
           </div>
         </div>
-       
-       <button class="btn btn-primary">
-      Continue
-    </button>
-       
-       
-      </form>
-    
-    
-    
+      </div>
+
+      <button class="btn btn-primary" ng-click="rediectToPayment()">
+        Continue
+      </button>
+
+
+    </form>
+
+
+
   </div>
 ]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

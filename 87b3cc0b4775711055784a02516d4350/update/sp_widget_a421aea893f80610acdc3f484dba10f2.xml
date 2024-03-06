@@ -1,19 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller = function ($scope, spUtil, spModal) {
+<category>custom</category>
+<client_script><![CDATA[api.controller = function ($scope, spUtil, spModal) {
 	var c = this;
+	c.total=1000;
 	$scope.redirect = function () {
 		window.history.back();
 	};
+	c.premiumValue=1000;
+	c.addOnList=[];
+	
+	$scope.addOnDeleteButton=function(record,index){
+	for(var i=0;i<c.addOnList.length;i++){
+		if(c.addOnList[i].index==index){
+			c.addOnList.splice(i,1);
+		}
+	}
+		record.visible=true;
+	}
 	
 	$scope.redirectToPayment=function(){
-		
 	}
+	
+	$scope.addOn=function(record,index){
+		
+		var obj={
+			"name":record.AddOnName,
+			"value":record.addOnValue,
+			"index":index
+		}
+		c.addOnList.push(obj);
+	
+		c.total=parseInt(c.total)+parseInt(record.addOnValue);
+		record.visible=false;
+	}
+	
 };
 ]]></client_script>
-        <controller_as>c</controller_as>
-        <css>.addOnContainer{
+<controller_as>c</controller_as>
+<css>.addOnContainer{
 display: grid;
     grid-template-columns: repeat(2, 1fr); /* 4 columns */
     grid-gap: 20px; 
@@ -26,8 +51,9 @@ display:flex;
 }
 .addOncard{
   padding:10px;
-  border:0.1px black solid;
+  border:0.1px grey solid;
   display:grip;
+  border-radius:5px;
 }
 img{
 width:50px;
@@ -35,6 +61,20 @@ height:50px;
 }
 .mainContainer{
 display:flex;
+}
+
+.rightContainer{
+  margin-left:40px;
+	display:flex;
+  flex-direction:column;
+ // justify-content:center;
+ // align-items:center;
+ // margin-top:10vh;
+  padding:10px;
+  margin-top: 100px;
+  width:400px;
+  min-height:20vh;
+  border:0.1px grey solid;
 }
 .addOnValue{
 padding:10px;
@@ -44,23 +84,52 @@ padding:10px;
 }
 
 .addOnDescription{
-  border-bottom:1px black dotted;
+  padding:10px;
+  border-bottom:1px grey dotted;
+}
+
+
+.premiumValue{
+  padding:10px;
+  border-bottom:0.1px grey solid;
+
+}
+
+.addOnsList{
+  padding:10px;
+border-bottom:0.1px grey dotted;
+}
+
+.totalCost{
+  padding:10px;
+
+}
+.backDiv{
+display:flex;
+  align-items: baseline;
+  gap: 10px;
+    font-size: 18px;
+  
+}
+
+.btn {
+margin-right:0px;
 }
 </css>
-        <data_table>sp_instance_table</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list>table</field_list>
-        <has_preview>true</has_preview>
-        <id>addondeatils</id>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
-        <name>addOnDeatils</name>
-        <option_schema>[{"displayValue":"Page","hint":"redirect_url","name":"redirect_url","section":"Presentation","default_value":"vfs_get_page","label":"Redirect URL","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}}]</option_schema>
-        <public>false</public>
-        <roles/>
-        <script><![CDATA[(function () {
+<data_table>sp_instance_table</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list>table</field_list>
+<has_preview>true</has_preview>
+<id>addondeatils</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+<name>addOnDeatils</name>
+<option_schema>[{"displayValue":"Page","hint":"redirect_url","name":"redirect_url","section":"Presentation","default_value":"vfs_get_page","label":"Redirect URL","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}}]</option_schema>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function () {
 	// getting userID and user_name
 	data.user = gs.getUserID();
 	data.userName = gs.getUserName();
@@ -73,8 +142,8 @@ data.AddOnsData=[];
 			"CoverAmt":addOnsGr.getDisplayValue("cover_amount"),
 			"AddOnName": addOnsGr.getDisplayValue("addon_name"),
 			"addOnValue":addOnsGr.getValue("value"),
-			"addOnCount":0,
-			"description":addOnsGr.getValue("description")
+			"description":addOnsGr.getValue("description"),
+			"visible":true
 		}
 		data.AddOnsData.push(obj);
 	}
@@ -88,93 +157,98 @@ function findImage() {
 
 //gs.addErrorMessage(JSON.stringify(data.AddOnsData))
 })();]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>akshay</sys_created_by>
-        <sys_created_on>2024-03-04 12:15:44</sys_created_on>
-        <sys_id>a421aea893f80610acdc3f484dba10f2</sys_id>
-        <sys_mod_count>90</sys_mod_count>
-        <sys_name>addOnDeatils</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_a421aea893f80610acdc3f484dba10f2</sys_update_name>
-        <sys_updated_by>akshay</sys_updated_by>
-        <sys_updated_on>2024-03-05 10:03:50</sys_updated_on>
-        <template><![CDATA[
-<div class="mainContainer">
-    <div class="sticky-container">
-        <div class="backDiv" ng-click="redirect()">
-            <i class="fa fa-arrow-circle-left"></i>
-            <p>Go back</p>
-        </div>
-
-
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>akshay</sys_created_by>
+<sys_created_on>2024-03-04 12:15:44</sys_created_on>
+<sys_id>a421aea893f80610acdc3f484dba10f2</sys_id>
+<sys_mod_count>152</sys_mod_count>
+<sys_name>addOnDeatils</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_a421aea893f80610acdc3f484dba10f2</sys_update_name>
+<sys_updated_by>akshay</sys_updated_by>
+<sys_updated_on>2024-03-05 12:14:18</sys_updated_on>
+<template><![CDATA[<div class="mainContainer">
+<div class="sticky-container">
+<div class="backDiv" ng-click="redirect()">
+<i class="fa fa-arrow-circle-left"></i>
+<p>Go back</p>
+</div>
+ 
+ 
         <div class="main">
-            <!-- 1st section -->
-
+<!-- 1st section -->
+ 
             <div class="addOnContainer">
-                <div class="addOncard" ng-repeat="record in data.AddOnsData">
-                  <div class="name_Image">
-                        <img class="addOnImage" src={{record.image}}> 
-                    <div class="addOnName">
+<div class="addOncard" ng-repeat="(index,record) in data.AddOnsData">
+<div class="name_Image">
+<img class="addOnImage" src={{record.image}}> 
+<div class="addOnName">
                         {{record.AddOnName}}
-                    </div>
-                    </div>  
-                  
-                    <div class="addOnDescription">
+</div>
+</div>  
+<div class="addOnDescription">
                         {{record.description}}
-                    </div>
-                    <div class="addOnValue">
+</div>
+<div class="addOnValue">
                         {{record.addOnValue}}
-                      <button class="addOnButton" ng-click="addOn()">
+<button class="addOnButton" ng-show={{record.visible}} ng-click="addOn(record,index)">
                         ADD
-                    </button>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="rightContainer">
-          <div class="premiumValue">
-            Selected Premium
-          </div>
-          <div class="addOnsList">
+</button>
+<button class="addOnDeleteButton" ng-show= !{{record.visible}} ng-click="addOn(record,index)">
+                        Remove
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div >
+<div class="rightContainer">
+<div class="premiumValue">
+            Selected Premium:{{c.premiumValue}}
+</div>
+<div class="addOnsList">
             List Of AddOns
-          </div>
-          <div class="totalCost">
-            Total Cost=
-            <button class="redirectToPayment" ng-click="redirectToPayment()">
+<div class="listOfDisplay" ng-repeat="list in c.addOnList">
+<div>
+                {{list.name}}:{{list.value}}
+</div>
+</div>
+</div>
+<div class="totalCost">
+            Total Cost={{c.total}}
+<button class="redirectToPayment" ng-click="redirectToPayment()">
               Buy
-            </button>
-          </div>
-      </div>
-    </div>
-    <!--
-    <div ng-show="!sessionDetails">
-    <section class="page_404">
-    <div class="container">
-    <div class="row">
-    <div class="col-sm-12">
-    <div class="col-sm-10 col-sm-offset-1 text-center">
-    <div class="four_zero_four_bg">
-    <h1 class="text-center">404</h1>
-    </div>
-    <div class="contant_box_404">
-    <h3 class="h2">Look like you're lost</h3>
-    <p>the page you are looking for is not avaible!</p>
-    <button class="btn btn-primary" ng-click="redirect()">
+</button>
+</div>
+</div>
+</div>
+<!--
+<div ng-show="!sessionDetails">
+<section class="page_404">
+<div class="container">
+<div class="row">
+<div class="col-sm-12">
+<div class="col-sm-10 col-sm-offset-1 text-center">
+<div class="four_zero_four_bg">
+<h1 class="text-center">404</h1>
+</div>
+<div class="contant_box_404">
+<h3 class="h2">Look like you're lost</h3>
+<p>the page you are looking for is not avaible!</p>
+<button class="btn btn-primary" ng-click="redirect()">
     Go back
-    </button>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </section>
-    </div>-->
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>-->
 </div>]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>

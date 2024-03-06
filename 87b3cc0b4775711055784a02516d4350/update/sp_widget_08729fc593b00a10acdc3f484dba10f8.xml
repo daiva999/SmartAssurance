@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sp_widget action="INSERT_OR_UPDATE">
+<category>custom</category>
+<client_script><![CDATA[api.controller=function($scope, spUtil) {
+	/* widget controller */
+	var c = this;
+	var sessionId = $scope.data.userId;
+	/*	var sessionDetails = {
+      id: sessionID,
+      prodCode: prodcode,
+      userdetails: userdetails,
+			insurer:Insurer,
+			premiumAmount : $scope.am
+    };
+	*/
+	
+	$scope.redirect = function () {
+		window.history.back();
+	};
+	
+
+	$scope.sessionDetails = JSON.parse(sessionStorage.getItem(sessionId));  //sessionKey rn is gs.getUserId() 
+console.log($scope.sessionDetails);
+
+	if($scope.sessionDetails){
+		var dataToBePassed={
+			access : true,
+			details : $scope.sessionDetails
+		}
+
+		c.server.get(dataToBePassed).then(function(res) {
+			if (res && res.data && res.data.combinedData) {
+				//alert(res.data.combinedData);
+				$scope.overallData = res.data.combinedData;
+			}
+		});
+	} else {
+			spUtil.addTrivialMessage("Invalid session details. Data not found.")
+	}
+	
+	$scope.userInputs = function() {
+    var userDetails = $scope.sessionDetails.userdetails;
+    
+    // Check if all required fields are filled
+    if (userDetails.duration !== "" && 
+        userDetails.endDate !== "" && 
+        userDetails.tripType !== "" && 
+        userDetails.travellerAges.length > 0 && 
+        userDetails.startDate !== "") {
+        
+        // Check if all elements in travellerAges array are filled
+        for (var i = 0; i < userDetails.travellerAges.length; i++) {
+            if (userDetails.travellerAges[i] === "") {
+                return false; // At least one age is not filled
+            }
+        }
+        return true; // All required fields are filled
+    } else {
+        return false; // Not all required fields are filled
+    }
+};
+
+	
+	
+/*
+	$scope.openPDF = function (sysId) {
+    // Find the record in overallData using sys_id
+	
+		
+    var record = $scope.overallData.find(function (item) {
+        return item.sysId === sysId;
+    });
+
+    // Check if record exists and if it has attachments (policy brochure PDF)
+    if (record && record.attachments && record.attachments.length > 0) {
+        // Assuming that PDF is the first file here since attachments can have different formats
+        var attachment = record.attachments[0];
+        
+        // Creating URL for PDF and appending the sys_id of the attachment
+        var pdfURL = "/sys_attachment.do?sys_id=" + attachment.attachmentSysId + "&view=true";
+
+        // Dynamically create an iframe and set its source to the PDF URL
+        var iframe = document.createElement('iframe');
+        iframe.src = pdfURL;
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+
+
+
+        // Get the reference to the PDF container div
+        var pdfContainer = document.getElementById('pdfContainer');
+
+        // Clear any existing content in the PDF container
+        pdfContainer.innerHTML = '';
+
+        // Append the iframe to the PDF container
+        pdfContainer.appendChild(iframe);
+    } else {
+        // Alert the user if no PDF attachment found for this record
+        alert("No PDF attachment found for this record.");
+    }
+		
+		
+};
+
+*/
+
+$scope.openPDF = function(sysId) {
+    // Store the previous content (middle-content)
+    var pdfContainer = document.getElementById('pdfContainer');
+    $scope.previousContent = pdfContainer.innerHTML;
+
+    // Find the record in overallData using sys_id
+    var record = $scope.overallData.find(function(item) {
+        return item.sysId === sysId;
+    });
+
+    // Check if record exists and if it has attachments (policy brochure PDF)
+    if (record && record.attachments && record.attachments.length > 0) {
+        // Assuming that PDF is the first file here since attachments can have different formats
+        var attachment = record.attachments[0];
+        
+        // Creating URL for PDF and appending the sys_id of the attachment
+        var pdfURL = "/sys_attachment.do?sys_id=" + attachment.attachmentSysId + "&view=true";
+
+        // Dynamically create an iframe and set its source to the PDF URL
+        var iframe = document.createElement('iframe');
+        iframe.src = pdfURL;
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+
+        // Get the reference to the PDF container div
+        pdfContainer.innerHTML = '';
+
+        // Append the iframe to the PDF container
+        pdfContainer.appendChild(iframe);
+
+        // Change the button text to "Close"
+        $scope.pdfButtonLabel = "Close";
+
+        // Set PDF visibility to true
+        $scope.isPdfVisible = true;
+    } else {
+        // Alert the user if no PDF attachment found for this record
+        alert("No PDF attachment found for this record.");
+    }
+};
+
+$scope.closePDF = function() {
+    // Clear the PDF container
+    var pdfContainer = document.getElementById('pdfContainer');
+    pdfContainer.innerHTML = '';
+
+    // Restore the previous content (middle-content)
+    pdfContainer.innerHTML = $scope.previousContent;
+
+    // Change the button text back to "Plan Brochure"
+    $scope.pdfButtonLabel = "Plan Brochure";
+
+    // Set PDF visibility to false
+    $scope.isPdfVisible = false;
+};
+
+
+
+/*
+	$scope.openPDF = function (sysId) {
+		// record is found in overallData using sys_id
+		var record = $scope.overallData.find(function (item) {
+			return item.sysId === sysId;
+		});
+
+		// checking if recprd exists and it has attachment(policy brochure pdf)//
+		if (record && record.attachments && record.attachments.length > 0) {
+			//attachments[0] is assuming that pdf is the first file here since attachments can have diff files of diff format
+			var attachment = record.attachments[0];
+			// creating url for pdf and appending  the sys_id of the attachment
+			var pdfURL = "/sys_attachment.do?sys_id=" + attachment.attachmentSysId+ "&view=true";
+			//window.open(pdfURL, "_blank");
+			window.location.href = pdfURL;
+		} else {
+			alert("No PDF attachment found for this record.");
+		}
+	};
+	*/
+
+	$scope.redirectToPaymentPage = function() {
+		//alert(sessionId);
+		var dataToPass = sessionId;
+		var redirectURL = "/vfsp?id=test_payment";
+		window.location.href = redirectURL;
+
+	};
+};
+
+
+
+
+]]></client_script>
+<controller_as>c</controller_as>
+<css>*{
+  font-family: "Helvetica";
+  overflow:hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+//.container::-webkit-scrollbar { width: 0 !important }
+
+
+.left-banner {
+
+  width: 350px;
+  height: 100vh;
+  position: fixed;
+  //height: 100vh;
+  /*border: 1px solid black; */
+  /*background: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%);*/
+  position: -webkit-sticky;
+  position: sticky;
+  color: white;
+  box-shadow: 0 16px 18px rgba(226, 238, 255, .8);
+  background: #172b4d;
+  float:left;
+
+
+} 
+
+i{
+  color:#ff9a3c;
+  font-size: 3rem;
+  //border: 1px solid #e8751a;
+  padding:5px;
+  background-color:#feffdf;
+  border-radius: 5px;
+}
+
+
+.top-banner {
+  height: 10vh;
+  /*border: 1px solid black; */
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
+  color: #0065ff;
+  border-color: #0065ff;
+  padding-left:10px;
+}
+
+img{
+  height:200px;
+  width:auto;
+  // padding:20px;
+}
+
+
+.top-banner-a {
+  height: 8vh;
+  /*border: 1px solid red; */
+}
+
+.top-banner-a .covers{
+  margin-left:auto;
+}
+
+.btns {
+
+  display: flex;
+  padding: 10px;
+
+  align-items: center;
+  /* Adjust based on the height of section-3 */
+}
+
+.imp{
+  margin-left:15px;
+  color: #0065ff;
+}
+
+.covers {
+  margin-left: 15px;
+
+  height: 36px;
+  width:180px;
+
+  color: #0065ff;
+  background: #f2f7ff;
+
+  /* Green */
+  border-color: #0065ff;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 500px;
+
+}
+
+
+.bottom-banner {
+  /*border: 1px solid red; */
+  height: 10vh;
+  box-shadow: 3px -3px 6px rgba(0, 0, 0, .16);
+  margin-top:auto;
+
+
+}
+
+
+.s1content {
+  //margin-top: 30%;
+  margin-bottom: 100%;
+  padding: 15px;
+}
+.section-1{
+  text-align:center;
+}
+
+.sum {
+  display: flex;
+  justify-content: space-between;
+
+  align-items: center;
+  padding:15px;
+}
+.sumInsured {
+  text-align: center; /* Adjust text alignment as needed */
+}
+
+.bottom-banner {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.buy {
+  text-align: center;
+  padding: 20px;
+  height: 38px;
+  width: 180px;;
+  background: #0065ff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  box-shadow: none;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  margin-right: 20px;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.card-container {
+  // border: 2px solid;
+  padding-top: 150px;
+  padding-bottom: 10px;
+  padding-left:10px;
+  //margin-left: 15px;
+  /*
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction:column;
+  */
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:10px;
+
+}
+
+.cardd {
+
+  height:80px;
+  width: 320px;
+  color: #253858;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 16px 18px rgba(226,238,255,.8);
+  padding: 16px;
+  position: relative;
+  white-space: normal;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.featureCard__heading {
+  font-size: 14px;
+  font-weight: 600;
+}
+/*
+.featureValue{
+font-size: 24px;
+font-weight: 700;
+margin: 4px 0;
+}
+*/
+.featureDeductible{ 
+  font-size: 14px;
+  font-weight: 400;
+  color: #505f79;
+}
+.featurePrice{
+  font-weight: 700;
+  font-size: 24px;
+  color: #fff;
+  display: block;
+}
+.sumInsured{
+  font-size:16px;
+}
+
+hr{
+  padding:10px;
+  opacity:0.4;
+}
+.featurePlanName {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 45px;
+}
+
+
+.middle-content {
+  // height: 72vh;
+  height: 72vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow-y: auto;
+  color:#253858;
+  padding-top:20px;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: transparent transparent; /* Firefox */
+}
+
+.middle-content::-webkit-scrollbar {
+  width: 6px; /* WebKit */
+}
+
+.middle-content::-webkit-scrollbar-thumb {
+  background-color: transparent; /* WebKit */
+}
+
+.middle-content::-webkit-scrollbar-track {
+  background-color: transparent; /* WebKit */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 400px) {
+  .left-banner {
+    height: 60vh;
+    width: 100%;
+    float: none;
+    position: relative;
+  }
+
+  .col-8 {
+    width: 100%;
+    float: none;
+  }
+
+  .card-container {
+    // padding-top: 70px;
+    padding-bottom: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:10px;
+    margin-top: 350px;
+  }
+  .hr1{
+    visibility: hidden;
+  }
+
+  .cardd {
+
+    height:130px;
+    width: 200px;
+  }
+}
+
+@media screen and (min-width: 401px) and (max-width: 767px) {
+  .left-banner {
+    height: 50vh;
+    width: 100%;
+    float: none;
+    position: relative;
+  }
+
+  .col-8 {
+    width: 100%;
+    float: none;
+  }
+
+  .card-container {
+    padding-top: 70px;
+    padding-bottom: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:10px;
+    margin-top: 320px;
+  }
+  .hr1{
+    visibility: hidden;
+  }
+
+  .cardd {
+
+    height:80px;
+    width: 200px;
+  }
+
+}
+
+
+</css>
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>false</has_preview>
+<id>plan_details</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+<name>Plan Details</name>
+<option_schema/>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function () {
+
+    data.userId = gs.getUserID();
+    function findPremium(prodCode, duration, age) {
+
+        var daysFindTable = new GlideRecord('x_rptp_insureme_premium');
+        daysFindTable.addQuery('prod_code', prodCode);
+        daysFindTable.addQuery('insurer_code', input.details.insurer);
+        daysFindTable.addQuery('min_age', '<=', age); // corrected syntax
+        daysFindTable.addQuery('max_age', '>=', age); // corrected syntax
+        daysFindTable.addQuery('max_days', '>=', duration);
+        daysFindTable.addQuery('min_days', '<=', duration);
+        daysFindTable.query();
+        //gs.debug(daysFindTable.getRowCount())
+
+        if (daysFindTable.next() && daysFindTable.getValue('cost')) {
+            //gs.addErrorMessage('line 17' + " " + duration + " " + age + " " +daysFindTable.getValue('cost'));
+            var premiumCost = daysFindTable.getValue('cost').replaceAll(',', '');
+            premiumCost = +premiumCost;
+            //gs.addInfoMessage(premiumCost);
+            return premiumCost;
+        }
+        else {
+            return 0;
+        }
+
+    }
+	function findLength(ages,orgCount){
+		var count=0;
+		for(i=0;i<ages.length;i++){
+			if(ages[i].age!=null && ages[i].age!=''){
+				count++;
+			}
+		}
+		if(count==orgCount){
+			//gs.addErrorMessage('true');
+			return true
+		}
+		else{
+			//gs.addErrorMessage('false');
+			return false;
+		}
+	}
+
+    data.combinedData = [];
+    if (input && input.access) {
+        //gs.addInfoMessage(JSON.stringify(input) );
+        var table1 = new GlideRecord('x_rptp_insureme_insurance_products');
+        //gs.addInfoMessage(input.details);
+        table1.addQuery('prod_code', input.details.prodCode);
+
+        table1.query();
+        //gs.addInfoMessage(table1.getRowCount())
+        while (table1.next()) {
+            var prodCode = table1.getValue('prod_code');
+            var prodName = table1.getValue('prod_name');
+            //var prodImg = table1.getValue('prod_image');
+            var prodImg = table1.getDisplayValue('product_image');
+            var prodInsurer = table1.getValue('insurer_name');
+            var sumInsured = table1.getValue('sum');
+            var currency = table1.getValue('currency');
+            var sysId = table1.getValue('sys_id');
+            var benefits = [];
+            var attachments = [];
+            var duration = 10;
+            var premiumSum = findPremium(prodCode, duration, 25);
+						var details=input.details.userdetails;
+						//gs.addInfoMessage(JSON.stringify(details));
+            if (details) {
+                //trial
+							//gs.addErrorMessage('entered');
+                premiumSum = findPremium(prodCode, duration, 25);
+                if (details.duration && details.duration > 0) {
+                    duration = details.duration;
+                    //gs.addInfoMessage(duration);
+                    premiumSum = findPremium(prodCode, duration, 25);
+                    if (details.numberOfPersons > 0 && findLength(details.travellerAges, details.numberOfPersons) > 0) {
+                        //gs.addInfoMessage('entered');
+                        var overallAges = details.travellerAges;
+                        premiumSum = 0;
+                        //gs.addErrorMessage(overallAges.length);
+                        for (i = 0; i < overallAges.length; i++) {
+                            //gs.addErrorMessage(JSON.stringify(overallAges[i]));
+                            //gs.addErrorMessage(JSON.stringify(overallAges[i].age));
+                            premiumSum = premiumSum + findPremium(prodCode, duration, overallAges[i].age);
+                            //gs.addInfoMessage(prodCode + " " + duration + " " + overallAges[i].age);
+
+
+                        }
+                    }
+                }
+						}
+                var table2 = new GlideRecord('x_rptp_insureme_insurance_products_benefits');
+                table2.addQuery('product_code', prodCode);
+                table2.query();
+                //gs.addInfoMessage(table1.getRowCount())
+
+                while (table2.next()) {
+                    var name = table2.getValue('name');
+                    var nameValue = table2.getValue('value');
+                    var benefitcurrency = table2.getValue('currency')
+                    var benefitData = {
+                        benefitname: name,
+                        benefitValue: nameValue,
+                        benefitcurrency: benefitcurrency
+                    };
+                    benefits.push(benefitData);
+                }
+                // Fetch attachments for the current record
+                var attachmentGR = new GlideRecord('sys_attachment');
+                attachmentGR.addQuery('table_name', 'x_rptp_insureme_insurance_products');
+                attachmentGR.addQuery('table_sys_id', sysId);
+                attachmentGR.query();
+
+                while (attachmentGR.next()) {
+                    var attachmentSysId = attachmentGR.getValue('sys_id');
+									//gs.addInfoMessage(attachmentSysId);
+                    var attachmentName = attachmentGR.getValue('file_name');
+//gs.addInfoMessage(attachmentName);
+                    var attachmentData = {
+                        attachmentSysId: attachmentSysId,
+                        attachmentName: attachmentName
+                    };
+
+                    attachments.push(attachmentData);
+                }
+                var recordData = {
+                    productCode: prodCode,
+                    productImg: prodImg,
+                    productName: prodName,
+                    productSumInsured: sumInsured,
+                    productInsurer: prodInsurer,
+                    productBenefits: benefits,
+                    currency: currency,
+                    sysId: sysId,
+                    attachments: attachments,
+                    premiumAmount: premiumSum
+                    //calculatingPremium(prodCode) 
+                };
+                data.combinedData.push(recordData);
+            }
+        }
+    }) ();
+]]></script>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>harshitha</sys_created_by>
+<sys_created_on>2024-03-06 05:08:07</sys_created_on>
+<sys_id>08729fc593b00a10acdc3f484dba10f8</sys_id>
+<sys_mod_count>4</sys_mod_count>
+<sys_name>Plan Details</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_08729fc593b00a10acdc3f484dba10f8</sys_update_name>
+<sys_updated_by>harshitha</sys_updated_by>
+<sys_updated_on>2024-03-06 05:12:54</sys_updated_on>
+<template><![CDATA[<div>
+<!-- your widget template -->
+  
+  <div ng-repeat="record in overallData">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-4 left-banner">
+        <div class="section-1">
+          <div class="s1content" >
+
+            <!--       <img src="https://static.pbcdn.in/travel-cdn/images/insurer-logos/Tata_AIG@2x.webp"> -->
+            <!--  <img src="https://www.pngkey.com/png/detail/208-2080991_53ffc577a584c663122b7d3b-travel-insurance-icon-travel-insurance-png-logo.png"> -->
+            <img src="{{record.productImg}}">
+            <p class="featurePlanName">
+              {{record.productInsurer}} - {{record.productName}} <br>
+            </p>
+            <hr class="hr1">
+            <div class="sum">
+              <p class="sumInsured">
+                Sum Insured <br>
+                <strong class="featurePrice">{{record.currency}} {{record.productSumInsured}}</strong>
+              </p>
+              <p class="sumInsured">
+                Premium<br>
+                <!--  <strong class="featurePrice">{{record.premiumAmount ? "INR" + record.premiumAmount : ""}} </strong> -->
+                <strong class="featurePrice">INR {{record.premiumAmount}} </strong>
+              </p>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="col-8" >
+          <div class="col-12 top-banner" >
+            <h3>
+              <strong>Plan Features</strong>
+            </h3>
+          </div>
+          <div class="col-12 top-banner-a" >
+            <div class="btns">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <h4 class="imp"><strong>Important Features</strong>
+
+              </h4>
+
+              <!--      <button class="covers" ng-click="openPDF(record.sysId)">Plan Brochure</button> -->
+              <button class="covers" ng-click="openPDF(record.sysId)" ng-hide="isPdfVisible">Plan Brochure</button>
+              <button class="covers" ng-click="closePDF()" ng-show="isPdfVisible">Close</button>
+
+
+
+
+
+            </div>
+          </div>
+          <div class="col-12 middle-content" id="pdfContainer">
+            <div class="card-container" >
+              <div class="cardd" ng-repeat="benefit in record.productBenefits">
+                <p class="featureCard__heading">
+                  {{ benefit.benefitname }} <br>
+
+                </p>
+                <p>
+                  {{benefit.benefitcurrency}} {{ benefit.benefitValue }}
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-12 bottom-banner" >
+          <button class="buy" ng-click="redirect()">
+            Go Back
+          </button>
+          <button class="buy" ng-click="redirectToPaymentPage()" ng-if="userInputs()" >Proceed to buy</button>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>]]></template>
+</sp_widget>
+</record_update>

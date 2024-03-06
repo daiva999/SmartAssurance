@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sp_widget action="INSERT_OR_UPDATE">
+<category>custom</category>
+<client_script><![CDATA[api.controller = function($scope) {
+    var c = this;
+	//	$scope.lifeCover="1 crore";
+    //$scope.plans = c.data.mock.products;
+		//c.data.plans=$scope.plans;
+	$scope.records=c.data.records;
+	//alert(JSON.stringify($scope.records))
+	//alert($scope.records);
+	c.recordId = ""
+	c.compareProducts = function () {
+		window.location.href = "/mesp?id=compare_pagee" + c.recordId;
+	};
+	c.selectedInsurerCodes = [];
+	var indexArray = [];
+	c.checkboxClicked = function (productName) {
+		alert(productName);
+		var key = "index"
+		c.recordId = ""
+		if (productCode != "" && c.selectedInsurerCodes.length < 3 && (indexArray.indexOf(index)) == -1) {
+			var obj = {
+				"productCode": productCode.replace('_', ' '),
+				"insurerCode": code.replace('_', ' '),
+				"index": index,
+				"image": image,
+				"productId": productId,
+				"premiumAmount": insurancePremium
+			}
+			indexArray.push(index);
+			c.selectedInsurerCodes.push(obj);
+		}
+		else if (c.selectedInsurerCodes.length <= 3 && (indexArray.indexOf(index) > -1)) {
+			angular.element('#check-' + index).prop('checked', false);
+			var arrIndex = indexArray.indexOf(index)
+			indexArray.splice(arrIndex, 1);
+			c.selectedInsurerCodes.splice(arrIndex, 1);
+		}
+		else {
+			alert("only 3 products can be selected")
+			angular.element('#check-' + index).prop('checked', false);
+		}
+		if (c.selectedInsurerCodes.length >= 2) {
+			$('.compareButton').css({
+				'visibility': 'visible',
+			});
+		}
+		else {
+			$('.compareButton').css({
+				'visibility': 'visible',
+			});
+			$('.compareButton').css({
+				'visibility': 'hidden',
+			});
+		}
+		
+	};
+	
+}]]></client_script>
+<controller_as>c</controller_as>
+<css>.grid-card{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+ 
+.cardd {
+  height: 260px;
+  width: 400px;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  border-top: 1px solid #f0f3f4; 
+  border-left: 1px solid #f0f3f4; 
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 17px;
+  border-radius: 10px;
+  background-color: white;
+}
+.top{
+  display:flex;
+  flex-direction:column;
+}
+ 
+ul li a {
+  text-decoration: none;
+}
+ 
+ 
+.recommandation{
+      padding-left: 0.7rem;
+  padding-right: 0.7rem;
+   padding-bottom: 0.7rem;
+  //padding:5px;
+      display: flex;
+    align-items: flex-start;
+    color: white;
+    background-color: #9747FF;
+       width: fit-content;
+        height: 1.9rem;
+   font-weight: 600;
+    border-radius: 1.25rem;
+    font-size: 1.4rem;
+    border-top-left-radius: .625rem;
+    border-top-right-radius: .325rem;
+    border-bottom-left-radius: 0rem;
+    border-bottom-right-radius: 0rem;
+}
+ 
+#people::before {
+  content: "\1F465";
+  font-size: 12px;
+ 
+}
+ 
+#star::before{
+  content: "\2605";
+  font-size: 12px;
+}
+ 
+ 
+.grid-card{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  grid-gap: .3125rem 1.5rem;
+}
+.card-container{
+  margin-top:1rem;
+  margin-left:4px;
+}
+ 
+ 
+img{
+  height:70px;
+  width:auto;
+  //mix-blend-mode:color-burn;
+  object-fit:contain;
+}
+ 
+.top-right{
+      margin-left: 55.6rem;
+    width: 101cm;
+    height: 3cm;
+    margin-top: -44.8rem;
+}
+ 
+ 
+.title {
+  background-color: #f0f3f4;
+  //padding: 10px;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 20px;
+  font-size:100px;
+}
+ 
+.title h2 {
+  background-color: #f0f3f4;
+  padding: 20px; 
+  height: 60px; 
+  margin: 0;
+  margin-bottom: 20px;
+}
+ 
+.tools-calculators {
+  //padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #f0f3f4;
+  height:fit-content;
+  width:20rem;
+}
+ 
+ 
+hr{
+  margin-top:5px;
+}
+ 
+.list{
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+.list a{
+  color:blue;
+}
+ 
+.tools-calculators ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+ 
+.tools-calculators ul li a {
+  color: blue;
+  text-decoration: none;
+  position: relative;
+}
+ 
+.tools-calculators ul li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background-color: blue;
+  transition: bottom 0.3s ease;
+}
+/*
+.line2 {
+display: flex;
+justify-content: space-between;
+}
+ 
+.line-item {
+flex: 1;
+text-align: center;
+}
+*/
+ 
+ 
+.line1{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+     margin-top: 15px;
+}
+ 
+.line1a{
+  margin-right:auto;
+  display:flex;
+ 
+}
+ 
+.line1a h6{
+    color: #9747FF;
+        margin-left: -10px;
+    margin-top: 2.1875rem;
+    font-weight: bold;
+   font-size: 30px;
+}
+.line1 .line1a img {
+     width: 120px;
+    height: 88px;
+}
+.line1b {
+    display: flex;
+    align-items: center; /* Align items vertically in the center */
+}
+ 
+.line1b input[type=checkbox] {
+    appearance: none; /* Remove default appearance */
+    -webkit-appearance: none; /* For Safari/Chrome */
+    -moz-appearance: none; /* For Firefox */
+    width: 18px; /* Adjust width as needed */
+    height: 18px; /* Adjust height as needed */
+    border: 2px solid #ccc; /* Border color */
+    border-radius: 3px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+    //margin-right: 10px; /* Adjust margin as needed */
+}
+ 
+ 
+.line1b input[type=checkbox]:checked {
+    background-color: #9747FF;
+}
+ 
+ 
+.line1b input[type=checkbox]::after {
+    content: "\2713"; /* Unicode for check mark */
+    font-size: 16px;
+    color: white; /* Color of the tick mark */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease;
+}
+ 
+ 
+.line1b input[type=checkbox]:checked::after {
+    opacity: 1;
+}
+ 
+ 
+.compare{
+    margin-top: 0.7rem;
+    color: #585D62;
+    margin-left: 5px;
+}
+ 
+ 
+.small{
+  font-size: 12px;
+  opacity:0.7;
+}
+ 
+.radioBtns {
+  display: inline-flex;
+    justify-content: normal;
+    padding-bottom: 62.5rem;
+    padding-left: 0rem;
+    margin-bottom: 6.25rem;
+    margin-left: 3.4rem;
+  margin-top: -28px;
+}
+ 
+.radioBtns input[type=radio] {
+    width: 17px; 
+    height: 17px; 
+    background-color: white; 
+    border: 2px solid #ccc; 
+    border-radius: 50%;
+    appearance: none; /* Remove the default appearance */
+    position: relative;
+    cursor: pointer;
+}
+ 
+/* Style for the radio button when it's checked */
+.radioBtns input[type=radio]:checked {
+    background-color: #9747FF; /* Change to your desired background color */
+    border-color: #9747FF; /* Change the border color to match the background */
+}
+ 
+/* Style for the inner circle */
+.radioBtns input[type=radio]::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px; /* Adjust the size of the inner circle */
+    height: 8px; /* Adjust the size of the inner circle */
+    border-radius: 50%;
+    background: white; /* Color of the inner circle */
+    display: none; /* Initially hidden */
+}
+ 
+/* Show the inner circle when the radio button is checked */
+.radioBtns input[type=radio]:checked::after {
+    display: block; /* Show the inner circle */
+}
+.radioBtns .form-check {
+       display: inline-flex;
+    align-items: center;
+    margin-right: 1.rem;
+}
+.radioBtns .form-check-label {
+    font-size: 15px;
+}
+ 
+ 
+.radioBtns .form-check input[type="radio"] {
+    margin-right: 5px; /* Add space between radio button and label */
+}
+ 
+.benefits-container{
+  width:800px;
+  height:30cm;
+}
+ 
+.line2 {
+      display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Adjust column width as needed */
+    grid-gap: 10px;  /* Adjust gap between grid items as needed */
+  align-items: center;
+
+ 
+}
+ 
+.line-item {
+    display: contents; /* Flatten the layout to place all .benefit-item elements in the grid */
+}
+ 
+.benefit-item {
+  border: none;
+    padding: .625rem;
+    width: 130px;
+}
+ 
+ 
+.line3{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top:auto;
+ 
+}
+ 
+.line3 a {
+  color: blue; 
+}
+ 
+ 
+.smaller-text {
+  font-size: 12px; 
+}
+ 
+.btn-primary {
+  background-color: #9747FF;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  //cursor: pointer;
+  font-size: 16px;
+  width:100px;
+}
+ 
+ 
+ 
+.topStuff{
+  display:flex;
+ 
+}
+ 
+.top-left {
+  height: 100px;
+  width: 23.0cm;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid #f0f3f4; 
+  background-color: #f0f3f4; 
+}
+ 
+.left-content {
+  width: 150px;
+  height: 30px;
+  padding-top:18px;
+  padding-bottom:30px;
+  padding-left:30px;
+  padding-right:100px;
+}
+.left-content p {
+  white-space: nowrap; 
+  color: #333333;
+}
+.left-content select.custom-select {
+    font-weight: bold;
+  border: 1px solid #D5D6D6; 
+  height: 30px;
+  width: 110px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-sizing: border-box;
+    //-webkit-appearance: none;
+    //-moz-appearance: none;
+   // appearance: none;
+    cursor: pointer;
+    position: relative; /* Add position relative for pseudo element positioning */
+}
+ 
+ 
+/* Style for custom dropdown arrow */
+.left-content select.custom-select:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+   // border: 6px solid red;
+   // border-color: #fff transparent transparent transparent;
+}
+ 
+.middle-content {
+  width: 150px;
+  height: 30px;
+  padding-top:18px;
+  padding-bottom:30px;
+  padding-left:40px;
+  padding-right:100px;
+}
+.middle-content p {
+  white-space: nowrap; 
+  color: #333333;
+}
+ 
+.custom {
+  font-weight: bold;
+  border: 1px solid #D5D6D6;
+  border-radius: 5px;
+  height:30px;
+  width:110px;
+}
+.end-content {
+  padding-top: 5;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  height: 50px;
+}
+ 
+.end-content p {
+    color: #333333;
+    padding-bottom: 0rem;
+    padding-left: 1.875rem;
+    margin-top: 1.22rem;
+    margin-left: .625rem;
+}
+}
+}
+ 
+.end-content label {
+     margin-right: .75rem;
+    margin-bottom: -0.5rem;
+    color: #333333;
+}
+ 
+ 
+ 
+.icon1 {
+  text-align: center; 
+  position: relative; 
+  padding-top: 50px; 
+  padding-left:70px;
+}
+ 
+.icon1::before {
+  content: '\2261'; 
+  position: absolute; 
+  top: 0; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  font-size: 24px;
+  padding-top: 12px;
+  padding-left:70px;
+}
+ 
+.icon2 {
+  text-align: center; 
+  position: relative; 
+  padding-top: 50px; 
+  padding-right:30px;
+}
+ 
+.icon2::before {
+  content: '\2261'; 
+  position: absolute; 
+  top: 0; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  font-size: 24px;
+  padding-top: 12px;
+  padding-right:30px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  border: 2px solid black; 
+  padding: 5px;
+  background-color: white;
+  z-index: 1; 
+}
+ 
+ 
+.dropdown-content ul {
+  list-style-type: none;
+  padding: 0;
+}
+ 
+.dropdown-content li {
+  padding: 5px;
+  cursor: pointer;
+}
+.icon2 {
+  cursor: pointer;
+  position: relative; 
+}
+#compare-button {
+  background-color: yellow;
+  color: black;
+  border: 2px solid yellow;
+  border-radius: 10px;
+  padding: 10px 40px; 
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block; 
+  text-align: center; 
+  width: 320px;
+}
+ 
+#compare-button:hover {
+  background-color: darkyellow;
+  border-color: darkyellow;
+}
+
+.productsSelectedContainer {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #E5E4E2;
+    // visibility: hidden;
+  }
+ 
+  #productsSelected{
+    background-color:white;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding-left: 8%;
+ 
+    height: 5%;
+ 
+    gap: 0.5rem;
+  }
+  .card{
+    padding:0px;
+  }</css>
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>true</has_preview>
+<id>card_clone</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+<name>card clone</name>
+<option_schema/>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function() {
+
+	data.records=[];
+	var prods=new GlideRecord('x_rptp_insureme_insurance_products');
+	prods.query();
+	while(prods.next()){
+		var prodName =prods.getValue('prod_name');
+		var benefit= getBenefits(prods.getValue('prod_code'));
+		var label = findTag(prods.getValue('prod_code'));
+		
+		if(benefit.length >2){
+			
+			data.records.push({
+				prodName : prodName,
+				benefits : benefit,
+				sumAssured : prods.getValue('sum'),
+				labels: label
+ 			})
+		}
+	}
+
+
+	
+	function getBenefits(prodCode){
+		var prodBenefit=new GlideRecord('x_rptp_insureme_insurance_products_benefits');
+		prodBenefit.addQuery('product_code',prodCode);
+		prodBenefit.addEncodedQuery('value!=Not Applicable^value!=null');
+		prodBenefit.setLimit(3);
+		prodBenefit.query();
+		var benefits=[]
+	//	var count=0;
+		while(prodBenefit.next()){
+			benefits.push({
+				name: prodBenefit.getValue('name'),
+				value: prodBenefit.getValue('value'),
+			currency: prodBenefit.getValue('currency')
+			})
+
+		}
+		
+		return benefits;
+	}
+	
+	
+		function findTag(prodCode) {
+    var tagObj = {};
+
+    var rTable = new GlideRecord('x_rptp_insureme_recommendation');
+    rTable.addQuery('product_code.prod_code', prodCode);
+    rTable.query();
+
+    if (rTable.next()) {
+        tagObj.label = rTable.getValue('label');
+        tagObj.type = rTable.getValue('type');
+        //tagObj.orderby = rTable.getValue('orderby');
+    } else {
+        // Handle case where no record is found, maybe set default values or log a message
+    }
+
+    return tagObj; // Return the tagObj
+}
+
+
+})();]]></script>
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>nikita</sys_created_by>
+<sys_created_on>2024-03-05 10:22:30</sys_created_on>
+<sys_id>bbc05b384770c61055784a02516d43e4</sys_id>
+<sys_mod_count>13</sys_mod_count>
+<sys_name>card clone</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_bbc05b384770c61055784a02516d43e4</sys_update_name>
+<sys_updated_by>nikita</sys_updated_by>
+<sys_updated_on>2024-03-05 11:39:05</sys_updated_on>
+<template><![CDATA[
+<div class="main">
+ 
+ 
+  <div class="grid-card">
+<div class="card-container" ng-repeat="product in records">
+<div class="recommandation" ng-if="product.labels.label">
+ 
+        <div ng-if="product.labels.type=='people'" id='people'>
+          {{product.labels.label}}
+</div>
+<div ng-if="product.labels.type=='star'" id='star'>
+          {{product.labels.label}}
+</div>
+</div>
+<div class="cardd">
+<div class="line1">
+<div class="line1a">
+<img src="https://ven06798.service-now.com/futureinsurance.png" alt="home">
+<h6>
+              {{product.prodName}}
+</h6>
+</div>
+<div class="line1b">
+<input type="checkbox" class="checkbox1" id="preference1" name="preference1" ng-click="c.checkboxClicked(product.prodName)">
+<label for="preference" class="compare">Compare</label>
+</div>
+</div>
+<div class="line2">
+<div class="line-item" ng-repeat="benefit in product.benefits">
+<div class="benefit-item">
+<p>
+<span class="small">{{benefit.name}}</span><br>
+<span class="small">{{benefit.currency}}{{benefit.value}}</span><br>
+ 
+              </p>
+</div>
+</div>
+</div>
+ 
+ 
+        <div class="line3">
+<h6><a href="#" class="small">Plan Details</a></h6>
+<button type="button" class="btn-primary">
+            ₹{{product.sumAssured}}
+</button>
+</div>
+</div>
+ 
+    </div>
+</div>
+</div>
+
+<div>
+
+  <div class="productsSelectedContainer" ng-show="c.getData.length > 0">
+    <div id="productsSelected" ng-controller="c">
+      <div class="card"  ng-repeat="product in c.selectedInsurerCodes">
+        <div class="card-image">
+          <img ng-src="{{product.image}}" alt="{{product.productCode}}">
+          <span class='selected-item'>{{product.productCode }}</span>
+        </div>
+      </div>
+      <button class="compareButton btn btn-primary" style='padding: 7px;' data-toggle="modal"
+              data-target="#myPopupToGetInputData">Compare</button>
+    </div>
+  </div>
+
+]]></template>
+</sp_widget>
+</record_update>

@@ -1,26 +1,342 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_widget action="INSERT_OR_UPDATE">
-        <category>custom</category>
-        <client_script><![CDATA[api.controller = function($scope) {
-    var c = this;
+<category>custom</category>
+<client_script><![CDATA[api.controller = function($scope, $rootScope, spUtil, spModal) {
+	var c = this;
 	//	$scope.lifeCover="1 crore";
-    //$scope.plans = c.data.mock.products;
-		//c.data.plans=$scope.plans;
+	//$scope.plans = c.data.mock.products;
+	//c.data.plans=$scope.plans;
+	$scope.redirectToDetailsPage=function(){
+		alert('called')
+		return ''
+	}
 	$scope.records=c.data.records;
-	//alert(JSON.stringify($scope.records))
-	//alert($scope.records);
+
+	console.log($scope.records)
+
+
+	$scope.compareArray=[];
+	$scope.indexArray=[];
+	$scope.checkboxChanged=function(prodCode,sum,prodName,index){
+		if($scope.indexArray.indexOf(index) ==-1){
+			var obj={
+				productCode:prodCode,
+				sumAss:sum,
+				productName: prodName
+			}
+			$scope.indexArray.push(index);
+			$scope.compareArray.push(obj);
+			alert(JSON.stringify($scope.compareArray))
+		}
+		else if($scope.indexArray.indexOf(index)!=-1){
+			var elementIndex=$scope.indexArray.indexOf(index);
+			$scope.indexArray.splice(elementIndex,1);
+			$scope.compareArray.splice(elementIndex,1);
+		}
+	}
+	$scope.compareProducts=function(arr){
+		$rootScope.$emit('compareProducts',arr);
+	}
+
+	function generateGUID() {
+		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+			var r = Math.random() * 16 | 0,
+					v = c === 'x' ? r : (r & 0x3 | 0x8);
+			return v.toString(16);
+		});
+	}
+
+	var redirectURL;
+	var dataToPass;
+
+
+	if (!sessionStorage.getItem(c.data.user)) {
+		// Initialize an empty session object and store it in sessionStorage
+		var emptySession = {};
+		sessionStorage.setItem(c.data.user, JSON.stringify(emptySession));
+	}
+
+	var newSessionData = JSON.parse(sessionStorage.getItem(c.data.userName));
+
+
+	var userdetails;
+	var newDetails = {
+		'userdetails': userdetails,
+		"action": 'firstCall'
+	};
+
+
+	var sessionID = generateGUID();
+	//var Insurer;
+	//var premiumAmount;
+
+	function storeSessionDetails(prodcode, premiumAmount) {
+
+		var sessionDetails = {
+			id: sessionID,
+			prodCode: prodcode,
+			userdetails: userdetails,
+			//newSessionData: newSessionData,
+			//insurer: Insurer,
+			//premium: c.data.premium,
+			//premiumAmount : premiumAmount
+
+		};
+		sessionStorage.setItem(c.data.user, JSON.stringify(sessionDetails));
+	}
+
+	$scope.redirectToProductPage = function (prodCode) {
+		//Insurer = insurer;
+		dataToPass = prodCode;
+		redirectURL = "/vfsp?id=plan_details";
+		storeSessionDetails(dataToPass, premiumAmount);
+		window.location.href = redirectURL;
+	};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	$scope.users = Array.apply(null, Array(4)).map(function () {
+		return {
+			name: "",
+			dob: "",
+			age: "",
+			email: "",
+			phone: "",
+			panNumber: "",
+			nominee: "",
+			relationship: "",
+			passport: "",
+			gender: "",
+		};
+	});
+
+	$scope.amount = "";
+	$scope.productImg = $scope.data.productImg;
+
+
+	$scope.calculateAge = function () {
+		for (var i = 0; i < $scope.users.length; i++) {
+			if ($scope.users[i].dob) {
+				var dob = new Date($scope.users[i].dob);
+				var today = new Date();
+
+				if (!isNaN(dob.getTime()) && dob <= today) {
+					// Ensure dob is not after today's date
+					var age = today.getFullYear() - dob.getFullYear();
+
+					if (
+						today.getMonth() < dob.getMonth() ||
+						(today.getMonth() === dob.getMonth() &&
+						 today.getDate() < dob.getDate())
+					) {
+						age--;
+					}
+					if (age >= 1 && age <= 70) {
+						$scope.users[i].age = age;
+					} else if (age > 70) {
+						// alert("Age should not be greater than 70.");
+						$scope.users[i].age = age;
+					} else {
+						$scope.users[i].age = "0";
+					}
+				} else {
+					alert("Please enter a valid date before today.");
+					$scope.users[i].age = "";
+					$scope.users[i].dob = "";
+				}
+			} else {
+				$scope.users[i].age = "";
+			}
+		}
+
+		$scope.updatePremiumDetails();
+	};
+
+	$scope.formatPan = function () {
+		for (var i = 0; i < $scope.users.length; i++) {
+			$scope.users[i].panNumber = $scope.users[i].panNumber.toUpperCase();
+			if ($scope.users[i].panNumber.length > 5) {
+				var firstPart = $scope.users[i].panNumber.substring(0, 5);
+				var numericPart = $scope.users[i].panNumber
+				.substring(5, 9)
+				.replace(/\D/g, "");
+				var lastCharacter = $scope.users[i].panNumber
+				.substring(9, 10)
+				.replace(/[^a-zA-Z]/g, "");
+
+				$scope.users[i].panNumber = firstPart + numericPart + lastCharacter;
+			}
+		}
+	};
+
+	// passport validation
+	$scope.validatePassport = function () {
+		for (var i = 0; i < $scope.users.length; i++) {
+			$scope.users[i].passport = $scope.users[i].passport.toUpperCase();
+
+			if ($scope.users[i].passport.length > 1) {
+				var charPart = $scope.users[i].passport.substring(0, 1);
+				var numericPart = $scope.users[i].passport
+				.substring(1, 8)
+				.replace(/\D/g, "");
+
+				$scope.users[i].passport = charPart + numericPart;
+			}
+		}
+	};
+
+	$scope.isPersonHidden = [true];
+
+	$scope.togglePerson = function ($index) {
+		$scope.isPersonHidden[$index] = !$scope.isPersonHidden[$index];
+	};
+
+	$scope.showDummyData = false;
+	// $scope.containerHeight = "50vh";
+
+	$scope.toggleDummyData = function () {
+		$scope.showDummyData = !$scope.showDummyData;
+
+		// $scope.containerHeight = $scope.showDummyData ? "60vh" : "50vh";
+	};
+
+	// check if form is filled or not
+	$scope.isFormValid = function () {
+		/*
+		if ($scope.amount <= 0) {
+        return false;
+    }
+		*/
+		return $scope.users.every(function (user, index) {
+			if (index < $scope.numberOfPersons) {
+				return [
+					"name",
+					"email",
+					"dob",
+					"gender",
+					"phone",
+					"passport",
+					"nominee",
+					"relationship",
+				].every(function (property) {
+					return user[property];
+				});
+			} else {
+				return true;
+			}
+		});
+	};
+
+	var startDate, endDate, options;
+
+	$scope.sessionKey = $scope.data.user;
+
+	$scope.sessionDetails = JSON.parse(sessionStorage.getItem($scope.sessionKey));
+
+	if ($scope.sessionDetails) {
+		if ($scope.sessionDetails) {
+			$scope.travelRegion =
+				$scope.sessionDetails.travelRegion.replaceAll(/_/g, " ");
+			$scope.duration = $scope.sessionDetails.duration;
+			$scope.numberOfPersons =
+				$scope.sessionDetails.numberOfPersons;
+
+			for (var l = 0; l < $scope.numberOfPersons; l++) {
+				$scope.users[l].age =
+					$scope.sessionDetails.travellerAges[l].age;
+				spUtil.addInfoMessage($scope.users[l].age);
+			}
+
+			startDate = new Date($scope.sessionDetails.startDate);
+			endDate = new Date($scope.sessionDetails.endDate);
+
+			options = { day: "numeric", month: "short", year: "numeric" };
+
+			$scope.formattedStartDate = new Intl.DateTimeFormat(
+				"en-US",
+				options
+			).format(startDate);
+			$scope.formattedEndDate = new Intl.DateTimeFormat(
+				"en-US",
+				options
+			).format(endDate);
+		} else {
+			spUtil.addTrivialMessage(
+				"Invalid session details. No provided data found."
+			);
+		}
+
+	}
+
+	$scope.users[0].name = $scope.data.name;
+	$scope.users[0].gender = $scope.data.gender;
+	$scope.users[0].email = $scope.data.email;
+	$scope.users[0].phone = $scope.data.phone;
+
+
+
 	
+
+
+	$scope.rediectToPayment = function (index) {
+		var dataToSend = {
+		prodCode: $scope.records[index].prodCode,
+		insurer: $scope.records[index].insurer,
+		details: $scope.sessionDetails,
+		users: $scope.users,
+	};
+		if (!$scope.isFormValid()) {
+			return;
+		} else {
+			sessionStorage.setItem(
+				$scope.data.userName,
+				JSON.stringify(dataToSend)
+			);
+			location.href = "/vfsp?id=test_payment";
+		}
+	};
+
 }]]></client_script>
-        <controller_as>c</controller_as>
-        <css>.cardd {
-  height: 270px;
-  width:  26.125rem;
+<controller_as>c</controller_as>
+<css>.grid-card{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.cardd {
+  height: 220px;
+  // height: 100%;
+  width: 400px;
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
   border-top: 1px solid #f0f3f4; 
   border-left: 1px solid #f0f3f4; 
-  padding-bottom: 20px;
-  padding-right: 20px;
-  padding-left: 17px;
+  //padding-bottom: 20px;
+  //padding-right: 20px;
+  //padding-left: 17px;
+  padding:10px;
   border-radius: 10px;
   background-color: white;
 }
@@ -35,16 +351,19 @@ ul li a {
 
 
 .recommandation{
-      padding: 5px;
+      padding-left: 0.7rem;
+  padding-right: 0.7rem;
+   padding-bottom: 0.7rem;
+  //padding:5px;
       display: flex;
     align-items: flex-start;
     color: white;
     background-color: #9747FF;
        width: fit-content;
-    height: 1.4rem;
+        height: 1.9rem;
    font-weight: 600;
     border-radius: 1.25rem;
-    font-size: .75rem;
+    font-size: 1.4rem;
     border-top-left-radius: .625rem;
     border-top-right-radius: .325rem;
     border-bottom-left-radius: 0rem;
@@ -66,7 +385,8 @@ ul li a {
 .grid-card{
   display: grid;
   grid-template-columns: repeat(3, 1fr); 
-  grid-gap: .3125rem 1.5rem
+  grid-gap: .3125rem 1.5rem;
+ 
 }
 .card-container{
   margin-top:1rem;
@@ -149,12 +469,16 @@ hr{
   background-color: blue;
   transition: bottom 0.3s ease;
 }
-/*
+
 .line2 {
 display: flex;
 justify-content: space-between;
+  align-items:center;
+  height:70px;
+  //border: 1px solid red;
+  padding-bottom:10px;
 }
-
+/*
 .line-item {
 flex: 1;
 text-align: center;
@@ -167,22 +491,27 @@ text-align: center;
   display:flex;
   justify-content: space-between;
   align-items: center;
-     margin-top: 15px;
+   //margin-top: 0px;
+  height:70px;
+ // border: 1px solid red;
   
 }
 
 .line1a{
   margin-right:auto;
   display:flex;
-
+justify-content: space-between;
+  align-items: center;
 }
 
 .line1a h6{
     color: #9747FF;
         margin-left: -10px;
-    margin-top: 2.1875rem;
+   // margin-top: 2.1875rem;
+  margin-top:.7rem;
     font-weight: bold;
-   font-size: 30px;
+   font-size: 20px;
+  text-align:center;
 }
 .line1 .line1a img {
      width: 120px;
@@ -315,7 +644,7 @@ text-align: center;
     grid-gap: 10px;  /* Adjust gap between grid items as needed */
     
   align-items: center;
-  font-weight: bold;
+  
 
 }
 
@@ -327,18 +656,24 @@ text-align: center;
   border: none;
     padding: .625rem;
     width: 130px;
+  
 }
 
-
+.small{
+  color:black;
+//font:size:8px;
+}
 
 .line3{
   display:flex;
   justify-content: space-between;
   align-items: center;
+ margin-top:auto;
+  //margin-bottom:15px;
 }
 
 .line3 a {
-  color: blue; 
+  color: blue;
 }
 
 
@@ -540,24 +875,659 @@ text-align: center;
   border-color: darkyellow;
 }
 
+.compareTile{
+  display:flex;
+  align-items:center;
+  gap:30px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: white; /* Adjust as needed */
+}
+
+.compareBlock{
+	width: 200px;
+  display:flex;
+  align-items:center;
+  gap: 30px
+
+}
 
 
 
-</css>
-        <data_table>sp_instance</data_table>
-        <demo_data/>
-        <description/>
-        <docs/>
-        <field_list/>
-        <has_preview>false</has_preview>
-        <id>cards_theme</id>
-        <internal>false</internal>
-        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
-        <name>cards theme</name>
-        <option_schema/>
-        <public>false</public>
-        <roles/>
-        <script><![CDATA[(function() {
+
+
+
+// popup
+* {
+  font-family: "Helvetica";
+}
+
+.person-section {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.required {
+  color: red;
+}
+
+.pMar {
+  margin-bottom: 20px;
+}
+
+.mar {
+  margin-bottom: 15px;
+}
+
+.main {
+  /* // max-width: 800px; */
+  border-radius: 20px;
+  display: flex;
+  gap: 20px;
+  padding-left: 20px;
+  /*
+  // height: 80vh;
+  // padding: 20px;
+  // background: #f2f7ff;
+  // box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  */
+}
+
+.sticky-container {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: white;
+}
+
+.backDiv {
+  /*
+  display:flex;
+  gap:5px;
+  padding-left: 20px;
+  cursor:pointer;
+  */
+  display: flex;
+  gap: 5px;
+  max-width: 100px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 15px 0;
+  position: relative;
+  margin-left: 30px;
+}
+
+.backDiv p {
+  margin-top: -4px;
+}
+
+.section-1 {
+  
+  // width: 65%;
+  /*
+  max-height: 80vh;
+  overflow-y: auto;
+  */
+  /* // height: 77vh; */
+  padding: 10px;
+  padding-left: 30px;
+  /* 
+  border: 1px solid;
+  // margin-left: 20px;
+  */
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.cardDiv {
+  padding: 10px;
+}
+
+.boxDiv {
+  padding: 10px;
+  margin: 10px 10px 20px 0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-label {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+  pointer-events: none;
+  transition: top 0.5s, font-size 0.3s;
+}
+
+.input-box {
+  width: 300px;
+  height: 50px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  font-size: 16px;
+}
+
+.input-box:focus+.input-label,
+.input-box:not(:placeholder-shown)+.input-label {
+  top: 0.1px;
+  font-size: 12px;
+  color: #333;
+  background: #fff;
+  padding: 5px;
+}
+
+.userNameInputBox {
+  text-transform: capitalize;
+}
+
+.line {
+  display: flex;
+  gap: 50px;
+}
+
+.line-1-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.line-1-inner p {
+  margin: 0;
+}
+
+.line-radio {
+  display: flex;
+  gap: 10px;
+}
+
+.custom-radio {
+  display: flex;
+  /* gap: 20px; */
+  align-items: center;
+  width: 145px;
+  height: 50px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.radio-input {
+  display: none;
+}
+
+.radio-label {
+  position: relative;
+  cursor: pointer;
+  padding-left: 10px;
+  margin-right: 10px;
+  line-height: 24px;
+}
+
+.custom-tick {
+  /* position: absolute; */
+  /* top: 0; */
+  /* left: 0; */
+  margin-left: 10px;
+  box-sizing: border-box;
+  float: right;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 2px solid #333;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #333;
+  font-size: 12px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.radio-input:checked+.radio-label .custom-tick {
+  background-color: #333;
+  color: #fff;
+}
+
+/*
+.btn {
+padding: 10px 100px 10px 100px;
+}
+.btn-div {
+text-align: center;
+margin-bottom: 20px;
+}
+*/
+.btn-div {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.btn {
+  position: relative;
+  padding: 10px 100px 10px 100px;
+}
+
+.processing-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.processing-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*  */
+
+.section-2 {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
+  z-index: 100;
+  width: 35%;
+  height: 70%;
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.section-3 {
+  padding: 10px 20px;
+  background: #f2f7ff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.h3 {
+  margin-left: 20px;
+  font-size: 14px;
+}
+
+.h4 {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.hp {
+  font-size: 14px;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.img-div {
+  display: flex;
+  padding: 0 20px;
+  gap: 15px;
+}
+
+.img-div-1 {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: #f2f7ff;
+}
+
+.img-div-down {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  margin-top: -15px;
+}
+
+.gst-p {
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.iDiv {
+  height: 200px;
+  overflow-y: auto;
+}
+
+.iDiv::-webkit-scrollbar {
+  width: 8px;
+}
+
+.iDiv::-webkit-scrollbar-thumb {
+  background-color: #b9cdd7;
+  border-radius: 6px;
+}
+
+.iDiv::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 100px;
+}
+
+
+
+/* 404 */
+.page_404 {
+  padding: 40px 0;
+  background: #fff;
+  font-family: 'Arvo', serif;
+}
+
+.page_404 img {
+  width: 100%;
+}
+
+.four_zero_four_bg {
+
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  height: 400px;
+  background-position: center;
+}
+
+
+.four_zero_four_bg h1 {
+  font-size: 80px;
+}
+
+.four_zero_four_bg h3 {
+  font-size: 80px;
+}
+
+.contant_box_404 {
+  margin-top: -50px;
+}
+
+
+.red-border {
+  border: 1px solid red;
+}
+
+.blue-border {
+  border-color: 1px solid #ccc;
+}
+.panCheckBox{
+  margin-top: -1px
+}
+.iFrameDiv  i{
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 400px) {
+  .main {
+    flex-direction: column;
+    padding-left: 10px;
+  }
+
+  .input-box {
+    width: 250px;
+  }
+
+  .section-1,
+  .section-2 {
+    width: 100%;
+  }
+
+  .backDiv {
+    margin-left: 10px;
+  }
+
+  .line {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .line,
+  .line-1-inner {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media only screen and (min-width: 401px) and (max-width: 767px) {
+  .main {
+    flex-direction: column;
+    padding-left: 10px;
+  }
+
+  .section-1,
+  .section-2 {
+    width: 100%;
+  }
+
+  .backDiv {
+    margin-left: 10px;
+  }
+
+  .line {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .line,
+  .line-1-inner {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .main {
+    padding-left: 15px;
+  }
+
+  .section-1 {
+    width: 60%;
+    padding-left: 20px;
+  }
+
+  .section-2 {
+    width: 35%;
+  }
+
+  .backDiv {
+    margin-left: 15px;
+  }
+
+  .line {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .line,
+  .line-1-inner {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .img-div,
+  .img-div-1,
+  .img-div-down {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .input-box {
+    width: 100%;
+  }
+
+  .btn {
+    padding: 10px 20px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1099px){
+  .main {
+    padding-left: 20px;
+  }
+
+  .input-box {
+    width: 250px;
+  }
+  
+  .section-1 {
+    width: 100%;
+    padding-left: 30px;
+  }
+
+  .section-2 {
+    width: 35%;
+  }
+
+  .backDiv {
+    margin-left: 30px;
+  }
+
+  .line {
+    flex-direction: row;
+  }
+
+  .line,
+  .line-1-inner {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .img-div,
+  .img-div-1,
+  .img-div-down {
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .btn {
+    padding: 10px 100px;
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+  .main {
+    padding-left: 20px;
+  }
+
+  .input-box {
+    width: 300px;
+  }
+  
+  .section-1 {
+    width: 65%;
+    padding-left: 30px;
+  }
+
+  .section-2 {
+    width: 35%;
+  }
+
+  .backDiv {
+    margin-left: 30px;
+  }
+
+  .line {
+    flex-direction: row;
+  }
+
+  .line,
+  .line-1-inner {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .img-div,
+  .img-div-1,
+  .img-div-down {
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .btn {
+    padding: 10px 100px;
+  }
+  
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) and (max-width: 767px) {...}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {...}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {...}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {...}</css>
+<data_table>sp_instance</data_table>
+<demo_data/>
+<description/>
+<docs display_value=""/>
+<field_list/>
+<has_preview>true</has_preview>
+<id>cards_theme</id>
+<internal>false</internal>
+<link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+<name>cards theme</name>
+<option_schema/>
+<public>false</public>
+<roles/>
+<script><![CDATA[(function() {
+	// getting userID and user_name
+	data.user = gs.getUserID();
+	data.userName = gs.getUserName();
+
+	// getting image from db_image table
+	var Iname = "futureinsurance.png";
+	var gr = new GlideRecord("db_image");
+	gr.get(Iname);
+	data.productImg = gr.getDisplayValue("image");
+
+	// getting loged in user's data to prefill the form if exist
+	var grUser = new GlideRecord("sys_user");
+	if (grUser.get(data.user)) {
+		data.name = grUser.getValue("name");
+		data.gender = grUser.getValue("gender");
+		data.email = grUser.getValue("email");
+		data.phone = grUser.getValue("mobile_phone");
+	} else {
+		gs.addErrorMessage("User record not found");
+		return;
+	}
 
 	data.records=[];
 	var prods=new GlideRecord('x_rptp_insureme_insurance_products');
@@ -573,7 +1543,9 @@ text-align: center;
 				prodName : prodName,
 				benefits : benefit,
 				sumAssured : prods.getValue('sum'),
-				labels: label
+				labels: label,
+				prodCode : prods.getValue('prod_code'),
+				insurer: prods.getValue('insurer'),
  			})
 		}
 	}
@@ -621,70 +1593,328 @@ text-align: center;
 
 
 })();]]></script>
-        <servicenow>false</servicenow>
-        <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>sachin_hm</sys_created_by>
-        <sys_created_on>2024-03-01 06:18:31</sys_created_on>
-        <sys_id>e692b1a347a48ad055784a02516d433a</sys_id>
-        <sys_mod_count>143</sys_mod_count>
-        <sys_name>cards theme</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_widget_e692b1a347a48ad055784a02516d433a</sys_update_name>
-        <sys_updated_by>harshitha</sys_updated_by>
-        <sys_updated_on>2024-03-05 09:44:48</sys_updated_on>
-        <template><![CDATA[
+<servicenow>false</servicenow>
+<sys_class_name>sp_widget</sys_class_name>
+<sys_created_by>sachin_hm</sys_created_by>
+<sys_created_on>2024-03-01 06:18:31</sys_created_on>
+<sys_id>e692b1a347a48ad055784a02516d433a</sys_id>
+<sys_mod_count>287</sys_mod_count>
+<sys_name>cards theme</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_widget_e692b1a347a48ad055784a02516d433a</sys_update_name>
+<sys_updated_by>harshitha</sys_updated_by>
+<sys_updated_on>2024-03-06 07:34:27</sys_updated_on>
+<template><![CDATA[
+<div class="main">
 
-    <div class="grid-card">
-      <div class="card-container" ng-repeat="product in records">
-           <div class="recommandation" ng-if="product.labels.label">
-        
+
+  <div class="grid-card">
+    <div class="card-container" ng-repeat="(index,product) in records">
+      <div class="recommandation" ng-if="product.labels.label">
+
         <div ng-if="product.labels.type=='people'" id='people'>
           {{product.labels.label}}
         </div>
         <div ng-if="product.labels.type=='star'" id='star'>
           {{product.labels.label}}
         </div>
+      </div>
+      <div class="cardd">
+        <div class="line1">
+          <div class="line1a">
+            <img src="https://ven06798.service-now.com/futureinsurance.png" alt="home">
+            <h6>
+              {{product.prodName}}
+            </h6>
+          </div>
+          <div class="line1b">
+            <input type="checkbox" 
+                   class="checkbox1"
+                   id="preference1"
+                   name="preference1"
+                   ng-model="checked"
+                   ng-change="checkboxChanged(product.prodCode,product.sumAssured,product.prodName,index)">
+            <label for="preference" class="compare">Compare</label>
+          </div>
         </div>
-        <div class="cardd">
-          <div class="line1">
-            <div class="line1a">
-              <img src="https://ven06798.service-now.com/futureinsurance.png" alt="home">
-              <h6>
-                {{product.prodName}}
-              </h6>
-            </div>
-            <div class="line1b">
-              <input type="checkbox" class="checkbox1" id="preference1" name="preference1">
-              <label for="preference" class="compare">Compare</label>
+        <div class="line2">
+          <div class="line-item" ng-repeat="benefit in product.benefits">
+            <div class="benefit-item">
+              <p>
+                <span class="small">{{benefit.name}}</span><br>
+                <span class="small">{{benefit.currency}}{{benefit.value}}</span><br>
+
+              </p>
             </div>
           </div>
-          <div class="line2">
-            <div class="line-item" ng-repeat="benefit in product.benefits">
-              <div class="benefit-item">
-                <p>
-                  <span class="small">{{benefit.name}}</span><br>
-                  <span>{{benefit.currency}}{{benefit.value}}</span><br>
+        </div>
 
-                </p>
+
+        <div class="line3">
+          <h6><a href='/vfsp?id=plan_details' class="small">Plan Details</a></h6>
+          <button type="button" class="btn-primary" data-toggle="modal" data-target="#exampleModal">
+            ₹{{product.sumAssured}}
+          </button>
+        </div>
+      </div>
+
+      
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form class="section-1" name="myForm">
+      <h3 class="pMar">Personal Details</h3>
+      <p>
+        Please fill all the mandatory(<span class="required">*</span>) fields
+      </p>
+      <div
+           class="mainBoxDiv"
+           ng-repeat="user in users track by $index"
+           ng-show="$index < numberOfPersons"
+           >
+        <div class="boxDiv">
+          <div class="person-section">
+            <h4 class="mar userNameInputBox" ng-click="togglePerson($index)">
+              {{user.name ? user.name : 'Traveller ' + ($index + 1)}}
+              {{user.age ? "(" + user.age + " yrs)" : ""}}
+            </h4>
+            <div class="iFrameDiv">
+              <i
+                 class="fa fa-angle-down"
+                 ng-show="!isPersonHidden[$index]"
+                 ng-click="togglePerson($index)"
+                 ></i>
+              <i class="fa fa-angle-up" ng-show="isPersonHidden[$index]" ng-click="togglePerson($index)"></i>
+            </div>
+          </div>
+          <div ng-show="isPersonHidden[$index]">
+            <div class="line mar">
+              <!-- name and checkboxfor name -->
+              <div>
+                <div class="input-container">
+                  <input
+                         type="text"
+                         class="input-box userNameInputBox"
+                         id="username"
+                         placeholder=""
+                         ng-model="user.name"
+                         ng-class="{ 'blue-border': user.name, 'red-border': !user.name }"
+                         ng-required="true"
+                         minlength="3"
+                         />
+                  <label for="username" class="input-label"
+                         >Enter full name <span class="required">*</span></label
+                    >
+                </div>
+              </div>
+
+              <div class="input-container">
+                <select
+                        class="input-box"
+                        required
+                        ng-model="user.gender"
+                        ng-class="{ 'blue-border': user.gender, 'red-border': !user.gender }"
+                        >
+                  <option value="">Please choose your gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+                <label class="input-label"
+                       >Gender<span class="required">*</span></label
+                  >
+              </div>
+            </div>
+            <div class="line">
+              <div class="input-container">
+                <input
+                       type="text"
+                       class="input-box"
+                       placeholder=""
+                       ng-model="user.email"
+                       ng-required="true"
+                       ng-class="{ 'blue-border': user.email, 'red-border': !user.email }"
+                       />
+                <label for="username" class="input-label"
+                       >Enter your email <span class="required">*</span></label
+                  >
+              </div>
+              <div class="input-container">
+                <input
+                       type="tel"
+                       class="input-box"
+                       ng-class="{ 'blue-border': user.phone, 'red-border': !user.phone }"
+                       placeholder=""
+                       ng-model="user.phone"
+                       ng-required="true"
+                       maxlength="10"
+                       pattern="[0-9]{10}"
+                       />
+                <label for="username" class="input-label"
+                       >Enter your 10 digit mobile number
+                  <span class="required">*</span></label
+                  >
+              </div>
+            </div>
+            <!-- line 2 -->
+            <div class="line">
+              <div class="input-container">
+                <input
+                       type="date"
+                       class="input-box"
+                       ng-class="{ 'blue-border': user.dob, 'red-border': !user.dob }"
+                       id="dob"
+                       placeholder=""
+                       ng-model="user.dob"
+                       ng-change="calculateAge()"
+                       ng-required="true"
+                       />
+                <label for="username" class="input-label"
+                       >Enter date of birth<span class="required">*</span></label
+                  >
+              </div>
+
+              <div class="input-container">
+                <input
+                       type="text"
+                       class="input-box"
+                       id="username"
+                       value="Indian"
+                       disabled
+                       />
+                <label for="username" class="input-label">Nationality</label>
+              </div>
+            </div>
+            <!-- line3 -->
+            <div class="line">
+              <div>
+                <div class="input-container">
+                  <input
+                         type="text"
+                         class="input-box"
+                         id="username"
+                         placeholder=""
+                         ng-class="{ 'blue-border': user.passport, 'red-border': !user.passport }"
+                         ng-model="user.passport"
+                         maxlength="8"
+                         ng-change="validatePassport()"
+                         ng-required="true"
+                         />
+                  <label for="username" class="input-label"
+                         >Enter passport number(A1234567)<span class="required"
+                                                               >*</span
+                    ></label
+                    >
+                </div>
+
+              </div>
+              <div>
+                <div class="input-container">
+                  <input
+                         type="text"
+                         class="input-box"
+                         id="panInput"
+                         placeholder=""
+                         ng-model="user.panNumber"
+                         ng-change="formatPan()"
+                         maxlength="10"
+                         ng-disabled="isPanDisabled"
+                         />
+                  <label for="panInput" class="input-label"
+                         >Enter pan number(ABCDE1234F)</label
+                    >
+                </div>
+
+                <div class="line-1-inner">
+                  <input
+                         type="checkbox"
+                         ng-model="isPanDisabled"
+                         ng-init="isPanDisabled=false"
+                         class="panCheckBox"
+                         />
+                  <p>I don't have a pancard</p>
+                </div>
+              </div>
+            </div>
+            <h4>Nominee Details</h4>
+            <div class="line">
+              <div class="input-container">
+                <input
+                       type="text"
+                       class="input-box userNameInputBox"
+                       id="username"
+                       placeholder=""
+                       ng-model="user.nominee"
+                       ng-class="{ 'blue-border': user.nominee, 'red-border': !user.nominee }"
+                       ng-required="true"
+                       minlength="3"
+                       />
+                <label for="username" class="input-label"
+                       >Enter nominee full name<span class="required"
+                                                     >*</span
+                  ></label
+                  >
+              </div>
+              <div class="input-container">
+                <select
+                        class="input-box"
+                        required
+                        ng-model="user.relationship"
+                        ng-class="{ 'blue-border': user.relationship, 'red-border': !user.relationship }"
+                        ng-init="user.relationship=''"
+                        >
+                  <option value="">Please choose an option</option>
+                  <option value="wife">Wife</option>
+                  <option value="father">Father</option>
+                  <option value="mother">Mother</option>
+                  <option value="brother">Brother</option>
+                  <option value="sister">Sister</option>
+                </select>
+                <label for="username" class="input-label"
+                       >Select nominee relation<span class="required"
+                                                     >*</span
+                  ></label
+                  >
               </div>
             </div>
           </div>
-
-
-          <div class="line3">
-            <h6><a href="#" class="small">Plan Details</a></h6>
-            <button type="button" class="btn-primary">
-              ₹{{product.sumAssured}}
-            </button>
-          </div>
         </div>
+      </div>
 
+      <button class="btn btn-primary" ng-click="rediectToPayment(index)">
+        Continue
+      </button>
+
+
+    </form>
+
+
+
+  </div>
+
+      
+      
+    </div>
+  </div>
+  <div ng-if="compareArray.length>1" class='compareTile'>
+    <div class='compareBlock' ng-repeat='product in compareArray' >
+      <img src="https://ven06798.service-now.com/futureinsurance.png" alt="home">
+      <div>
+        {{product.productName}}
       </div>
     </div>
- 
+    <div>
+      <button ng-click=compareProducts(compareArray)>
+        Compare
+      </button>
+    </div>
+  </div>
+
+  
+  
+</div>
+
 
 ]]></template>
-    </sp_widget>
+</sp_widget>
 </record_update>
