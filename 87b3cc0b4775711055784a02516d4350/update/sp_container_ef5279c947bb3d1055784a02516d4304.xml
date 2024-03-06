@@ -1,29 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sp_container action="INSERT_OR_UPDATE">
-        <background_color/>
-        <background_image/>
-        <background_style>default</background_style>
-        <bootstrap_alt>false</bootstrap_alt>
-        <class_name/>
-        <container_class_name/>
-        <name>VFS Home - Container 1</name>
-        <order>1</order>
-        <semantic_tag/>
-        <sp_page display_value="vfs_home">c7ae675847bf791055784a02516d43ef</sp_page>
-        <subheader>false</subheader>
-        <sys_class_name>sp_container</sys_class_name>
-        <sys_created_by>madhurya.jagadeesh</sys_created_by>
-        <sys_created_on>2024-01-16 05:05:35</sys_created_on>
-        <sys_id>ef5279c947bb3d1055784a02516d4304</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>VFS Home - Container 1</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sp_container_ef5279c947bb3d1055784a02516d4304</sys_update_name>
-        <sys_updated_by>madhurya.jagadeesh</sys_updated_by>
-        <sys_updated_on>2024-01-16 05:05:35</sys_updated_on>
-        <title/>
-        <width>container</width>
-    </sp_container>
+<background_color/>
+<background_image/>
+<background_style>default</background_style>
+<bootstrap_alt>false</bootstrap_alt>
+<class_name/>
+<container_class_name/>
+<name>VFS Home - Container 1</name>
+<order>1</order>
+<semantic_tag/>
+<sp_page display_value="vfs_home">c7ae675847bf791055784a02516d43ef</sp_page>
+<subheader>false</subheader>
+<sys_class_name>sp_container</sys_class_name>
+<sys_created_by>madhurya.jagadeesh</sys_created_by>
+<sys_created_on>2024-01-16 05:05:35</sys_created_on>
+<sys_id>ef5279c947bb3d1055784a02516d4304</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_name>VFS Home - Container 1</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_container_ef5279c947bb3d1055784a02516d4304</sys_update_name>
+<sys_updated_by>madhurya.jagadeesh</sys_updated_by>
+<sys_updated_on>2024-01-16 05:05:35</sys_updated_on>
+<title/>
+<width>container</width>
+</sp_container>
 </record_update>
