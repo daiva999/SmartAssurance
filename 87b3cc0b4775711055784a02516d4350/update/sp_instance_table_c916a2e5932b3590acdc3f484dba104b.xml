@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sp_instance_table action="INSERT_OR_UPDATE">
+<active>true</active>
+<class_name/>
+<color>default</color>
+<css/>
+<display_field/>
+<field_list/>
+<filter table="sys_user"/>
+<glyph/>
+<id/>
+<maximum_entries>5</maximum_entries>
+<order>1</order>
+<order_by/>
+<order_direction>asc</order_direction>
+<roles/>
+<short_description/>
+<size>md</size>
+<sp_column display_value="1">1684f28c93db7d10acdc3f484dba1076</sp_column>
+<sp_page display_value=""/>
+<sp_widget display_value="Admin Home">f844fe4c93db7d10acdc3f484dba103e</sp_widget>
+<sys_class_name>sp_instance_table</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2024-01-05 11:52:46</sys_created_on>
+<sys_id>c916a2e5932b3590acdc3f484dba104b</sys_id>
+<sys_mod_count>6</sys_mod_count>
+<sys_name/>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_instance_table_c916a2e5932b3590acdc3f484dba104b</sys_update_name>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2024-01-08 15:08:47</sys_updated_on>
+<table>sys_user</table>
+<title/>
+<url/>
+<widget_parameters><![CDATA[{
+	"select_the_token_table": {
+		"value": "4db97a2247d7315055784a02516d4331",
+		"displayValue": "Tokens"
+	},
+	"select_the_category_table": {
+		"value": "ebd716fd93073510acdc3f484dba10a3",
+		"displayValue": "Insurance Product Category"
+	},
+	"select_the_product_table": {
+		"value": "27380308479b751055784a02516d431b",
+		"displayValue": "Insurance Products"
+	}
+}]]></widget_parameters>
+</sp_instance_table>
+</record_update>

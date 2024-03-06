@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sp_instance action="INSERT_OR_UPDATE">
+<active>true</active>
+<class_name/>
+<color>default</color>
+<css/>
+<glyph/>
+<id/>
+<order>1</order>
+<roles/>
+<short_description/>
+<size>md</size>
+<sp_column display_value="1">25ed63ae4706751055784a02516d43c4</sp_column>
+<sp_widget display_value="Page_background">ddab27ea4706751055784a02516d4317</sp_widget>
+<sys_class_name>sp_instance</sys_class_name>
+<sys_created_by>srijan.gupta</sys_created_by>
+<sys_created_on>2023-10-26 06:49:09</sys_created_on>
+<sys_id>30b7fbe64746751055784a02516d4305</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_name/>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_instance_30b7fbe64746751055784a02516d4305</sys_update_name>
+<sys_updated_by>srijan.gupta</sys_updated_by>
+<sys_updated_on>2023-10-26 06:49:09</sys_updated_on>
+<title/>
+<url/>
+<widget_parameters/>
+</sp_instance>
+</record_update>

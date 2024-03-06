@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sp_instance action="INSERT_OR_UPDATE">
+<active>true</active>
+<class_name/>
+<color>default</color>
+<css/>
+<glyph/>
+<id/>
+<order>1</order>
+<roles/>
+<short_description/>
+<size>md</size>
+<sp_column display_value="1">6975538d93b00a10acdc3f484dba10e7</sp_column>
+<sp_widget display_value="Plan Details">08729fc593b00a10acdc3f484dba10f8</sp_widget>
+<sys_class_name>sp_instance</sys_class_name>
+<sys_created_by>harshitha</sys_created_by>
+<sys_created_on>2024-03-06 05:21:28</sys_created_on>
+<sys_id>7f75db4d93b00a10acdc3f484dba10d1</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_name/>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_instance_7f75db4d93b00a10acdc3f484dba10d1</sys_update_name>
+<sys_updated_by>harshitha</sys_updated_by>
+<sys_updated_on>2024-03-06 05:21:28</sys_updated_on>
+<title/>
+<url/>
+<widget_parameters/>
+</sp_instance>
+</record_update>
