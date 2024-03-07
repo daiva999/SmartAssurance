@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-<category>custom</category>
-<client_script><![CDATA[api.controller=function($scope) {
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($scope) {
 	/* widget controller */
 	var c = this;
 
@@ -9,7 +9,7 @@
 		alert("Form generation Page");
 	}
 	$scope.openReport = function (){
-		location.href = "/$pa_dashboard.do?sysparm_dashboard=6e9bc14c93ecce50acdc3f484dba1068";
+		location.href = "/$pa_dashboard.do?sysparm_dashboard=252bd815477846100f7fb70d416d43b2";
 	}
 
 	//for loading the category from the table
@@ -137,8 +137,8 @@
 
 
 ]]></client_script>
-<controller_as>c</controller_as>
-<css>h1{
+        <controller_as>c</controller_as>
+        <css>h1{
   text-align: center;
   font-weight:1000
 }
@@ -258,26 +258,27 @@ h2{
 }
 
 //css for fetch button ends</css>
-<data_table>sp_instance_table</data_table>
-<demo_data/>
-<description/>
-<docs display_value=""/>
-<field_list>table</field_list>
-<has_preview>true</has_preview>
-<id>admin_home</id>
-<internal>false</internal>
-<link><![CDATA[function link(scope, element, attrs, controller) {
+        <data_table>sp_instance_table</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>table</field_list>
+        <has_preview>true</has_preview>
+        <id>admin_home</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-<name>Admin Home</name>
-<option_schema>[{"displayValue":"Table","hint":"The table where the access tokens can be fetched from","name":"select_the_token_table","section":"Data","default_value":"x_rptp_insureme_tokens","label":"Select the token Table","type":"reference","value":"sys_db_object","ed":{"reference":"sys_db_object"}},{"displayValue":"Table","hint":"Select the Category Table","name":"select_the_category_table","section":"Data","default_value":"x_rptp_insureme_insurance_product_category","label":"Select the Category Table","type":"reference","value":"sys_db_object","ed":{"reference":"sys_db_object"}},{"displayValue":"Table","hint":"Select the Product Table","name":"select_the_product_table","section":"Data","default_value":"x_rptp_insureme_insurance_product","label":"Select the Product Table","type":"reference","value":"sys_db_object","ed":{"reference":"sys_db_object"}}]</option_schema>
-<public>false</public>
-<roles/>
-<script><![CDATA[(function() {	
+        <name>Admin Home</name>
+        <option_schema>[{"displayValue":"Table","hint":"The table where the access tokens can be fetched from","name":"select_the_token_table","section":"Data","default_value":"x_rptp_insureme_tokens","label":"Select the token Table","type":"reference","value":"sys_db_object","ed":{"reference":"sys_db_object"}},{"displayValue":"Table","hint":"Select the Category Table","name":"select_the_category_table","section":"Data","default_value":"x_rptp_insureme_insurance_product_category","label":"Select the Category Table","type":"reference","value":"sys_db_object","ed":{"reference":"sys_db_object"}},{"displayValue":"Table","hint":"Select the Product Table","name":"select_the_product_table","section":"Data","default_value":"x_rptp_insureme_insurance_product","label":"Select the Product Table","type":"reference","value":"sys_db_object","ed":{"reference":"sys_db_object"}}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {	
 	data.table = $sp.getValue('table');
+	//gs.addInfoMessage(data.table);
 	var user = gs.getUserID();
 	var grUser = new GlideRecord(data.table);
-
+	//gs.addInfoMessage(grUser);
 	if (grUser.get(user)) {
 		data.firstName = grUser.getValue("first_name");
 	}
@@ -395,20 +396,20 @@ data.productTableName=getTable(options.select_the_product_table)+'';
 
 
 ]]></script>
-<servicenow>false</servicenow>
-<sys_class_name>sp_widget</sys_class_name>
-<sys_created_by>admin</sys_created_by>
-<sys_created_on>2023-12-19 10:48:58</sys_created_on>
-<sys_id>f844fe4c93db7d10acdc3f484dba103e</sys_id>
-<sys_mod_count>453</sys_mod_count>
-<sys_name>Admin Home</sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sp_widget_f844fe4c93db7d10acdc3f484dba103e</sys_update_name>
-<sys_updated_by>kumar.raja</sys_updated_by>
-<sys_updated_on>2024-02-21 13:17:09</sys_updated_on>
-<template><![CDATA[<div>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-19 10:48:58</sys_created_on>
+        <sys_id>f844fe4c93db7d10acdc3f484dba103e</sys_id>
+        <sys_mod_count>459</sys_mod_count>
+        <sys_name>Admin Home</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_f844fe4c93db7d10acdc3f484dba103e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-07 05:44:50</sys_updated_on>
+        <template><![CDATA[<div>
   <b><h1>Hello {{data.firstName}}, find your requirement here.</h1></b>
 
   <!--<marquee><h4>
@@ -553,5 +554,5 @@ data.productTableName=getTable(options.select_the_product_table)+'';
 
 </div>
 ]]></template>
-</sp_widget>
+    </sp_widget>
 </record_update>

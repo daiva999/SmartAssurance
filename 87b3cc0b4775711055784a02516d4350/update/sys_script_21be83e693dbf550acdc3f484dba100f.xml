@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_script action="INSERT_OR_UPDATE">
+<abort_action>false</abort_action>
+<access>package_private</access>
+<action_delete>false</action_delete>
+<action_insert>true</action_insert>
+<action_query>false</action_query>
+<action_update>false</action_update>
+<active>true</active>
+<add_message>false</add_message>
+<advanced>true</advanced>
+<change_fields>false</change_fields>
+<client_callable>false</client_callable>
+<collection>sys_user</collection>
+<condition/>
+<description/>
+<execute_function>false</execute_function>
+<filter_condition table="sys_user"/>
+<is_rest>false</is_rest>
+<message/>
+<name>Password Link to User</name>
+<order>100</order>
+<priority>100</priority>
+<rest_method display_value=""/>
+<rest_method_text/>
+<rest_service display_value=""/>
+<rest_service_text/>
+<rest_variables/>
+<role_conditions/>
+<script><![CDATA[(function executeRule(current, previous /*null when async*/ ) {
+    var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";    var string_length = 8;    var randomstring = '';
+    for (var i = 0; i < string_length; i++) {        var rnum = Math.floor(Math.random() * chars.length);
+        randomstring += chars.substring(rnum, rnum + 1);    }
+    //Generate Notification    
+	//gs.eventQueue("user.password", current, randomstring, current.email);    
+	//Set values in User record    
+	current.u_pword.setDisplayValue(randomstring);    
+	current.password_needs_reset = true;    
+	current.update();
+})(current, previous);
+]]></script>
+<sys_class_name>sys_script</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2023-12-27 07:13:24</sys_created_on>
+<sys_domain>global</sys_domain>
+<sys_domain_path>/</sys_domain_path>
+<sys_id>21be83e693dbf550acdc3f484dba100f</sys_id>
+<sys_mod_count>15</sys_mod_count>
+<sys_name>Password Link to User</sys_name>
+<sys_overrides display_value=""/>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sys_script_21be83e693dbf550acdc3f484dba100f</sys_update_name>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2024-01-03 10:21:03</sys_updated_on>
+<template/>
+<when>before</when>
+</sys_script>
+</record_update>

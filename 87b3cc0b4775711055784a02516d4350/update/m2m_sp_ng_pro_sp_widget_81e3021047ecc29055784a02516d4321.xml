@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_ng_pro_sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <m2m_sp_ng_pro_sp_widget action="INSERT_OR_UPDATE">
-        <sp_angular_provider display_value="adminBackButton">af9a2396935fb550acdc3f484dba10ce</sp_angular_provider>
-        <sp_widget display_value="testingproductCreate">01e3021047ecc29055784a02516d431e</sp_widget>
-        <sys_class_name>m2m_sp_ng_pro_sp_widget</sys_class_name>
-        <sys_created_by>akshay</sys_created_by>
-        <sys_created_on>2024-02-20 05:13:48</sys_created_on>
-        <sys_id>81e3021047ecc29055784a02516d4321</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>adminBackButton.testingproductCreate</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>m2m_sp_ng_pro_sp_widget_81e3021047ecc29055784a02516d4321</sys_update_name>
-        <sys_updated_by>akshay</sys_updated_by>
-        <sys_updated_on>2024-02-20 05:13:48</sys_updated_on>
-    </m2m_sp_ng_pro_sp_widget>
+<sp_angular_provider display_value="adminBackButton">af9a2396935fb550acdc3f484dba10ce</sp_angular_provider>
+<sp_widget display_value="testingproductCreate">01e3021047ecc29055784a02516d431e</sp_widget>
+<sys_class_name>m2m_sp_ng_pro_sp_widget</sys_class_name>
+<sys_created_by>akshay</sys_created_by>
+<sys_created_on>2024-02-20 05:13:48</sys_created_on>
+<sys_id>81e3021047ecc29055784a02516d4321</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_name>adminBackButton.testingproductCreate</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>m2m_sp_ng_pro_sp_widget_81e3021047ecc29055784a02516d4321</sys_update_name>
+<sys_updated_by>akshay</sys_updated_by>
+<sys_updated_on>2024-02-20 05:13:48</sys_updated_on>
+</m2m_sp_ng_pro_sp_widget>
 </record_update>

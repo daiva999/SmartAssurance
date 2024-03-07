@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_email">
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sys_script_email action="INSERT_OR_UPDATE">
-        <name>insurance_payment_invoice</name>
-        <new_lines_to_html>false</new_lines_to_html>
-        <script><![CDATA[(function runMailScript( /* GlideRecord */ current, /* TemplatePrinter */ template,
+<name>insurance_payment_invoice</name>
+<new_lines_to_html>false</new_lines_to_html>
+<script><![CDATA[(function runMailScript( /* GlideRecord */ current, /* TemplatePrinter */ template,
     /* Optional EmailOutbound */
     email, /* Optional GlideRecord */ email_action,
     /* Optional GlideRecord */
@@ -24,17 +24,17 @@
 
 
 })(current, template, email, email_action, event);]]></script>
-        <sys_class_name>sys_script_email</sys_class_name>
-        <sys_created_by>rushith</sys_created_by>
-        <sys_created_on>2024-02-14 06:35:12</sys_created_on>
-        <sys_id>4bcc5f5693dc4650acdc3f484dba10e5</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>insurance_payment_invoice</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-        <sys_update_name>sys_script_email_4bcc5f5693dc4650acdc3f484dba10e5</sys_update_name>
-        <sys_updated_by>rushith</sys_updated_by>
-        <sys_updated_on>2024-02-14 06:35:12</sys_updated_on>
-    </sys_script_email>
+<sys_class_name>sys_script_email</sys_class_name>
+<sys_created_by>rushith</sys_created_by>
+<sys_created_on>2024-02-14 06:35:12</sys_created_on>
+<sys_id>4bcc5f5693dc4650acdc3f484dba10e5</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_name>insurance_payment_invoice</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sys_script_email_4bcc5f5693dc4650acdc3f484dba10e5</sys_update_name>
+<sys_updated_by>rushith</sys_updated_by>
+<sys_updated_on>2024-02-14 06:35:12</sys_updated_on>
+</sys_script_email>
 </record_update>

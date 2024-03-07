@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_script_email action="INSERT_OR_UPDATE">
+<name>getPassword</name>
+<new_lines_to_html>true</new_lines_to_html>
+<script><![CDATA[(function runMailScript(/* GlideRecord */ current, /* TemplatePrinter */ template,
+          /* Optional EmailOutbound */ email, /* Optional GlideRecord */ email_action,
+          /* Optional GlideRecord */ event) {
+
+          // Add your code here
+	var par1 = event.parm1.toString();
+	template.print('Password is ' + par1);
+
+})(current, template, email, email_action, event);]]></script>
+<sys_class_name>sys_script_email</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2023-12-28 10:37:29</sys_created_on>
+<sys_id>1f17494393577950acdc3f484dba1032</sys_id>
+<sys_mod_count>1</sys_mod_count>
+<sys_name>getPassword</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sys_script_email_1f17494393577950acdc3f484dba1032</sys_update_name>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2024-01-02 05:48:55</sys_updated_on>
+</sys_script_email>
+</record_update>
