@@ -1,11 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-<category>custom</category>
-<client_script><![CDATA[api.controller = function ($scope, spModal) {
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope, spModal) {
 	var c = this;
 
 	$scope.redirection = function(){
-		location.href = "/ap?id="+$scope.options.redirect_url;
+			c.server.get({"action":"getID","value":$scope.options.redirect_url}).then(function(response){
+			//	alert(JSON.stringify(response.data.URL))
+			location.href = "/ap?id="+response.data.URL;
+		})
+		
 	}
 	
 	$scope.addBenefits=function(){
@@ -238,8 +242,8 @@
 
 
 	*/]]></client_script>
-<controller_as>c</controller_as>
-<css>.goBack {
+        <controller_as>c</controller_as>
+        <css>.goBack {
   position: relative;
   width: 100px;
   height: 40px; 
@@ -387,24 +391,37 @@ input:checked + .slider:before {
 }
 
 </css>
-<data_table>sp_instance_table</data_table>
-<demo_data/>
-<description/>
-<docs display_value=""/>
-<field_list>table,field_list</field_list>
-<has_preview>true</has_preview>
-<id>reusable_table</id>
-<internal>false</internal>
-<link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
-<name>Reusable Table</name>
-<option_schema>[{"displayValue":"Page","name":"redirect_url","section":"Behavior","default_value":"admin_home","label":"Redirect URL","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}},{"name":"lable","section":"Behavior","label":"Lable","type":"string"}]</option_schema>
-<public>false</public>
-<roles/>
-<script><![CDATA[(function () {
+        <data_table>sp_instance_table</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>table,field_list</field_list>
+        <has_preview>true</has_preview>
+        <id>reusable_table</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Reusable Table</name>
+        <option_schema>[{"displayValue":"Page","name":"redirect_url","section":"Behavior","default_value":"admin_home","label":"Redirect URL","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}},{"name":"lable","section":"Behavior","label":"Lable","type":"string"}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function () {
 	// Storing all the objects in this array
 	data.arr = [];
 	data.prdRecord = false;
-
+	
+	data.URL="hhii"
+	if(input && input.action=="getID"){
+		var pagesGr=new GlideRecord('sp_page')
+		pagesGr.addQuery('sys_id',input.value);
+		pagesGr.query();
+		if(pagesGr.next()){
+		//	gs.addErrorMessage(pagesGr.id)
+			data.URL=pagesGr.id+"";
+		}
+		return;
+		//return pagesGr.id //gs.addErrorMessage(data.URL)
+	}
+	
 	data.table = $sp.getValue("table");
 	//gs.addInfoMessage(data.table);
 	data.field_list = $sp.getValue('field_list');
@@ -477,20 +494,20 @@ input:checked + .slider:before {
 
 })();
 ]]></script>
-<servicenow>false</servicenow>
-<sys_class_name>sp_widget</sys_class_name>
-<sys_created_by>admin</sys_created_by>
-<sys_created_on>2024-01-09 13:01:19</sys_created_on>
-<sys_id>f31cdff293ab3510acdc3f484dba10ca</sys_id>
-<sys_mod_count>168</sys_mod_count>
-<sys_name>Reusable Table</sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sp_widget_f31cdff293ab3510acdc3f484dba10ca</sys_update_name>
-<sys_updated_by>sinchana.shridhar</sys_updated_by>
-<sys_updated_on>2024-02-23 05:54:17</sys_updated_on>
-<template><![CDATA[<div>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-09 13:01:19</sys_created_on>
+        <sys_id>f31cdff293ab3510acdc3f484dba10ca</sys_id>
+        <sys_mod_count>188</sys_mod_count>
+        <sys_name>Reusable Table</sys_name>
+        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_f31cdff293ab3510acdc3f484dba10ca</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-11 07:37:59</sys_updated_on>
+        <template><![CDATA[<div>
   <div class="headDiv">
     <div admin-back-button></div>
     <input  id="search_here" type="text" ng-model="searchQuery" ng-change="search()" placeholder="Search here" class="sIn" />
@@ -611,5 +628,5 @@ input:checked + .slider:before {
 
 </div>
 ]]></template>
-</sp_widget>
+    </sp_widget>
 </record_update>
