@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_form_sections form_id="1cb74536473046100f7fb70d416d4333" sys_domain="global" table="x_rptp_insureme_appointment_details" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-03-11 05:31:16</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>50b74536473046100f7fb70d416d4335</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_rptp_insureme_appointment_details" name="x_rptp_insureme_appointment_details" sys_domain="global" view="Default view">1cb74536473046100f7fb70d416d4333</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="x_rptp_insureme_appointment_details" sys_domain="global" view="Default view">483701f2473046100f7fb70d416d43cb</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-03-11 05:31:16</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-03-11 05:31:17</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>5cb74536473046100f7fb70d416d4336</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_rptp_insureme_appointment_details" name="x_rptp_insureme_appointment_details" sys_domain="global" view="Default view">1cb74536473046100f7fb70d416d4333</sys_ui_form>
+            <sys_ui_section caption="User details" display_value="User details" name="x_rptp_insureme_appointment_details" sys_domain="global" view="Default view">5cb74536473046100f7fb70d416d4335</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-03-11 05:31:17</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-03-11 05:32:27</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>95f70536473046100f7fb70d416d436e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_rptp_insureme_appointment_details" name="x_rptp_insureme_appointment_details" sys_domain="global" view="Default view">1cb74536473046100f7fb70d416d4333</sys_ui_form>
+            <sys_ui_section caption="Booking details" display_value="Booking details" name="x_rptp_insureme_appointment_details" sys_domain="global" view="Default view">15f70536473046100f7fb70d416d436c</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-03-11 05:32:27</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>x_rptp_insureme_appointment_details</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-03-11 05:31:16</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>1cb74536473046100f7fb70d416d4333</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_rptp_insureme_appointment_details</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+            <sys_update_name>sys_ui_form_sections_1cb74536473046100f7fb70d416d4333</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-03-11 05:31:16</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>

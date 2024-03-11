@@ -35,17 +35,6 @@
 
     gs.eventQueue("x_rptp_insureme.appointment_letter", current);
 
-    // var eT = new GlideRecord("sysevent");
-    // eT.addQuery('parm1', current.number);
-	// gs.info("POlicy - " + current.number);
-    // eT.addQuery('state', 'processed');
-    // eT.query(); 
-    // while (eT.next()) {
-    //     gs.info("Mail sent successfully for ");
-    // }
-
-    //new x_rptp_insureme.log_msg().getLogMsg();
-
 })(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
         <sys_created_by>rushith</sys_created_by>
@@ -53,15 +42,15 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>3a93186293548650acdc3f484dba1068</sys_id>
-        <sys_mod_count>71</sys_mod_count>
+        <sys_mod_count>72</sys_mod_count>
         <sys_name>Appointment Letter notification</sys_name>
         <sys_overrides/>
         <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sys_script_3a93186293548650acdc3f484dba1068</sys_update_name>
-        <sys_updated_by>rushith</sys_updated_by>
-        <sys_updated_on>2024-02-20 09:06:52</sys_updated_on>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-11 05:48:54</sys_updated_on>
         <template/>
         <when>after</when>
     </sys_script>

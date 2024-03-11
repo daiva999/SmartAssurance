@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sp_angular_provider action="INSERT_OR_UPDATE">
+<name>adminPagination</name>
+<script><![CDATA[function() {
+	return {
+		template: '<ul class="pagination pagen">' +
+		'<li ng-click="pageChange(0)" ng-class="isActive(0)"><a>Start</a></li>' +
+		'<li ng-click="prevPage()" ng-class="isActivePrev()"><a>&laquo;</a></li>' +
+		'<li ng-click="pageChange(\'prev\')" ng-class="isActivePrev()"><a>&lt;</a></li>' +
+		'<li ng-repeat="pageNumber in getDisplayRange()" ng-click="pageChange(pageNumber)" ng-class="isActive(pageNumber)"   ng-attr-id="pageListItem_{{pageNumber}}"><a>{{pageNumber}}</a></li>' +
+		'<li ng-click="pageChange(\'next\')" ng-class="isActiveNext()"><a>&gt;</a></li>' +
+		'<li ng-click="nextPage()" ng-class="isActiveNext()"><a>&raquo;</a></li>' +
+		'<li ng-click="pageChange(pageNumber - 1)" ng-class="isActive(pageNumber - 1)"><a>Last</a></li>' +
+		'</ul>',
+		controller: function($scope) {
+			$scope.totalInc = $scope.data.arr.length;
+			$scope.currentPage = 0;
+			$scope.pageNumber = Math.ceil($scope.totalInc / $scope.maxInc);
+			$scope.maxDisplayedPages = 5;
+			$scope.maxJumpedPages = 10;
+
+			$scope.pageChange = function(value) {
+				if (value === "prev") {
+					if ($scope.currentPage > 0) {
+						$scope.currentPage--;
+						updateVisibleRows();
+					}
+				} else if (value === "next") {
+					if ($scope.currentPage < $scope.pageNumber - 1) {
+						$scope.currentPage++;
+						updateVisibleRows();
+					}
+				} else {
+					$scope.currentPage = value;
+					updateVisibleRows();
+				}
+			};
+
+			$scope.isActive = function(index) {
+				return $scope.currentPage === index ? "active" : "";
+			};
+
+			$scope.prevPage = function() {
+				if ($scope.currentPage > 0) {
+					$scope.currentPage = Math.max(
+						0,
+						$scope.currentPage - $scope.maxJumpedPages
+					);
+					updateVisibleRows();
+				}
+			};
+
+			$scope.nextPage = function() {
+				if ($scope.currentPage < $scope.pageNumber - 1) {
+					$scope.currentPage = Math.min(
+						$scope.pageNumber - 1,
+						$scope.currentPage + $scope.maxJumpedPages
+					);
+					updateVisibleRows();
+				}
+			};
+
+			$scope.isActivePrev = function() {
+				return $scope.currentPage === 0 ? "disabled" : "";
+			};
+
+			$scope.isActiveNext = function() {
+				return $scope.currentPage === $scope.pageNumber - 1 ? "disabled" : "";
+			};
+
+			$scope.getDisplayRange = function() {
+				var start;
+
+				if ($scope.currentPage === 0) {
+					start = 0;
+				} else if ($scope.currentPage === $scope.pageNumber - 1) {
+					start = Math.max(0, $scope.pageNumber - $scope.maxDisplayedPages);
+				} else {
+					start = Math.max(
+						$scope.currentPage - Math.floor($scope.maxDisplayedPages / 2),
+						0
+					);
+				}
+
+				var end = Math.min(start + $scope.maxDisplayedPages, $scope.pageNumber);
+
+				// Ensure that the range includes maxDisplayedPages if available
+				while (end - start < $scope.maxDisplayedPages && end < $scope.pageNumber) {
+					end++;
+				}
+
+				$scope.startIndex = start;
+				return new Array(end - start).fill(0).map(function(_, i) {
+					return start + i;
+				});
+			};
+
+			function updateVisibleRows() {
+				$scope.currentIndex = $scope.currentPage * $scope.maxInc;
+			}
+			$scope.updateMaxInc = function() {
+				var oldPageNumber = $scope.pageNumber;
+
+				$scope.pageNumber = Math.ceil($scope.totalInc / $scope.maxInc);
+
+				if ($scope.currentPage >= $scope.pageNumber) {
+					$scope.currentPage = Math.max(0, $scope.pageNumber - 1);
+				}
+
+				updateVisibleRows();
+
+				if (oldPageNumber !== $scope.pageNumber) {
+					$scope.getDisplayRange();
+				}
+			};
+		}
+	}
+}]]></script>
+<sys_class_name>sp_angular_provider</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2023-12-23 07:36:39</sys_created_on>
+<sys_id>fb3e6a99939bb150acdc3f484dba1073</sys_id>
+<sys_mod_count>38</sys_mod_count>
+<sys_name>adminPagination</sys_name>
+<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+<sys_policy/>
+<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+<sys_update_name>sp_angular_provider_fb3e6a99939bb150acdc3f484dba1073</sys_update_name>
+<sys_updated_by>chandan.parmar</sys_updated_by>
+<sys_updated_on>2024-02-07 07:01:43</sys_updated_on>
+<type>directive</type>
+</sp_angular_provider>
+</record_update>

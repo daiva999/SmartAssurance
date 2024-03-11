@@ -2,9 +2,14 @@
     <sys_dictionary action="INSERT_OR_UPDATE" element="choose_your_visa_application_centre" table="x_rptp_insureme_appointment_details">
         <active>true</active>
         <array>false</array>
-        <attributes>edge_encryption_enabled=true</attributes>
+        <attributes/>
         <audit>false</audit>
-        <calculation/>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
         <choice>1</choice>
         <choice_field/>
         <choice_table/>
@@ -45,16 +50,16 @@
         <spell_check>false</spell_check>
         <staged>false</staged>
         <sys_class_name>sys_dictionary</sys_class_name>
-        <sys_created_by>Surya.Prathap</sys_created_by>
-        <sys_created_on>2024-02-07 06:54:42</sys_created_on>
-        <sys_id>dc5e13cc47900a1055784a02516d4316</sys_id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-03-11 05:27:58</sys_created_on>
+        <sys_id>ac64c172473046100f7fb70d416d4393</sys_id>
         <sys_name>Choose your Visa Application Centre</sys_name>
         <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sys_dictionary_x_rptp_insureme_appointment_details_choose_your_visa_application_centre</sys_update_name>
-        <sys_updated_by>Surya.Prathap</sys_updated_by>
-        <sys_updated_on>2024-02-07 06:57:51</sys_updated_on>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-11 05:38:25</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

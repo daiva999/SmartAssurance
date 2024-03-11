@@ -128,7 +128,7 @@
         <recipient_groups/>
         <recipient_users/>
         <reply_to/>
-        <send_self>true</send_self>
+        <send_self>false</send_self>
         <sms_alternate/>
         <style/>
         <subject>VFS Global Appointment Letter</subject>
@@ -139,15 +139,15 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>fbcc54a293948650acdc3f484dba109a</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>Appointment Letter notification</sys_name>
         <sys_overrides/>
         <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sysevent_email_action_fbcc54a293948650acdc3f484dba109a</sys_update_name>
-        <sys_updated_by>balakrishna</sys_updated_by>
-        <sys_updated_on>2024-02-16 05:30:45</sys_updated_on>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-03-11 06:05:46</sys_updated_on>
         <sys_version>2</sys_version>
         <template/>
         <type>email</type>
