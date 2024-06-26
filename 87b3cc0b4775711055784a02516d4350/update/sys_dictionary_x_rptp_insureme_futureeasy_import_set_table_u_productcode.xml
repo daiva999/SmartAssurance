@@ -47,11 +47,10 @@
         <sys_class_name>sys_dictionary</sys_class_name>
         <sys_created_by>akshay</sys_created_by>
         <sys_created_on>2024-01-31 10:21:19</sys_created_on>
-        <sys_id>6e7a8c4a4700c69055784a02516d432f</sys_id>
         <sys_name>productCode</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sys_dictionary_x_rptp_insureme_futureeasy_import_set_table_u_productcode</sys_update_name>
         <sys_updated_by>akshay</sys_updated_by>
         <sys_updated_on>2024-01-31 10:21:19</sys_updated_on>

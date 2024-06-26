@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="1b3263f847f006100f7fb70d416d43a2" label="Insureme Testing" max_length="40" name="x_rptp_insureme_testing" type="collection">
+        <element display="true" label="test" max_length="400" name="test" type="journal_list"/>
+    </element>
+</database>

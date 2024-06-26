@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="01fa577047f006100f7fb70d416d4392" label="Recomandation_table" max_length="40" name="x_rptp_insureme_recomandation_table" type="collection">
+        <element label="Insurer" mandatory="true" max_length="32" name="insurer" reference="x_rptp_insureme_insurance_products_benefits" type="reference"/>
+        <index name="index">
+            <element name="insurer"/>
+        </index>
+    </element>
+</database>

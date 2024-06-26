@@ -1,44 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_portal">
     <sp_portal action="INSERT_OR_UPDATE">
-<css_variables/>
-<dark_theme display_value=""/>
-<default>false</default>
-<enable_ais>true</enable_ais>
-<enable_certificate_based_authentication>false</enable_certificate_based_authentication>
-<enable_favorites>false</enable_favorites>
-<hide_portal_name>false</hide_portal_name>
-<homepage display_value="vfs_home">c7ae675847bf791055784a02516d43ef</homepage>
-<icon/>
-<kb_knowledge_base display_value=""/>
-<kb_knowledge_page display_value=""/>
-<login_page display_value=""/>
-<logo/>
-<notfound_page display_value=""/>
-<quick_start_config/>
-<rtl_enabled>false</rtl_enabled>
-<sc_catalog display_value=""/>
-<sc_catalog_page display_value=""/>
-<sc_category_page display_value=""/>
-<search_application display_value="Service Portal Default Search Application">00731b9d5b231010d9a5ce1a8581c7dd</search_application>
-<search_results_configuration display_value="Service Portal Search">80eb579d53671010968addeeff7b1215</search_results_configuration>
-<sp_chat_queue display_value=""/>
-<sp_rectangle_menu display_value=""/>
-<sys_class_name>sp_portal</sys_class_name>
-<sys_created_by>madhurya.jagadeesh</sys_created_by>
-<sys_created_on>2024-01-14 06:11:44</sys_created_on>
-<sys_id>aa2ea35847bf791055784a02516d437f</sys_id>
-<sys_mod_count>3</sys_mod_count>
-<sys_name>VFS Portal</sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sp_portal_aa2ea35847bf791055784a02516d437f</sys_update_name>
-<sys_updated_by>madhurya.jagadeesh</sys_updated_by>
-<sys_updated_on>2024-01-16 05:24:20</sys_updated_on>
-<theme display_value=""/>
-<title>VFS Portal</title>
-<ts_index_group display_value=""/>
-<url_suffix>vfsp</url_suffix>
-<user_registration_config display_value=""/>
-</sp_portal>
+        <css_variables/>
+        <dark_theme/>
+        <default>false</default>
+        <enable_ais>true</enable_ais>
+        <enable_certificate_based_authentication>false</enable_certificate_based_authentication>
+        <enable_favorites>false</enable_favorites>
+        <hide_portal_name>false</hide_portal_name>
+        <homepage display_value="vfs_home">c7ae675847bf791055784a02516d43ef</homepage>
+        <icon/>
+        <kb_knowledge_base/>
+        <kb_knowledge_page/>
+        <login_page/>
+        <logo/>
+        <notfound_page/>
+        <quick_start_config/>
+        <rtl_enabled>false</rtl_enabled>
+        <sc_catalog/>
+        <sc_catalog_page/>
+        <sc_category_page/>
+        <search_application display_value="Service Portal Default Search Application">00731b9d5b231010d9a5ce1a8581c7dd</search_application>
+        <search_results_configuration display_value="Service Portal Search">80eb579d53671010968addeeff7b1215</search_results_configuration>
+        <sp_chat_queue/>
+        <sp_rectangle_menu/>
+        <sys_class_name>sp_portal</sys_class_name>
+        <sys_created_by>madhurya.jagadeesh</sys_created_by>
+        <sys_created_on>2024-01-14 06:11:44</sys_created_on>
+        <sys_id>aa2ea35847bf791055784a02516d437f</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>VFS Portal</sys_name>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_portal_aa2ea35847bf791055784a02516d437f</sys_update_name>
+        <sys_updated_by>madhurya.jagadeesh</sys_updated_by>
+        <sys_updated_on>2024-01-16 05:24:20</sys_updated_on>
+        <theme/>
+        <title>VFS Portal</title>
+        <ts_index_group/>
+        <url_suffix>vfsp</url_suffix>
+    </sp_portal>
+    <sys_translated_text action="delete_multiple" query="documentkey=aa2ea35847bf791055784a02516d437f"/>
 </record_update>

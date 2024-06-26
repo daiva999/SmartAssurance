@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="489b17b047f006100f7fb70d416d4344" label="futureEasy" max_length="40" name="x_rptp_insureme_futureeasy_import_set_table" type="collection">
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=benefitName" label="benefitName" max_length="40" name="u_benefitname" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=currency" label="currency" max_length="40" name="u_currency" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=metaData" label="metaData" max_length="40" name="u_metadata" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=productCode" label="productCode" max_length="40" name="u_productcode" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=productName" label="productName" max_length="40" name="u_productname" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=value" label="value" max_length="40" name="u_value" type="string"/>
+    </element>
+</database>

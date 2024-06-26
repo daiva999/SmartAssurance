@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-<category>custom</category>
-<client_script><![CDATA[api.controller = function ($scope, $rootScope, spUtil) {
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope, $rootScope, spUtil) {
     var c = this;
 	/*var sI=c.data.userId;
 	
@@ -251,8 +251,8 @@
 
 }
 ]]></client_script>
-<controller_as>c</controller_as>
-<css>input[type=text],input[type=date],select{
+        <controller_as>c</controller_as>
+        <css>input[type=text],input[type=date],select{
   width: 250px;
   height: 40px;
 }
@@ -454,43 +454,43 @@ h4{
   left:5px;
 }
 </css>
-<data_table>sp_instance</data_table>
-<demo_data/>
-<description/>
-<docs display_value=""/>
-<field_list/>
-<has_preview>true</has_preview>
-<id>vfs_form</id>
-<internal>false</internal>
-<link><![CDATA[function link(scope, element, attrs, controller) {
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>vfs_form</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
   
 }
 
 ]]></link>
-<name>VFS  Form</name>
-<option_schema/>
-<public>true</public>
-<roles/>
-<script><![CDATA[(function() {
+        <name>VFS  Form</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
 	/* populate the 'data' object */
 	/* e.g., data.table = $sp.getValue('table'); */
 	data.userId = gs.getUserID();
 	// gs.addInfoMessage(data.userId)
 })();]]></script>
-<servicenow>false</servicenow>
-<sys_class_name>sp_widget</sys_class_name>
-<sys_created_by>madhurya.jagadeesh</sys_created_by>
-<sys_created_on>2024-01-17 11:35:43</sys_created_on>
-<sys_id>0d151cad937bb110acdc3f484dba1084</sys_id>
-<sys_mod_count>1390</sys_mod_count>
-<sys_name>VFS  Form</sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sp_widget_0d151cad937bb110acdc3f484dba1084</sys_update_name>
-<sys_updated_by>madhurya.jagadeesh</sys_updated_by>
-<sys_updated_on>2024-02-10 04:32:30</sys_updated_on>
-<template><![CDATA[<div class = "whole">
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>madhurya.jagadeesh</sys_created_by>
+        <sys_created_on>2024-01-17 11:35:43</sys_created_on>
+        <sys_id>0d151cad937bb110acdc3f484dba1084</sys_id>
+        <sys_mod_count>1390</sys_mod_count>
+        <sys_name>VFS  Form</sys_name>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_0d151cad937bb110acdc3f484dba1084</sys_update_name>
+        <sys_updated_by>madhurya.jagadeesh</sys_updated_by>
+        <sys_updated_on>2024-02-10 04:32:30</sys_updated_on>
+        <template><![CDATA[<div class = "whole">
   <h3 class="head">
     Help us plan your trip, fill out these details!!
   </h3>
@@ -582,5 +582,5 @@ h4{
     </div>
   </div>
 ]]></template>
-</sp_widget>
+    </sp_widget>
 </record_update>

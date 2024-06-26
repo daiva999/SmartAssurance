@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="eeed5b7447f006100f7fb70d416d434a" label="customer_image" max_length="40" name="x_rptp_insureme_customer_image" type="collection">
+        <element label="image" max_length="40" name="image" type="user_image"/>
+        <element default="javascript:current.getTableName();" dynamic_default_value="7e31e41947233d5055784a02516d4316" label="Class" max_length="80" name="sys_class_name" type="sys_class_name" use_dynamic_default="true"/>
+        <index name="index">
+            <element name="sys_class_name"/>
+        </index>
+    </element>
+</database>

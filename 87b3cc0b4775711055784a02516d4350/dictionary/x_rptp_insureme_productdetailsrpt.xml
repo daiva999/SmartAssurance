@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="4561d6f047bcc2100f7fb70d416d43a7" label="productDetailsRPT" max_length="40" name="x_rptp_insureme_productdetailsrpt" type="collection">
+        <element label="addOns" max_length="80" name="addons" type="table_name"/>
+        <element label="anuallyPrem" max_length="40" name="anuallyprem" type="integer"/>
+        <element choice="1" label="coverageAmount" max_length="40" name="coverageamount" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="10L" value="10L"/>
+                <element inactive_on_update="false" label="15L" value="15L"/>
+                <element inactive_on_update="false" label="20L" value="20L"/>
+                <element inactive_on_update="false" label="25L" value="25L"/>
+                <element inactive_on_update="false" label="5L" value="5L"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true" label="features" max_length="255" name="features" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="imageUrl" max_length="40" name="imageiurl" type="string"/>
+        <element label="monthlyPerm" max_length="40" name="monthlyperm" type="integer"/>
+        <element attributes="edge_encryption_enabled=true" label="name" max_length="40" name="name" type="string"/>
+        <element label="offer" max_length="40" name="offer" type="integer"/>
+        <element choice="1" label="policyAmount" max_length="40" name="policyamount" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="1Year@10L" value="19085"/>
+                <element inactive_on_update="false" label="1Year@15L" value="1Year@15L"/>
+                <element inactive_on_update="false" label="1Year@5L" value="1Year@5L"/>
+            </choice>
+        </element>
+        <element label="policyDuration" max_length="40" name="policyduration" type="integer"/>
+    </element>
+</database>

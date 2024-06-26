@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="20d91bfc47b006100f7fb70d416d43e8" label="OTPTable" max_length="40" name="x_rptp_insureme_otptable" type="collection">
+        <element label="Application_Number" max_length="40" name="application_number" type="string"/>
+        <element label="email" max_length="100" name="email" type="email"/>
+        <element label="OTP" max_length="40" name="otp" type="string"/>
+        <element label="Policy_Number" max_length="40" name="policy_number" type="string"/>
+    </element>
+</database>

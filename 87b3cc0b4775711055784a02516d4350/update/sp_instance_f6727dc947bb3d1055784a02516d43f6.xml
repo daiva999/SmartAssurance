@@ -1,31 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
     <sp_instance action="INSERT_OR_UPDATE">
-<active>true</active>
-<class_name/>
-<color>default</color>
-<css/>
-<glyph/>
-<id/>
-<order>1</order>
-<roles/>
-<short_description/>
-<size>md</size>
-<sp_column display_value="1">1c72b9c947bb3d1055784a02516d439f</sp_column>
-<sp_widget display_value="VS code travel insurance">c4bd1db393673910acdc3f484dba1062</sp_widget>
-<sys_class_name>sp_instance</sys_class_name>
-<sys_created_by>madhurya.jagadeesh</sys_created_by>
-<sys_created_on>2024-01-16 05:06:05</sys_created_on>
-<sys_id>f6727dc947bb3d1055784a02516d43f6</sys_id>
-<sys_mod_count>0</sys_mod_count>
-<sys_name/>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sp_instance_f6727dc947bb3d1055784a02516d43f6</sys_update_name>
-<sys_updated_by>madhurya.jagadeesh</sys_updated_by>
-<sys_updated_on>2024-01-16 05:06:05</sys_updated_on>
-<title/>
-<url/>
-<widget_parameters/>
-</sp_instance>
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="">1c72b9c947bb3d1055784a02516d439f</sp_column>
+        <sp_widget display_value="VS code travel insurance">c4bd1db393673910acdc3f484dba1062</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>madhurya.jagadeesh</sys_created_by>
+        <sys_created_on>2024-01-16 05:06:05</sys_created_on>
+        <sys_id>f6727dc947bb3d1055784a02516d43f6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_instance_f6727dc947bb3d1055784a02516d43f6</sys_update_name>
+        <sys_updated_by>madhurya.jagadeesh</sys_updated_by>
+        <sys_updated_on>2024-01-16 05:06:05</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=f6727dc947bb3d1055784a02516d43f6"/>
 </record_update>

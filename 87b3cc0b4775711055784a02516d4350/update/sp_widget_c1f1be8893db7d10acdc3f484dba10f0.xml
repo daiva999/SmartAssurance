@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-<category>custom</category>
-<client_script><![CDATA[api.controller = function ($scope, spModal) {
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope, spModal) {
 	var c = this;
 
 	function toggleCheckbox() {
@@ -220,8 +220,8 @@
 
 
 	*/]]></client_script>
-<controller_as>c</controller_as>
-<css>.inImg{
+        <controller_as>c</controller_as>
+        <css>.inImg{
   height: 20px;
   width: 25px;
 }
@@ -388,22 +388,22 @@ input:checked + .slider:before {
   float: left; 
 }
 </css>
-<data_table>sp_instance_table</data_table>
-<demo_data/>
-<description/>
-<docs display_value=""/>
-<field_list>table,filter,title</field_list>
-<has_preview>false</has_preview>
-<id>product_list</id>
-<internal>false</internal>
-<link><![CDATA[function link(scope, element, attrs, controller) {
+        <data_table>sp_instance_table</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>table,filter,title</field_list>
+        <has_preview>false</has_preview>
+        <id>product_list</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-<name>Product List</name>
-<option_schema/>
-<public>false</public>
-<roles/>
-<script><![CDATA[(function () {
+        <name>Product List</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function () {
 	data.arr = [];
 	data.table = $sp.getValue("table");
 	data.field_list = $sp.getValue('field_list');
@@ -494,20 +494,20 @@ input:checked + .slider:before {
 		}
 	*/
 ]]></script>
-<servicenow>false</servicenow>
-<sys_class_name>sp_widget</sys_class_name>
-<sys_created_by>admin</sys_created_by>
-<sys_created_on>2023-12-19 10:38:31</sys_created_on>
-<sys_id>c1f1be8893db7d10acdc3f484dba10f0</sys_id>
-<sys_mod_count>193</sys_mod_count>
-<sys_name>Product List</sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sp_widget_c1f1be8893db7d10acdc3f484dba10f0</sys_update_name>
-<sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2024-01-10 06:45:56</sys_updated_on>
-<template><![CDATA[
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-19 10:38:31</sys_created_on>
+        <sys_id>c1f1be8893db7d10acdc3f484dba10f0</sys_id>
+        <sys_mod_count>193</sys_mod_count>
+        <sys_name>Product List</sys_name>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_c1f1be8893db7d10acdc3f484dba10f0</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-10 06:45:56</sys_updated_on>
+        <template><![CDATA[
 <div>
   <div class="headDiv">
     <div admin-back-button></div>
@@ -605,5 +605,5 @@ input:checked + .slider:before {
   <admin-pagination></admin-pagination>
 </div>
 ]]></template>
-</sp_widget>
+    </sp_widget>
 </record_update>

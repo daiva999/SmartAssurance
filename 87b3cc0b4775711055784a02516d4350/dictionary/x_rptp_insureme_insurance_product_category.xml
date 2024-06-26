@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="b95f1bf447f006100f7fb70d416d43be" label="Insurance Product Category" max_length="40" name="x_rptp_insureme_insurance_product_category" type="collection">
+        <element label="Active" max_length="40" name="active" type="boolean"/>
+        <element label="Category Code" mandatory="true" max_length="40" name="category_code" type="string"/>
+        <element label="Category Image" max_length="40" name="category_image" type="user_image"/>
+        <element display="true" label="Category Name" mandatory="true" max_length="40" name="category_name" type="string"/>
+        <element default="javascript:getNextObjNumberPadded();" dynamic_default_value="fdcb83a85f220100a9ad2572f2b4773c" label="Number" max_length="40" name="number" type="string" use_dynamic_default="true"/>
+        <element label="Short Description" max_length="500" name="short_description" type="string"/>
+        <element default="javascript:current.getTableName();" dynamic_default_value="7e31e41947233d5055784a02516d4316" label="Class" max_length="80" name="sys_class_name" type="sys_class_name" use_dynamic_default="true"/>
+        <element label="New File Attachment" max_length="40" name="u_file_attachment_1" type="file_attachment"/>
+        <index name="index">
+            <element name="sys_class_name"/>
+        </index>
+    </element>
+</database>

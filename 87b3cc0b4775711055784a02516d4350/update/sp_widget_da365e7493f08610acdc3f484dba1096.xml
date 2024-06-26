@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-<category>custom</category>
-<client_script><![CDATA[api.controller=function() {
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {
   /* widget controller */
   var c = this;
 };]]></client_script>
-<controller_as>c</controller_as>
-<css>.navbar {
+        <controller_as>c</controller_as>
+        <css>.navbar {
   background-color: white;
 }
 
@@ -61,40 +61,40 @@
   background-color: white;
 }
 </css>
-<data_table>sp_instance</data_table>
-<demo_data/>
-<description/>
-<docs display_value=""/>
-<field_list/>
-<has_preview>true</has_preview>
-<id/>
-<internal>false</internal>
-<link><![CDATA[function link(scope, element, attrs, controller) {
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-<name>IC</name>
-<option_schema/>
-<public>false</public>
-<roles/>
-<script><![CDATA[(function() {
+        <name>IC</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
   /* populate the 'data' object */
   /* e.g., data.table = $sp.getValue('table'); */
 
 })();]]></script>
-<servicenow>false</servicenow>
-<sys_class_name>sp_widget</sys_class_name>
-<sys_created_by>Ajmal.akram</sys_created_by>
-<sys_created_on>2024-03-05 06:06:42</sys_created_on>
-<sys_id>da365e7493f08610acdc3f484dba1096</sys_id>
-<sys_mod_count>25</sys_mod_count>
-<sys_name>IC</sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sp_widget_da365e7493f08610acdc3f484dba1096</sys_update_name>
-<sys_updated_by>Ajmal.akram</sys_updated_by>
-<sys_updated_on>2024-03-06 06:41:24</sys_updated_on>
-<template><![CDATA[<div>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>Ajmal.akram</sys_created_by>
+        <sys_created_on>2024-03-05 06:06:42</sys_created_on>
+        <sys_id>da365e7493f08610acdc3f484dba1096</sys_id>
+        <sys_mod_count>25</sys_mod_count>
+        <sys_name>IC</sys_name>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_da365e7493f08610acdc3f484dba1096</sys_update_name>
+        <sys_updated_by>Ajmal.akram</sys_updated_by>
+        <sys_updated_on>2024-03-06 06:41:24</sys_updated_on>
+        <template><![CDATA[<div>
   <nav class="navbar">
     <ul class="nav-links">
       <li>
@@ -158,5 +158,5 @@
   </nav>
 </div>
 ]]></template>
-</sp_widget>
+    </sp_widget>
 </record_update>

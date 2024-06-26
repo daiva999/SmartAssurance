@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="be3263f847f006100f7fb70d416d430a" label="Insureme Premium Data" max_length="40" name="x_rptp_insureme_premium_data" type="collection">
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=category Code" label="category Code" max_length="40" name="u_category_code" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=cost" label="cost" max_length="40" name="u_cost" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=currency" label="currency" max_length="40" name="u_currency" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Max Age" label="Max Age" max_length="40" name="u_max_age" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Max Day" label="Max Day" max_length="40" name="u_max_day" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Min Age" label="Min Age" max_length="40" name="u_min_age" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Min Day" label="Min Day" max_length="40" name="u_min_day" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=product Code" label="product Code" max_length="40" name="u_product_code" type="string"/>
+    </element>
+</database>

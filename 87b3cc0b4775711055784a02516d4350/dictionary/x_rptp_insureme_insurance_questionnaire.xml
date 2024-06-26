@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="f69a573047f006100f7fb70d416d43de" label="Insurance Questionnaire" max_length="40" name="x_rptp_insureme_insurance_questionnaire" type="collection">
+        <element choice="3" label="Field_1" max_length="40" name="field1" type="boolean">
+            <choice/>
+        </element>
+        <element choice="3" label="Field 2" max_length="40" name="field2" type="boolean">
+            <choice/>
+        </element>
+        <element choice="3" label="Field 3" max_length="40" name="field3" type="boolean">
+            <choice/>
+        </element>
+    </element>
+</database>

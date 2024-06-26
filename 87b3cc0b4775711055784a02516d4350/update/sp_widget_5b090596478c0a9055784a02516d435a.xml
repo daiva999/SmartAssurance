@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-<category>custom</category>
-<client_script><![CDATA[function loginCtrl($scope, $http, $window, $location, glideUserSession, glideSystemProperties, spUtil) {
+        <category>custom</category>
+        <client_script><![CDATA[function loginCtrl($scope, $http, $window, $location, glideUserSession, glideSystemProperties, spUtil) {
 
 	var c = this;
 	c.remember_me = c.data.forgetMe ? false : c.data.rememberMeDefault;
@@ -136,8 +136,8 @@
 		btnDescription.textContent = (isPasswordType)? '${Password shown}' : '${Password hidden}';
 	}
 }]]></client_script>
-<controller_as>c</controller_as>
-<css>.sp-login-widget { 
+        <controller_as>c</controller_as>
+        <css>.sp-login-widget { 
   
   .panel-body {
     padding: 15px 15px 10px;
@@ -387,22 +387,22 @@ button.cert, a.idp {
       display: none;
   }
 }</css>
-<data_table>sp_instance</data_table>
-<demo_data/>
-<description/>
-<docs display_value=""/>
-<field_list/>
-<has_preview>true</has_preview>
-<id/>
-<internal>false</internal>
-<link><![CDATA[function link(scope, element, attrs, controller) {
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-<name>demo10</name>
-<option_schema/>
-<public>true</public>
-<roles/>
-<script><![CDATA[(function() {
+        <name>demo10</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
     options.show_panel = options.show_panel == "true" || options.show_panel == true;
 
     if (input && input.action === "multi_factor_auth_setup") {
@@ -501,20 +501,20 @@ button.cert, a.idp {
     if (isSessionAccessReduced && !isSessionAccessMessageShown)
         SNC.SessionAccessUtil.showUserInfoMessageIfAccessReduced();
 })();]]></script>
-<servicenow>false</servicenow>
-<sys_class_name>sp_widget</sys_class_name>
-<sys_created_by>pooja.jayaram</sys_created_by>
-<sys_created_on>2024-02-01 09:34:01</sys_created_on>
-<sys_id>5b090596478c0a9055784a02516d435a</sys_id>
-<sys_mod_count>3</sys_mod_count>
-<sys_name>demo10</sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sp_widget_5b090596478c0a9055784a02516d435a</sys_update_name>
-<sys_updated_by>pooja.jayaram</sys_updated_by>
-<sys_updated_on>2024-02-01 10:54:51</sys_updated_on>
-<template><![CDATA[<div ng-if="!data.is_logged_in" class="sp-login-widget" ng-class="::(c.options.use_advanced == 'true' ? 'advanced' : '')">
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>pooja.jayaram</sys_created_by>
+        <sys_created_on>2024-02-01 09:34:01</sys_created_on>
+        <sys_id>5b090596478c0a9055784a02516d435a</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>demo10</sys_name>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_5b090596478c0a9055784a02516d435a</sys_update_name>
+        <sys_updated_by>pooja.jayaram</sys_updated_by>
+        <sys_updated_on>2024-02-01 10:54:51</sys_updated_on>
+        <template><![CDATA[<div ng-if="!data.is_logged_in" class="sp-login-widget" ng-class="::(c.options.use_advanced == 'true' ? 'advanced' : '')">
   <form ng-if="!c.externalLoginMode" class="form-signin" ng-submit="c.login(c.username, c.password)" method="post">
 		<div ng-class="::{'panel panel-default': c.options.show_panel}">
 			<div ng-if="::c.options.show_panel" class="panel-heading padder-v">	      
@@ -623,5 +623,5 @@ button.cert, a.idp {
     <a ng-href="/{{::c.data.url_suffix}}?id=sn_user_registration&sys_id={{::c.data.self_registration_record_producer}}">{{::c.data.self_registration_label}}</a>
   </div>
 </div>]]></template>
-</sp_widget>
+    </sp_widget>
 </record_update>

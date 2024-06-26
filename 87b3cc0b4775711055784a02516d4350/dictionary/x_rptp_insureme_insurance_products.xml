@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="use_document_viewer=true" db_object_id="531b977047f006100f7fb70d416d438c" label="Insurance Products" max_length="40" name="x_rptp_insureme_insurance_products" type="collection">
+        <element label="Active" max_length="40" name="active" type="boolean"/>
+        <element label="Category code" max_length="40" name="category_code" type="string"/>
+        <element label="Currency" max_length="40" name="currency" type="string"/>
+        <element label="Insurer_code" max_length="40" name="insurer" type="string"/>
+        <element label="Insurer Name" max_length="40" name="insurer_name" type="string"/>
+        <element label="Product Image" max_length="40" name="product_image" type="user_image"/>
+        <element label="Product Offer" max_length="10" name="product_offer" type="string"/>
+        <element label="Product Code" max_length="40" name="prod_code" type="string"/>
+        <element label="Product Description" max_length="1000" name="prod_desc" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Product Image URL" max_length="1024" name="prod_image" type="url"/>
+        <element display="true" label="Product Name" max_length="40" name="prod_name" type="string"/>
+        <element label="Sum" max_length="40" name="sum" type="string"/>
+        <element attributes="encode_utf8=false" label="Template" max_length="32" name="template" reference="x_rptp_pdf_gen_api_document_template" type="reference"/>
+        <element label="IsActive" max_length="40" name="u_boolean_1" type="boolean"/>
+        <index name="index">
+            <element name="template"/>
+        </index>
+    </element>
+</database>

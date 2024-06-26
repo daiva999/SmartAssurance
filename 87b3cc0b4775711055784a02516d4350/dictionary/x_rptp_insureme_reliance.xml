@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="6afc133447f006100f7fb70d416d4393" label="Reliance_travel_Data" max_length="40" name="x_rptp_insureme_reliance" type="collection">
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=benefits" label="benefits" max_length="84" name="u_benefits" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=metainfo" label="metainfo" max_length="40" name="u_metainfo" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=names" label="names" max_length="40" name="u_names" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=value" label="value" max_length="40" name="u_value" type="string"/>
+    </element>
+</database>

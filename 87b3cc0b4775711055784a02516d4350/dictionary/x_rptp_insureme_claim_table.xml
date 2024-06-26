@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="ae4213b847704210d6dff7f0516d4311" label="Claim table" max_length="40" name="x_rptp_insureme_claim_table" type="collection">
+        <element label="Amount Claim" max_length="40" name="amount_claim" type="integer"/>
+        <element label="Policy Number" max_length="32" name="policy_number" reference="x_rptp_insureme_payment_details" type="reference"/>
+        <element choice="3" default="1" label="Status" max_length="10" name="status" type="string">
+            <choice/>
+        </element>
+        <element label="Sum insured" max_length="40" name="sum_insured" type="string"/>
+        <index name="index">
+            <element name="policy_number"/>
+        </index>
+    </element>
+</database>

@@ -1,80 +1,80 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sysevent_email_action">
     <sysevent_email_action action="INSERT_OR_UPDATE">
-<action_insert>false</action_insert>
-<action_update>false</action_update>
-<active>true</active>
-<advanced_condition/>
-<affected_field_on_event/>
-<category display_value="Uncategorized" name="Uncategorized">c97d83137f4432005f58108c3ffa917a</category>
-<collection>x_rptp_insureme_payment_details</collection>
-<condition table="x_rptp_insureme_payment_details"/>
-<content_type>text/html</content_type>
-<default_interval display_value=""/>
-<description/>
-<digest_from/>
-<digest_html/>
-<digest_reply_to/>
-<digest_separator_html><![CDATA[<p>&nbsp;</p>
+        <action_insert>false</action_insert>
+        <action_update>false</action_update>
+        <active>true</active>
+        <advanced_condition/>
+        <affected_field_on_event/>
+        <category display_value="Uncategorized" name="Uncategorized">c97d83137f4432005f58108c3ffa917a</category>
+        <collection>x_rptp_insureme_payment_details</collection>
+        <condition/>
+        <content_type>text/html</content_type>
+        <default_interval/>
+        <description/>
+        <digest_from/>
+        <digest_html/>
+        <digest_reply_to/>
+        <digest_separator_html><![CDATA[<p>&nbsp;</p>
 <hr />
 <p>&nbsp;</p>]]></digest_separator_html>
-<digest_separator_text><![CDATA[\n--------------------------------------------------------------------------------\n]]></digest_separator_text>
-<digest_subject/>
-<digest_template display_value=""/>
-<digest_text/>
-<digestable>false</digestable>
-<enable_dynamic_translation>false</enable_dynamic_translation>
-<event_name>x_rptp_insureme.payment_invoice_details</event_name>
-<event_parm_1>true</event_parm_1>
-<event_parm_2>true</event_parm_2>
-<exclude_delegates>false</exclude_delegates>
-<force_delivery>false</force_delivery>
-<from/>
-<generation_type>event</generation_type>
-<importance/>
-<include_attachments>true</include_attachments>
-<item>event.parm1</item>
-<item_table/>
-<mandatory>false</mandatory>
-<message/>
-<message_html><![CDATA[<p>${mail_script:insurance_payment_invoice}&nbsp;</p>
+        <digest_separator_text><![CDATA[\n--------------------------------------------------------------------------------\n]]></digest_separator_text>
+        <digest_subject/>
+        <digest_template/>
+        <digest_text/>
+        <digestable>false</digestable>
+        <enable_dynamic_translation>false</enable_dynamic_translation>
+        <event_name>x_rptp_insureme.payment_invoice_details</event_name>
+        <event_parm_1>true</event_parm_1>
+        <event_parm_2>true</event_parm_2>
+        <exclude_delegates>false</exclude_delegates>
+        <force_delivery>false</force_delivery>
+        <from/>
+        <generation_type>event</generation_type>
+        <importance/>
+        <include_attachments>true</include_attachments>
+        <item>event.parm1</item>
+        <item_table/>
+        <mandatory>false</mandatory>
+        <message/>
+        <message_html><![CDATA[<p>${mail_script:insurance_payment_invoice}&nbsp;</p>
 <p>Hi ${primary_user},</p>
 <p>Please find the Insurance Details attached.</p>
 <p>&nbsp;</p>
 <p>Thanks</p>
 <p>Regards,</p>]]></message_html>
-<message_list/>
-<message_text/>
-<name>Payment Invoice Details PDF</name>
-<omit_watermark>false</omit_watermark>
-<order>100</order>
-<push_message_only>false</push_message_only>
-<recipient_fields>primary_email</recipient_fields>
-<recipient_groups/>
-<recipient_users/>
-<reply_to/>
-<send_self>false</send_self>
-<sms_alternate/>
-<style display_value=""/>
-<subject>VFS Global Policy Invoice Detials</subject>
-<subscribable>false</subscribable>
-<sys_class_name>sysevent_email_action</sys_class_name>
-<sys_created_by>balakrishna</sys_created_by>
-<sys_created_on>2024-02-13 11:50:19</sys_created_on>
-<sys_domain>global</sys_domain>
-<sys_domain_path>/</sys_domain_path>
-<sys_id>6a5bdf0a93940650acdc3f484dba102c</sys_id>
-<sys_mod_count>8</sys_mod_count>
-<sys_name>Payment Invoice Details PDF</sys_name>
-<sys_overrides display_value=""/>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sysevent_email_action_6a5bdf0a93940650acdc3f484dba102c</sys_update_name>
-<sys_updated_by>rushith</sys_updated_by>
-<sys_updated_on>2024-02-21 13:39:01</sys_updated_on>
-<sys_version>2</sys_version>
-<template display_value=""/>
-<type>email</type>
-<weight>0</weight>
-</sysevent_email_action>
+        <message_list/>
+        <message_text/>
+        <name>Payment Invoice Details PDF</name>
+        <omit_watermark>false</omit_watermark>
+        <order>100</order>
+        <push_message_only>false</push_message_only>
+        <recipient_fields>primary_email</recipient_fields>
+        <recipient_groups/>
+        <recipient_users/>
+        <reply_to/>
+        <send_self>false</send_self>
+        <sms_alternate/>
+        <style/>
+        <subject>VFS Global Policy Invoice Detials</subject>
+        <subscribable>false</subscribable>
+        <sys_class_name>sysevent_email_action</sys_class_name>
+        <sys_created_by>balakrishna</sys_created_by>
+        <sys_created_on>2024-02-13 11:50:19</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>6a5bdf0a93940650acdc3f484dba102c</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>Payment Invoice Details PDF</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sysevent_email_action_6a5bdf0a93940650acdc3f484dba102c</sys_update_name>
+        <sys_updated_by>rushith</sys_updated_by>
+        <sys_updated_on>2024-02-21 13:39:01</sys_updated_on>
+        <sys_version>2</sys_version>
+        <template/>
+        <type>email</type>
+        <weight>0</weight>
+    </sysevent_email_action>
 </record_update>

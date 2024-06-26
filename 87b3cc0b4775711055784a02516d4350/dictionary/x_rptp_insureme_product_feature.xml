@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="823a933047f006100f7fb70d416d43a3" label="Product Feature" max_length="40" name="x_rptp_insureme_product_feature" type="collection">
+        <element label="Priority" max_length="40" name="priority" type="string"/>
+        <element default="true" label="Active" max_length="40" name="u_active" type="boolean"/>
+        <element label="Name" max_length="50" name="u_name" type="string"/>
+        <element label="priority" max_length="40" name="u_priority_type" type="integer"/>
+        <element attributes="encode_utf8=false" label="Product Type" max_length="32" name="u_product_type" reference="x_rptp_insureme_insurance_products" type="reference"/>
+        <index name="index">
+            <element name="u_product_type"/>
+        </index>
+    </element>
+</database>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="907d9f3447f006100f7fb70d416d43a7" label="brochuresDetails" max_length="40" name="x_rptp_insureme_brochuresdetails" type="collection">
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=benefits" label="benefits" max_length="40" name="u_benefits" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Deductibles (in US$)" label="Deductibles (in US$)" max_length="52" name="u_deductibles__in_us__" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=names" label="names" max_length="40" name="u_names" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Reliance Family Standard (in US$)" label="Reliance Family Standard (in US$)" max_length="40" name="u_reliance_fam_ndard__in_us__" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Reliance Family Gold (in US$)" label="Reliance Family Gold (in US$)" max_length="40" name="u_reliance_fam__gold__in_us__" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Reliance Gold (in US$)" label="Reliance Gold (in US$)" max_length="40" name="u_reliance_gold__in_us__" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Reliance Platinum (in US$)" label="Reliance Platinum (in US$)" max_length="40" name="u_reliance_platinum__in_us__" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Reliance Silver (in US$)" label="Reliance Silver (in US$)" max_length="40" name="u_reliance_silver__in_us__" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Reliance Standard (in US$)" label="Reliance Standard (in US$)" max_length="40" name="u_reliance_standard__in_us__" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=value" label="value" max_length="40" name="u_value" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=What is covered" label="What is covered" max_length="84" name="u_what_is_covered" type="string"/>
+    </element>
+</database>

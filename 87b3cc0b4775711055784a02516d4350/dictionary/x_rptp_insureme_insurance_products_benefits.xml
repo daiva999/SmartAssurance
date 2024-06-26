@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="4f9d537447f006100f7fb70d416d4360" label="Insurance Products Benefits" max_length="40" name="x_rptp_insureme_insurance_products_benefits" type="collection">
+        <element display="true" label="Category code" max_length="1000" name="category_code" type="string"/>
+        <element label="Currency" max_length="40" name="currency" type="string"/>
+        <element label="Insurer" max_length="10000" name="insurer" type="string"/>
+        <element label="metaInfo" max_length="10000" name="metainfo" type="string"/>
+        <element label="Name" max_length="100000" name="name" type="string"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Priority" max_length="40" name="priority" type="integer"/>
+        <element label="Product code" max_length="10000" name="product_code" type="string"/>
+        <element default="javascript:current.getTableName();" dynamic_default_value="7e31e41947233d5055784a02516d4316" label="Class" max_length="80" name="sys_class_name" type="sys_class_name" use_dynamic_default="true"/>
+        <element attributes="encode_utf8=false" label="Product Feature" max_length="32" name="u_product_feature" reference="x_rptp_insureme_product_feature" type="reference"/>
+        <element attributes="encode_utf8=false" label="Product Type" max_length="32" name="u_prod_type" reference="x_rptp_insureme_insurance_products" type="reference"/>
+        <element label="Value" max_length="10000" name="value" type="string"/>
+        <index name="index">
+            <element name="sys_class_name"/>
+        </index>
+        <index name="index2">
+            <element name="u_prod_type"/>
+        </index>
+        <index name="index3">
+            <element name="u_product_feature"/>
+        </index>
+    </element>
+</database>

@@ -52,11 +52,10 @@
         <sys_class_name>sys_dictionary</sys_class_name>
         <sys_created_by>chiranjit.behera</sys_created_by>
         <sys_created_on>2024-02-14 05:54:12</sys_created_on>
-        <sys_id>27331b16939c4650acdc3f484dba1091</sys_id>
         <sys_name>Primary Username</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sys_dictionary_x_rptp_insureme_payment_details_primary_user</sys_update_name>
         <sys_updated_by>chiranjit.behera</sys_updated_by>
         <sys_updated_on>2024-02-14 05:54:12</sys_updated_on>

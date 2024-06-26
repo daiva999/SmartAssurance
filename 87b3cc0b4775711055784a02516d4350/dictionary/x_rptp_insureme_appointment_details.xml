@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="b13d170c47900a1055784a02516d4340" extends="task" label="Appointment Details" max_length="40" name="x_rptp_insureme_appointment_details" type="collection">
+        <element label="Applicant name" max_length="40" name="applicant_name" type="string"/>
+        <element choice="1" label="Choose your appointment category" max_length="40" name="choose_your_appointment_category" type="string">
+            <choice>
+                <element inactive_on_update="false" label="National Visa (stay of more than 90 days): Employment" sequence="1" value="1"/>
+                <element inactive_on_update="false" label="National Visa (stay of more than 90 days): Family Reunion" sequence="2" value="2"/>
+                <element inactive_on_update="false" label="National Visa (stay of more than 90 days): Guest Scientist / Researcher" sequence="3" value="3"/>
+                <element inactive_on_update="false" label="National Visa (stay of more than 90 days): Student Visa" sequence="4" value="4"/>
+                <element inactive_on_update="false" label="Schengen Visa (stay of max. 90 days or less)" sequence="5" value="5"/>
+            </choice>
+        </element>
+        <element choice="1" label="Choose your sub-category" max_length="40" name="choose_your_sub_category" type="string">
+            <choice>
+                <element inactive_on_update="false" label="Culture Sport Religious" sequence="1" value="1"/>
+                <element inactive_on_update="false" label="Health" sequence="2" value="2"/>
+                <element inactive_on_update="false" label="Seamen" sequence="3" value="3"/>
+                <element inactive_on_update="false" label="Tourism" sequence="4" value="4"/>
+            </choice>
+        </element>
+        <element choice="1" label="Choose your Visa Application Centre" max_length="40" name="choose_your_visa_application_centre" type="string">
+            <choice>
+                <element inactive_on_update="false" label="Ahmedabad - Visa Application Centre" sequence="1" value="1"/>
+                <element inactive_on_update="false" label="Bangalore - Consulate General Of Germany" sequence="2" value="2"/>
+                <element inactive_on_update="false" label="Bangalore - Visa Application Centre" sequence="3" value="3"/>
+                <element inactive_on_update="false" label="Cochin - Visa Application Centre" sequence="4" value="4"/>
+            </choice>
+        </element>
+        <element label="Contact" max_length="40" name="contact" type="string"/>
+        <element label="Contact No" max_length="40" name="contact_no" type="phone_number_e164"/>
+        <element label="Date" max_length="40" name="date" type="glide_date"/>
+        <element label="D.O.B" max_length="40" name="d_o_b" type="glide_date"/>
+        <element label="Email" max_length="40" name="email" type="string"/>
+        <element label="Passport exp.date" max_length="40" name="passport_exp_date" type="glide_date"/>
+        <element label="Passport No" max_length="40" name="passport_no" type="string"/>
+        <element label="Policy NO" max_length="32" name="policy_no" reference="x_rptp_insureme_payment_details" type="reference"/>
+        <element label="Time" max_length="40" name="time" type="string"/>
+        <element label="User" max_length="32" name="user" reference="sys_user" type="reference"/>
+        <element label="Premium Amount" max_length="40" name="u_premium_amount" type="string"/>
+    </element>
+</database>

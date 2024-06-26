@@ -1,25 +1,65 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="db_image">
     <db_image action="INSERT_OR_UPDATE">
-<active>true</active>
-<category/>
-<format>png</format>
-<height>225</height>
-<image>29429218471eb91055784a02516d4367</image>
-<name>x_rptp_insureme.hdfc.png</name>
-<size_bytes>1785</size_bytes>
-<sys_class_name>db_image</sys_class_name>
-<sys_created_by>abhishek.jaiswal</sys_created_by>
-<sys_created_on>2023-10-31 09:53:52</sys_created_on>
-<sys_id>70e19218471eb91055784a02516d4362</sys_id>
-<sys_mod_count>2</sys_mod_count>
-<sys_name>x_rptp_insureme.hdfc.png</sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>db_image_70e19218471eb91055784a02516d4362</sys_update_name>
-<sys_updated_by>abhishek.jaiswal</sys_updated_by>
-<sys_updated_on>2023-10-31 09:55:23</sys_updated_on>
-<thumbnail/>
-<width>225</width>
-</db_image>
+        <active>true</active>
+        <category/>
+        <format>png</format>
+        <height>225</height>
+        <image>29429218471eb91055784a02516d4367</image>
+        <name>x_rptp_insureme.hdfc.png</name>
+        <size_bytes>1785</size_bytes>
+        <sys_class_name>db_image</sys_class_name>
+        <sys_created_by>abhishek.jaiswal</sys_created_by>
+        <sys_created_on>2023-10-31 09:53:52</sys_created_on>
+        <sys_id>70e19218471eb91055784a02516d4362</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>x_rptp_insureme.hdfc.png</sys_name>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>db_image_70e19218471eb91055784a02516d4362</sys_update_name>
+        <sys_updated_by>abhishek.jaiswal</sys_updated_by>
+        <sys_updated_on>2023-10-31 09:55:23</sys_updated_on>
+        <thumbnail/>
+        <width>225</width>
+    </db_image>
+    <sys_attachment action="INSERT_OR_UPDATE">
+        <average_image_color>#9999cc</average_image_color>
+        <chunk_size_bytes>700000</chunk_size_bytes>
+        <compressed>true</compressed>
+        <content_type>image/png</content_type>
+        <encryption_context/>
+        <file_name>image</file_name>
+        <hash>19a78316bf114dcc65826c418d7bda1a3dcfcd75241d3b63fece9459088bfba2</hash>
+        <image_height>225</image_height>
+        <image_width>225</image_width>
+        <size_bytes>1785</size_bytes>
+        <size_compressed>1753</size_compressed>
+        <state>available</state>
+        <sys_created_by>abhishek.jaiswal</sys_created_by>
+        <sys_created_on>2023-10-31 09:55:22</sys_created_on>
+        <sys_id>29429218471eb91055784a02516d4367</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_updated_by>abhishek.jaiswal</sys_updated_by>
+        <sys_updated_on>2023-10-31 09:55:23</sys_updated_on>
+        <table_name>ZZ_YYdb_image</table_name>
+        <table_sys_id>70e19218471eb91055784a02516d4362</table_sys_id>
+    </sys_attachment>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>H4sIAAAAAAAAAA==</data>
+        <length>16</length>
+        <position>0</position>
+        <sys_attachment display_value="image" sys_id="29429218471eb91055784a02516d4367">29429218471eb91055784a02516d4367</sys_attachment>
+        <sys_created_by>abhishek.jaiswal</sys_created_by>
+        <sys_created_on>2023-10-31 09:55:22</sys_created_on>
+        <sys_id>2942da18471eb91055784a02516d4364</sys_id>
+    </sys_attachment_doc>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>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</data>
+        <length>2324</length>
+        <position>1</position>
+        <sys_attachment display_value="image" sys_id="29429218471eb91055784a02516d4367">29429218471eb91055784a02516d4367</sys_attachment>
+        <sys_created_by>abhishek.jaiswal</sys_created_by>
+        <sys_created_on>2023-10-31 09:55:22</sys_created_on>
+        <sys_id>a942da18471eb91055784a02516d4364</sys_id>
+    </sys_attachment_doc>
 </record_update>

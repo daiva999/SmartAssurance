@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-<category>custom</category>
-<client_script><![CDATA[api.controller = function ($scope) {
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope) {
     var c = this;
     c.data.userInput = {};
 
@@ -37,22 +37,22 @@
     };
 };
 ]]></client_script>
-<controller_as>c</controller_as>
-<css/>
-<data_table>sp_instance</data_table>
-<demo_data/>
-<description/>
-<docs display_value=""/>
-<field_list/>
-<has_preview>true</has_preview>
-<id>product_form</id>
-<internal>false</internal>
-<link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
-<name>Product Form</name>
-<option_schema/>
-<public>false</public>
-<roles/>
-<script><![CDATA[(function () {
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>product_form</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Product Form</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function () {
     data.arr_fields = [];
 
     var gr = new GlideRecord('sys_dictionary');
@@ -153,20 +153,20 @@
 
 
 ]]></script>
-<servicenow>false</servicenow>
-<sys_class_name>sp_widget</sys_class_name>
-<sys_created_by>admin</sys_created_by>
-<sys_created_on>2024-01-10 05:09:46</sys_created_on>
-<sys_id>5ac9becb93e77510acdc3f484dba10f8</sys_id>
-<sys_mod_count>144</sys_mod_count>
-<sys_name>Product Form</sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sp_widget_5ac9becb93e77510acdc3f484dba10f8</sys_update_name>
-<sys_updated_by>harshitha</sys_updated_by>
-<sys_updated_on>2024-01-10 12:06:45</sys_updated_on>
-<template><![CDATA[<div>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-10 05:09:46</sys_created_on>
+        <sys_id>5ac9becb93e77510acdc3f484dba10f8</sys_id>
+        <sys_mod_count>144</sys_mod_count>
+        <sys_name>Product Form</sys_name>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_5ac9becb93e77510acdc3f484dba10f8</sys_update_name>
+        <sys_updated_by>harshitha</sys_updated_by>
+        <sys_updated_on>2024-01-10 12:06:45</sys_updated_on>
+        <template><![CDATA[<div>
   <h2>Product Information Form</h2>
   <form id="productForm">
     
@@ -215,5 +215,5 @@
   {{c.val2}}
 -->
 </div>]]></template>
-</sp_widget>
+    </sp_widget>
 </record_update>

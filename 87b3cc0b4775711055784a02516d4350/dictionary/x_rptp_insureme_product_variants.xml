@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="67ff9ff447f006100f7fb70d416d4334" label="Product Variants" max_length="40" name="x_rptp_insureme_product_variants" type="collection"/>
+</database>

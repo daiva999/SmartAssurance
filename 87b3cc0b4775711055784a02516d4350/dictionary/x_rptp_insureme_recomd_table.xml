@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="ce5b1f3047f006100f7fb70d416d43c4" label="Recomd_table" max_length="40" name="x_rptp_insureme_recomd_table" type="collection">
+        <element label="Age group" max_length="40" name="age_group" type="string"/>
+        <element label="Cancellation policy" max_length="40" name="cancellation_policy" type="string"/>
+        <element label="Cost plan" max_length="40" name="cost_plan" type="string"/>
+        <element label="Coverage" max_length="40" name="coverage" type="string"/>
+        <element label="Discount" max_length="40" name="discount" type="string"/>
+        <element label="Previous claims" max_length="40" name="previous_claims" type="string"/>
+        <element label="Reviews" max_length="40" name="reviews" type="string"/>
+        <element label="Risk factor" max_length="40" name="risk_factor" type="string"/>
+        <element label="Tags" max_length="40" name="tags" type="string"/>
+        <element label="Total purchased" max_length="40" name="total_purchased" type="integer"/>
+    </element>
+</database>

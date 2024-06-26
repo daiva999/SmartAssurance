@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="69cd573447f006100f7fb70d416d438b" label="Insurance" max_length="40" name="x_rptp_insureme_insurance" type="collection">
+        <element label="address" mandatory="true" max_length="50" name="address" type="string"/>
+        <element choice="3" label="Gender" mandatory="true" max_length="20" name="gender" type="choice">
+            <choice/>
+        </element>
+        <element label="Insurance Type" mandatory="true" max_length="30" name="insurance_type" type="string"/>
+        <element label="mobile number" max_length="13" name="mobile_number" type="integer"/>
+        <element label="name" mandatory="true" max_length="30" name="name" type="string"/>
+    </element>
+</database>

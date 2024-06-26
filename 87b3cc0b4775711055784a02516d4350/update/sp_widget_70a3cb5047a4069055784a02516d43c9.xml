@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-<category>custom</category>
-<client_script><![CDATA[api.controller = function ($scope, $element, $window, $location, $rootScope, $timeout, snAttachmentHandler, $http, spUtil, userPreferences, $filter, i18n, $uibModal, spAriaUtil) {
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope, $element, $window, $location, $rootScope, $timeout, snAttachmentHandler, $http, spUtil, userPreferences, $filter, i18n, $uibModal, spAriaUtil) {
 	
 	var c = this;
 	
@@ -50,8 +50,8 @@
 	
 	
 };]]></client_script>
-<controller_as>c</controller_as>
-<css>.goBack {
+        <controller_as>c</controller_as>
+        <css>.goBack {
   position: relative;
   width: 100px;
   height: 40px; 
@@ -137,22 +137,22 @@ div {
     color: red;
 }
 </css>
-<data_table>sp_instance</data_table>
-<demo_data/>
-<description/>
-<docs display_value=""/>
-<field_list/>
-<has_preview>false</has_preview>
-<id/>
-<internal>false</internal>
-<link><![CDATA[function link(scope, element, attrs, controller) {
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-<name>Add Benefits</name>
-<option_schema/>
-<public>true</public>
-<roles/>
-<script><![CDATA[(function(){
+        <name>Add Benefits</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function(){
 	data.prod = [];
 	var prodGr = new GlideRecord('x_rptp_insureme_insurance_products');
 	prodGr.query();
@@ -223,20 +223,20 @@ div {
 	
 
 })();]]></script>
-<servicenow>false</servicenow>
-<sys_class_name>sp_widget</sys_class_name>
-<sys_created_by>akshay</sys_created_by>
-<sys_created_on>2024-02-20 09:52:56</sys_created_on>
-<sys_id>70a3cb5047a4069055784a02516d43c9</sys_id>
-<sys_mod_count>186</sys_mod_count>
-<sys_name>Add Benefits</sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sp_widget_70a3cb5047a4069055784a02516d43c9</sys_update_name>
-<sys_updated_by>akshay</sys_updated_by>
-<sys_updated_on>2024-02-27 09:10:03</sys_updated_on>
-<template><![CDATA[<div>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>akshay</sys_created_by>
+        <sys_created_on>2024-02-20 09:52:56</sys_created_on>
+        <sys_id>70a3cb5047a4069055784a02516d43c9</sys_id>
+        <sys_mod_count>186</sys_mod_count>
+        <sys_name>Add Benefits</sys_name>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_70a3cb5047a4069055784a02516d43c9</sys_update_name>
+        <sys_updated_by>akshay</sys_updated_by>
+        <sys_updated_on>2024-02-27 09:10:03</sys_updated_on>
+        <template><![CDATA[<div>
    <div class="btn btn-primary" ng-click="c.redirection()" style="background-color:#428bca;font-size:25px;padding:2px 20px" >&#8592</div>
   <div admin-back-button class="bt"></div>
   <form name="benefitsForm">
@@ -264,5 +264,5 @@ div {
     <input  id="submit!" type="submit" value="addBenefits" ng-click="c.submit()" />
   </form> 
 </div>]]></template>
-</sp_widget>
+    </sp_widget>
 </record_update>

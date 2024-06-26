@@ -6,9 +6,9 @@
         <sys_id>b10c13f047f006100f7fb70d416d4338</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>x_rptp_insureme_efu_import_set.x_rptp_insureme.efu_benefits_user</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_security_acl display_value="x_rptp_insureme_efu_import_set">350c13f047f006100f7fb70d416d4335</sys_security_acl>
         <sys_update_name>sys_security_acl_role_b10c13f047f006100f7fb70d416d4338</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>

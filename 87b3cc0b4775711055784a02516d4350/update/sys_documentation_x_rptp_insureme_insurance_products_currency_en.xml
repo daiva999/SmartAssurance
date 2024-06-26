@@ -9,17 +9,16 @@
             <name>x_rptp_insureme_insurance_products</name>
             <plural>Currencies</plural>
             <sys_class_name>sys_documentation</sys_class_name>
-            <sys_created_by>akshay</sys_created_by>
-            <sys_created_on>2024-01-31 10:47:49</sys_created_on>
-            <sys_id>368014c24740c69055784a02516d43bf</sys_id>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-03-05 11:38:53</sys_created_on>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>Currency</sys_name>
-            <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+            <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
             <sys_policy/>
-            <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+            <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
             <sys_update_name>sys_documentation_x_rptp_insureme_insurance_products_currency_en</sys_update_name>
-            <sys_updated_by>akshay</sys_updated_by>
-            <sys_updated_on>2024-01-31 10:47:49</sys_updated_on>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-03-05 11:38:53</sys_updated_on>
             <url/>
             <url_target/>
         </sys_documentation>

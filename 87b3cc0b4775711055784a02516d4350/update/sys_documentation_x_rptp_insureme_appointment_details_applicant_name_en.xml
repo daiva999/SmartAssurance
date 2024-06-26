@@ -11,12 +11,11 @@
             <sys_class_name>sys_documentation</sys_class_name>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2024-03-11 05:27:59</sys_created_on>
-            <sys_id>08f64df2473046100f7fb70d416d43ee</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>Applicant name</sys_name>
-            <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+            <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
             <sys_policy/>
-            <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+            <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
             <sys_update_name>sys_documentation_x_rptp_insureme_appointment_details_applicant_name_en</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2024-03-11 05:27:59</sys_updated_on>

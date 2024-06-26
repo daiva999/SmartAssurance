@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="c159973c47b006100f7fb70d416d43d7" label="Insurance Sub-Categories" max_length="40" name="x_rptp_insureme_insurance_sub_categories" type="collection">
+        <element label="Category ID" max_length="32" name="category_id" reference="x_rptp_insureme_insurance_categories" type="reference"/>
+        <element label="ID" max_length="40" name="id" type="string"/>
+        <element label="IsActive" max_length="40" name="isactive" type="boolean"/>
+        <element label="Description" max_length="40" name="sub_category_description" type="string"/>
+        <element label="Image" max_length="1024" name="sub_category_image" type="url"/>
+        <element label="Label" max_length="40" name="sub_category_label" type="string"/>
+        <element label="Name" max_length="40" name="sub_category_name" type="string"/>
+        <index name="index">
+            <element name="category_id"/>
+        </index>
+    </element>
+</database>

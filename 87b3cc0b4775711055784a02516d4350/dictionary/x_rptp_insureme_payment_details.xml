@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="2df997fc47b006100f7fb70d416d4333" label="Payment Details" max_length="40" name="x_rptp_insureme_payment_details" type="collection">
+        <element label="Premium Amount" max_length="40" name="amount" type="string"/>
+        <element attributes="edge_encryption_enabled=true" choice="3" default="1" label="claim status" max_length="40" name="claim_status" type="choice">
+            <choice/>
+        </element>
+        <element attributes="edge_encryption_enabled=true" label="Duration" max_length="40" name="duration" type="string"/>
+        <element label="Failed Response" max_length="4000" name="failed_response" type="string_full_utf8"/>
+        <element attributes="edge_encryption_enabled=true" label="Insurer Code" max_length="40" name="insurer_code" type="string"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Number Of Persons" max_length="40" name="number_of_persons" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Odrer ID" max_length="40" name="odrer_id" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Payment ID" max_length="40" name="payment_id" type="string"/>
+        <element label="Primary Email" max_length="40" name="primary_email" type="string"/>
+        <element label="Primary Username" max_length="40" name="primary_user" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Product Code" max_length="40" name="product_code" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Return Date" max_length="40" name="return_date" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Start Date" max_length="40" name="start_date" type="string"/>
+        <element label="Payment Status" max_length="40" name="status" type="string"/>
+        <element label="Sum Insured" max_length="40" name="sum" type="string"/>
+        <element default="javascript:current.getTableName();" dynamic_default_value="7e31e41947233d5055784a02516d4316" label="Class" max_length="80" name="sys_class_name" type="sys_class_name" use_dynamic_default="true"/>
+        <element attributes="edge_encryption_enabled=true" label="Travel Region" max_length="40" name="travel_region" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Trip Type" max_length="40" name="trip_type" type="string"/>
+        <element label="Users Details" max_length="4000" name="users_details" type="string_full_utf8"/>
+        <element choice="1" label="payment status" max_length="40" name="u_payment_status" type="choice">
+            <choice/>
+        </element>
+        <index name="index">
+            <element name="sys_class_name"/>
+        </index>
+    </element>
+</database>

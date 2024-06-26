@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="choose_your_appointment_category" table="x_rptp_insureme_appointment_details" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>choose_your_appointment_category</element>
+            <name>x_rptp_insureme_appointment_details</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-03-11 05:42:23</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>choose_your_appointment_category</sys_name>
+            <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+            <sys_update_name>sys_choice_x_rptp_insureme_appointment_details_choose_your_appointment_category</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-03-11 05:42:23</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>choose_your_appointment_category</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>National Visa (stay of more than 90 days): Employment</label>
+            <language>en</language>
+            <name>x_rptp_insureme_appointment_details</name>
+            <sequence>1</sequence>
+            <synonyms/>
+            <sys_created_by>Surya.Prathap</sys_created_by>
+            <sys_created_on>2024-02-07 06:59:34</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>Surya.Prathap</sys_updated_by>
+            <sys_updated_on>2024-02-07 06:59:45</sys_updated_on>
+            <value>1</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>choose_your_appointment_category</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>National Visa (stay of more than 90 days): Family Reunion</label>
+            <language>en</language>
+            <name>x_rptp_insureme_appointment_details</name>
+            <sequence>2</sequence>
+            <synonyms/>
+            <sys_created_by>Surya.Prathap</sys_created_by>
+            <sys_created_on>2024-02-07 07:00:04</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>Surya.Prathap</sys_updated_by>
+            <sys_updated_on>2024-02-07 07:00:15</sys_updated_on>
+            <value>2</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>choose_your_appointment_category</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>National Visa (stay of more than 90 days): Guest Scientist / Researcher</label>
+            <language>en</language>
+            <name>x_rptp_insureme_appointment_details</name>
+            <sequence>3</sequence>
+            <synonyms/>
+            <sys_created_by>Surya.Prathap</sys_created_by>
+            <sys_created_on>2024-02-07 07:00:33</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>Surya.Prathap</sys_updated_by>
+            <sys_updated_on>2024-02-07 07:00:41</sys_updated_on>
+            <value>3</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>choose_your_appointment_category</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>National Visa (stay of more than 90 days): Student Visa</label>
+            <language>en</language>
+            <name>x_rptp_insureme_appointment_details</name>
+            <sequence>4</sequence>
+            <synonyms/>
+            <sys_created_by>Surya.Prathap</sys_created_by>
+            <sys_created_on>2024-02-07 07:01:01</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>Surya.Prathap</sys_updated_by>
+            <sys_updated_on>2024-02-07 07:01:55</sys_updated_on>
+            <value>4</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>choose_your_appointment_category</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Schengen Visa (stay of max. 90 days or less)</label>
+            <language>en</language>
+            <name>x_rptp_insureme_appointment_details</name>
+            <sequence>5</sequence>
+            <synonyms/>
+            <sys_created_by>Surya.Prathap</sys_created_by>
+            <sys_created_on>2024-02-07 07:01:45</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>Surya.Prathap</sys_updated_by>
+            <sys_updated_on>2024-02-07 07:02:01</sys_updated_on>
+            <value>5</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>

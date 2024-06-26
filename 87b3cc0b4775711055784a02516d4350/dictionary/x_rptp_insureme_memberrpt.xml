@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="8f9f1bf447f006100f7fb70d416d43c2" label="memberRPT" max_length="40" name="x_rptp_insureme_memberrpt" type="collection">
+        <element label="age" max_length="40" name="age" type="integer"/>
+        <element attributes="edge_encryption_enabled=true" label="name" max_length="100" name="name" type="string"/>
+        <element attributes="edge_encryption_enabled=true" choice="1" label="relation" max_length="40" name="relation" type="choice">
+            <choice/>
+        </element>
+    </element>
+</database>

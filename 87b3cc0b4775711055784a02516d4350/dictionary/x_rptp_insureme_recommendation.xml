@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="2bca1f3047f006100f7fb70d416d4368" label="recommendation" max_length="40" name="x_rptp_insureme_recommendation" type="collection">
+        <element label="Category_code" max_length="32" name="category_code" reference="x_rptp_insureme_insurance_products_benefits" type="reference"/>
+        <element label="Coverage" max_length="40" name="coverage" type="integer"/>
+        <element label="icons" max_length="100" name="icons" type="icon"/>
+        <element label="image" max_length="40" name="image" type="user_image"/>
+        <element label="Insurer" mandatory="true" max_length="32" name="insurer" reference="x_rptp_insureme_insurance_insurer" type="reference"/>
+        <element label="Label" max_length="100" name="label" type="string"/>
+        <element label="No Of Purchase" max_length="40" name="no_of_purchased" type="integer"/>
+        <element label="OrderBy" max_length="40" name="orderby" type="string"/>
+        <element display="true" label="Product_code" max_length="32" name="product_code" reference="x_rptp_insureme_insurance_products" type="reference"/>
+        <element default="javascript:current.getTableName();" dynamic_default_value="7e31e41947233d5055784a02516d4316" label="Class" max_length="80" name="sys_class_name" type="sys_class_name" use_dynamic_default="true"/>
+        <element label="Tags" max_length="40" name="tags" type="string"/>
+        <element label="type" max_length="40" name="type" type="string"/>
+        <index name="index">
+            <element name="category_code"/>
+        </index>
+        <index name="index2">
+            <element name="insurer"/>
+        </index>
+        <index name="index3">
+            <element name="product_code"/>
+        </index>
+        <index name="index4">
+            <element name="sys_class_name"/>
+        </index>
+    </element>
+</database>

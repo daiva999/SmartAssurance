@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="624c13f047f006100f7fb70d416d4360" label="Insurance Products Premium" max_length="40" name="x_rptp_insureme_premium" type="collection">
+        <element label="Age-band" max_length="10000" name="age_band" type="string"/>
+        <element label="Category code" max_length="100" name="category_code" type="string"/>
+        <element label="Cost" max_length="100" name="cost" type="string"/>
+        <element label="Currency" max_length="40" name="currency" type="string"/>
+        <element label="Insurer Code" max_length="40" name="insurer_code" type="string"/>
+        <element label="Max Age" max_length="40" name="max_age" type="integer"/>
+        <element label="Max Days" max_length="40" name="max_days" type="integer"/>
+        <element label="Min Age" max_length="40" name="min_age" type="integer"/>
+        <element label="Min Days" max_length="40" name="min_days" type="integer"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Prod code" max_length="100" name="prod_code" type="string"/>
+        <element attributes="encode_utf8=false" label="Product Type" max_length="32" name="u_prod_type" reference="x_rptp_insureme_insurance_products" type="reference"/>
+        <index name="index">
+            <element name="u_prod_type"/>
+        </index>
+    </element>
+</database>

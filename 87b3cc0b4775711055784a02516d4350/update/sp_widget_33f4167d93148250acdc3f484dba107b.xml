@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-<category>custom</category>
-<client_script><![CDATA[api.controller=function($scope,$rootScope){
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($scope,$rootScope){
 	var c=this;	
 	$scope.arr=[]
 	$rootScope.$on('compareProducts',function(event,data){
@@ -137,8 +137,8 @@ $scope.removeItem = function (index) {
 */
 
 ]]></client_script>
-<controller_as>c</controller_as>
-<css>.scrollable-container {
+        <controller_as>c</controller_as>
+        <css>.scrollable-container {
   overflow-y: auto; 
   //height:500px;
 }
@@ -324,20 +324,20 @@ $scope.removeItem = function (index) {
   .card{
     padding:0px;
   }</css>
-<data_table>sp_instance</data_table>
-<demo_data/>
-<description/>
-<docs display_value=""/>
-<field_list/>
-<has_preview>true</has_preview>
-<id>compare</id>
-<internal>false</internal>
-<link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
-<name>compare</name>
-<option_schema/>
-<public>false</public>
-<roles/>
-<script><![CDATA[(function() {
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>compare</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>compare</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
   /* populate the 'data' object */
   /* e.g., data.table = $sp.getValue('table'); */
 	
@@ -346,20 +346,20 @@ $scope.removeItem = function (index) {
 	})();
 
 ]]></script>
-<servicenow>false</servicenow>
-<sys_class_name>sp_widget</sys_class_name>
-<sys_created_by>nikita</sys_created_by>
-<sys_created_on>2024-02-12 12:03:43</sys_created_on>
-<sys_id>33f4167d93148250acdc3f484dba107b</sys_id>
-<sys_mod_count>1031</sys_mod_count>
-<sys_name>compare</sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sp_widget_33f4167d93148250acdc3f484dba107b</sys_update_name>
-<sys_updated_by>kumar.raja</sys_updated_by>
-<sys_updated_on>2024-03-06 06:31:52</sys_updated_on>
-<template><![CDATA[<div>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>nikita</sys_created_by>
+        <sys_created_on>2024-02-12 12:03:43</sys_created_on>
+        <sys_id>33f4167d93148250acdc3f484dba107b</sys_id>
+        <sys_mod_count>1031</sys_mod_count>
+        <sys_name>compare</sys_name>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_33f4167d93148250acdc3f484dba107b</sys_update_name>
+        <sys_updated_by>kumar.raja</sys_updated_by>
+        <sys_updated_on>2024-03-06 06:31:52</sys_updated_on>
+        <template><![CDATA[<div>
  
   <div class="productsSelectedContainer" ng-show="c.getData.length > 0">
 <div id="productsSelected" ng-controller="c">
@@ -420,5 +420,5 @@ $scope.removeItem = function (index) {
 </div>
   </div>
 ]]></template>
-</sp_widget>
+    </sp_widget>
 </record_update>

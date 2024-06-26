@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="791adffc47b006100f7fb70d416d432c" label="Commission Sales Info" max_length="40" name="x_rptp_insureme_commission_sales_info" type="collection">
+        <element label="Commission" max_length="40" name="commission" type="string"/>
+        <element label="Month" max_length="40" name="month" type="month_of_year"/>
+        <element label="Year" max_length="4" name="year" type="string"/>
+    </element>
+</database>

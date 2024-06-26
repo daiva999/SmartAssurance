@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="4e9ed7b447f006100f7fb70d416d4375" label="ProductSubType" max_length="40" name="x_rptp_insureme_productsubtype" type="collection">
+        <element label="createdDate" max_length="40" name="createddate" type="string"/>
+        <element display="true" label="id" max_length="40" name="id" type="string"/>
+        <element label="isEnabled" max_length="40" name="isenabled" type="string"/>
+        <element label="isIntegrated" max_length="40" name="isintegrated" type="string"/>
+        <element label="isProp" max_length="40" name="isprop" type="boolean"/>
+        <element label="lastModifiedDate" max_length="40" name="lastmodifieddate" type="string"/>
+        <element label="marketStatus" max_length="40" name="marketstatus" type="string"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Prod type ID" max_length="40" name="prod_type_id" reference="x_rptp_insureme_producttype" type="reference"/>
+        <element default="javascript:current.getTableName();" dynamic_default_value="7e31e41947233d5055784a02516d4316" label="Class" max_length="80" name="sys_class_name" type="sys_class_name" use_dynamic_default="true"/>
+        <index name="index">
+            <element name="prod_type_id"/>
+        </index>
+        <index name="index2">
+            <element name="sys_class_name"/>
+        </index>
+    </element>
+</database>

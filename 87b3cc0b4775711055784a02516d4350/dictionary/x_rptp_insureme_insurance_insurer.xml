@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="6a3b937047f006100f7fb70d416d435a" label="Insurance Insurer" max_length="40" name="x_rptp_insureme_insurance_insurer" type="collection">
+        <element label="Description" max_length="40" name="description" type="string"/>
+        <element label="Image" max_length="40" name="image" type="string"/>
+        <element label="Insurer Code" max_length="40" name="insurer_code" type="string"/>
+        <element label="Name" max_length="40" name="name" type="string"/>
+    </element>
+</database>

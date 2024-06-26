@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-<category>custom</category>
-<client_script><![CDATA[api.controller = function ($scope, $rootScope) {
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope, $rootScope) {
 	var c = this;
 
 	//compareButton Code
@@ -212,8 +212,8 @@
 
 
 ]]></client_script>
-<controller_as>c</controller_as>
-<css>#productCardMainContainer{
+        <controller_as>c</controller_as>
+        <css>#productCardMainContainer{
   height:65vh;
   overflow:scroll;
   overflow-x:hidden;
@@ -750,22 +750,22 @@ display: block;
 
 }
 </css>
-<data_table>sp_instance_table</data_table>
-<demo_data/>
-<description/>
-<docs display_value=""/>
-<field_list>table,field_list</field_list>
-<has_preview>true</has_preview>
-<id>insure_product_cards</id>
-<internal>false</internal>
-<link><![CDATA[function link(scope, element, attrs, controller) {
+        <data_table>sp_instance_table</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>table,field_list</field_list>
+        <has_preview>true</has_preview>
+        <id>insure_product_cards</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-<name>Product Cards</name>
-<option_schema/>
-<public>true</public>
-<roles/>
-<script><![CDATA[(function () {
+        <name>Product Cards</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function () {
 	data.user = gs.getUserID();
 	data.userName = gs.getUserName();
 
@@ -981,20 +981,20 @@ display: block;
 
 
 })();]]></script>
-<servicenow>false</servicenow>
-<sys_class_name>sp_widget</sys_class_name>
-<sys_created_by>kumar.raja</sys_created_by>
-<sys_created_on>2024-01-22 09:29:05</sys_created_on>
-<sys_id>03f7a987937f3910acdc3f484dba1081</sys_id>
-<sys_mod_count>1081</sys_mod_count>
-<sys_name>Product Cards</sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sp_widget_03f7a987937f3910acdc3f484dba1081</sys_update_name>
-<sys_updated_by>sachin_hm</sys_updated_by>
-<sys_updated_on>2024-03-05 08:57:10</sys_updated_on>
-<template><![CDATA[<div id="productCardMainContainer">
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>kumar.raja</sys_created_by>
+        <sys_created_on>2024-01-22 09:29:05</sys_created_on>
+        <sys_id>03f7a987937f3910acdc3f484dba1081</sys_id>
+        <sys_mod_count>1081</sys_mod_count>
+        <sys_name>Product Cards</sys_name>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_03f7a987937f3910acdc3f484dba1081</sys_update_name>
+        <sys_updated_by>sachin_hm</sys_updated_by>
+        <sys_updated_on>2024-03-05 08:57:10</sys_updated_on>
+        <template><![CDATA[<div id="productCardMainContainer">
 
   <div ng-repeat="record in tableDetails" >
       <div id="recommendation" ng-if="record.tags.orderby">
@@ -1091,5 +1091,5 @@ display: block;
     </div>
 -->
 ]]></template>
-</sp_widget>
+    </sp_widget>
 </record_update>

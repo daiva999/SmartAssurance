@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="6d3f93f447f006100f7fb70d416d43f5" label="customer" max_length="40" name="x_rptp_insureme_customer" type="collection">
+        <element label="Avatar" max_length="100" name="avatar" type="url"/>
+        <element label="birthdate" max_length="40" name="birthdate" type="string"/>
+        <element label="email" max_length="40" name="email" type="string"/>
+        <element label="password" max_length="40" name="password" type="string"/>
+        <element label="Profile image" max_length="40" name="profile_image" type="user_image"/>
+        <element label="registeredAt" max_length="40" name="registeredat" type="string"/>
+        <element label="Scriptt" max_length="4000" name="scriptt" type="script"/>
+        <element default="javascript:current.getTableName();" dynamic_default_value="7e31e41947233d5055784a02516d4316" label="Class" max_length="80" name="sys_class_name" type="sys_class_name" use_dynamic_default="true"/>
+        <element label="userId" max_length="40" name="userid" type="string"/>
+        <element label="username" max_length="40" name="username" type="string"/>
+        <element label="New HTML" max_length="65536" name="u_html_2" type="html"/>
+        <index name="index">
+            <element name="sys_class_name"/>
+        </index>
+    </element>
+</database>

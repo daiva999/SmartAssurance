@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="e790277847f006100f7fb70d416d439e" label="product_category" max_length="40" name="x_rptp_insureme_product_category" type="collection">
+        <element label="is Active" max_length="40" name="is_active" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Product Cateogry" mandatory="true" max_length="40" name="product_cateogry" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Product Image URL" max_length="40" name="product_image_url" type="string"/>
+        <element default="javascript:current.getTableName();" dynamic_default_value="7e31e41947233d5055784a02516d4316" label="Class" max_length="80" name="sys_class_name" type="sys_class_name" use_dynamic_default="true"/>
+        <index name="index">
+            <element name="sys_class_name"/>
+        </index>
+    </element>
+</database>

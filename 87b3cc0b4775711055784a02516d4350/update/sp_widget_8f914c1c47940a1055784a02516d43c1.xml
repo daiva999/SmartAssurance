@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-<category>custom</category>
-<client_script><![CDATA[api.controller=function($scope) {
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($scope) {
   /* widget controller */
 	var c = this;
 	
 };]]></client_script>
-<controller_as>c</controller_as>
-<css>
+        <controller_as>c</controller_as>
+        <css>
         * {
             margin: 0;
             padding: 0;
@@ -153,22 +153,22 @@
 }
 
 </css>
-<data_table>sp_instance</data_table>
-<demo_data/>
-<description/>
-<docs display_value=""/>
-<field_list/>
-<has_preview>true</has_preview>
-<id>product_compare</id>
-<internal>false</internal>
-<link><![CDATA[function link(scope, element, attrs, controller) {
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>product_compare</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-<name>productCompare</name>
-<option_schema/>
-<public>true</public>
-<roles/>
-<script><![CDATA[(function() {
+        <name>productCompare</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
 	/* populate the 'data' object */
 	var user= gs.getUserID();
 	/* e.g., data.table = $sp.getValue('table'); */
@@ -244,20 +244,20 @@
 	})*/
 
 })();]]></script>
-<servicenow>false</servicenow>
-<sys_class_name>sp_widget</sys_class_name>
-<sys_created_by>akshay</sys_created_by>
-<sys_created_on>2024-02-07 09:30:10</sys_created_on>
-<sys_id>8f914c1c47940a1055784a02516d43c1</sys_id>
-<sys_mod_count>161</sys_mod_count>
-<sys_name>productCompare</sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sp_widget_8f914c1c47940a1055784a02516d43c1</sys_update_name>
-<sys_updated_by>balakrishna</sys_updated_by>
-<sys_updated_on>2024-02-09 05:30:43</sys_updated_on>
-<template><![CDATA[<div>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>akshay</sys_created_by>
+        <sys_created_on>2024-02-07 09:30:10</sys_created_on>
+        <sys_id>8f914c1c47940a1055784a02516d43c1</sys_id>
+        <sys_mod_count>161</sys_mod_count>
+        <sys_name>productCompare</sys_name>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_8f914c1c47940a1055784a02516d43c1</sys_update_name>
+        <sys_updated_by>balakrishna</sys_updated_by>
+        <sys_updated_on>2024-02-09 05:30:43</sys_updated_on>
+        <template><![CDATA[<div>
 
   <div class="body">
 
@@ -304,5 +304,5 @@
 
   </div>
 </div>]]></template>
-</sp_widget>
+    </sp_widget>
 </record_update>

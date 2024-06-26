@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-<category>custom</category>
-<client_script><![CDATA[api.controller=function($rootScope,$scope) {
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($rootScope,$scope) {
 /* widget controller */
 var c = this;
 c.getData=[]
@@ -25,8 +25,8 @@ c.getData.forEach(function(product){
 
 };
 ]]></client_script>
-<controller_as>c</controller_as>
-<css>        * {
+        <controller_as>c</controller_as>
+        <css>        * {
             margin: 0;
             padding: 0;
             font-family: 'Inter',sans-serif;
@@ -209,22 +209,22 @@ c.getData.forEach(function(product){
 
 
 </css>
-<data_table>sp_instance</data_table>
-<demo_data/>
-<description/>
-<docs display_value=""/>
-<field_list/>
-<has_preview>true</has_preview>
-<id/>
-<internal>false</internal>
-<link><![CDATA[function link(scope, element, attrs, controller) {
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-<name>Copy of productComparePopUp</name>
-<option_schema/>
-<public>true</public>
-<roles/>
-<script><![CDATA[(function() {
+        <name>Copy of productComparePopUp</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
 	var user= gs.getUserID();
 	var prd1="";
 	var prd2="";
@@ -323,20 +323,20 @@ if(input && input.value=="true") {
 		data.features.push(str);
 	})*/
 })();]]></script>
-<servicenow>false</servicenow>
-<sys_class_name>sp_widget</sys_class_name>
-<sys_created_by>kumar.raja</sys_created_by>
-<sys_created_on>2024-02-09 16:48:38</sys_created_on>
-<sys_id>8879fffc93580e10acdc3f484dba105b</sys_id>
-<sys_mod_count>0</sys_mod_count>
-<sys_name>Copy of productComparePopUp</sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sp_widget_8879fffc93580e10acdc3f484dba105b</sys_update_name>
-<sys_updated_by>kumar.raja</sys_updated_by>
-<sys_updated_on>2024-02-09 16:48:38</sys_updated_on>
-<template><![CDATA[<div>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>kumar.raja</sys_created_by>
+        <sys_created_on>2024-02-09 16:48:38</sys_created_on>
+        <sys_id>8879fffc93580e10acdc3f484dba105b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Copy of productComparePopUp</sys_name>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_8879fffc93580e10acdc3f484dba105b</sys_update_name>
+        <sys_updated_by>kumar.raja</sys_updated_by>
+        <sys_updated_on>2024-02-09 16:48:38</sys_updated_on>
+        <template><![CDATA[<div>
 
     <div class="productsSelectedContainer">
         <div id="productsSelected" ng-controller="c" style="display: inline-flex;">
@@ -410,5 +410,5 @@ if(input && input.value=="true") {
         </div>
     </div>
 </div>]]></template>
-</sp_widget>
+    </sp_widget>
 </record_update>

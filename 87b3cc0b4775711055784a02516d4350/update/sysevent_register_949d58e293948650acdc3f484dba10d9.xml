@@ -1,25 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysevent_register">
     <sysevent_register action="INSERT_OR_UPDATE">
-<caller_access/>
-<derived_priority>100</derived_priority>
-<description>For Appointment Letter</description>
-<event_name>x_rptp_insureme.appointment_letter</event_name>
-<fired_by>Business rule (whenever a new record is created)</fired_by>
-<priority>100</priority>
-<queue/>
-<suffix>appointment_letter</suffix>
-<sys_class_name>sysevent_register</sys_class_name>
-<sys_created_by>rushith</sys_created_by>
-<sys_created_on>2024-02-14 11:18:21</sys_created_on>
-<sys_id>949d58e293948650acdc3f484dba10d9</sys_id>
-<sys_mod_count>0</sys_mod_count>
-<sys_name>x_rptp_insureme.appointment_letter</sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sysevent_register_949d58e293948650acdc3f484dba10d9</sys_update_name>
-<sys_updated_by>rushith</sys_updated_by>
-<sys_updated_on>2024-02-14 11:18:21</sys_updated_on>
-<table>x_rptp_insureme_appointment_details</table>
-</sysevent_register>
+        <caller_access/>
+        <derived_priority>100</derived_priority>
+        <description>For Appointment Letter</description>
+        <event_name>x_rptp_insureme.appointment_letter</event_name>
+        <fired_by>Business rule (whenever a new record is created)</fired_by>
+        <priority>100</priority>
+        <queue/>
+        <suffix>appointment_letter</suffix>
+        <sys_class_name>sysevent_register</sys_class_name>
+        <sys_created_by>rushith</sys_created_by>
+        <sys_created_on>2024-02-14 11:18:21</sys_created_on>
+        <sys_id>949d58e293948650acdc3f484dba10d9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_rptp_insureme.appointment_letter</sys_name>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sysevent_register_949d58e293948650acdc3f484dba10d9</sys_update_name>
+        <sys_updated_by>rushith</sys_updated_by>
+        <sys_updated_on>2024-02-14 11:18:21</sys_updated_on>
+        <table>x_rptp_insureme_appointment_details</table>
+    </sysevent_register>
 </record_update>

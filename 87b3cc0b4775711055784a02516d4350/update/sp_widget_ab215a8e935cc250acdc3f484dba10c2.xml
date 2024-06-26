@@ -1,47 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-<category>custom</category>
-<client_script><![CDATA[api.controller=function() {
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {
   /* widget controller */
   var c = this;
 };]]></client_script>
-<controller_as>c</controller_as>
-<css/>
-<data_table>sp_instance</data_table>
-<demo_data/>
-<description/>
-<docs display_value=""/>
-<field_list/>
-<has_preview>false</has_preview>
-<id/>
-<internal>false</internal>
-<link><![CDATA[function link(scope, element, attrs, controller) {
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-<name>Test Widget</name>
-<option_schema>[{"displayValue":"Insurance Questions","hint":"Hint","name":"reference","section":"Behavior","label":"Opt","type":"reference","value":"x_rptp_insureme_insurance_questions","ed":{"reference":"x_rptp_insureme_insurance_questions"}}]</option_schema>
-<public>false</public>
-<roles/>
-<script><![CDATA[(function() {
+        <name>Test Widget</name>
+        <option_schema>[{"displayValue":"Insurance Questions","hint":"Hint","name":"reference","section":"Behavior","label":"Opt","type":"reference","value":"x_rptp_insureme_insurance_questions","ed":{"reference":"x_rptp_insureme_insurance_questions"}}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
   /* populate the 'data' object */
   /* e.g., data.table = $sp.getValue('table'); */
 
 })();]]></script>
-<servicenow>false</servicenow>
-<sys_class_name>sp_widget</sys_class_name>
-<sys_created_by>karthik.udaykumar</sys_created_by>
-<sys_created_on>2024-02-13 06:25:41</sys_created_on>
-<sys_id>ab215a8e935cc250acdc3f484dba10c2</sys_id>
-<sys_mod_count>3</sys_mod_count>
-<sys_name>Test Widget</sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sp_widget_ab215a8e935cc250acdc3f484dba10c2</sys_update_name>
-<sys_updated_by>karthik.udaykumar</sys_updated_by>
-<sys_updated_on>2024-02-13 06:30:23</sys_updated_on>
-<template><![CDATA[<div>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>karthik.udaykumar</sys_created_by>
+        <sys_created_on>2024-02-13 06:25:41</sys_created_on>
+        <sys_id>ab215a8e935cc250acdc3f484dba10c2</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Test Widget</sys_name>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_ab215a8e935cc250acdc3f484dba10c2</sys_update_name>
+        <sys_updated_by>karthik.udaykumar</sys_updated_by>
+        <sys_updated_on>2024-02-13 06:30:23</sys_updated_on>
+        <template><![CDATA[<div>
 <!-- your widget template -->
 </div>]]></template>
-</sp_widget>
+    </sp_widget>
 </record_update>

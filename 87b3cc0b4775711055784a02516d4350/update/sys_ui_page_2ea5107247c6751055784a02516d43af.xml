@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
     <sys_ui_page action="INSERT_OR_UPDATE">
-<category>general</category>
-<client_script><![CDATA[var productIdCounter = 0,
+        <category>general</category>
+        <client_script><![CDATA[var productIdCounter = 0,
     selectedProducts = [];
 
 function callSearch(){
@@ -460,10 +460,10 @@ ga.getXMLAnswer(function(response) {
 
 });
 ]]></client_script>
-<description/>
-<direct>false</direct>
-<endpoint>x_rptp_insureme_product_display.do</endpoint>
-<html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_rptp_insureme_product_display.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
   <!-- Define CSS inline within a style tag -->
   <style>
@@ -989,19 +989,19 @@ input[type="range"] {
   <!-- End of HTML content -->
 </j:jelly>
 ]]></html>
-<name>product_display</name>
-<processing_script/>
-<sys_class_name>sys_ui_page</sys_class_name>
-<sys_created_by>srijan.gupta</sys_created_by>
-<sys_created_on>2023-10-26 09:06:34</sys_created_on>
-<sys_id>2ea5107247c6751055784a02516d43af</sys_id>
-<sys_mod_count>543</sys_mod_count>
-<sys_name>product_display</sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sys_ui_page_2ea5107247c6751055784a02516d43af</sys_update_name>
-<sys_updated_by>srijan.gupta</sys_updated_by>
-<sys_updated_on>2023-11-03 08:33:15</sys_updated_on>
-</sys_ui_page>
+        <name>product_display</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>srijan.gupta</sys_created_by>
+        <sys_created_on>2023-10-26 09:06:34</sys_created_on>
+        <sys_id>2ea5107247c6751055784a02516d43af</sys_id>
+        <sys_mod_count>543</sys_mod_count>
+        <sys_name>product_display</sys_name>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sys_ui_page_2ea5107247c6751055784a02516d43af</sys_update_name>
+        <sys_updated_by>srijan.gupta</sys_updated_by>
+        <sys_updated_on>2023-11-03 08:33:15</sys_updated_on>
+    </sys_ui_page>
 </record_update>

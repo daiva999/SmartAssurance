@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="945a933047f006100f7fb70d416d43a7" label="Product Sales" max_length="40" name="x_rptp_insureme_product_sales" type="collection">
+        <element label="Commission Sales" max_length="40" name="u_commission" type="string"/>
+        <element label="Insurance Sales" max_length="40" name="u_insurance" type="string"/>
+        <element attributes="encode_utf8=false" label="Product Name" mandatory="true" max_length="32" name="u_product_name" reference="x_rptp_insureme_insurance_products" type="reference"/>
+        <element label="Purchased Date" max_length="40" name="u_sales_month" type="glide_date"/>
+        <element label="Visa Sales" max_length="40" name="u_visa" type="string"/>
+        <index name="index">
+            <element name="u_product_name"/>
+        </index>
+    </element>
+</database>

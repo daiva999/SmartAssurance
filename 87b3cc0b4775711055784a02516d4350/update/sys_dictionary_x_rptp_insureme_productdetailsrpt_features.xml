@@ -2,15 +2,10 @@
     <sys_dictionary action="INSERT_OR_UPDATE" element="features" table="x_rptp_insureme_productdetailsrpt">
         <active>true</active>
         <array>false</array>
-        <attributes/>
+        <attributes>edge_encryption_enabled=true</attributes>
         <audit>false</audit>
-        <calculation><![CDATA[(function calculatedFieldValue(current) {
-
-	// Add your code here
-	return '';  // return the calculated value
-
-})(current);]]></calculation>
-        <choice/>
+        <calculation/>
+        <choice>0</choice>
         <choice_field/>
         <choice_table/>
         <column_label>features</column_label>
@@ -34,7 +29,7 @@
         <function_field>false</function_field>
         <internal_type display_value="String">string</internal_type>
         <mandatory>false</mandatory>
-        <max_length>40</max_length>
+        <max_length>255</max_length>
         <name>x_rptp_insureme_productdetailsrpt</name>
         <next_element/>
         <primary>false</primary>
@@ -50,16 +45,15 @@
         <spell_check>false</spell_check>
         <staged>false</staged>
         <sys_class_name>sys_dictionary</sys_class_name>
-        <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2024-03-05 05:57:52</sys_created_on>
-        <sys_id>78d2563447bcc2100f7fb70d416d43c9</sys_id>
+        <sys_created_by>abhishek.jaiswal</sys_created_by>
+        <sys_created_on>2023-10-30 05:45:49</sys_created_on>
         <sys_name>features</sys_name>
-        <sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
         <sys_policy/>
-        <sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
         <sys_update_name>sys_dictionary_x_rptp_insureme_productdetailsrpt_features</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-03-05 05:57:52</sys_updated_on>
+        <sys_updated_by>abhishek.jaiswal</sys_updated_by>
+        <sys_updated_on>2023-10-30 05:55:24</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="66eb9fb047f006100f7fb70d416d4346" label="EFU-benefits" max_length="40" name="x_rptp_insureme_efu_import_set" type="collection">
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=currency" label="currency" max_length="40" name="u_currency" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=insurer" label="insurer" max_length="40" name="u_insurer" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=meta" label="meta" max_length="40" name="u_meta" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=name" label="name" max_length="58" name="u_name" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=productCode" label="productCode" max_length="40" name="u_productcode" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=value" label="value" max_length="40" name="u_value" type="string"/>
+    </element>
+</database>

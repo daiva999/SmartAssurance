@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="3fdfdff447f006100f7fb70d416d43a1" label="Product Details" max_length="40" name="x_rptp_insureme_product_details" type="collection">
+        <element label="Cover Amount" max_length="40" name="cover_amount" type="string"/>
+        <element label="Minimum Premium" max_length="10" name="minimum_premium" type="float"/>
+        <element label="Policy Period" max_length="10" name="policy_period" type="integer"/>
+        <element label="Product Description" max_length="100" name="product_description" type="string"/>
+        <element label="Product Features" max_length="1000" name="product_features" type="glide_list"/>
+        <element label="Product Type" max_length="40" name="product_type" type="string"/>
+    </element>
+</database>

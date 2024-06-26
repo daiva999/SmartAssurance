@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-<category>custom</category>
-<client_script><![CDATA[api.controller = function ($scope, $rootScope) {
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope, $rootScope) {
     /* widget controller */
     //var secretKey="rpt@123";
     var c = this;
@@ -142,8 +142,8 @@
     // Function to get the data from the vfs form (placeholder comment)
 };
 ]]></client_script>
-<controller_as>c</controller_as>
-<css>#productCardMainContainer{
+        <controller_as>c</controller_as>
+        <css>#productCardMainContainer{
 	height:75vh;
   overflow:scroll;
   overflow-x:hidden;
@@ -406,22 +406,22 @@ button.grid-item {
 
 
 </css>
-<data_table>sp_instance_table</data_table>
-<demo_data/>
-<description/>
-<docs display_value=""/>
-<field_list>table,field_list</field_list>
-<has_preview>true</has_preview>
-<id>recommendation</id>
-<internal>false</internal>
-<link><![CDATA[function link(scope, element, attrs, controller) {
+        <data_table>sp_instance_table</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>table,field_list</field_list>
+        <has_preview>true</has_preview>
+        <id>recommendation</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-<name>recommendation</name>
-<option_schema/>
-<public>true</public>
-<roles/>
-<script><![CDATA[(function () {
+        <name>recommendation</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function () {
     data.user = gs.getUserID();
     var tableDetails = [];
     if (input && input.action == "dataCall") {
@@ -612,20 +612,20 @@ button.grid-item {
 
 
 ]]></script>
-<servicenow>false</servicenow>
-<sys_class_name>sp_widget</sys_class_name>
-<sys_created_by>sachin_hm</sys_created_by>
-<sys_created_on>2024-02-07 10:09:37</sys_created_on>
-<sys_id>f7ea0898939cc610acdc3f484dba10ce</sys_id>
-<sys_mod_count>109</sys_mod_count>
-<sys_name>recommendation</sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sp_widget_f7ea0898939cc610acdc3f484dba10ce</sys_update_name>
-<sys_updated_by>sachin_hm</sys_updated_by>
-<sys_updated_on>2024-02-12 07:23:32</sys_updated_on>
-<template><![CDATA[<div id="productCardMainContainer">
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>sachin_hm</sys_created_by>
+        <sys_created_on>2024-02-07 10:09:37</sys_created_on>
+        <sys_id>f7ea0898939cc610acdc3f484dba10ce</sys_id>
+        <sys_mod_count>109</sys_mod_count>
+        <sys_name>recommendation</sys_name>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_f7ea0898939cc610acdc3f484dba10ce</sys_update_name>
+        <sys_updated_by>sachin_hm</sys_updated_by>
+        <sys_updated_on>2024-02-12 07:23:32</sys_updated_on>
+        <template><![CDATA[<div id="productCardMainContainer">
 
 <div ng-repeat="record in tableDetails">
   <div *ngIf="record.tagImage === 'people'">
@@ -697,5 +697,5 @@ button.grid-item {
   <div>
     
   </div>]]></template>
-</sp_widget>
+    </sp_widget>
 </record_update>

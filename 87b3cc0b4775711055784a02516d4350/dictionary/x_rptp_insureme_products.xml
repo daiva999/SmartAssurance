@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="2f70a37847f006100f7fb70d416d43dc" label="Products" max_length="40" name="x_rptp_insureme_products" type="collection">
+        <element label="Category ID" max_length="32" name="category_id" reference="x_rptp_insureme_product_categories" reference_qual="sys_idSTARTSWITH^EQ" reference_qual_condition="sys_idSTARTSWITH^EQ" type="reference"/>
+        <element label="Image URL" max_length="40" name="image_url" type="string"/>
+        <element label="Offers" max_length="40" name="offers" type="integer"/>
+        <element label="Product Name" max_length="40" name="product_name" type="string"/>
+        <index name="index">
+            <element name="category_id"/>
+        </index>
+    </element>
+</database>

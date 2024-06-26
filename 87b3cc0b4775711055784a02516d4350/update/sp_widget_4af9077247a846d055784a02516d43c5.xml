@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-<category>custom</category>
-<client_script><![CDATA[api.controller = function($scope) {
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope) {
 
 	/* widget controller */
 
@@ -97,8 +97,8 @@
 
 
 };]]></client_script>
-<controller_as>c</controller_as>
-<css>body {
+        <controller_as>c</controller_as>
+        <css>body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
   margin: 0;
@@ -178,22 +178,22 @@ h4 {
 
 
 </css>
-<data_table>sp_instance</data_table>
-<demo_data/>
-<description/>
-<docs display_value=""/>
-<field_list/>
-<has_preview>true</has_preview>
-<id/>
-<internal>false</internal>
-<link><![CDATA[function link(scope, element, attrs, controller) {
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
   
 }]]></link>
-<name>policy form </name>
-<option_schema/>
-<public>true</public>
-<roles/>
-<script><![CDATA[(function() {
+        <name>policy form </name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
     // populate the 'data' object
     // e.g., data.table = $sp.getValue('table');
     data.arr = [];
@@ -273,20 +273,20 @@ var Result = JSON.stringify(data.policynumber);
 })();
 
 ]]></script>
-<servicenow>false</servicenow>
-<sys_class_name>sp_widget</sys_class_name>
-<sys_created_by>Surya.Prathap</sys_created_by>
-<sys_created_on>2024-02-28 04:45:04</sys_created_on>
-<sys_id>4af9077247a846d055784a02516d43c5</sys_id>
-<sys_mod_count>310</sys_mod_count>
-<sys_name>policy form </sys_name>
-<sys_package display_value="SmartAssurance" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
-<sys_policy/>
-<sys_scope display_value="SmartAssurance">87b3cc0b4775711055784a02516d4350</sys_scope>
-<sys_update_name>sp_widget_4af9077247a846d055784a02516d43c5</sys_update_name>
-<sys_updated_by>Ajmal.akram</sys_updated_by>
-<sys_updated_on>2024-03-06 06:44:19</sys_updated_on>
-<template><![CDATA[<div class="form-container">
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>Surya.Prathap</sys_created_by>
+        <sys_created_on>2024-02-28 04:45:04</sys_created_on>
+        <sys_id>4af9077247a846d055784a02516d43c5</sys_id>
+        <sys_mod_count>310</sys_mod_count>
+        <sys_name>policy form </sys_name>
+        <sys_package display_value="SmartAssurance old" source="x_rptp_insureme">87b3cc0b4775711055784a02516d4350</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartAssurance old">87b3cc0b4775711055784a02516d4350</sys_scope>
+        <sys_update_name>sp_widget_4af9077247a846d055784a02516d43c5</sys_update_name>
+        <sys_updated_by>Ajmal.akram</sys_updated_by>
+        <sys_updated_on>2024-03-06 06:44:19</sys_updated_on>
+        <template><![CDATA[<div class="form-container">
   <div>
     <h1>Claim Your Insurance</h1>
 
@@ -378,5 +378,5 @@ var Result = JSON.stringify(data.policynumber);
 
 </div>
 ]]></template>
-</sp_widget>
+    </sp_widget>
 </record_update>
